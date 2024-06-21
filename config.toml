@@ -1,4 +1,4 @@
-baseURL = 'http://hunter.predefend.com/'
+baseURL = 'https://www.predefender.com/threathunting-book/'
 languageCode = 'en-us'
 title = 'Predefend Hunter'
 theme = 'hugo-theme-learn'
