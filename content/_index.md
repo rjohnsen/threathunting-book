@@ -1,9 +1,9 @@
 ---
-title: "Threat Hunter Book"
+title: "Threat Hunting Book"
 date: 2024-06-21T21:01:32+02:00
 draft: true
 ---
 
-# Threat Hunter Book
+## Threat Hunting Book
 
 Content here
