@@ -2,7 +2,6 @@ baseURL = 'https://www.predefender.com/threathunting-book/'
 languageCode = 'en-us'
 title = 'Predefend Hunter'
 theme = 'hugo-theme-learn'
-landingPageURL = "/threathunting-book/"
 
 [params]
   # Prefix URL to edit current page. Will display an "Edit this page" button on top right hand corner of every page.
