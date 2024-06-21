@@ -1,0 +1,4 @@
+baseURL = 'http://hunter.predefend.com/'
+languageCode = 'en-us'
+title = 'Predefend Hunter'
+theme = 'hugo-theme-learn'
