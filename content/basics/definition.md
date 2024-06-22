@@ -129,7 +129,7 @@ If detecting attackers on the inside, escalate to Incident Response Team - aide 
 
 ### Types
 
-Traditionally hunts have been differentiated into two types of hunts; structured and unstructured. Defendable has extended this traditional model with a third definition, consisting of a mixture of both types. Further definitions of the three types are as follows:
+Traditionally hunts have been differentiated into two types of hunts; structured and unstructured. I have extended this traditional model with a third definition, consisting of a mixture of both types. Further definitions of the three types are as follows:
 
 | Type  | Key points |
 | ----- | ---------- | 
