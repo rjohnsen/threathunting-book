@@ -152,3 +152,25 @@ The following is an selection of actions or strategies employed by Threat Hunter
 | Grouping Analysis | Group the data based on the occurrence of specific simultaneous conditions | X and Y occurs together - sometimes Z joins the party. Why is that? |
 | Stack Counting | Aggregating and counting the number of times a condition is observed, with the intent of identifying statistical extremes in either direction. | We average on 1000 events, 100 at the lowest and 1500 at peak. |
 | Other | Other | Techniques not identified here. |
+
+## References
+
+Resources and references
+
+* [Threat Hunting vs. Threat Detecting: What's The Difference?](https://www.splunk.com/en_us/blog/learn/threat-hunting-vs-threat-detecting.html)
+* [Cyborg Security - Threat Hunting Framework](https://info.cyborgsecurity.com/hubfs/Gated%20Content/Cyborg%20Security%20-%20Threat%20Hunting%20Framework.pdf)
+* [50 Threat Hunting Hypothesis Examples](https://www.cyborgsecurity.com/blog/50-threat-hunting-hypothesis-examples/)
+* [Protecting the ‘Crown Jewels’ with Threat Hunting](https://techspective.net/2019/12/13/protecting-the-crown-jewels-with-threat-hunting/)
+* [How to Identify Cyber Critical Systems with a Crown Jewel Analysis](https://www.dragos.com/blog/how-to-identify-cyber-critical-systems-with-a-crown-jewel-analysis/)
+* [Cyber Threat Hunting: Types, Methodologies, Best Practices](https://www.knowledgehut.com/blog/security/cyber-threat-hunting)
+* [SOC Analyst vs Threat Hunter](https://www.siemxpert.com/blog/soc-analyst-vs-threat-hunter/#:~:text=The%20threat%20hunting%20process%20do,for%20the%20new%25)
+* [WHAT IS CYBER THREAT HUNTING?](https://www.crowdstrike.com/cybersecurity-101/threat-hunting/)
+* [IOA VS IOC](https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/ioa-vs-ioc/)
+* [BLOG What is Proactive Cyber Threat Hunting and Why Should You Do It?](https://www.securebrain.co.jp/eng/blog/what-is-proactive-threat-hunting/#:~:text=Proactive%20threat%20hunting%20is%20an,irreversible%20problems%20within%20your%20network)
+* [Corelight Threat Hunting Guide](https://go.corelight.com/threat-hunting-guide-ws)
+* [Security analytics use cases for threat hunting](https://atos.net/wp-content/uploads/2021/01/security-analytics-use-cases-for-threat-hunting.pdf)
+* [Threat Hunting Use Case: Web Proxy](https://www.reliaquest.com/blog/threat-hunting-use-case-web-proxy/)
+* [Threat Hunting with MITRE’s ATT&CK Framework: Part 1](https://www.digitalguardian.com/blog/threat-hunting-mitres-attck-framework-part-1?_gl=1%2A1fdnrup%2A_ga%25%202AMTQ4NDk4ODI5Ny4xNjgyNDkyNTE1%2A_ga_Q142HN6432%2AMTY4MjQ5MjUxNC4xLjAuMTY4MjQ5MjUxNC42MC4wLjA.)
+* [Threat Hunting with MITRE’s ATT&CK Framework Part 2 – Advanced Use Cases](https://www.digitalguardian.com/blog/threat-hunting-mitre%E2%80%99s-attck-framework-part-2-%E2%80%93-advanced-use-cases)
+* [Cyber Wardog Lab by Roberto Rodriguez](https://cyberwardog.blogspot.com/)
+* [10 Benefits of Threat Hunting](https://resources.infosecinstitute.com/topic/10-benefits-of-threat-hunting)
