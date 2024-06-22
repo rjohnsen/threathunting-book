@@ -12,7 +12,7 @@
 
     --MENU-SEARCH-BG-color:#000000; /* Search field background color (by default borders + icons) */
     --MENU-SEARCH-BOX-color: #000000; /* Override search field border color */
-    --MENU-SEARCH-BOX-ICONS-color: #a1d2fd; /* Override search field icons color */
+    --MENU-SEARCH-BOX-ICONS-color: #ffffff; /* Override search field icons color */
 
     --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its childs */
     --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
