@@ -4,6 +4,10 @@ date: 2024-06-22T11:37:31+02:00
 draft: false
 ---
 
+{{% notice info %}}
+This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
+{{% /notice %}}
+
 ## Definition
 
 > Threat hunting is an iterative and proactive process whereby threat hunters seek out anomalous activity, artifacts, and 
