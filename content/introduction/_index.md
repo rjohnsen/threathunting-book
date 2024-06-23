@@ -10,4 +10,6 @@ pre = "1 - "
 
 # Introduction
 
-Every book starts with a sentence ... 
+> Every new beginning comes from some other beginning's end.
+
+-- Seneca
