@@ -1,8 +1,8 @@
 ---
-title: "OODA Loop"
-date: 2024-06-22T10:16:57+02:00
+title: "MITRE ATT&CK"
+date: 2024-06-23T20:15:47+02:00
 draft: false
-weight: 4
+weight: 3
 ---
 
 {{% notice info %}}
