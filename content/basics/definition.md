@@ -8,7 +8,11 @@ draft: false
 This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
 {{% /notice %}}
 
+If you inquire about "threat hunting," you are likely to encounter a wide range of interpretations, comparable to the multitude of stars in the night sky. One Security Operations Center (SOC) might claim to engage in threat hunting, yet upon closer examination, their activities may be confined to validating Indicators of Compromise (IOCs). Conversely, another SOC might describe their approach as centered around crafting detection rules informed by threat intelligence. In this article, I aim to provide a comprehensive explanation of threat hunting, distinguish it from detection engineering, elucidate its importance, explore various methodologies of threat hunting, and more. My primary objective is to establish a foundational framework for conducting effective threat hunts and to outline the essential knowledge needed to excel in this role.
+
 ## Definition
+
+Several companies and researchers have attempted to define the concept of threat hunting. Among these, Cyborg Security, established in 2019, stands out as a leading authority. Comprising a team of experienced threat hunters, threat intelligence analysts, and security researchers based in North America, Cyborg Security has played a pivotal role in popularizing and democratizing threat hunting through initiatives such as free training programs. Their collaboration with Intel471 in 2024 further underscores their influence in the industry. Here is how Cyborg Security defines threat hunting:
 
 > Threat hunting is an iterative and proactive process whereby threat hunters seek out anomalous activity, artifacts, and 
 > behaviors within an environment with the objective of identifying previously unknown and undetected threats. This definition has 
@@ -26,7 +30,13 @@ This public preview offers a glimpse of upcoming content. Please note that the c
 > objective is accomplished through a variety of analysis methods, especially those involving behavioral and statistical analysis. 
 > This process, however, absolutely does not rely on searching through an environment using atomic indicators of compromise 
 > (IOC). That practice belongs strictly to the domain of traditional security operations, not threat hunting.
-> *– [Cyborg Threat Hunting Framework](https://www.cyborgsecurity.com/library/white-paper/threat-hunting-framework/)*
+> *
+
+-– [Cyborg Threat Hunting Framework](https://www.cyborgsecurity.com/library/white-paper/threat-hunting-framework/)*
+
+Their definition resonates with my perception of threat hunting:
+
+> Threat Hunting can be seen as an amplified version of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, threat hunting involves a proactive approach. Rather than waiting for alerts, a threat hunter meticulously examines log data to uncover anomalies and potential blind spots. This process requires formulating and testing hypotheses by correlating diverse sets of data.
 
 ## Reasons why for Threat Hunting
 
