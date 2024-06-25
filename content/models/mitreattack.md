@@ -8,3 +8,14 @@ weight: 3
 {{% notice info %}}
 This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
 {{% /notice %}}
+
+## About model
+
+## Example
+
+## Practical application
+
+## Resources
+
+For more detailed information, you can explore the following resources:
+- ...
