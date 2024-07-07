@@ -1,7 +1,7 @@
 ---
 title: "Unified Kill Chain"
 date: 2024-07-07T11:39:29+02:00
-draft: true
+draft: false
 weight: 3
 ---
 
@@ -11,83 +11,116 @@ This public preview offers a glimpse of upcoming content. Please note that the c
 
 ## About Model
 
-The Unified Kill Chain (UKC) is an advanced security framework that extends the concept of the Cyber Kill Chain by integrating multiple attack frameworks to provide a comprehensive view of cyber threats. It combines elements from Lockheed Martin’s Cyber Kill Chain, MITRE ATT&CK, and other models to offer a detailed and unified approach to understanding and countering cyberattacks. The UKC categorizes attack activities into a broader set of stages, ensuring that defenders can detect and mitigate threats across the entire lifecycle of an attack.
+The Unified Kill Chain (UKC) is a comprehensive cybersecurity framework that details the lifecycle of cyberattacks. It integrates aspects of various models, including the Cyber Kill Chain and MITRE ATT&CK, into a unified structure. The UKC categorizes the attack lifecycle into three main phases: **In, Through, and Out**.
 
-The Unified Kill Chain consists of the following stages:
+### Why "In, Through, Out"?
+This division helps organizations systematically understand and address each phase of an attack:
+- **In**: How attackers gain initial access.
+- **Through**: How they move within the network.
+- **Out**: How they achieve their objectives and exit.
 
-1. **Preparation**: Actions taken by attackers before engaging the target, including reconnaissance and resource development.
-2. **Initial Compromise**: Techniques used to gain initial access to the target.
-3. **Establish Foothold**: Actions to establish a persistent presence within the target environment.
-4. **Escalate Privileges**: Techniques to gain higher-level permissions on the target system.
-5. **Internal Reconnaissance**: Gathering information about the internal network and systems.
-6. **Move Laterally**: Techniques to move through the network to other systems.
-7. **Maintain Presence**: Ensuring continued access to the target environment.
-8. **Complete Mission**: Achieving the attacker's final objectives, such as data exfiltration or system disruption.
+### Phases
+
+Notice that each phase is built of multiple steps. For instance, the steps in the "IN" phase is 
+
+* Reconnaissance
+* Resource development
+* Delivery
+* Social Engineering
+* Exploitation
+* Persistence
+* Defense evasion
+* Command and control
+
+Bear in mind, in an attack, an adversary doesn't have to fulfill or pace through each step. Some steps can and will be skipped depending on the TTP's of the adversary. Speaking of TTP's, if you look closely, each step in each phase can (with some exceptions outlined in the design PDF) be mapped with the Mitre Att&ck Framework. This means, as I use the model, whenever I do threat hunting I use this model as a notebook (along with the Diamond Model). By carefully mapping out whatever the adversay are trying to do up against the Mitre Att&ck framework, I can place which phase attack is in. Paired with the Diamond Model I have a great system for basing my reports and further investigation on.
+
+Anyway, let's have a closer look at each phases: 
+
+1. **In**:
+
+The "in" phase is about:
+
+   - Preparation
+   - Initial Compromise
+   - Establish Foothold
+
+![Unified Kill chain In Phase 1](/images/ukc1.png)
+
+2. **Through**:
+
+The "through" phase is about:
+
+   - Escalate Privileges
+   - Internal Reconnaissance
+   - Move Laterally
+
+![Unified Kill chain In Phase 2](/images/ukc2.png)
+
+3. **Out**:
+
+The "out" phase is about:
+
+   - Maintain Presence
+   - Complete Mission
+   - Exfiltration & Impact
+
+![Unified Kill chain In Phase 3](/images/ukc1.png)
 
 ## Example
 
-Consider a scenario where an e-commerce company is targeted by a sophisticated cyberattack. Using the Unified Kill Chain, the security team can map out the attack stages:
+Consider a cyberattack on a financial institution using the UKC framework:
 
-1. **Preparation**: Attackers gather information about the company's infrastructure and develop custom malware.
-2. **Initial Compromise**: They exploit a vulnerability in the company's web application to gain access.
-3. **Establish Foothold**: Attackers deploy a web shell to maintain access.
-4. **Escalate Privileges**: They exploit a local privilege escalation vulnerability to gain administrative rights.
-5. **Internal Reconnaissance**: Attackers scan the internal network to identify valuable systems and data.
-6. **Move Laterally**: Using stolen credentials, they move to a database server.
-7. **Maintain Presence**: They create backdoors on critical systems to ensure continued access.
-8. **Complete Mission**: Attackers exfiltrate customer data and deploy ransomware to disrupt operations.
+1. **In**:
+   - **Preparation**: Attackers gather information on employees.
+   - **Initial Compromise**: Phishing email delivers malware.
+   - **Establish Foothold**: Malware installs a backdoor.
+
+2. **Through**:
+   - **Escalate Privileges**: Attackers exploit vulnerabilities for admin rights.
+   - **Internal Reconnaissance**: Network scans identify critical systems.
+   - **Move Laterally**: Attackers use stolen credentials to access other systems.
+
+3. **Out**:
+   - **Maintain Presence**: Persistent backdoors ensure ongoing access.
+   - **Complete Mission**: Attackers exfiltrate sensitive financial data.
+   - **Exfiltration & Impact**: Data is transferred out, and ransomware is deployed.
 
 ## Practical Application
 
-In threat hunting, the Unified Kill Chain can be used to identify and mitigate threats at every stage of the attack lifecycle. Here’s how to apply it practically:
+### In
+- **Detection**: Monitor for reconnaissance and phishing attempts.
+- **Response**: Conduct security awareness training and implement email filtering.
 
-1. **Preparation**:
-   - Monitor for unusual domain registrations and threat actor activities.
-   - Use threat intelligence to identify indicators related to attack planning.
+### Through
+- **Detection**: Identify privilege escalation and lateral movement.
+- **Response**: Enforce least privilege and use network segmentation.
 
-2. **Initial Compromise**:
-   - Implement robust intrusion detection and prevention systems (IDPS).
-   - Regularly update and patch systems to fix vulnerabilities.
+### Out
+- **Detection**: Monitor for data exfiltration and ransomware activity.
+- **Response**: Deploy data loss prevention tools and maintain regular backups.
 
-3. **Establish Foothold**:
-   - Monitor for the presence of web shells and other persistence mechanisms.
-   - Use file integrity monitoring to detect unauthorized changes.
+## Why It Is Better Than Lockheed Martin's Cyber Kill Chain
 
-4. **Escalate Privileges**:
-   - Monitor for attempts to exploit privilege escalation vulnerabilities.
-   - Implement least privilege principles and regular privilege audits.
+The Unified Kill Chain is considered more effective than Lockheed Martin's Cyber Kill Chain for several reasons:
 
-5. **Internal Reconnaissance**:
-   - Detect and block unauthorized network scanning and enumeration activities.
-   - Use network segmentation to limit the spread of an attack.
+1. **Comprehensiveness**: The UKC encompasses a broader range of attack techniques and stages, covering the entire attack lifecycle in more detail.
+2. **Integration**: It integrates insights from multiple models, including MITRE ATT&CK, providing a more holistic view.
+3. **Flexibility**: The division into "In, Through, Out" allows for more targeted and specific defensive measures at each phase.
+4. **Depth**: It addresses more advanced and sophisticated attack techniques, enabling organizations to defend against a wider array of threats.
 
-6. **Move Laterally**:
-   - Monitor for unusual authentication attempts and lateral movement techniques.
-   - Use micro-segmentation and network access controls to restrict lateral movement.
-
-7. **Maintain Presence**:
-   - Regularly scan for and remove backdoors and other persistence mechanisms.
-   - Implement continuous monitoring and incident response capabilities.
-
-8. **Complete Mission**:
-   - Monitor for signs of data exfiltration and disruptive actions.
-   - Implement data loss prevention (DLP) and regular backups to mitigate damage.
+By leveraging the Unified Kill Chain, organizations can systematically enhance their threat detection and response capabilities, improving overall security posture and reducing the likelihood of successful attacks.
 
 ## Resources
 
 - **Books**:
   - "The Unified Kill Chain: A Comprehensive Guide to Cyber Defense" by Paul Pols
-  - "The ATT&CK Framework: A Cyber Threat Intelligence Strategy" by Michael Rand
 
 - **Websites**:
-  - [Unified Kill Chain](https://www.unifiedkillchain.com/)
-  - [MITRE ATT&CK](https://attack.mitre.org/)
+  - [Unified Kill Chain Documentation](https://www.unifiedkillchain.com/assets/The-Unified-Kill-Chain.pdf)
+  - [MITRE ATT&CK Framework](https://attack.mitre.org/)
 
 - **Tools**:
-  - Threat intelligence platforms (e.g., ThreatConnect, Recorded Future)
-  - Endpoint detection and response (EDR) solutions (e.g., CrowdStrike Falcon, Carbon Black)
-  - Network monitoring and analysis tools (e.g., Wireshark, Zeek)
-
-By leveraging the Unified Kill Chain model, organizations can enhance their threat hunting processes, gain a deeper understanding of attack methodologies, and implement comprehensive defense strategies to protect against advanced cyber threats.
-
-
+  - Threat intelligence platforms
+  - Endpoint detection and response (EDR) solutions
+  - Network monitoring tools
+  - Security information and event management (SIEM) systems
