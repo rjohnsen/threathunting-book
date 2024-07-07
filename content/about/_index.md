@@ -1,12 +1,12 @@
 +++
 title = "About"
 date = 2024-06-21T21:14:49+02:00
-weight = 5
+weight = 6
 chapter = true
-pre = "4. - "
+pre = "6. - "
 +++
 
-### Chapter 4
+### Chapter 6
 
 # About
 

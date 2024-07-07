@@ -2,7 +2,7 @@
 title: "OODA Loop"
 date: 2024-06-22T10:16:57+02:00
 draft: false
-weight: 4
+weight: 5
 ---
 
 {{% notice info %}}

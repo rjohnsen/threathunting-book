@@ -2,7 +2,7 @@
 title: "Pyramid of Pain"
 date: 2024-06-23T20:15:33+02:00
 draft: false
-weight: 5
+weight: 6
 ---
 
 {{% notice info %}}
