@@ -1,152 +1,125 @@
 ---
 title: "Analyst Mindset"
 date: 2024-07-14T12:47:36+02:00
-draft: true
+draft: false
 weight: 2
 ---
 
-Until today, we have focused heavily on the technology we use in the SOC. We haven't talked much about the human perspective that actually works with the 
-systems. Today we will focus on the analyst and highlight methods and tools for approaching the role of analyst.
+Threat hunting can be considered an enhanced form of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, a threat hunter adopts a proactive approach. Instead of waiting for alerts, a threat hunter meticulously examines log data to identify anomalies and potential blind spots. This process involves formulating and testing hypotheses by correlating diverse sets of data, including both the raw logs and the statistics derived from them. Threat hunting is not just about following trails in logs; it is about understanding the underlying patterns within them.
 
-What we are going to talk about today are tools that are a notch above the routines, processes and specialist systems the SOC has. Virtually all SOCs have written 
-routines and process descriptions for how to carry out analysis. It can be a bit overwhelming to get into. You will get to know ours when you start the training in pairs 
-later. But before you embark on these routines and processes, it will be useful to look at tools that make you better equipped to handle them.
+Becoming a proficient threat hunter requires a high degree of critical thinking. In this chapter, we will focus on the human perspective—specifically, the analyst—and highlight various methods and tools for approaching the role of a threat hunter.
 
-I have taken as a basis my experience with being a mentor for new employees and with building up SOC departments. Over the years, I have guided many 
-students and found many good questions about becoming and being an analyst and doing analysis. At the same time, I have taken as a basis the questions I myself 
-had when I started as an analyst.
+Drawing from my experience as a mentor for new employees and in building SOC departments, I have guided many students and encountered numerous insightful questions about becoming and being an analyst. Reflecting on the questions I had when I first started as an analyst, I have formulated this definition:
 
-Based on the questions and answers I have found, I have formulated this definition of what an analyst is:
+> "Being an analyst is about discovering situations in a structured, repeatable manner that provides plausible answers."
 
-> Being an analyst is about finding out about situations in a structured way that can be repeated within itself and on later occasions and that gives plausible 
-answers"
+By "repeatable," I mean using consistent methodologies to examine any findings along the way.
 
-By "into oneself" I mean that one uses the same methodology to examine any exits one finds along the way.
+Today, we will explore thought patterns, models, and other valuable insights. Let's begin with a quote from one of Sun Microsystems' founders:
 
-To treat this, today we will look at thought patterns, models and other snacks. Let's open this ball with a quote from one of Sun Microsystems' founders:
+> "Many times, experts fail because they're experts in the past version of the world."
 
-> "Many times experts fail because they're experts in the past version of the world".
+This quote underscores the necessity of staying at the forefront, continually adapting as the world rapidly changes. It perfectly reflects our everyday reality as analysts—what was true yesterday might not be true today. Each day presents a new set of challenges and opportunities. 
 
-The quote tells us that we must be "furthest in the shoe", always be on the cutting edge as the world changes quickly. In many ways, it reflects our everyday life in 
-an excellent way. What was true yesterday is not necessarily true today. For us analysts, we face a completely new day every day.
+A threat hunter is essentially a SOC analyst on steroids, embodying this proactive and adaptive mindset. So, where do we begin our journey? Let's start by exploring the foundations of analytical thinking.
 
-But where do we begin our journey? We start by looking a little at thinking.
+## Primer on analytical thinking
 
-## What is analytical thinking Slide 3
+![The brain](/images/brain.png)
 
-Thinking is something we all do, every day - all year round. But have you thought about ways we can think? Ways we think we call thought patterns. Psychology has dealt with this 
-thinking and has uncovered a great many thought patterns, for example it has been found that:
+Thinking is an activity we engage in every day, all year round. But have you ever considered the different ways we think? These ways of thinking are known as thought patterns. Psychology has explored this extensively and identified numerous thought patterns. Here are some examples:
 
-| Thinking mode | Desciption |
-| ------------- | ---------- |
-| Sequential thinking | Which is thinking by putting things in logical order |
-| Concretizing thinking | Where we take our starting point and interpret what we see, hear, feel and experience |
-| Abstract thinking | This is the opposite of concrete thinking. We lift ourselves up a notch and think more about things | 
-| Holistic thinking | We think about the totality of things | 
-| Lateral thinking | Thinking outside the box - the free jazz version of thinking where we try to put things in context using perhaps not entirely logical associations | 
-| Critical thinking | Analyzing and assessing information about a case with a view to forming a well-founded and correct opinion, often as a basis for action. |
+| Thinking Mode        | Description |
+| -------------------- | ----------- |
+| Sequential Thinking  | Organizing thoughts in a logical order. |
+| Concretizing Thinking| Interpreting what we see, hear, feel, and experience. |
+| Abstract Thinking    | Thinking beyond the concrete, considering broader concepts. |
+| Holistic Thinking    | Considering the totality of a situation. |
+| Lateral Thinking     | Thinking outside the box, making unconventional associations. |
+| Critical Thinking    | Analyzing and evaluating information to form a well-founded opinion, often as a basis for action. |
 
-There are, of course, many other ways of thinking too - and it's not like we're locked into one mindset at a time. No, things flow into each other. This is because the brain is a complex machine and the situations we encounter require thought patterns to be combined.
+There are many other ways of thinking, and we are not confined to one pattern at a time. Thought patterns often flow into each other because the brain is a complex machine, and the situations we encounter require a combination of thought patterns.
 
-Being aware of which thought patterns exist and are used when, then one can become more aware of how one thinks, and correct both oneself and the course further on. This is a very important feature to have in your toolbox.
+Understanding which thought patterns exist and when to use them can help you become more aware of your thinking process. This self-awareness allows you to correct your thinking and adjust your course as needed, which is an essential skill to have in your analytical toolbox.
 
-Why am I focusing on this right here at the beginning of the presentation? Yes - being an analyst means thinking. A LOT. When we think a lot, one must be conscious of how one thinks to avoid that the train of thought is contaminated with impressions that shape the outcome. It just so happens that humans find it easy to perceive elements in the train of thought so that this colors further progress. This can be
+Why am I emphasizing this at the beginning of our discussion? Because being an analyst involves a lot of thinking. When we engage in extensive thinking, we must be mindful of how we think to avoid contaminating our thought processes with biases and external influences. Here are some common factors that can affect our thinking:
 
-| What | Description |
-| ---- | ----------- |
-| Prejudice | We drag our own opinions into the train of thought |
-| Noise from the outside world | We are shaped by those we associate with and what we sense from the outside world. Perhaps a "truth" has been established in the department, or that we bring misinformation into the train of thought |
-| Insecurity | We don't always fully understand the concepts and this creates uncertainty that manifests itself. The analysis can become very vague and the foundations stand on shaky ground. |
-| Oblique safety | We are so sure that what we are looking for is there that we end up blind |
-| Day form | Perhaps we have slept badly, or are ill - this is the condition that affects thinking |
+| Factor                | Description |
+| --------------------- | ----------- |
+| Prejudice             | Allowing personal opinions to influence our thought process. |
+| External Noise        | Being influenced by those around us and external information. |
+| Insecurity            | Uncertainty about concepts can lead to vague analyses. |
+| Confirmation Bias     | Being so convinced of a particular outcome that we overlook other possibilities. |
+| Personal State        | Factors such as poor sleep or illness can affect our thinking. |
 
-There is a lot that affects our thinking - yes, also the weather and family relationships. Being an analyst is precisely being aware of how one thinks since it is a tool we use a lot. If we develop an understanding of how we think, we can use thinking as a tool in itself because we have mastered correcting ourselves.
+Many elements can impact our thinking, including the weather and family relationships. As analysts, being aware of how we think is crucial because our thinking is a primary tool. By understanding and mastering our thought processes, we can use thinking itself as an effective tool.
 
-I expect that most of you have come across analytical thinking. After all, this is a pattern of thinking that defines us, and as I like to call it, a tool.
+Most of you are likely familiar with analytical thinking, a thought pattern that defines us and serves as a vital tool. Let's define it:
 
-But let's throw a definition up in the air here:
+> "Analytical thinking is the process of observing, researching, and developing critical insights from data or other information. It involves using these insights to gain knowledge, solve problems, or generate new ideas."
 
-> "Analytical thinking is when you observe, research and develop critical insights from data or other information. When you use analytical thinking you get knowledge, 
-solutions or ideas related to a problem or topic."
+Analytical thinking involves several key steps:
 
-Overall, there are several steps analytical thinking consists of:
+1. Identifying a topic, problem, or issue.
+2. Breaking down the topic, issue, or problem into manageable segments.
+3. Obtaining relevant information from reliable sources.
+4. Assessing cause, effect, and connections.
+5. Developing solutions or enhancing understanding of the subject.
+6. Testing solutions or new ideas based on what we have learned.
+7. Reviewing which solutions worked and assessing our new knowledge.
 
-* We identify a topic, problem or issue
-* We break down the topic, issue or problem into even smaller, more manageable segments
-* We obtain relevant information from reliable sources
-* We assess cause, effect and connections
-* We develop solutions or advance our understanding of the subject
-* We test solutions or new ideas based on what we have learned
-* We review which solutions worked or assess our new knowledge
+Each of these steps can be broken down into specific methods. As we progress in our work, you will see how our internal procedures and routines align with these steps.
 
-Each of these points can be broken down into methods to deal with each one. Later on in the working relationship, you will see that we can map the internal procedures and routines we have into these steps.
+Understanding these thought patterns and processes is essential to grasping how and why the SOC operates the way it does.
 
-This is an important gateway to understanding how and why SOC works the way we do.
+## Thinking is verbing
 
-## What is analytical thinking? Slide 4
+Let's delve deeper into the steps of analytical thinking and identify a common thread: action verbs. Thinking itself is an action, something we actively do. 
 
-If we look a little more closely at the steps in analytical thinking, we find a common denominator: verbs! Thinking itself is a verb... that too. So, this is something we do!
+By examining the steps outlined previously, we can extract essential action verbs that are crucial for our analytical work:
 
-If we break down what I said on the previous slide, we can extract important verbs that we will take with us into the analysis work. We say:
+* Identify
+* Break down
+* Gather
+* Assess
+* Develop solutions
+* Promote understanding
+* Test
+* Review
+* Communicate
 
-> * To identify
-> * To split up
-> * To catch up
-> * To consider
-> * To develop solutions
-> * To promote understanding
-> * To test
-> * To review
-> * To consider
+These verbs represent the core actions that form a comprehensive methodology—a structured approach to analysis.
 
-This is a breakdown of the thought pattern that is good to have in your toolbox as an overall methodology – an approach to analyzing if you like.
+Additionally, it's important to consider another critical aspect: dissemination. We must effectively communicate the results of our analytical processes to others. This ability to convey our findings clearly and accurately is essential for successful analysis.
 
-In fact, I want to wrap these verbs in another layer. Namely dissemination! We must also be able to communicate the outcome of this process to others.
+## Think this, this, and this way
 
-## What is analytical thinking? Slide 5
+Analytical thinking is crucial, but it doesn't exist in isolation—it must be complemented by other thought models. At SOC, we integrate various thought patterns into our work. While we rely on analytical thinking, it is essential to combine it with critical thinking.
 
-Analytical thinking is important, but it does not stand alone – it must be supported by other thought models. For us at SOC, we also need to add other thought patterns into the work. Although we 
-have an analytical way of thinking, we have to combine this with critical thinking.
+We need to analyze and assess information about a case to form a well-founded and accurate opinion, guiding our actions effectively. Running an analysis from start to finish without critically evaluating the process can lead to overlooking important details. This approach lacks quality, as it ignores potential blind spots.
 
-We need to analyze and assess information about a case with a view to forming a well-founded and correct opinion in order to take the actions we must.
+Two key skills are central here: argumentation and strategic source assessment.
 
-We can run an analysis from A to Z without deciding whether what we are doing is right and correct in a purely mechanical way. In terms of quality, this is not fortunate since we have not taken a position along the way. It could be that we have something undiscovered in the blind spot
-
-Two skills in particular are central here: Argumentation and strategic source assessment.
-
-| What | Definition |
+| Skill | Definition |
 | ---- | ---------- |
-| Argumentation | By argument, we mean being able to take a position on a case based on rationally valid reasons for which you have evidence. This involves being able to assess the validity of claims, as well as thinking through and accommodating possible counter-arguments. |
-| Strategic source assessment | Strategic source assessment is the ability to use information from various information channels to interpret their content. For example, when reading a text online, you should look for the type of publication you are dealing with, who the publisher is and when it was published. You have to ask yourself, do the sources have credibility and authority that allows us to trust what they say? |
+| Argumentation | The ability to take a position on a case based on rationally valid reasons supported by evidence. This involves assessing the validity of claims and considering possible counter-arguments. |
+| Strategic Source Assessment | The ability to use information from various channels to interpret their content. For example, when reading a text online, consider the type of publication, the publisher, and the publication date. Assess whether the sources have credibility and authority to be trusted. |
 
-However, many times we encounter situations where there are gaps in the data base. Unfortunately, we have to fill gaps with plausible theories. We have to be creative, we have to find connections that are not always obvious. We also need creative thinking - in the technical language this is called "Lateral thinking".
+Often, we encounter situations with data gaps that must be filled with plausible theories. This requires creativity and finding connections that aren't always obvious—what we call "lateral thinking."
 
-But what is it?
+Lateral thinking involves solving problems using an indirect and creative approach, through reasoning that is not immediately obvious. Sometimes, we must hypothesize and test whether the evidence fits this hypothesis rather than allowing the evidence alone to shape our hypothesis. This approach is about thinking outside the box.
 
-It so happens that in many cases we cannot read our way to the answer. Perhaps important information is missing. Lateral thinking is a way of solving problems using an indirect and creative approach via reasoning that is not immediately obvious. Perhaps we can say that sometimes we have to hypothesize and examine whether the traces can fit into this hypothesis – rather than let the evidence make the hypothesis.
+JP Guilford, known for his task of drawing four lines through a matrix of nine dots without lifting the pen, researched this extensively. However, Edward de Bono's work on different thought patterns and their combination to solve tasks is particularly notable. In 1967, de Bono introduced the concept of "lateral thinking," which I interpret as follows:
 
-That is, involving ideas that may not be achieved using only traditional step-by-step logic. So, A leads to B which leads to C.
+> "Creative thinking is the ability to come up with new and innovative ideas. Imagination plays a big role in this process. One of its greatest qualities is that it knows no boundaries. If we let it. Imagination is the search engine of your brain. You fill your brain with information from various sources. You then use your imagination to draw connections between the information. If you free the boundaries and let your imagination run wild, it's amazing what ideas emerge."
 
-Yes - this is thinking outside the box. Many have researched this. Among others JP Guilford, perhaps best known for the task where you have to draw four lines through a matrix of 9 dots 
-without raising your hand.
+While using your imagination is essential, we must balance it with critical thinking to ensure it doesn't lead us astray. Think of it as "freedom under responsibility." Creative ideas must be plausible and defensible.
 
-However, one I would like to highlight is Edward de Bono who in 1967 looked at different thought patterns and how these are combined to solve tasks. As I do here today. One of the concepts he focused on and elaborated is "lateral" thinking.
+To illustrate these thought patterns, I have prepared a task based on classic lateral thinking exercises. This task demonstrates that we don't always have concrete information to rely on, similar to analyzing a log file. Be prepared to combine analytical, critical, and creative thinking to solve it.
 
-I interpret it like this:
+## Analyze this task
 
-> "Creative thinking is the ability to come up with new and innovative ideas. Imagination plays a big role in this process. One of its greatest qualities is that it knows no boundaries. If we let it. Imagination is the search engine of your brain. You fill your brain with information from various sources. You then use your imagination to draw connections between the information. If you free the boundaries and let your imagination run wild, it's amazing what ideas emerge"
-
-This sounds great - use your imagination! But it's not like we can put our brains on hold and allow ourselves to flow freely. We must be aware of slowing down our imagination so that it does not lead us astray. Feel free to call it "freedom under responsibility"
-
-Here we have to backtrack and think back to critical thinking. The fantasy must be plausible - you must be able to argue for it. To illustrate these three types of thinking, I have prepared a task for you. It is based on classic tasks for "lateral" thinking. Although it is meant for "lateral" thinking, it forces us to combine the thought patterns we have seen today.
-
-A little warning here:
-
-The task illustrates that we don't always have concrete things to go by. This could just as easily be a log file!
-
-## What is analytical thinking slide 6
-
-Here I want you to use the thought models we have talked about to solve this task.
+Here I want you to use the thought models we have talked about to solve this task:
 
 > It's almost midnight. It's quite a storm outside. There is a storm. A man sits inside. He is watching TV. The TV signals come and go. The man gets bored. He screws off the light and goes to bed. The man wakes up the following morning and reads in the newspaper: 40 men have died last night right outside his door.
 
@@ -158,9 +131,11 @@ Lighthouse keeper. He has turned off the light in the lighthouse, which has caus
 
 ### Important clues
 
+How on earth did we come to this conlusion? Let me try to explain by important hints from the text:
+
 | Clue | Comment |
 | ---- | ------- |
-| Midnight | Night – you use the light at night |
+| Midnight | Night – you use the light at night to see |
 | Storm | Storm belongs to the sea |
 | A man is sitting inside | Is he inside because it's night or stormy? |
 | He is watching TV | Not really that interesting |
@@ -174,181 +149,163 @@ Lighthouse keeper. He has turned off the light in the lighthouse, which has caus
 
 With this task, we leave the brain a little.
 
-## Words of wisdom - Slide 7
+## Words of wisdom
 
-Okay. It was a bit about the mental model. In itself, handling and dealing with thought patterns is a tool. We have talked a lot about ourselves, but thought patterns as tools can also reveal how an attacker thinks. Think about it! If we move a little further here, I have found some quotes that help us further with being an 
-analyst on a daily basis:
+We've discussed the mental model and recognized that managing and understanding thought patterns is a valuable tool. While we've focused significantly on our own thinking processes, these thought patterns can also offer insights into how an attacker thinks. Understanding and applying these patterns can significantly enhance our analytical capabilities.
 
-> "Every contact leaves a trace
+To delve deeper into this concept, I've gathered some quotes that can further guide us in our daily work as analysts:
 
-Dr. Edmond Locard (1877 – 1966) was a French criminologist, pioneer of forensic science who became known as the "Sherlock Holmes of France". He formulated the basic principle of forensic science: "Every contact leaves a trace". This became known as Locard's exchange principle.
+> "Every contact leaves a trace."
 
-If everything leaves traces, is there a connection to trace? Sir Arthur Conan Doyle thought so in one of his books:
+Dr. Edmond Locard (1877–1966), a French criminologist and pioneer of forensic science, became known as the "Sherlock Holmes of France." He formulated the basic principle of forensic science, known as Locard's exchange principle. This principle is fundamental to our work as threat hunters—we focus on finding those traces of contact.
+
+If every action leaves traces, is there always a connection to be found? Sir Arthur Conan Doyle thought so in one of his books:
 
 > "So all life is a great chain, the nature of which is known whenever we are shown a link of it."
 
-He was a British author and physician. He created the character Sherlock Holmes in 1887 for "A Study in Red", the first of four novels and fifty-six short stories about Sherlock Holmes and Dr. Watson.
+Sir Arthur Conan Doyle, a British author and physician, created the character Sherlock Holmes in 1887. His stories are milestones in crime fiction and have significantly influenced modern police investigations. Doyle’s quote builds on Locard's principle, emphasizing the interconnectedness of all actions. If traces and connections exist, what can they reveal to us?
 
-The Sherlock Holmes stories are milestones in crime fiction. His books were actually used to shape modern police investigation. Give it some thought. The quote here spins on Locard's. There is a connection between everything. If we then have traces and connections to the traces, what can they tell us?
+> "Res ipsa loquitur."
 
-> "Res ipsa loquitur
+This Latin phrase means "The matter speaks for itself." It's an important principle reminding us to let evidence tell its own story without imposing our biases. This can be challenging, especially when we receive colored narratives from customers or other sources. While the interpretation of this principle can vary, its core idea is to let the facts speak for themselves.
 
-Means "The matter speaks for itself". This is an important principle. We must let things tell their own story and not attribute to them values they do not have. This is 
-particularly difficult as we are often presented with stories from customers and others who will naturally color our investigation. This quote is often used by defense lawyers and courts, but the interpretation can be somewhat different depending on the jurisdiction. But let's just say, let things tell their own story. Easily.
+These quotes illustrate a connected philosophy of analysis. However, one critical element remains: data. Our task involves sifting through vast amounts of data to find clues. We must be prepared to dissect, scrutinize, and interpret data to uncover the information we seek.
 
-As you can see, these three quotes are linked together. But, we are missing something. Where do we find the tracks? Yes - it's data. Our task is to wade through 
-large amounts of data to find clues. We must be prepared to dissect data, twist and turn it to find what we are looking for.
+## The departure to technical information
 
-But what are we typically looking for?
+In the data we process, we uncover numerous fascinating insights and narratives. Three key concepts you should be familiar with are IOA, IOB, and IOC. Understanding thought patterns will be particularly useful when hunting for these indicators.
 
-## What we look for - slide 8
+### IOA: Indicator of Attack
 
-In the data we process, we find a lot of interesting things and we find many stories there. Three key concepts you should know something about are IOA, IOB and IOC.
+- **Definition:** IOA refers to signs that something is about to happen (precursor) or is happening currently.
+- **Description:** These are circumstances that hint at an attack but cannot be fully specified. Think of it as an indication that something suspicious is occurring.
+- **Detection:** IOA-based detection focuses on an attacker's behavior, regardless of whether the attack is known or unknown. This method aims to uncover unknown or evolving exploits and attacks before they penetrate your defenses.
 
-### IOA 
+IOAs are events that can reveal an active attack before Indicators of Compromise (IOC) become visible. For example:
+- A sudden increase in traffic to a website
+- Unexpectedly high activity on a file server at odd hours
+- Web servers communicating with internal hosts
+- Internal hosts communicating with each other for the first time
+- A laptop exhibiting unusual behavior
+- Port scanning within the network
+- Increased PowerShell activity on hosts
+- Spike in traffic to online storage services like Dropbox or Box, which the company may not typically use
 
-* Stands for Indicator of Attack
-* IOA can be described as indications that something is about to happen (precursor), or that is happening here and now.
-* Circumstances that we cannot fully specify, but which point to an attack - think of it as a sign that something is going on
-* IOA-based detection looks at an attacker's behavior, regardless of whether the attacker uses a known or unknown attack, to find unknown or evolving exploits and attacks. Because an attacker doesn't need malware to break into your system, an IoA-based solution is great for catching criminals before they get past your defenses.
+IOA detection requires near real-time monitoring and can be effectively combined with machine learning and IOB. Vigilance in monitoring logs and statistical dashboards is crucial.
 
-It's about uncovering the attack before it's over, preferably already on the receiving end. IOA are thus events that can reveal an active attack before indicators of compromise (IOC) become visible.
+### IOB: Indicator of Behavior
 
-For example:
+- **Definition:** IOB refers to the behavioral patterns of users, devices, or accounts and deviations from these established patterns.
+- **Description:** This involves understanding what constitutes normal behavior and identifying deviations from this baseline. The concept of "baselining" is crucial, as it involves measuring typical behavior to detect anomalies.
 
-* Sudden increase in traffic to a website
-* Sudden many operations against a file server at an unexpected time.
-* Web servers that suddenly talk to hosts on internal networks
-* Internal hosts talking to other internal hosts that they have never communicated with before
-* A laptop that behaves "strangely
-* Port scanning inside the network deviation on this.
-* Increased Powershell activity on hosts
-* Increased traffic to online shares, such as Dropbox and Box, which the company may not use
+Consider the following example:
 
-IOA detection requires near real-time monitoring and can be advantageously combined with machine learning and IOB. As well as having a vigilant eye on what is going on in the logs preferably by looking at statistics in dashboards.
+Imagine a financial analyst named Jennifer who regularly accesses financial data from the company’s internal systems. Her typical behavior involves:
+- Logging in during business hours (9 AM to 5 PM).
+- Accessing specific financial reports.
+- Using her work computer from her office network.
 
-### IOB
+Now, let’s say Jennifer suddenly starts accessing financial data from a different location late at night and downloads unusually large amounts of sensitive information. These deviations from her usual pattern are notable and warrant further investigation.
 
-* Stands for Indicator of Behavio
-* This is the way a user, device, account or other behaves - and deviations from this
-* Think behavioral patterns
-* A term you will hear is "baselining". This means that we measure normal behaviour, e.g. in a network. We then measure normal behavior patterns and report deviation on this.
-* A good example is the song "Arne går mot døra" by Bare Egil Band. Who dares to sing along? The song begins like this:
+**In more technical terms:**
+- **Permanent Patterns:** Regular access to specific files or systems during standard working hours.
+- **Sporadic Patterns:** Occasional access to systems outside normal hours for urgent tasks.
+- **One-Time Events:** A significant data download or access to unusual files which is not part of her typical activity.
 
-> "Arne walks towards the door. Thinking thoughts he has thought 1000 times before. Is dressed in black as usual. A pale, pale face with a matching moustache. A matching mustache."
+By establishing a baseline of Jennifers usual behavior, we can more easily spot deviations. For instance:
+- **Regular Behavior:** Accessing financial data from her office computer during business hours.
+- **Deviation:** Accessing data from an unfamiliar IP address late at night and downloading a large volume of files.
 
-Here we know a lot about Arne.
+This deviation could indicate potential security concerns such as unauthorized access or data exfiltration. By monitoring such deviations, we can identify and investigate anomalies that might signal a security threat.
 
-* What if Arne changes clothes? Oh, a deviation there.
-* Or that he shaves off his moustache?
-* What if he goes towards another place? Oops, another discrepancy. Perhaps this indicates that Arne is doing something he doesn't usually do? Maybe something dangerous, yes we are was on this and keeps him under surveillance.
+Mapping IOBs and understanding behavioral deviations allow us to effectively assess whether an anomaly is benign or indicative of a serious threat, ultimately enhancing our security posture.
 
-If we draw parallels to Arne towards the logs, we find corresponding action patterns in the logs
+### IOC: Indicator of Compromise
 
-* Some are permanent. It can be services that talk to fixed hosts, or users who use spotify or Teams.
-* Some happen sporadically, but there is a large basis for normal traffic
-* Some patterns may only happen once - e.g. An admin tests a concept/runs a network scan or something else.
-* Some patterns may only happen 1 time – massive dump of data from network share
+- **Definition:** IOC refers to signs that a compromise has occurred.
+- **Description:** These are traces left by criminals at the crime scene, which we analyze to investigate the incident.
 
-What is important is that we have an overview of the more or less fixed behavior patterns - that we have a baseline to work from. Because then we can "easier" find deviation
+In our field, IOCs can include:
+- Headers
+- IP addresses
+- Techniques
+- Network artifacts
+- Tools
+- Domain names
+- Registry keys
+- Any mysterious behavior or deviation from the norm
 
-However, deviations can be completely normal
+Working with IOCs is a significant part of our daily routine. We gather IOCs from various sources, including external vulnerability registers, email lists, news reports, and our own analysis of alarms and network traffic. You might be familiar with OpenCTI, a tool that assists in this process.
 
-> Example: Kjell Bjarne is a stressed salesman and one day we get an alarm that he has uploaded X number of GB to Dropbox.
-
-If we had mapped a baseline, we could have seen whether this was normal for Kjell Bjarne or not
-
-* Does it happen regularly or sporadically?
-* Perhaps this is part of a normal workflow
-
-We can ask the "customer" about this and perhaps find a smart way to find out what he is uploading? There may be sensitive data there, there are solutions to detect that. Ex. PII and Visa numbers.
-
-* By mapping IOBs, we can calculate a threat score on whether the object
-* Runs a major safety risk based on his behaviour.
-
-### IOC
-
-* • Stands for Indicator of Compromise
-* • So indications of compromise - that something has happened
-* • Think about what traces criminals leave behind at the crime scene and that we pick these up afterwards
-* • It is important to stress that these are indications that must be investigated
-
-In our world, the IOC can be
-
-* Header
-* IP
-* Techniques
-* Network artefacts
-* Tools
-* Domain names
-* Registry keys
-* Mysterious behavior / deviation from normal that is visible
-* Among other things
-
-We work a lot with IOCs - it's a big part of our everyday life.
-
-* We obtain IOCs from many sources - from external vulnerability registers, e-mail lists and other.
-* You have probably seen news reports about attacks. These often contain IOCs on which we can base an investigation.
-* We also find these on our own by analyzing alarms and network traffic
-* Maybe OpenCTI rings a bell? Alan had a video about this a while ago
-* But, remember that the IOC deals with things that have already happened based on "things" you yourself or others have found
+Remember, IOCs are indications of events that have already happened, based on evidence found by you or others. Understanding and effectively utilizing IOAs, IOBs, and IOCs are essential for robust threat detection and response in our security operations.
 
 ## In short 
 
-| Type | Comment |
-| ---- | ------- |
-| IOA  | Deals with indications that something is happening |
-| IOB  | Deals with behavioral patterns and deviations | 
-| IOC  | Deals with more or less "tangible" things attackers leave behind |
+### Summarizing IOA, IOB, and IOC
 
-It can be a bit difficult to grasp these terms. What exactly is the difference between IOA and IOB? And what about the IOC? I will try to explain this here.
+To encapsulate the key concepts of IOA, IOB, and IOC, we can outline their primary distinctions as follows:
 
-We can extract IOCs from IOA. Perhaps there is a common denominator that we can base ourselves on? Back to the example of a sudden increase in traffic to a website:
+| **Type** | **Description** |
+|----------|-----------------|
+| **IOA**  | Indicators of Attack (IOA) deal with signs that an attack is occurring or is about to occur. They signal potential threats based on suspicious activities or precursors. |
+| **IOB**  | Indicators of Behavior (IOB) focus on behavioral patterns and deviations from established norms. They help identify anomalies by comparing current actions against a baseline of normal activity. |
+| **IOC**  | Indicators of Compromise (IOC) are the tangible traces left behind by attackers. These include specific artifacts like IP addresses, domain names, and file hashes that indicate a system has been compromised. |
 
-* We can treat the IP where the traffic came from as IOC
-* The IP contains ASN information
-* Or Geolocation for IP
-* We can look at what the traffic consists of
-* We can check if others have found something strange with this IP
+**Understanding the Differences:**
 
-We can consider IOA as a situation. If we combine that with historical behavior patterns (IOB), we can determine whether this is something that happens often or rarely. Maybe it's a familiar pattern that no one recognized just now?
+To clarify the distinctions between IOA, IOB, and IOC:
 
-With these three concepts in combination, we have now done a thorough job with the analysis because we have built context! IOA helped to uncover that something is happening, IOC gives us some pegs we can watch out for, IOB supports whether this is something that tends to happen.
+- **IOA (Indicator of Attack)** provides early warning signs that an attack might be in progress or imminent. For instance, a sudden surge in traffic to a website could be a potential IOA.
 
-I'm not going to completely let go of the IOC just yet because it's so important. This is what we encounter most often. We therefore need to talk about how we treat IOCs and the consequences of our actions.
+- **IOB (Indicator of Behavior)** focuses on identifying deviations from normal behavior patterns. By establishing a baseline of typical activities, we can detect unusual behavior that might indicate malicious activity.
 
-Newton said something clever in his 3rd law:
+- **IOC (Indicator of Compromise)** pertains to tangible evidence left by attackers. This could include specific IP addresses, domain names, or other artifacts that confirm a system has been compromised. When discussing IOCs and threat hunting, it's important to clarify that IOCs in this context refer to those that we, as threat hunters, discover ourselves. The essence of threat hunting goes beyond merely validating IOCs provided by others; it involves proactively identifying and uncovering new IOCs through our own investigative efforts. Effective threat hunting is about detecting and addressing potential threats independently, rather than relying solely on pre-existing indicators handed to us.
 
-> "For every action there is an equal and opposite reaction."
+**Integrating IOA, IOB, and IOC:**
 
-And we have to keep that in mind now.
+We can derive IOCs from IOAs. For instance, consider a sudden increase in traffic to a website:
+- **IOC Extraction:** 
+  - The IP address from which the traffic originates can be treated as an IOC.
+  - Examine the IP’s ASN (Autonomous System Number) and geolocation.
+  - Analyze the nature of the traffic (e.g., unusual requests or patterns).
+  - Check for any previous reports of suspicious activity associated with this IP.
 
-## The analyst mindset slide 14
+**Combining IOA and IOB:**
+- **Context Building:** IOA helps us identify that something is happening, while IOB provides context by comparing current activities to historical patterns. This combination allows us to assess whether the detected activity is typical or unusual.
 
-Through this presentation, we have given a proposal for methodology and tools to handle detection. Unfortunately, it is probably not absolute, it must be adapted to use and situation. Even we must be adaptable. But it is a good starting point to take us a step further and as a tool to use the processes and routines the SOC has. If we take a step to the left and look at the whole here, we have given an insight into what is meant by being an analyst, as well as some of the thinking behind it.
+**Practical Application:**
 
-The psychology and methodology behind the analyst's mindset is large and complex - and not least interesting. We have therefore tried to find models that fit Defendable's spirit and turn these into practice. If we lump all the concepts we have talked about today together, we will be better prepared to handle analysis than we were before we came here in day.
+By integrating these concepts, we achieve a comprehensive analysis:
+- **IOA** identifies potential threats.
+- **IOC** provides specific indicators to investigate.
+- **IOB** helps determine whether the observed activity deviates from established norms.
 
-As Skinner points out in the quote here:
+With this approach, we build context and enhance our analysis, allowing us to address and respond to potential threats more effectively.
 
-> Being wrong isn't always wrong - it might be the best thing we could do given the situation.
+**Action and Reaction:**
 
-It may actually be appropriate to fail and redo the processes. This is perhaps the greatest strength of OODA – it allows us to start over with newly acquired information.
+As we delve deeper into IOCs, remember Newton's Third Law of Motion:
 
+> "For every action, there is an equal and opposite reaction."
 
+In the context of cybersecurity, this principle underscores the importance of understanding the implications of each action we take. Our response to detected indicators must be measured and well-considered to ensure effective mitigation and protection.
 
+### Integrating Psychology and Methodology in Analysis
 
+The psychology and methodology underpinning an analyst's mindset are both extensive and complex, yet profoundly intriguing. Our aim has been to identify models that align with the spirit of effective analysis and translate these models into actionable practices. By synthesizing the concepts discussed today, we can enhance our analytical capabilities and be better prepared for the challenges we face.
 
+As Skinner aptly remarks:
 
+> "Being wrong isn't always wrong—it might be the best thing we could do given the situation."
 
+This insight highlights the value of acknowledging errors and iterating on our processes. Embracing the possibility of failure and the need to refine our approach can be a powerful advantage. This adaptability is a key strength of the OODA loop (Observe, Orient, Decide, Act)—a framework that encourages us to continually reassess and restart our analysis with newly acquired information. We will delve into OODA later on in this book. 
 
+By integrating these psychological insights and methodologies, we not only improve our analytical effectiveness but also cultivate a mindset that embraces flexibility and growth.
 
+## Resources
 
-
-
-
-
-
-
-
-
+* [What is a threat hunter?](https://www.offsec.com/cybersecurity-roles/threat-hunter/#:~:text=A%20threat%20hunter%20must%20have,effective%20communication%20skills%20are%20crucial.)
+* [Your Next Move: Threat Hunter](https://www.comptia.org/blog/your-next-move-threat-hunter)
+* [SOC ANALYST - Threat hunter](https://www.infosecinstitute.com/resources/soc-analyst/threat-hunter/)
+* [How to Become a Cyber Threat Hunter: A Guide to Level Up Your Security Team](https://www.snapattack.com/become-a-threat-hunter/)
+* [Threat Hunting Series: What Makes a Good Threat Hunter](https://kostas-ts.medium.com/threat-hunting-series-what-makes-a-good-threat-hunter-e2b1d0d07e8c)

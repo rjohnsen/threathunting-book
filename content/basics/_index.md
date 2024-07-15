@@ -1,5 +1,5 @@
 +++
-title = "Basics"
+title = "Fundamentals"
 date = 2024-06-22T11:28:56+02:00
 weight = 2
 chapter = true
