@@ -15,12 +15,18 @@ Being a successful threat hunter means having access to the right tools. One suc
 - WAZUH
 - Datadog
 
-And there are surely many other alternatives too. In this chapter, we are going to set up a tool called OpenSearch. OpenSearch is an open-source search and analytics suite derived from Elasticsearch 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualize, and analyze large volumes of data.
+And there are surely many other alternatives too. In this chapter, we are going to set up a tool called [OpenSearch](https://opensearch.org/). OpenSearch is an open-source search and analytics suite derived from [Elasticsearch](https://www.elastic.co/) 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualize, and analyze large volumes of data.
+
+OpenSearch will be install in [Alma Linux](https://almalinux.org/) (Redhat Linux clone) running on the [VirtualBox](https://www.virtualbox.org/) hypervisor. Before we start on the installation procedure, lets talk some about the various components of this stack. 
 
 ### What is OpenSearch?
+
+![OpenSearch](/images/Opensearch_Logo.svg.png)
+
 OpenSearch was created by Amazon Web Services (AWS) after Elasticsearch changed its license from Apache 2.0 to Server Side Public License (SSPL). OpenSearch retains the core functionalities of Elasticsearch and Kibana but remains fully open-source under the Apache 2.0 License. This ensures that it remains free to use, modify, and distribute, making it an attractive option for organizations seeking a robust, community-supported solution without the constraints of more restrictive licenses.
 
-### Key Features of OpenSearch
+#### Key Features of OpenSearch
+
 OpenSearch offers a range of features that make it ideal for threat hunting and log analysis:
 - **Full-Text Search**: Allows for fast and comprehensive searching across large datasets.
 - **Real-Time Data Ingestion**: Supports real-time data ingestion and indexing, crucial for up-to-the-minute threat detection.
@@ -29,49 +35,53 @@ OpenSearch offers a range of features that make it ideal for threat hunting and 
 - **Security**: Built-in security features such as fine-grained access control, encryption, and audit logging ensure that your data remains protected.
 - **Scalability**: Designed to scale horizontally, OpenSearch can handle large volumes of data across distributed systems.
 
-### Community and Ecosystem
+#### Community and Ecosystem
+
 OpenSearch benefits from a vibrant and growing community of contributors and users. AWS, along with other organizations, actively supports the project, driving innovation and ensuring regular updates and enhancements. This community-driven approach ensures that OpenSearch evolves to meet the needs of its users, fostering an ecosystem of shared knowledge and best practices.
 
-### Integration and Use Cases
+#### Integration and Use Cases
+
 OpenSearch integrates seamlessly with a variety of data sources and tools, making it versatile and adaptable to different environments. Whether you're aggregating logs from cloud services, network devices, or application servers, OpenSearch can handle the data ingestion and provide valuable insights through its powerful querying and visualization capabilities.
 
 In this chapter, we will guide you through the setup of OpenSearch, from installation to configuration and initial usage. By the end, you'll have a robust log querying tool at your disposal, tailored to enhance your threat-hunting capabilities.
 
-## Technical details
+### What is Alma Linux?
 
-We will base our lab environment on Alma linux running in Virtualbox. Prior to installing the virtual machine, we must set set up some technical details. 
+![OpenSearch](/images/alma-logo.svg)
+
+AlmaLinux is a free, open-source Linux distribution designed to provide a stable and reliable operating system for enterprises, servers, and workstations. Created as a community-driven fork of CentOS, it ensures binary compatibility with Red Hat Enterprise Linux (RHEL), making it an ideal replacement for CentOS users seeking a consistent and secure environment. Backed by the AlmaLinux OS Foundation, this distribution is maintained by a vibrant community committed to delivering long-term support and regular updates, ensuring it meets the diverse needs of its users.
+
+## Lab installation
+
+The following installation routine is based on the following online tutorials.
+
+* [How to Install Docker on Linux (AlmaLinux)](https://www.liquidweb.com/blog/install-docker-on-linux-almalinux/)
+* [Installing OpenSearch using Docker](https://opensearch.org/docs/latest/install-and-configure/install-opensearch/docker/)
+
+This installation routine doesn't cover installation of Virtualbox and Alma Linux since installation of these are straight forward (click-click-next).
 
 ### VirtualBox NAT Network settings
 
-In "Network Manager" I have set up a NAT Network dediccated for this lab. 
+Prior to installation of Alma, we should make sure we have a decent NAT network at hand for our lab environment. In In Virtualbox "Network Manager" we set up a NAT Network dedicated for this lab, using the following settings: 
 
 | Setting | Value | Comment |
 | ------- | ----- | ------- |
 | Network name | ThreatHuntingNetwork | |
 | IPv4 Prefix | 10.0.4.0/24 | |
-| Enable DHCP | On | Depending on taste. I prefer DHCP. The network will be quite small |
+| Enable DHCP | On | Depending on taste. You could use static IP if you prefer. |
 
-### NAT Network forwarding rules
-
-NAT Network forwarding rules, these will be the main interfaces for the system. 
-
-| Name | Protocol | Host IP | Host Port | Guest IP | Guest Port |
-| ---- | -------- | ------- | --------- | -------- | ---------- |
-| SSH | TCP | 127.0.0.1 | 22 | GUEST IP | 22 |
-| OpenSearch Service | TCP | 127.0.0.1 | 443 | GUEST IP | 443 |
-| OpenSearch Dashboards | TCP | 127.0.0.1 | 5601 | GUEST IP | 5601 |
-| OpenSearch REST API | TCP | 127.0.0.1 | 9200 | GUEST IP | 9200 |
-| OpenSearch Node communication and transport (internal), cross cluster search | TCP | 127.0.0.1 | 9300 | GUEST IP | 9300 |
-| OpenSearch Performance Analyzer | TCP | 127.0.0.1 | 9600 | GUEST IP | 9600 |
+We will return finishing setting up the NAT Network settings later in this chapter.
 
 ### VirtualBox Machine Settings
+
+For our Alma Linux guest we will use the following settings (consider these as bare minumum):
 
 | Setting | Value | Comment | 
 | ------- | ----- | ------- |
 | Base memory (RAM) | 8192MB | More is better |
 | CPU | 4 | | 
 | Disk Size | 150 GB | More is better |
-| Video Memory | 128 MB (max) | Not necessary, but if you need GUI later on this is a must value to max out | 
+| Video Memory | 128 MB (max) | This ensures that Almas installer runs smoothly, and you are well prepared if you want GUI later on. | 
 | Network Adapter 1 | Nat Network |
 | Nat Network | ThreatHuntingNetwork |
 
@@ -248,4 +258,23 @@ Verify that the service containers started correctly:
 sudo docker compose ps
 ```
 
-Wait a couple of minutes to let services start, then you are ready to take this lab for a spin using the communication interfaces listed in the "NAT Network forwarding rules". If things goes awry, please consult either the Docker, Alma or OpenSearch technial documentation and/or forums.
+### NAT Network forwarding rules
+
+The last step is to set up port forwading between our main OS and Guest (Alma). We do so using Virtualbox "Network Manager" and these rules:
+
+| Name | Protocol | Host IP | Host Port | Guest IP | Guest Port |
+| ---- | -------- | ------- | --------- | -------- | ---------- |
+| SSH | TCP | 127.0.0.1 | 22 | GUEST IP | 22 |
+| OpenSearch Service | TCP | 127.0.0.1 | 443 | GUEST IP | 443 |
+| OpenSearch Dashboards | TCP | 127.0.0.1 | 5601 | GUEST IP | 5601 |
+| OpenSearch REST API | TCP | 127.0.0.1 | 9200 | GUEST IP | 9200 |
+| OpenSearch Node communication and transport (internal), cross cluster search | TCP | 127.0.0.1 | 9300 | GUEST IP | 9300 |
+| OpenSearch Performance Analyzer | TCP | 127.0.0.1 | 9600 | GUEST IP | 9600 |
+
+More details on oorts for OpenSearch can be found [here][https://opensearch.org/docs/latest/install-and-configure/install-opensearch/index/]. Wait a couple of minutes to let services start, then you are ready to take this lab for a spin.  By using these NAT rules you can now visit OpenSearch in your browser:
+
+```
+http://127.0.0.1:5601/app/home#/
+```
+
+If things goes awry, please consult either the Docker, Alma or OpenSearch technial documentation and/or forums.
