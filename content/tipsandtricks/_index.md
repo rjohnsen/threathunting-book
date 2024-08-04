@@ -6,7 +6,7 @@ chapter = true
 pre = "Part IV - "
 +++
 
-### Chapter IV
+### Chapter 4
 
 # Tips and tricks
 

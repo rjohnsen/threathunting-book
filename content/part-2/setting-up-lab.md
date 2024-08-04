@@ -2,6 +2,7 @@
 title: "Setting Up Lab"
 date: 2024-08-03T14:25:28+02:00
 draft: false
+weight: 1
 ---
 
 ## Introduction
