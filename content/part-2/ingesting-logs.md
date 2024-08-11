@@ -1,5 +1,5 @@
 ---
-title: "Ingesting Logs"
+title: "API Bulk Ingesting Logs"
 date: 2024-08-04T09:48:00+02:00
 draft: fasle
 weight: 2
@@ -11,17 +11,17 @@ This public preview offers a glimpse of upcoming content. Please note that the c
 
 ## Introduction
 
-In this section, we will import logs into OpenSearch, a process known as log ingestion. There are various methods to ingest logs into OpenSearch, but we will focus on using the API through a Python script. The script will read a Ndjson log file of your choice and ingest the data into OpenSearch. In this procedure we will work inside the Alma Linux instance, executing the Python script directly.
+In this section, we will import logs into OpenSearch, a process known as log ingestion. There are various methods to ingest logs into OpenSearch, but we will focus on using the API with a Python script. The script will read an ndjson log file of your choice and ingest the data into OpenSearch. In this procedure, we will work within the Alma Linux instance, executing the Python script locally. Alternatively, this procedure can be executed from another machine as well by changing endpoint address in the Python script.
 
-## Setting up Virtualenv
+## Setting up a virtual environment
 
-In Alma, create a work folder in your home directoy and change into it. Then create a virtual environment named "env":
+The first step is to create a sandboxed environment for Python. This is done to avoid polluting the native Python environment in our Alma installation. In Alma, start by creating a working folder in your home directory and navigate into it. Then, create a virtual environment named "env":
 
 ```bash
 python3 -m venv env
 ```
 
-We create a virtual environment in order to not pollute the Python system installed directly on the host. Then, load the virtual environment:
+When working on a Python project, it’s good practice to create a virtual environment for each project. This will save you a lot of trouble in the long run by preventing conflicts between packages and other issues. Once created, you can activate the environment as follows:
 
 ```bash
 source env/bin/activate
@@ -35,14 +35,14 @@ You can see the environment has been loaded by the "(env)" prefix on command lin
 
 ## Installing necessary Python libraries
 
-Create a file named "requirements.txt", then add the following into it:
+To communicate with OpenSearch, we need a Python package that simplifies our work—__opensearch-py__ is the library for that. We also need a package to handle date and time operations more easily, for which we’ll use __pendulum__. Instead of installing each package manually using `pip`, we’ll create a file named `requirements.txt` and add the following lines:
 
 ```bash
 opensearch-py
 pendulum
 ```
 
-Install the requiements by:
+This allows us to install all the required packages at once with the following command:
 
 ```bash
 pip install -r requirements.txt
@@ -50,7 +50,32 @@ pip install -r requirements.txt
 
 ## Python bulk indexer
 
-This is the Python script that ingests the log file:
+Now, with the virtual environment loaded and requirements installed, we can finally start ingesting data. In this chapter we will focus on ingesting a ndjson log using the provided Python script.
+
+### A note on ndjson format
+
+Ndjson (Newline Delimited JSON) is a format for storing or streaming structured data that consists of individual JSON objects separated by newline characters. Each line in an NDJSON file represents a single JSON object, making it easy to process large datasets line by line. This format is particularly useful for log files, data streams, or any situation where you need to handle large amounts of JSON data incrementally.
+
+A log in ndjson format typically looks like this and typically has a ```.ndjson``` file extension: 
+
+```json
+[
+    { "datetime": "datetime", "key_1": "value", "key_2": "value"},
+    { "datetime": "datetime", "key_1": "value", "key_2": "value"},
+]
+```
+
+Take note of the “datetime” key. Typically, there is a field that indicates when the event occurred. Before ingesting the log, you should identify this field. Later, you will use this field to set up a time mapping in OpenSearch.
+
+### The ingestion script
+
+The following is a Python script that ingests the log file. Pay attention to these variables: 
+
+* hostname
+* username
+* password
+
+Adjust the hostname to suit your environment, depending on where you’re running the script. Additionally, ensure that the username and password are correctly configured.
 
 ```python
 from opensearchpy import OpenSearch, helpers
@@ -147,26 +172,26 @@ This script is not a Swiss army knife solution that parses all log formats on th
 
 ## Making the index aliases
 
-This script will parse the Ndjson file and actively locate index names from each row - whereby the script recreated indices found as it tags along parsing. Example:
+This script will parse the ndjson file and actively locate index names from each row - whereby the script recreated indices found as it tags along parsing. Example:
 
 ![Manage dashboard 1](/images/manage-dashboard-1.png)
 
-Keep in mind that "Discover" knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utiligy by this path: "Hamburgermenu" -> Management -> "Dashboard Management": 
+Keep in mind that "Discover" (the main query interface) knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__: 
 
 ![Manage dashboard 2](/images/manage-dashboard-2.png)
 
-Then select "Index patterns", then click on the button "Create index pattern":
+Then select __"Index patterns"__, then click on the button __"Create index pattern"__:
 
 ![Manage dashboard 3](/images/manage-dashboard-3.png)
 
-In "Index pattern name" enter a name of choice. Since we now got several logs starting with "logs-", I find it nice to use the name "logs-*. This will easily match the logs I have an interested in. Keep in mind the name we enter here will show in "Discovery".
+In __"Index pattern name"__ enter a name of choice. Since we now got several logs starting with "logs-", I find it nice to use the name "logs-*. This will easily match the logs I have an interested in. Keep in mind the name we enter here will show in "Discovery".
 
 ![Manage dashboard 4](/images/manage-dashboard-4.png)
 
-Then point top a time field to use and click save.
+Then point tp a time field to use and click save (as mentioned in the "A note on ndjson format").
 
 ![Manage dashboard 5](/images/manage-dashboard-5.png)
 
-If we go back to "Discover", we can now see that our "Index alias" is available to us to search in. 
+If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in. 
 
 ![Manage dashboard 6](/images/manage-dashboard-6.png)
