@@ -2,6 +2,7 @@
 title: "Ingesting Windows Logs"
 date: 2024-08-05T20:01:02+02:00
 draft: false
+weight: 4
 ---
 
 ## Windows Logs
