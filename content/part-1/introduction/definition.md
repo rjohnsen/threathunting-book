@@ -85,7 +85,7 @@ While Security Operations Center (SOC) analysts play a vital role in maintaining
 
 Employing threat hunters adds a crucial layer of defense to your cybersecurity strategy. Their proactive approach, specialized skills, and ability to uncover sophisticated threats complement the efforts of SOC analysts, ensuring a more robust and resilient security posture. By integrating threat hunters into your security team, you can enhance your organization’s ability to detect, respond to, and prevent advanced cyber threats. And not to forget, Threat Hunters will add value to the importance of understanding the Organization’s [Threat-Discovery Maturity](https://www.infosecinstitute.com/resources/threat-hunting/10-benefits-of-threat-hunting/):
 
-{{<mermaid align="left">}}
+{{<mermaid align="center">}}
 flowchart TD
     A["
        LEVEL 0 - INITIAL

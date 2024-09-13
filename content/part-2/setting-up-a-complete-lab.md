@@ -34,7 +34,7 @@ This installation routine is based on Ansible - please have a look at the [**set
 
 The workstation architecture looks like this:
 
-```mermaid
+{{<mermaid align="center">}}
 flowchart LR
  B[Virtualbox]
  C[Alma Linux]
@@ -55,7 +55,7 @@ flowchart LR
         D-. Future .->I
     end
  end
- ```
+ {{< /mermaid >}}
 
 ## Installation
 
