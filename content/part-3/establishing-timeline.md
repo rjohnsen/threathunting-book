@@ -36,10 +36,10 @@ With this hypothesis in mind, the threat hunter began constructing a timeline by
 | Step | Description |
 | ---- | ----------- |
 | _Log Analysis_ | Reviewing system, application, and network logs to identify unusual behavior, such as lateral movement, unauthorized account creation, or privilege escalation. |
-| _File Integrity Monitoring:_ | Checking for suspicious file modifications, the presence of backdoors, or unauthorized changes to system configurations. |
-| _Network Traffic Monitoring:_ | Tracking anomalous outbound connections, particularly those to suspicious external IP addresses, to verify potential data exfiltration. |
+| _File Integrity Monitoring_ | Checking for suspicious file modifications, the presence of backdoors, or unauthorized changes to system configurations. |
+| _Network Traffic Monitoring_ | Tracking anomalous outbound connections, particularly those to suspicious external IP addresses, to verify potential data exfiltration. |
 
-The goal of the investigation was to map out the attacker's actions in detail, reconstruct the entire timeline, and assess the full extent of the breach, including which systems were compromised. This work resulted in the following timeline (dates omitted):
+The goal of the investigation was to map out the attacker's actions in detail, reconstruct the entire timeline, and assess the full extent of the breach, including which systems were compromised. This work resulted in the following timeline (exact date omitted):
 
 {{<mermaid align="center">}}
 sequenceDiagram
@@ -71,7 +71,7 @@ sequenceDiagram
     Attacker->>Network: Exit Network [12:45]
  {{< /mermaid >}}
 
-From this timeline we see that the threat hunter with basis in the hypothesis discovered traces of data exfiltration at 12:00 on a given day. From there the threat hunter followed traces both back and forth in time to uncover the entire scope.
+From this timeline we see that the threat hunter with basis in the hypothesis discovered traces of data exfiltration at 12:00 on that given day. From there the threat hunter followed traces both back and forth in time to uncover the entire scope.
 
 ## The role of timelines in reports
 

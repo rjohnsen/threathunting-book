@@ -1,6 +1,6 @@
 baseURL = 'https://huntbook.predefender.com/'
 languageCode = 'en-us'
-title = 'Predefend Hunter'
+title = 'Predefender Threat Hunt Book'
 theme = 'hugo-theme-learn' 
 
 [params]
