@@ -112,3 +112,73 @@ First time reaching XWiki over the web it will kickstart its installer. The inst
 ## Alma Linux Default Credentials
 
 The Ansible script will create a user belonging to the "wheel" group. This user can run "sudo". Its default credentials is "hunter:hunter"
+
+## Upgrading the stack
+
+Use these instructions to update the Docker containers installed by the installer script. Run the following steps as _ROOT_ or via ```sudo```.
+
+ ### Updating Alma Linux
+
+```bash
+dnf upgrade
+```
+
+### Updating Docker containers
+
+#### Update all containers
+
+```bash
+docker compose pull
+docker-compose up -d
+```
+
+After these commands completes, give it some minutes before trying to reach the hosts in a browser. 
+
+#### Verifying versions after update
+
+##### OpenSearch
+
+In a suitable browser, visit https://localhost:9200, log in and you'll be presented with a JSON object stating the version. Example:
+
+```json
+{
+  "name" : "opensearch-node1",
+  "cluster_name" : "opensearch-cluster",
+  "cluster_uuid" : "N7IOLSfnSFWasG-EoI7IUg",
+  "version" : {
+    "distribution" : "opensearch",
+    "number" : "2.17.0",
+    "build_type" : "tar",
+    "build_hash" : "8586481dc99b1740ca3c7c966aee15ad0fc7b412",
+    "build_date" : "2024-09-13T01:04:14.707418737Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.11.1",
+    "minimum_wire_compatibility_version" : "7.10.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "The OpenSearch Project: https://opensearch.org/"
+}
+```
+
+#### Troubleshooting
+
+**Winlogbeat and others fails to connect**
+
+_Re-enabling OpenSearch compability setting_
+
+Historically, many multiple popular agents and ingestion tools have worked with Elasticsearch OSS, such as Beats, Logstash, Fluentd, FluentBit, and OpenTelemetry. OpenSearch aims to continue to support a broad set of agents and ingestion tools, but not all have been tested or have explicitly added OpenSearch compatibility. As an intermediate compatibility solution, OpenSearch has a setting that instructs the cluster to return version 7.10.2 rather than its actual version. If you use clients that include a version check, such as versions of Logstash OSS or Filebeat OSS between 7.x - 7.12.x, enable the setting:
+
+```json
+PUT _cluster/settings
+{
+  "persistent": {
+    "compatibility": {
+      "override_main_response_version": true
+    }
+  }
+}
+```
+
+_Check HTTPS settings and credentials_
+
+Check if you need to update connection data in shippers to use HTTPS. Change or add credentials accordingly.

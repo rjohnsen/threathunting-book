@@ -122,6 +122,16 @@ output.elasticsearch:
   password: "hunter" 
 ```
 
+If using HTTPS, please consider the following:
+
+```yaml
+output.elasticsearch:
+  hosts: ["https://127.0.0.1:9200"]
+  username: "" # Change this
+  password: "" # Change this
+output.elasticsearch.ssl.verification_mode: none
+```
+
 ### Removing Unnecessary Metadata from Filebeat Parsing
 
 By default, Filebeat adds host, client, and agent metadata to log entries. This information is often unnecessary when analyzing Apache logs and can clutter the data. To remove this metadata (optional), update the "processors" section in the `C:\Filebeat\filebeat\filebeat.yml` file:

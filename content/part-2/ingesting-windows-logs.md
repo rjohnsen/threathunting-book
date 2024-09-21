@@ -88,6 +88,22 @@ winlogbeat.registry_file: evtx-registry.yml
 output.elasticsearch.hosts: ['http://127.0.0.1:9200']
 ```
 
+If using HTTPS, please consider the following:
+
+```yaml
+winlogbeat.event_logs:
+  - name: ${EVTX_FILE} 
+    no_more_events: stop
+
+winlogbeat.shutdown_timeout: 10s 
+winlogbeat.registry_file: evtx-registry.yml 
+output.elasticsearch:
+  hosts: ["https://127.0.0.1:9200"]
+  username: "" # Change this
+  password: "" # Change this
+output.elasticsearch.ssl.verification_mode: none
+```
+
 ## Shipping logs to OpenSearch
 
 Run the following command in Windows powershell.exe:
