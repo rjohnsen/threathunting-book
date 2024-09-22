@@ -71,6 +71,19 @@ sequenceDiagram
     Attacker->>Network: Exit Network [12:45]
  {{< /mermaid >}}
 
+{{<mermaid align="center">}}
+ timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook : Google
+    2005 : Youtube
+    2006 : Twitter
+{{< /mermaid >}}
+
+{{<mermaid align="center">}}
+info
+{{< /mermaid >}}
+
 From this timeline we see that the threat hunter with basis in the hypothesis discovered traces of data exfiltration at 12:00 on that given day. From there the threat hunter followed traces both back and forth in time to uncover the entire scope.
 
 ## The role of timelines in reports

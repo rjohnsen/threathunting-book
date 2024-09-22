@@ -5,6 +5,13 @@ weight: 1
 draft: true
 ---
 
+• Volume: Large data transfers could mean exfiltration.
+• Count: Many failed logins may suggest brute force.
+• Min: Tiny packets might signal suspicious activity.
+• Max: Large file access could mean unauthorized access.
+• Sum: High login totals after hours may hint at insider threats.
+• Percentage: A spike in failed logins can signal an attack.
+
 ## Clustering Data
 
 ## Grouping Data
