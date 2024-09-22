@@ -4,10 +4,6 @@ date: 2024-07-29T18:34:30+02:00
 draft: false
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 ### Hypothesis-Driven Threat Hunting
 
 Hypothesis-driven threat hunting is a structured approach that involves creating and testing specific hypotheses about potential threats based on known attacker behaviors and tactics, techniques, and procedures (TTPs). This method is highly strategic and leverages the knowledge and expertise of threat hunters, as well as detailed frameworks such as MITRE ATT&CK.

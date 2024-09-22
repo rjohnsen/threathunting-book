@@ -4,10 +4,6 @@ date: 2024-07-29T18:35:05+02:00
 draft: false
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 ### Anomaly-Driven Threat Hunting
 
 Anomaly-driven threat hunting is a proactive cybersecurity strategy that focuses on identifying deviations from established norms within a network or system. This approach is based on the premise that malicious activities often manifest as unusual or unexpected behaviors. To implement this strategy effectively, threat hunters must first establish a baseline of normal behavior, which involves understanding typical user activities, network traffic patterns, and system performance metrics. This baseline serves as a reference point for identifying anomalies.

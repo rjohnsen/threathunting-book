@@ -5,10 +5,6 @@ draft: false
 weight: 1
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 If you inquire about "threat hunting," you are likely to encounter a wide range of interpretations, comparable to the multitude of stars in the night sky. One Security Operations Center (SOC) might claim to engage in threat hunting, yet upon closer examination, their activities may be confined to validating Indicators of Compromise (IOCs). Conversely, another SOC might describe their approach as centered around crafting detection rules informed by threat intelligence. In this article, I aim to provide a comprehensive explanation of threat hunting, distinguish it from detection engineering, elucidate its importance, explore various methodologies of threat hunting, and more. My primary objective is to establish a foundational framework for conducting effective threat hunts and to outline the essential knowledge needed to excel in this role.
 
 ## Definition

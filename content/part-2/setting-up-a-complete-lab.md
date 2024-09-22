@@ -5,10 +5,6 @@ weight: 2
 draft: false
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 In the chapter "[Setting Up a Basic Lab](https://huntbook.predefender.com/part-2/setting-up-a-basic-lab/)," we covered how to install a simple Threat Hunting lab using OpenSearch on Alma Linux in VirtualBox. Now, in this chapter, we'll focus on building a more comprehensive lab environment with additional tools. Our main goal here is to automate the installation process so the environment can be easily set up and torn down as needed.
 
 To make things easier for you, I’ve turned my personal threat hunting workstation into a series of installation files you can use. Here’s an overview of the setup:

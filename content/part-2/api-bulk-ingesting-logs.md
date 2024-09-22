@@ -5,10 +5,6 @@ draft: fasle
 weight: 3
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 ## Introduction
 
 In this section, we will import logs into OpenSearch, a process known as log ingestion. There are various methods to ingest logs into OpenSearch, but we will focus on using the API with a Python script. The script will read an ndjson log file of your choice and ingest the data into OpenSearch. In this procedure, we will work within the Alma Linux instance, executing the Python script locally. Alternatively, this procedure can be executed from another machine as well by changing endpoint address in the Python script.

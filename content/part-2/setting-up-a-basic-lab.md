@@ -5,10 +5,6 @@ weight: 1
 draft: false
 ---
 
-{{% notice info %}}
-This public preview offers a glimpse of upcoming content. Please note that the content may be subject to change without prior notice as I continue to develop this site.
-{{% /notice %}}
-
 ## Introduction
 
 Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, for example:
@@ -180,7 +176,7 @@ export OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>
 
 Copy the following to "docker-compose.yml" in a suitable location:
 
-```
+```bash
 version: '3'
 services:
   opensearch-node1: # This is also the hostname of the container within the Docker network (i.e. https://opensearch-node1/)
