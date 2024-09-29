@@ -1,20 +1,20 @@
 ---
-title: "Author"
+title: "About Author"
 date: 2024-06-22T13:51:13+02:00
 draft: false
 ---
 
-## About
+![Roger](/images/roger-profile-small.png)
 
-Roger Johnsen is a dedicated Information Security Consultant specializing in enhancing Blue Team capabilities. His expertise includes educating analysts, developing threat hunting strategies, software development, and ensuring the quality assurance of processes and routines.
+**Roger Johnsen** is a dedicated Information Security Consultant specializing in enhancing Blue Team capabilities. His expertise includes educating analysts, developing threat hunting strategies, software development, and ensuring the quality assurance of processes and routines.
 
-Roger actively participates in Capture The Flag (CTF) competitions on platforms like the SANS Holiday Hack Challenge and Hack The Box, integrating the knowledge gained into his daily practice. In 2022, he was recognized as the runner-up for the best "Technical Answer" in the SANS Holiday Hack Challenge 2021 edition, earning a challenge coin for his outstanding performance.
+**Roger** actively participates in Capture The Flag (CTF) competitions on platforms like the SANS Holiday Hack Challenge and Hack The Box, integrating the knowledge gained into his daily practice. In 2022, he was recognized as the runner-up for the best "Technical Answer" in the SANS Holiday Hack Challenge 2021 edition, earning a challenge coin for his outstanding performance.
 
-Committed to achieving optimal outcomes in every situation, Roger emphasizes quality by leveraging his extensive expertise in system development and his professional experience.
+Committed to achieving optimal outcomes in every situation, **Roger** emphasizes quality by leveraging his extensive expertise in system development and his professional experience.
 
 ### Career highlights
 
-Roger studied electronics and electrical engineering, with a focus on programming, in high school. He then moved on to study programming and systems development in college. He started his first real job in 2005. Since 1997, he has been actively involved in the open-source community, particularly with Linux and FreeBSD. His professional career primarily spans the fields of security and systems development.
+**Roger** studied electronics and electrical engineering, with a focus on programming, in high school. He then moved on to study programming and systems development in college. He started his first real job in 2005. Since 1997, he has been actively involved in the open-source community, particularly with Linux and FreeBSD. His professional career primarily spans the fields of security and systems development.
 
 | When | Title | Company | Roles |
 | ---- | ----- | ------- | ----- |
@@ -29,4 +29,6 @@ Roger studied electronics and electrical engineering, with a focus on programmin
 
 ## Disclaimer
 
-All opinions expressed are solely those of Roger and do not represent the views of his past, current, or future employers. He does not accept unsolicited requests related to his employers via LinkedIn or other outlets; such requests will be declined without notice.
+{{% notice IMPORTANT %}}
+All opinions expressed are solely those of **Roger** and do not represent the views of his past, current, or future employers. He does not accept unsolicited requests related to his employers via LinkedIn or other outlets; such requests will be declined without notice.
+{{% /notice %}}
