@@ -37,6 +37,6 @@ PreDefender's mission is to foster high-quality threat hunting by seamlessly int
 
 ## Disclaimer
 
-{{% notice IMPORTANT %}}
+{{% notice warning %}}
 All opinions expressed are solely those of **Roger** and do not represent the views of his past, current, or future employers. He does not accept unsolicited requests related to his employers via LinkedIn or other outlets; such requests will be declined without notice.
 {{% /notice %}}
