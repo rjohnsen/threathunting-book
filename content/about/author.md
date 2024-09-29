@@ -1,8 +1,10 @@
 ---
-title: "About Author"
+title: "About"
 date: 2024-06-22T13:51:13+02:00
 draft: false
 ---
+
+##   Roger Johnsen
 
 ![Roger](/images/roger-profile-small.png)
 
@@ -26,6 +28,12 @@ Committed to achieving optimal outcomes in every situation, **Roger** emphasizes
 | Feb 2015 - Aug 2015 | Senior Security Consultant | Protego AS | Penetration tester | 
 | Sep 2011 - Jan 2015 | Senior Systems ConsultantSenior Systems Consultant | Making Waves| Programmer, load tester, vulnerability management and pentesting. | 
 | Aug 2005 - Sep 2011 | Programmer | Various companies | Programmer, team lead, security goto guy, agile coach |
+
+## Predefender
+
+**PreDefender**, founded by **Roger Johnsen**, is a brand dedicated to advancing threat hunting capabilities in the cybersecurity industry. Through its flagship resource, the *PreDefender Threat Hunt Book*, the brand delivers in-depth insights on threat detection and incident response strategies, tailored specifically for Security Operations Center (SOC) professionals and blue team specialists. The guide explores essential methodologies such as the MITRE ATT&CK framework and the Lockheed Martin Kill Chain, while also offering practical, lab-based exercises designed to help analysts hone their skills. 
+
+PreDefender's mission is to foster high-quality threat hunting by seamlessly integrating detection engineering with programming expertise, empowering cybersecurity teams to stay ahead in an ever-evolving threat landscape.
 
 ## Disclaimer
 
