@@ -2,6 +2,7 @@
 title: "About"
 date: 2024-06-22T13:51:13+02:00
 draft: false
+weight: 1
 ---
 
 ##   Roger Johnsen
