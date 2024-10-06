@@ -106,6 +106,27 @@ As I stated earlier, we would look more into the various logon types available. 
 | 12         | CachedRemoteInteractive   | Cached credentials used for a remote interactive logon (e.g., Remote Desktop). |
 | 13         | CachedUnlock              | Logon to unlock a workstation using cached domain credentials.              |
 
+## Other Windows events to keep an eye on
+
+We are not limited to just looking for event code 4625 and 4625 during our hunts. There are several other event codes that might catch our interest:
+
+| **Event Code** | **Description**                                                |
+|----------------|----------------------------------------------------------------|
+| **4624**       | Successful Logon: Indicates a successful attempt to log on to a computer. |
+| **4625**       | Failed Logon: Indicates an unsuccessful attempt to log on to a computer. |
+| **4634**       | Successful Logoff: Logs when a user logs off from a session or is disconnected. |
+| **4647**       | User-Initiated Logoff: Logs when a user initiates the logoff process. |
+| **4648**       | Logon Using Explicit Credentials: Occurs when a user logs on using alternate credentials (e.g., Run as). |
+| **4672**       | Special Privileges Assigned: Logs when an account with special privileges logs on. |
+| **4768**       | Kerberos Ticket (TGT) Requested: A request for a Kerberos Ticket Granting Ticket (TGT) was made. |
+| **4769**       | Kerberos Service Ticket Requested: A request for a Kerberos service ticket was made. |
+| **4771**       | Kerberos Pre-authentication Failed: Occurs when the pre-authentication for a Kerberos ticket fails. |
+| **4776**       | Attempted to Validate Credentials: Logs when credentials were validated against a domain controller. |
+| **4778**       | Session Reconnected: Indicates that a user has reconnected to a previously disconnected session. |
+| **4779**       | Session Disconnected: Indicates that a user has disconnected from a session. |
+
+We will not dive into these in this chapther - however the same theory with logon type and interesting fields pr. event code should apply here.
+
 ## Resources
 
 1. **Microsoft Documentation for Event ID 4624 (Successful Logon)**
