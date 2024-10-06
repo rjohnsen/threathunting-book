@@ -5,15 +5,25 @@ draft: false
 weight: 5
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
+
+## Introduction
+
+**The OODA Loop is a decision-making framework developed by military strategist and United States Air Force Colonel John Boyd. It stands for Observe, Orient, Decide, and Act. The model is designed to be a cyclical process that helps individuals and organizations make decisions more effectively, especially in competitive and high-stakes environments.**
+
 ## About model
 
-The OODA Loop is a decision-making framework developed by military strategist and United States Air Force Colonel John Boyd. It stands for Observe, Orient, Decide, and Act. The model is designed to be a cyclical process that helps individuals and organizations make decisions more effectively, especially in competitive and high-stakes environments. Here’s a depiction of the OODA Loop:
+The OODA loop is most often depicted as a "wheel" to symbolize a loop, like this:
 
 ![OODA loop](/images/ooda.png)
 
 Courtesy of [online.visual-paradigm.com](https://online.visual-paradigm.com/knowledge/decision-analysis/what-is-ooda-loop/1000)
 
 ### OODA Loop Components
+
+As we can see, this model consists of four components:
 
 1. **Observe**:
    - **Gather Information**: Collect data from the environment, including any changes or new information.

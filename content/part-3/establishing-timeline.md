@@ -5,11 +5,17 @@ weight: 2
 draft: false
 ---
 
-Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events—a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
 
-In threat hunting, a timeline is more than just a chronological list of events. It’s a detailed reconstruction that helps investigators understand how a security incident unfolded. Timelines involve the collection, analysis, and correlation of logs, alerts, and system activity to piece together the actions of a threat actor or malicious process. These can include everything from user actions and system changes to network activity and file executions.
+## Introduction
 
-The purpose of a timeline is to provide a clear, structured view of what happened, when it happened, and how the threat actor moved through, say, the network. This clarity is essential for identifying key indicators of compromise (IOCs), determining the scope of an attack, and developing an effective response.
+**Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events—a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.**
+
+**In threat hunting, a timeline is more than just a chronological list of events. It’s a detailed reconstruction that helps investigators understand how a security incident unfolded. Timelines involve the collection, analysis, and correlation of logs, alerts, and system activity to piece together the actions of a threat actor or malicious process. These can include everything from user actions and system changes to network activity and file executions.**
+
+**The purpose of a timeline is to provide a clear, structured view of what happened, when it happened, and how the threat actor moved through, say, the network. This clarity is essential for identifying key indicators of compromise (IOCs), determining the scope of an attack, and developing an effective response.**
 
 ## Key components of a threat hunting timeline 
 

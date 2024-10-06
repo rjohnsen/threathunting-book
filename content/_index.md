@@ -20,6 +20,20 @@ Content on this page has been run through ChatGPT and similar in order to fix gr
 
 | Date | What |
 | ---- | ---- |
+| Oct. 06 - 2024 | QA on OpenSearch Python API ingester and general document formatting site wide|
 | Sep. 30 - 2024 | Added "FAQ" page. |
 | Sep. 29 - 2024 | Added "Understanding Data" page. |
+
+## Future plans / roadmap
+
+Here's a glimpse into what I plan to include in my little threat hunting book in the near future: 
+
+| Topic | Comment |
+| ----- | ------------ |
+| Deliveries | What exactly can we as threat hunters deliver to customers and stake holders? |
+| Reports | What kind of reports do and can we deliver |
+| Frameworks | Extend framework section to include other relevant frameworks |
+| Threat Intelligence | The sources I use |
+| Planning | Planning hunts, staffing etc. | 
+
 

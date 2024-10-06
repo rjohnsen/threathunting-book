@@ -5,9 +5,17 @@ draft: false
 weight: 1
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
+
+## Introduction
+
+**The Diamond Model of Intrusion Analysis is a framework used in cybersecurity to understand and analyze cyber intrusions. Developed by Sergio Caltagirone, Andrew Pendergast, and Christopher Betz in 2013, it deconstructs and examines attacks in a structured manner to provide a comprehensive understanding of threats.**
+
 ## About model
 
-The Diamond Model of Intrusion Analysis is a framework used in cybersecurity to understand and analyze cyber intrusions. Developed by Sergio Caltagirone, Andrew Pendergast, and Christopher Betz in 2013, it deconstructs and examines attacks in a structured manner to provide a comprehensive understanding of threats. The model is built around four core elements, often visualized as the vertices of a diamond:
+The model is built around four core elements, often visualized as the vertices of a diamond:
 
 1. **Adversary**: This represents the individuals, groups, or organizations conducting the intrusion. Understanding the adversary involves identifying their motives, capabilities, and resources.
 

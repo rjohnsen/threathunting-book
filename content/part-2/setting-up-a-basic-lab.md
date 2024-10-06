@@ -5,20 +5,26 @@ weight: 1
 draft: false
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
+
 ## Introduction
 
-Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, for example:
+**Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, to just name a few:**
 
-- Elastic
-- QRadar
-- Splunk
-- OSSIM
-- WAZUH
-- Datadog
+- **Elastic**
+- **QRadar**
+- **Splunk**
+- **OSSIM**
+- **WAZUH**
+- **Datadog**
 
-And there are surely many other alternatives too. In this chapter, we are going to set up a tool called [OpenSearch](https://opensearch.org/). OpenSearch is an open-source search and analytics suite derived from [Elasticsearch](https://www.elastic.co/) 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualize, and analyze large volumes of data.
+**And there are surely many other alternatives too. In this chapter, we are going to set up a tool called [OpenSearch](https://opensearch.org/). OpenSearch is an open-source search and analytics suite derived from [Elasticsearch](https://www.elastic.co/) 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualize, and analyze large volumes of data. OpenSearch will be install in [Alma Linux](https://almalinux.org/) (Redhat Linux clone) running on the [VirtualBox](https://www.virtualbox.org/) hypervisor. Before we start on the installation procedure, lets talk some about the various components of this stack.**
 
-OpenSearch will be install in [Alma Linux](https://almalinux.org/) (Redhat Linux clone) running on the [VirtualBox](https://www.virtualbox.org/) hypervisor. Before we start on the installation procedure, lets talk some about the various components of this stack. 
+{{% notice info %}}
+This chapter serves as a foundational introduction for setting up OpenSearch and is also the basis for the automatical installation routine descbribed in chapter [Setting up a complete lab](https://huntbook.predefender.com/part-2/setting-up-a-complete-lab/index.html)
+{{% /notice %}}
 
 ### What is OpenSearch?
 
@@ -29,12 +35,15 @@ OpenSearch was created by Amazon Web Services (AWS) after Elasticsearch changed 
 #### Key Features of OpenSearch
 
 OpenSearch offers a range of features that make it ideal for threat hunting and log analysis:
-- **Full-Text Search**: Allows for fast and comprehensive searching across large datasets.
-- **Real-Time Data Ingestion**: Supports real-time data ingestion and indexing, crucial for up-to-the-minute threat detection.
-- **Advanced Analytics**: Provides tools for complex data analysis, including aggregations, histograms, and geospatial data.
-- **Visualization**: Integrated with OpenSearch Dashboards, it offers rich visualization capabilities to create intuitive charts, graphs, and maps.
-- **Security**: Built-in security features such as fine-grained access control, encryption, and audit logging ensure that your data remains protected.
-- **Scalability**: Designed to scale horizontally, OpenSearch can handle large volumes of data across distributed systems.
+
+| Feature | Description |
+| ---- | ----------- |
+| **Full-Text Search** | Allows for fast and comprehensive searching across large datasets. |
+| **Real-Time Data Ingestion** | Supports real-time data ingestion and indexing, crucial for up-to-the-minute threat detection. |
+| **Advanced Analytics** | Provides tools for complex data analysis, including aggregations, histograms, and geospatial data. |
+| **Visualization** | Integrated with OpenSearch Dashboards, it offers rich visualization capabilities to create intuitive charts, graphs, and maps. |
+| **Security** | Built-in security features such as fine-grained access control, encryption, and audit logging ensure that your data remains protected. |
+| **Scalability** | Designed to scale horizontally, OpenSearch can handle large volumes of data across distributed systems. |
 
 #### Community and Ecosystem
 

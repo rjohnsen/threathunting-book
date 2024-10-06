@@ -5,15 +5,17 @@ draft: false
 weight: 3
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
+
+## Introduction
+
+**The Unified Kill Chain (UKC) is a comprehensive framework designed to describe and analyze cyber attacks by mapping the entire lifecycle of an adversary’s operation. It merges key concepts from two popular models: the Cyber Kill Chain (CKC) and MITRE ATT&CK. By combining the strengths of both, UKC provides a holistic view of attack techniques, from reconnaissance and initial intrusion to lateral movement and impact. This helps cybersecurity professionals enhance threat detection, improve defenses, and streamline incident response by understanding attackers' methods at each stage of an attack.**
+
 ## About Model
 
-The Unified Kill Chain (UKC) is a comprehensive cybersecurity framework that details the lifecycle of cyberattacks. It integrates aspects of various models, including the Cyber Kill Chain and MITRE ATT&CK, into a unified structure. The UKC categorizes the attack lifecycle into three main phases: **In, Through, and Out**.
-
-### Why "In, Through, Out"?
-This division helps organizations systematically understand and address each phase of an attack:
-- **In**: How attackers gain initial access.
-- **Through**: How they move within the network.
-- **Out**: How they achieve their objectives and exit.
+The Unified Kill Chain (UKC) categorizes the attack lifecycle into three main phases: **In**, **Through**, and **Out**. The **In** phase focuses on the initial access and foothold within the target environment, the **Through** phase covers lateral movement and persistence, and the **Out** phase involves data exfiltration or the attacker achieving their objectives. This structure provides a clear understanding of an adversary's progression, helping defenders to detect, respond to, and mitigate threats more effectively at each stage.
 
 ### Phases
 
@@ -32,9 +34,9 @@ Bear in mind, in an attack, an adversary doesn't have to fulfill or pace through
 
 Anyway, let's have a closer look at each phases: 
 
-1. **In**:
+#### In-phase
 
-The "in" phase is about:
+The phase is about:
 
    - Preparation
    - Initial Compromise
@@ -42,7 +44,7 @@ The "in" phase is about:
 
 ![Unified Kill chain In Phase 1](/images/ukc1.png)
 
-2. **Through**:
+#### Through-phase
 
 The "through" phase is about:
 
@@ -52,7 +54,7 @@ The "through" phase is about:
 
 ![Unified Kill chain In Phase 2](/images/ukc2.png)
 
-3. **Out**:
+#### Out-phase
 
 The "out" phase is about:
 

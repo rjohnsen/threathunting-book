@@ -5,11 +5,15 @@ draft: false
 weight: 4
 ---
 
-## Windows Logs
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
 
-Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviors, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analyzing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defenses.
+## Introduction
 
-This chapter offers a generic guide for ingesting Windows `.evtx` logs into OpenSearch. This process will help you centralize and analyze your Windows logs, facilitating more effective threat detection and response within your security infrastructure.
+**Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviors, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analyzing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defenses.**
+
+**This chapter offers a generic guide for ingesting Windows `.evtx` logs into OpenSearch. This process will help you centralize and analyze your Windows logs, facilitating more effective threat detection and response within your security infrastructure.**
 
 ### Types of Windows Logs
 

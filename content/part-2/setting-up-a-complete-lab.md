@@ -5,18 +5,24 @@ weight: 2
 draft: false
 ---
 
-In the chapter "[Setting Up a Basic Lab](https://huntbook.predefender.com/part-2/setting-up-a-basic-lab/)," we covered how to install a simple Threat Hunting lab using OpenSearch on Alma Linux in VirtualBox. Now, in this chapter, we'll focus on building a more comprehensive lab environment with additional tools. Our main goal here is to automate the installation process so the environment can be easily set up and torn down as needed.
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
 
-To make things easier for you, I’ve turned my personal threat hunting workstation into a series of installation files you can use. Here’s an overview of the setup:
+## Introduction
 
-* **Host OS**: Windows 11 Pro, 1TB SSD, 32GB RAM, Intel Core i7 (Lenovo T14). This to gives you a rough idea on my workstation specs.
-* **Virtualization**: VirtualBox
-* **Guest main OS**: Alma Linux
-* **Docker**:
-    * OpenSearch (for analyzing incoming logs)
-    * XWiki (for documentation)
-    * CyberChef (a versatile toolset)
-    * Portainer (for managing Docker containers)
+**In the chapter "[Setting Up a Basic Lab](https://huntbook.predefender.com/part-2/setting-up-a-basic-lab/)," we covered how to install a simple Threat Hunting lab using OpenSearch on Alma Linux in VirtualBox. Now, in this chapter, we'll focus on building a more comprehensive lab environment with additional tools based on the system described in the previous chapter. Our main goal here is to automate the installation process so the environment can be easily set up and torn down as needed.**
+
+## My Current setup
+
+To make things easier for you, I’ve turned my personal threat hunting workstation into a series of installation files you can use. Here’s an overview of the setup I currently use:
+
+| What | Description |
+| ---- | ----------- |
+| **Host OS** | Windows 11 Pro, 1TB SSD, 32GB RAM, Intel Core i7 (Lenovo T14). This to gives you a rough idea on my workstation specs. |
+| **Virtualization** | VirtualBox | 
+| **Guest OS** | Alma Linux |
+| **Docker** | OpenSearch (for analyzing incoming logs), XWiki (for documentation), CyberChef (a versatile toolset), Portainer (for managing Docker containers) |
 
 I’ve created an installation routine to guide you through setting up the environment, starting from a fresh install of Alma Linux (right after the first login). But before diving in, let’s talk a bit more about this project named "Threat Hunting Workstation".
 

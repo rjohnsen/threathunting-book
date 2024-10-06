@@ -5,7 +5,13 @@ draft: False
 weight: 5
 ---
 
-**Filebeat** is a lightweight log shipper designed to forward and centralize various types of logs. As part of the Elastic Stack (ELK Stack), Filebeat is specifically tailored to collect logs and send them to Elasticsearch, Logstash, or third-party services for analysis and visualization. When we refer to Filebeat as a "shipper," we mean it's a tool that takes your logs and sends them to a SIEM, to put it simply.
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 
+
+## Introduction
+
+**Filebeat is a lightweight log shipper designed to forward and centralize various types of logs. As part of the Elastic Stack (ELK Stack), Filebeat is specifically tailored to collect logs and send them to Elasticsearch, Logstash, or third-party services for analysis and visualization. When we refer to Filebeat as a "shipper," we mean it's a tool that takes your logs and sends them to a SIEM, to put it simply.**
 
 ## Obtaining and Installing Filebeat
 
