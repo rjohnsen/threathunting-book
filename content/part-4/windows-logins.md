@@ -110,22 +110,96 @@ As I stated earlier, we would look more into the various logon types available. 
 
 We are not limited to just looking for event code 4625 and 4625 during our hunts. There are several other event codes that might catch our interest:
 
-| **Event Code** | **Description**                                                |
-|----------------|----------------------------------------------------------------|
-| **4624**       | Successful Logon: Indicates a successful attempt to log on to a computer. |
-| **4625**       | Failed Logon: Indicates an unsuccessful attempt to log on to a computer. |
-| **4634**       | Successful Logoff: Logs when a user logs off from a session or is disconnected. |
-| **4647**       | User-Initiated Logoff: Logs when a user initiates the logoff process. |
-| **4648**       | Logon Using Explicit Credentials: Occurs when a user logs on using alternate credentials (e.g., Run as). |
-| **4672**       | Special Privileges Assigned: Logs when an account with special privileges logs on. |
-| **4768**       | Kerberos Ticket (TGT) Requested: A request for a Kerberos Ticket Granting Ticket (TGT) was made. |
-| **4769**       | Kerberos Service Ticket Requested: A request for a Kerberos service ticket was made. |
-| **4771**       | Kerberos Pre-authentication Failed: Occurs when the pre-authentication for a Kerberos ticket fails. |
-| **4776**       | Attempted to Validate Credentials: Logs when credentials were validated against a domain controller. |
-| **4778**       | Session Reconnected: Indicates that a user has reconnected to a previously disconnected session. |
-| **4779**       | Session Disconnected: Indicates that a user has disconnected from a session. |
+**4624 - Successful Logon**
+- **Description**: Indicates a successful attempt to log on to a computer.
+- **Important Log Fields**:
+  - **SubjectUserSid**: Security identifier (SID) of the account that performed the action.
+  - **SubjectUserName**: Account name that initiated the logon.
+  - **LogonType**: Type of logon (e.g., interactive, remote, etc.).
+  - **IpAddress**: Source IP address of the logon.
+  - **WorkstationName**: Machine name where the logon occurred.
+  - **TargetUserName**: User account that was logged on.
 
-We will not dive into these in this chapther - however the same theory with logon type and interesting fields pr. event code should apply here.
+**4625 - Failed Logon**
+- **Description**: Indicates an unsuccessful attempt to log on to a computer.
+- **Important Log Fields**:
+  - **FailureReason**: Reason for the failed logon attempt.
+  - **TargetUserName**: User account name that the logon attempt was made for.
+  - **IpAddress**: IP address where the failed attempt originated.
+  - **LogonType**: Type of logon attempted (e.g., RDP, network, etc.).
+  - **Status/SubStatus**: Error codes for the failure.
+
+**4634 - Successful Logoff**
+- **Description**: Logs when a user logs off from a session or is disconnected.
+- **Important Log Fields**:
+  - **TargetUserName**: Account that was logged off.
+  - **LogonID**: Unique session identifier.
+  - **LogonType**: Indicates how the user logged off (e.g., interactive, remote, etc.).
+
+**4647 - User-Initiated Logoff**
+- **Description**: Logs when a user initiates the logoff process.
+- **Important Log Fields**:
+  - **TargetUserName**: User who initiated the logoff.
+  - **LogonID**: Session ID of the user logging off.
+
+**4648 - Logon Using Explicit Credentials**
+- **Description**: Occurs when a user logs on using alternate credentials (e.g., Run as).
+- **Important Log Fields**:
+  - **SubjectUserSid**: Security ID of the user who requested the logon.
+  - **TargetUserName**: Account being logged on using explicit credentials.
+  - **IpAddress**: IP address of the computer requesting the logon.
+  - **ProcessName**: Process used for the logon (e.g., Runas).
+
+**4672 - Special Privileges Assigned**
+- **Description**: Logs when an account with special privileges logs on.
+- **Important Log Fields**:
+  - **SubjectUserSid**: Account SID of the user with special privileges.
+  - **PrivilegeList**: List of special privileges assigned (e.g., SeBackupPrivilege, SeDebugPrivilege).
+
+**4768 - Kerberos Ticket (TGT) Requested**
+- **Description**: A request for a Kerberos Ticket Granting Ticket (TGT) was made.
+- **Important Log Fields**:
+  - **TargetUserName**: Account requesting the TGT.
+  - **IpAddress**: IP address of the client requesting the TGT.
+  - **ServiceName**: Service for which the TGT is requested.
+  - **TicketOptions**: Kerberos ticket options such as renewal, forwarding, etc.
+
+**4769 - Kerberos Service Ticket Requested**
+- **Description**: A request for a Kerberos service ticket was made.
+- **Important Log Fields**:
+  - **TargetUserName**: Account requesting the service ticket.
+  - **ServiceName**: Service that the ticket is being requested for.
+  - **IpAddress**: Source IP address.
+  - **TicketEncryptionType**: Encryption type used for the service ticket.
+
+**4771 - Kerberos Pre-authentication Failed**
+- **Description**: Occurs when the pre-authentication for a Kerberos ticket fails.
+- **Important Log Fields**:
+  - **TargetUserName**: Account for which the Kerberos authentication failed.
+  - **FailureCode**: Reason for pre-authentication failure.
+  - **IpAddress**: Client IP address that made the request.
+  - **ServiceName**: Service name where the failure occurred.
+
+**4776 - Attempted to Validate Credentials**
+- **Description**: Logs when credentials were validated against a domain controller.
+- **Important Log Fields**:
+  - **AuthenticationPackageName**: Package used to validate credentials (e.g., NTLM, Kerberos).
+  - **WorkstationName**: Name of the workstation where validation was attempted.
+  - **Status**: Status of the credential validation (e.g., success or failure).
+
+**4778 - Session Reconnected**
+- **Description**: Indicates that a user has reconnected to a previously disconnected session.
+- **Important Log Fields**:
+  - **TargetUserName**: User account reconnected to the session.
+  - **TargetLogonId**: Session ID of the reconnected session.
+  - **Source Network Address**: Network address from which the session was reconnected.
+
+**4779 - Session Disconnected**
+- **Description**: Indicates that a user has disconnected from a session.
+- **Important Log Fields**:
+  - **TargetUserName**: User account that disconnected from the session.
+  - **TargetLogonId**: Session ID of the disconnected session.
+  - **Source Network Address**: Network address from which the session was disconnected.
 
 ## Resources
 
