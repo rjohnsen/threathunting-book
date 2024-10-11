@@ -15,4 +15,6 @@ weight: 3
 | -- | -- |
 | LinkedIn | [Public profile](www.linkedin.com/in/rogerjohnsen) |
 | Telegram  | [@rjohnsen](https://t.me/rjohnsen) |
+| X / Twitter | [@rogercbjohnsen](https://x.com/rogercbjohnsen) |
+| Mastodon | [@rjohnsen](https://social.vivaldi.net/@rjohnsen) |
 
