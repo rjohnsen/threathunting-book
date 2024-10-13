@@ -20,6 +20,7 @@ Content on this page has been run through ChatGPT and similar in order to fix gr
 
 | Date | What |
 | ---- | ---- |
+| Oct. 13 - 2024 | New section: Deliveries under Part 1, with new page: Sitrep |
 | Oct. 12 - 2024 | New section: Mitre Field Notes, with new page: T1566 - Phishing |
 | Oct. 11 - 2024 | Added links to X and Mastodon |
 | Oct. 06 - 2024 | QA on OpenSearch Python API ingester and general document formatting site wide. Added tips and tricks for Windows event logon success and fail. |
