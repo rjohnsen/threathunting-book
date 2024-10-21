@@ -20,6 +20,8 @@ Content on this page has been run through ChatGPT and similar in order to fix gr
 
 | Date | What |
 | ---- | ---- |
+| Oct. 21 - 2024 | Revised introduction text for threat hunting deliveries |
+| Oct. 20 - 2024 | Added section on threat hunting deliveries |
 | Oct. 19 - 2024 | Added section on conditional access on T1566 |
 | Oct. 15 - 2024 | Added tip on top of page for Windows Login |
 | Oct. 13 - 2024 | New section: Deliveries under Part 1, with new page: Sitrep |

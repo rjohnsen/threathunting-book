@@ -6,17 +6,17 @@ chapter = false
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 20.10.2024   | Page added | 
+| 21.10.2024   | Revised introdction text. | 
 
-**In cybersecurity operations, structured process documentation is vital for guiding incident responses and ensuring operational consistency. Threat hunters play a crucial role in creating and refining these documentation entities by leveraging their expertise in identifying emerging threats and attack vectors.**
+**In cybersecurity operations, structured process documentation is essential for guiding incident responses and ensuring operational consistency. Threat hunters play a crucial role in collaborating with the SOC to create and refine these documents, leveraging their expertise in identifying emerging threats and attack vectors.**
 
-**Examples of structured process documentation:**
+**Examples of structured process documentation include:**
 
-- **Playbooks: Strategic guides shaped by threat hunters that outline detection, analysis, and containment strategies.**
-- **Runbooks: Detailed, step-by-step instructions informed by threat hunters, ensuring effective incident triage and threat detection.**
-- **SOPs: Standardized procedures that evolve with threat hunters’ insights to address current challenges in the threat landscape.**
+- **Playbooks: Strategic guides developed through collaboration between threat hunters and SOC personnel that outline detection, analysis, and containment strategies.**
+- **Runbooks: Detailed, step-by-step instructions that incorporate insights from threat hunters to ensure effective incident triage and threat detection.**
+- **Standard Operating Procedures (SOPs): Standardized procedures that evolve through the contributions of threat hunters and the SOC to address current challenges in the threat landscape.**
 
-**This chapter illustrates how threat hunters are essential contributors to these documentation entities, enhancing the SOC's ability to respond effectively to the dynamic nature of cyber threats. Structured process documentation is one of the most important contributions that threat hunters make, as it drives the SOC forward.**
+**This chapter illustrates how threat hunters are vital contributors to these documentation types, enhancing the SOC's ability to respond effectively to the dynamic nature of cyber threats. Structured process documentation is one of the most significant contributions of threat hunters, working alongside the SOC to drive the organization forward.**
 
 ## Documentation Entities
 
