@@ -6,40 +6,43 @@ chapter = false
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 21.10.2024   | Revised introduction text. | 
+| 25.10.2024   | Revised text with regards to sub-chapters | 
 
-**In cybersecurity operations, structured process documentation is essential for guiding incident responses and ensuring operational consistency. Threat hunters play a crucial role in this process by collaborating with the Security Operations Center (SOC) to create and refine various types of documentation. Their expertise in identifying emerging threats and attack vectors greatly enhances the overall effectiveness of these materials.**
+**In cybersecurity operations, structured process documentation is essential for guiding incident responses and ensuring operational consistency. Threat hunters contribute significantly to this process by collaborating with the Security Operations Center (SOC) to create and refine various types of documentation. Their expertise in identifying emerging threats and attack vectors enhances the overall effectiveness of these materials.**
 
-**This chapter illustrates the vital contributions threat hunters make to structured process documentation, which enhances the SOC's ability to respond effectively to the dynamic nature of cyber threats. Working alongside the SOC, threat hunters help drive the organization forward through their collaborative efforts.**
+**This chapter illustrates the vital contributions threat hunters make to structured process documentation, which strengthens the SOC's ability to respond effectively to the dynamic nature of cyber threats. Working alongside the SOC, threat hunters help drive the organization forward through their collaborative efforts. However, it is important to note that SOC analysts, engineers, and other security professionals also play key roles in maintaining these documents.**
 
-**Structured process documentation is one of the most significant contributions of threat hunters, enabling the SOC to adapt and respond to an ever-changing threat landscape.**
+**Structured process documentation is one of the critical components of SOC operations, enabling the SOC to adapt and respond to an ever-changing threat landscape.**
 
-**Examples of structured process documentation mentioned in this chapter:**
+### Examples of structured process documentation mentioned in this chapter
 
 | Document | Description |
 | -------- | ----------- |
-| **Playbooks** | Strategic guides developed through collaboration between threat hunters and SOC personnel that outline detection, analysis, and containment strategies. |
-| **Runbooks** | Detailed, step-by-step instructions that incorporate insights from threat hunters to ensure effective incident triage and threat detection. |
-| **Standard Operating Procedures (SOPs)** | Standardized procedures that evolve through the contributions of threat hunters and the SOC to address current challenges in the threat landscape. |
+| **Playbooks** | Strategic guides developed through collaboration between threat hunters, SOC analysts, and engineers, outlining detection, analysis, and containment strategies. |
+| **Runbooks** | Detailed, step-by-step instructions that incorporate insights from threat hunters to ensure effective incident triage, threat detection, and response. |
+| **Standard Operating Procedures (SOPs)** | Standardized procedures that evolve through collaboration between the SOC and other organizational units to address current challenges in the threat landscape, ensuring compliance and consistency. |
 
 ## Documentation Entities
 
 Below is a brief explanation of each process document mentioned above.
 
 ### Playbooks
-Playbooks are comprehensive, strategic guides designed to outline workflows and response strategies for various incidents. They focus on the broader response to incidents, covering stages such as detection, analysis, containment, eradication, and recovery. Playbooks often incorporate decision-making frameworks, define roles and responsibilities, and outline communication protocols, ensuring that the entire SOC (Security Operations Center) team operates cohesively during incident responses.
+
+Playbooks are comprehensive, strategic guides designed to outline workflows and response strategies for various incidents. They cover stages such as detection, analysis, containment, eradication, and recovery. Playbooks often incorporate decision-making frameworks, define roles and responsibilities, and outline communication protocols, ensuring that the entire SOC team operates cohesively during incident responses. Playbooks are flexible and can also apply to proactive activities like threat hunting and security monitoring, in addition to incident response.
 
 ### Runbooks
-Runbooks are operationally focused, providing step-by-step instructions for completing specific tasks within the SOC. They guide analysts through routine or predictable actions, such as incident triage, system reboots, or threat hunting. Unlike Playbooks, Runbooks focus on precise, repeatable tasks, often including commands or scripts to automate parts of the process. They ensure consistent execution of tasks by SOC personnel.
+
+Runbooks are operationally focused, providing step-by-step instructions for completing specific tasks within the SOC. They guide analysts through both routine and critical actions, such as incident triage, system reboots, or technical threat analysis. Unlike Playbooks, Runbooks focus on precise, repeatable tasks, often including commands or scripts to automate parts of the process. Automation through Security Orchestration, Automation, and Response (SOAR) platforms and other methods is becoming increasingly integral to SOC efficiency. Runbooks ensure consistent execution of tasks by SOC personnel.
 
 ### Standard Operating Procedures (SOPs)
-SOPs are formal documents that define standardized processes for various operations within the SOC. They serve as overarching guidelines that ensure consistency and compliance with organizational policies. SOPs cover routine activities like incident response, system monitoring, and report generation, promoting efficiency and accountability throughout the organization.
+
+SOPs are formal documents that define standardized processes for various operations within the SOC and across the organization. They ensure consistency and compliance with organizational policies and regulatory requirements. SOPs cover routine activities like incident response, system monitoring, and report generation, promoting efficiency and accountability. They serve as the foundation upon which Playbooks and Runbooks are built, ensuring alignment with higher-level policies.
 
 ### Visualization
 
-Playbooks, Runbooks, and SOPs are complementary tools that serve different purposes within the SOC. Playbooks offer high-level, strategic guidance for incident response; Runbooks provide detailed, task-specific instructions; and SOPs ensure that all procedures align with organizational standards.
+Playbooks, Runbooks, and SOPs are complementary tools that serve different purposes within the SOC. Playbooks offer high-level, strategic guidance for incident response; Runbooks provide detailed, task-specific instructions; and SOPs ensure that all procedures align with organizational standards and compliance requirements.
 
-Overall, the following graph visually demonstrates how these documentation types interrelate, showing that Playbooks, Runbooks, and SOPs fall under the umbrella of Operational Documentation, while providing distinct yet complementary functions to enhance SOC effectiveness.
+Overall, the following graph visually demonstrates how these documentation types interrelate, showing that Playbooks, Runbooks, and SOPs fall under the umbrella of **Operational Documentation**, while providing distinct yet complementary functions to enhance SOC effectiveness.
 
 {{<mermaid align="center">}}
 graph TD
@@ -68,7 +71,7 @@ The graph above introduces several entities that have not been previously discus
   
 - **Runbooks**: Runbooks can be fully automated through scripts, SOAR workflows, and other automation methods. This chapter will concentrate on the manual, day-to-day operations within a SOC.
   
-- **Standard Operating Procedures (SOPs)**: SOPs are essential for ensuring compliance and standardization in processes. It is implicit that SOPs guarantee tasks are performed (mostly) consistently each time.
+- **Standard Operating Procedures (SOPs)**: SOPs are essential for ensuring compliance and standardization in processes. It is implicit that SOPs guarantee tasks are performed consistently each time.
 
 ### Hierarchical Relationship Overview
 
@@ -76,11 +79,11 @@ The relationship between **Playbooks**, **Runbooks**, and **SOPs** can be descri
 
 | Entity | Description | 
 | ------ | ----------- | 
-| SOPs | Provide high-level, standardized guidance, outlining the required processes for maintaining consistency across teams and operations. |
-| Playbooks | Are derived from SOPs but focus on responding to specific situations, offering a more flexible and adaptive approach to dynamic incidents, such as cybersecurity threats. |
-| Runbooks | Implement the procedures from both SOPs and Playbooks in a detailed and structured manner, offering exact steps to perform operational tasks. |
+| **SOPs** | Provide high-level, standardized guidance, outlining the required processes for maintaining consistency across teams and operations. |
+| **Playbooks** | Focus on responding to specific situations, offering a flexible and adaptive approach to dynamic incidents, such as cybersecurity threats, while aligning with SOPs. |
+| **Runbooks** | Implement the procedures from both SOPs and Playbooks in a detailed and structured manner, offering exact steps to perform operational tasks. |
 
-The following graph showcases the relationship between multiple Playbooks and their associated SOPs, as well as their sequential order within the Runbook framework:
+The following graph showcases the relationship between multiple Playbooks and their associated SOPs, as well as their role within the Runbook framework:
 
 {{<mermaid align="center">}}
 flowchart TB
@@ -107,16 +110,12 @@ flowchart TB
 
 | Entity | Description | 
 | ------ | ----------- | 
-| Runbook | The top-level container holding various Playbooks. A Runbook is a detailed execution guide for a variety of tasks, referencing specific Playbooks for specialized instructions. |
-| Playbooks | Each Playbook (e.g., Playbook 1, Playbook 2, Playbook N+1) is associated with specific scenarios or incidents. Each Playbook includes a set of SOPs that guide the processes in a structured way. |
-| SOPs | Each Playbook references one or more SOPs, providing the detailed steps necessary to carry out routine tasks relevant to the Playbook's focus. |
-| Sequential Flow | The arrows connecting Playbooks (e.g., Playbook 1 → Playbook 2 → Playbook N+1) indicate that these Playbooks might be used in a particular sequence or build on one another as the incident progresses. |
+| **Runbook** | A detailed execution guide for a variety of tasks, referencing specific Playbooks for specialized instructions. |
+| **Playbooks** | Each Playbook (e.g., Playbook 1, Playbook 2, Playbook N+1) is associated with specific scenarios or incidents. Each Playbook includes a set of SOPs that guide the processes in a structured way. |
+| **SOPs** | Each Playbook references one or more SOPs, providing the detailed steps necessary to carry out routine tasks relevant to the Playbook's focus. |
+| **Sequential Flow** | The arrows connecting Playbooks (e.g., Playbook 1 → Playbook 2 → Playbook N+1) indicate that these Playbooks might be used in a particular sequence or build on one another as the incident progresses. |
 
 This structure reflects how Playbooks and SOPs integrate within Runbooks, creating an organized and efficient approach to security operations.
-
-## Examples
-
-In the subsequent subchapters, I will present one example of each of these documents. Feel free to use these as inspiration for your own work. I have based the examples on various sources, mostly the ATC RE&CT Framework, as well as custom templates I have developed over the years.
 
 ## Resources
 
