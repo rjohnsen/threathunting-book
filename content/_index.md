@@ -20,6 +20,7 @@ Content on this page has been run through ChatGPT and similar in order to fix gr
 
 | Date | What |
 | ---- | ---- |
+| Oct. 25 - 2024 | Added page on how to start a threat hunting program |
 | Oct. 25 - 2024 | Added pages on threat hunting deliveries |
 | Oct. 21 - 2024 | Revised introduction text for threat hunting deliveries |
 | Oct. 20 - 2024 | Added section on threat hunting deliveries |
