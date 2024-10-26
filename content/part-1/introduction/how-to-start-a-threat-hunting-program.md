@@ -1,12 +1,12 @@
 ---
 title: "How to Start a Threat Hunting Program"
 date: 2024-10-26T16:40:47+02:00
-draft: true
+draft: false
 ---
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 26.10.2024   | Added page | 
+| 25.10.2024   | Added page | 
 
 One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.
 
