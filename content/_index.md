@@ -16,24 +16,6 @@ Content on this page has been run through ChatGPT and similar in order to fix gr
 
 ![Threat hunting illustration](/images/mainpage-illustration-small.png)
 
-## Recent changes and additions
-
-| Date | What |
-| ---- | ---- |
-| Oct. 27 - 2024 | Added page T1105 from a recent threat hunt investigation. Added page on how to start a threat hunt. Added page on intelligence resources |
-| Oct. 26 - 2024 | Added page on how to start a threat hunting program |
-| Oct. 26 - 2024 | Added pages on threat hunting deliveries |
-| Oct. 21 - 2024 | Revised introduction text for threat hunting deliveries |
-| Oct. 20 - 2024 | Added section on threat hunting deliveries |
-| Oct. 19 - 2024 | Added section on conditional access on T1566 |
-| Oct. 15 - 2024 | Added tip on top of page for Windows Login |
-| Oct. 13 - 2024 | New section: Deliveries under Part 1, with new page: Sitrep |
-| Oct. 12 - 2024 | New section: Mitre Field Notes, with new page: T1566 - Phishing |
-| Oct. 11 - 2024 | Added links to X and Mastodon |
-| Oct. 06 - 2024 | QA on OpenSearch Python API ingester and general document formatting site wide. Added tips and tricks for Windows event logon success and fail. |
-| Sep. 30 - 2024 | Added "FAQ" page. |
-| Sep. 29 - 2024 | Added "Understanding Data" page. |
-
 ## Future plans / roadmap
 
 Here's a glimpse into what I plan to include in my little threat hunting book in the near future: 
@@ -43,7 +25,48 @@ Here's a glimpse into what I plan to include in my little threat hunting book in
 | Deliveries | What exactly can we as threat hunters deliver to customers and stake holders? |
 | Reports | What kind of reports do and can we deliver |
 | Frameworks | Extend framework section to include other relevant frameworks |
-| Threat Intelligence | The sources I use |
 | Planning | Planning hunts, staffing etc. | 
+
+## Recent changes and additions
+
+- **Oct. 27, 2024**
+  - Added page T1105 from a recent threat hunt investigation.
+  - Added page on how to start a threat hunt.
+  - Added page on intelligence resources.
+
+- **Oct. 26, 2024**
+  - Added page on how to start a threat hunting program.
+  - Added pages on threat hunting deliveries.
+
+- **Oct. 21, 2024**
+  - Revised introduction text for threat hunting deliveries.
+
+- **Oct. 20, 2024**
+  - Added section on threat hunting deliveries.
+
+- **Oct. 19, 2024**
+  - Added section on conditional access on T1566.
+
+- **Oct. 15, 2024**
+  - Added tip on top of page for Windows Login.
+
+- **Oct. 13, 2024**
+  - New section: Deliveries under Part 1, with new page: Sitrep.
+
+- **Oct. 12, 2024**
+  - New section: Mitre Field Notes, with new page: T1566 - Phishing.
+
+- **Oct. 11, 2024**
+  - Added links to X and Mastodon.
+
+- **Oct. 06, 2024**
+  - QA on OpenSearch Python API ingester and general document formatting site-wide.
+  - Added tips and tricks for Windows event logon success and fail.
+
+- **Sep. 30, 2024**
+  - Added "FAQ" page.
+
+- **Sep. 29, 2024**
+  - Added "Understanding Data" page.
 
 
