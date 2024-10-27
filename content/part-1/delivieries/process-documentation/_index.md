@@ -6,7 +6,7 @@ chapter = false
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 25.10.2024   | Revised text with regards to sub-chapters | 
+| 26.10.2024   | Revised text with regards to sub-chapters | 
 
 **In cybersecurity operations, structured process documentation is essential for guiding incident responses and ensuring operational consistency. Threat hunters contribute significantly to this process by collaborating with the Security Operations Center (SOC) to create and refine various types of documentation. Their expertise in identifying emerging threats and attack vectors enhances the overall effectiveness of these materials.**
 
