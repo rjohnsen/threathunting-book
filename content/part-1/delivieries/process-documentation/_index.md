@@ -8,6 +8,8 @@ chapter = false
 | ------------ | ------- |
 | 26.10.2024   | Revised text with regards to sub-chapters | 
 
+## Introduction
+
 **In cybersecurity operations, structured process documentation is essential for guiding incident responses and ensuring operational consistency. Threat hunters contribute significantly to this process by collaborating with the Security Operations Center (SOC) to create and refine various types of documentation. Their expertise in identifying emerging threats and attack vectors enhances the overall effectiveness of these materials.**
 
 **This chapter illustrates the vital contributions threat hunters make to structured process documentation, which strengthens the SOC's ability to respond effectively to the dynamic nature of cyber threats. Working alongside the SOC, threat hunters help drive the organization forward through their collaborative efforts. However, it is important to note that SOC analysts, engineers, and other security professionals also play key roles in maintaining these documents.**

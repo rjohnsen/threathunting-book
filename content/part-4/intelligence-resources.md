@@ -9,6 +9,8 @@ weight: 1
 | ------------ | ------- |
 | 27.10.2024   | Added page | 
 
+## Introduction
+
 **As threat hunters, access to reliable threat intelligence resources is crucial in our defenses against malicious activities. The following table is my personal and curated list of valuable tools and platforms that security professionals can leverage for various purposes, including threat detection, analysis, and response.**
 
 **These resources encompass a range of functionalities, from IP reputation checks and malware analysis to community-driven threat intelligence sharing. By utilizing these platforms, we can gain insights into emerging threats, understand attacker methodologies, and enhance their overall security posture. Each entry in the table includes a clickable link to the resource, a brief description of its purpose, and its primary use case in the realm of cybersecurity.**

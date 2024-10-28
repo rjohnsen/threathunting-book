@@ -9,9 +9,11 @@ weight: 3
 | ------------ | ------- |
 | 26.10.2024   | Added page | 
 
-One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.
+## Introduction
 
-Starting a threat hunting program requires a structured methodology to proactively identify potential threats that have evaded existing security defenses. Below are some key steps and tips I want to share with you to help you initiate your threat hunting efforts:
+**One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.**
+
+**Starting a threat hunting program requires a structured methodology to proactively identify potential threats that have evaded existing security defenses. Below are some key steps and tips I want to share with you to help you initiate your threat hunting efforts.**
 
 ### Assess Your Current Security Posture
 
