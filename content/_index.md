@@ -29,6 +29,9 @@ Here's a glimpse into what I plan to include in my little threat hunting book in
 
 ## Recent changes and additions
 
+- **Nov. 02, 2024**
+  - Added page on creating hypothesis
+
 - **Oct. 27, 2024**
   - Added page T1105 from a recent threat hunt investigation.
   - Added page on how to start a threat hunt.
