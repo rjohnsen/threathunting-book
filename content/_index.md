@@ -29,6 +29,9 @@ Here's a glimpse into what I plan to include in my little threat hunting book in
 
 ## Recent changes and additions
 
+- **Nov. 03, 2024**
+  - Added page on No Result Hunts
+
 - **Nov. 02, 2024**
   - Added page on creating hypothesis
 
