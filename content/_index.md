@@ -14,7 +14,7 @@ Please report feedbacks, changes and whatnots through the projects issue tracker
 Content on this page has been run through ChatGPT and similar in order to fix grammar, sentences and general corrections on text. Text has also been run through same engines in order to convert my notes to text that makes sense. This site includes my notes, articles, presentations and thoughts throughout the years I have been working as a threat hunter.
 {{% /notice %}}
 
-![Threat hunting illustration](/images/mainpage-illustration-small.png)
+![Threat hunting illustration](/images/mainpage-illustration-small.png)  
 
 ## Future plans / roadmap
 
