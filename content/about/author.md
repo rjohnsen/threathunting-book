@@ -5,6 +5,10 @@ draft: false
 weight: 1
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 22.6.2024   | Added page | 
+
 ##   Roger Johnsen
 
 ![Roger](/images/roger-profile-small.png)

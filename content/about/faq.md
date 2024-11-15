@@ -5,6 +5,9 @@ draft: false
 weight: 2
 ---
 
+| Revised Date | Comment |
+| ------------ | ------- |
+| 30.09.2024   | Added page | 
 
 **Is this content really free? Are there any limitations?**
 
