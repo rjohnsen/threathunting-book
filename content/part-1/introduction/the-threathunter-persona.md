@@ -68,6 +68,8 @@ Degrees in Computer Science, Cybersecurity, or Information Technology are common
 
 Certifications: Certifications such as [Certified Information Systems Security Professional (CISSP)](https://www.isc2.org/Certifications/CISSP), [GIAC Certified Incident Handler (GCIH)](https://www.giac.org/certifications/certified-incident-handler-gcih/), and [Certified Ethical Hacker (CEH)](https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/) validate advanced skills and commitment to the field.
 
+However, certifications doesn't need to be those costly ones that takes forever to complete and master. For instance, AttackIQ offers excellent [free certifications and learning paths](https://www.academy.attackiq.com/learning-paths) on everything from MITRE ATT&CK to Attack & Breach simulation. If you are able to show me badge list on [Credly](https://info.credly.com/) built up on such certficiations, then I am more than happy! 
+
 #### Practical Training
 
 - Bootcamps and Courses: Practical, hands-on training like SANS courses or online platforms such as [TryHackMe](https://tryhackme.com/) and [Hack The Box](https://www.hackthebox.com/) enhance real-world skills.
@@ -204,8 +206,6 @@ As the saying goes, "Everyone can drive a car, but not everyone should be drivin
 ### Conclusion
 
 The threathunter persona is more than just a role; it’s a mindset. A lifestyle- By combining technical mastery, analytical skills, and interpersonal skills, threathunters proactively safeguard organizations from advanced threats. Continuous learning and a collaborative approach are the hallmarks of this indispensable cybersecurity professional.
-
-
 
 ## Resources
 
