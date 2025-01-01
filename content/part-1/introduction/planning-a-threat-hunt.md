@@ -13,6 +13,8 @@ weight: 4
 
 **In this chapter we will jump into action by planning a threat hunt. Hopefully you got a threat hunting program already initiated- Planning a threat hunt involves a structured approach to proactively search for signs of malicious activity within an environment. I would love to stress that structured part. A threat hunting program based on "happy-go-lucky" isn't worth much. Anyway, below is a step-by-step guide to planning a threat hunt, combining tables with explanatory text and highlighting where AI can assist. Yes - I have chosen to involve AI in my threat hunts. You will be amazed how much value it can give you.**
 
+---
+
 ## Steps
 
 We will now explore the key steps involved in planning an effective threat hunt and we are going to take basis in the following illustrated flowchart. From defining the scope and objectives to continuously improving our hunting methodologies, each step plays a critical role in enhancing our overall security posture. Let’s delve into these steps to understand how we can implement a successful threat hunting strategy.

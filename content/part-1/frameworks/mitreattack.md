@@ -13,6 +13,8 @@ weight: 4
 
 **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a comprehensive framework that categorizes the actions and behaviors of cyber adversaries. It provides a detailed matrix of tactics and techniques that attackers use across the lifecycle of an intrusion, from initial access to the completion of their objectives. The framework is designed to help organizations improve their cybersecurity posture by understanding how attackers operate and identifying gaps in their defenses.**
 
+---
+
 ## About Model
 
 The MITRE ATT&CK framework consists of the following tactics:

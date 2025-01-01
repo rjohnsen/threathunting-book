@@ -13,6 +13,8 @@ weight: 5
 
 **In threat hunting, Security Operations Center (SOC) operations, and incident management, effective communication is essential. In this chapter we are going to look into a great tool called a SITREP - also known as The Situation Report. The SITREP serves as a vital tool to ensure that all stakeholders—team members, management, and external partners—are kept informed about ongoing situations. By providing structured, concise updates on the current status, actions taken, and next steps, SITREPs help teams make informed decisions and coordinate responses effectively.**
 
+---
+
 ## What 
 
 A SITREP (Situation Report) is a concise, structured update on the current status of an ongoing situation. Originally developed for military use, SITREPs are now employed across various fields, including cybersecurity. In threat hunting, Security Operations Centers (SOCs), and incident management, SITREPs play a critical role in keeping all stakeholders informed about important developments.

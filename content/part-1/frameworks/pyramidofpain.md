@@ -13,6 +13,8 @@ weight: 6
 
 **The Pyramid of Pain is a conceptual model created by David J. Bianco that illustrates the relative difficulty and impact of detecting and responding to different types of indicators used in threat hunting and incident response. The model helps cybersecurity professionals understand the value of various types of indicators and how effectively they can disrupt adversary activities.**
 
+---
+
 ## About Model
 
 The Pyramid of Pain consists of six levels:

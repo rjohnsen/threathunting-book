@@ -26,6 +26,8 @@ draft: false
 This chapter serves as a foundational introduction for setting up OpenSearch and is also the basis for the automatical installation routine descbribed in chapter [Setting up a complete lab](https://huntbook.predefender.com/part-2/setting-up-a-complete-lab/index.html)
 {{% /notice %}}
 
+---
+
 ### What is OpenSearch?
 
 ![OpenSearch](/images/Opensearch_Logo.svg.png)

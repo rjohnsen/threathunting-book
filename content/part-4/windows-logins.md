@@ -17,6 +17,8 @@ This article references event IDs found in the Microsoft Windows Security Logs. 
 
 **Windows security logs are essential for understanding user activity on a system. Two critical events that provide insights into user logon attempts are Event 4624 and Event 4625. These logs help track both successful and failed logons, allowing administrators, SOC and threat hunters to monitor access and detect suspicious behavior. Monitoring both of these events is vital for maintaining system security. While Event 4624 provides visibility into successful logon attempts, event 4625 helps detect potential security risks by logging failed access attempts. Together, they offer a comprehensive view of who is accessing your system and highlight potential threats. Since these are so central, I'll share with you my notes on these events.** 
 
+---
+
 ## Windows Event 4624 (Successful Logon)
 
 Let's first start by looking at successful logons. Event ID **4624** is logged whenever a user successfully logs into a Windows system (local and networked). It plays an essential role in auditing user activity and ensuring the system's security. This event is recorded in the **Security** section of the Windows Event Viewer.

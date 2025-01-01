@@ -13,6 +13,8 @@ weight: 3
 
 **The Unified Kill Chain (UKC) is a comprehensive framework designed to describe and analyze cyber attacks by mapping the entire lifecycle of an adversary’s operation. It merges key concepts from two popular models: the Cyber Kill Chain (CKC) and MITRE ATT&CK. By combining the strengths of both, UKC provides a holistic view of attack techniques, from reconnaissance and initial intrusion to lateral movement and impact. This helps cybersecurity professionals enhance threat detection, improve defenses, and streamline incident response by understanding attackers' methods at each stage of an attack.**
 
+---
+
 ## About Model
 
 The Unified Kill Chain (UKC) categorizes the attack lifecycle into three main phases: **In**, **Through**, and **Out**. The **In** phase focuses on the initial access and foothold within the target environment, the **Through** phase covers lateral movement and persistence, and the **Out** phase involves data exfiltration or the attacker achieving their objectives. This structure provides a clear understanding of an adversary's progression, helping defenders to detect, respond to, and mitigate threats more effectively at each stage.

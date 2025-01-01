@@ -15,6 +15,8 @@ weight: 3
 
 **Starting a threat hunting program requires a structured methodology to proactively identify potential threats that have evaded existing security defenses. Below are some key steps and tips I want to share with you to help you initiate your threat hunting efforts.**
 
+---
+
 ### Assess Your Current Security Posture
 
 Begin by evaluating your organization’s current security measures. Understand your existing tools, processes, and team capabilities. This assessment will help identify gaps and opportunities for improvement.

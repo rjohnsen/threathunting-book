@@ -17,6 +17,8 @@ draft: false
 
 **The purpose of a timeline is to provide a clear, structured view of what happened, when it happened, and how the threat actor moved through, say, the network. This clarity is essential for identifying key indicators of compromise (IOCs), determining the scope of an attack, and developing an effective response.**
 
+---
+
 ## Key components of a threat hunting timeline 
 
 Key components of a threat hunting timeline may include:

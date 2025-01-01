@@ -21,6 +21,8 @@ Many of these resources offers API's, or HTTP GET query arguments. If you know p
 
 **Explore the table below to discover tools that can aid in your threat hunting and incident response efforts.**
 
+---
+
 ### Intelligence resources
 
 | **Title** | **Description** |

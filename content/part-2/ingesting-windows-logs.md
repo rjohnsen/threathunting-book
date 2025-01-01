@@ -15,6 +15,8 @@ weight: 4
 
 **This chapter offers a generic guide for ingesting Windows `.evtx` logs into OpenSearch. This process will help you centralize and analyze your Windows logs, facilitating more effective threat detection and response within your security infrastructure.**
 
+---
+
 ### Types of Windows Logs
 
 There aren't just one central Windows log, sadly. Here's a quick rundown of the available logs:

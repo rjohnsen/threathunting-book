@@ -16,6 +16,8 @@ chapter = false
 
 **Structured process documentation is one of the critical components of SOC operations, enabling the SOC to adapt and respond to an ever-changing threat landscape.**
 
+---
+
 ### Examples of structured process documentation mentioned in this chapter
 
 | Document | Description |

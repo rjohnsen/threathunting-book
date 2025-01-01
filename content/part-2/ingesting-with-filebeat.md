@@ -13,6 +13,8 @@ weight: 5
 
 **Filebeat is a lightweight log shipper designed to forward and centralize various types of logs. As part of the Elastic Stack (ELK Stack), Filebeat is specifically tailored to collect logs and send them to Elasticsearch, Logstash, or third-party services for analysis and visualization. When we refer to Filebeat as a "shipper," we mean it's a tool that takes your logs and sends them to a SIEM, to put it simply.**
 
+---
+
 ## Obtaining and Installing Filebeat
 
 1. Download the **_WINDOWS ZIP 64-BIT_** version of Filebeat OSS 7.12.1 from [this link](https://www.elastic.co/downloads/past-releases/filebeat-oss-7-12-1).

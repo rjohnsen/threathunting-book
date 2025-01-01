@@ -13,6 +13,8 @@ weight: 1
 
 **If you inquire about "threat hunting," you are likely to encounter a wide range of interpretations, comparable to the multitude of stars in the night sky. One Security Operations Center (SOC) might claim to engage in threat hunting, yet upon closer examination, their activities may be confined to validating Indicators of Compromise (IOCs). Conversely, another SOC might describe their approach as centered around crafting detection rules informed by threat intelligence. In this article, I aim to provide a comprehensive explanation of threat hunting, distinguish it from detection engineering, elucidate its importance, explore various methodologies of threat hunting, and more. My primary objective is to establish a foundational framework for conducting effective threat hunts and to outline the essential knowledge needed to excel in this role.**
 
+---
+
 ## Definition
 
 Several companies and researchers have attempted to define the concept of threat hunting. Among these, Cyborg Security, established in 2019, stands out as a leading authority. Comprising a team of experienced threat hunters, threat intelligence analysts, and security researchers based in North America, Cyborg Security has played a pivotal role in popularizing and democratizing threat hunting through initiatives such as free training programs. Here is how Cyborg Security defines threat hunting:

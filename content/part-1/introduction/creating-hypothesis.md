@@ -14,6 +14,8 @@ draft: false
 
 **In this chapter we will explore the essential elements of creating effective threat-hunting hypotheses, including the importance of leveraging threat intelligence, analyzing past incidents, and identifying behavioral anomalies. Additionally, we will highlight practical exampless grounded in the MITRE ATT&CK framework, illustrating how to link the hypotheses to established threat actor behaviors. By employing these strategies, we can enhance our investigative capabilities and better protect our organizations from emerging threats.**
 
+---
+
 ## What is a hypothesis?
 
 Before we go on creating hypotheses, let's just take a moment to clarify what a hypothesis is. As we progess through this chapter, we'll see that an hypothesis is more than just a hunch, and far more than a statement like "we think we have an attacker in our networks".Let's carry on with a definition:
