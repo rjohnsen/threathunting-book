@@ -10,13 +10,15 @@ draft: true
 
 ## Introduction
 
-**In the world of cybersecurity, the threathunter role is a unique blend of technical expertise, analytical insights, and interpersonal skills. Perhaps the most important thing: experience! A threathunter proactively identifies and neutralizes threats often overlooked by automated systems, embodying a persona that thrives on curiosity, persistence, and collaboration. This article explores the essential traits and skills that define the threathunter persona, based on what I look for in a threat hunter during job interviews.**
+**The role of a threat hunter is, in many ways (in my opinion), the natural progression for SOC analysts. It represents the culmination of years spent mastering the art of monitoring, analyzing, and responding to security events, while incorporating expertise from related disciplines such as Digital Forensics and Incident Response (DFIR), Computer Security Incident Response Teams (CSIRT), penetration testing, and more.**
 
----
+**A threat hunter is the ultimate fusion of defensive (blue) and offensive (red) cybersecurity expertise. They embody the concept of a "purple teamer," seamlessly integrating skills from both domains to proactively identify and neutralize threats before they can cause harm. Beyond being a practitioner, a threat hunter is a strategist—a professional equipped with multidisciplinary expertise to stay ahead of adversaries in an ever-evolving threat landscape.**
 
-### Mapping the Persona
+**This chapter explores the unique skills, mindset, and tools that define the modern threat hunter and highlights their pivotal role in advanced cybersecurity operations.**
 
-The following mindmap offers a high-level overview of the key aspects that define the threathunter persona. It visually organizes the critical areas of education, technical mastery, analytical prowess, and soft skills, helping to illustrate the interconnected nature of these attributes.
+## Mapping the Persona
+
+To start off, let me depict how I perceive the threat hunter persona. It can be visualized through interconnected aspects of education, technical mastery, analytical prowess, and soft skills. The following mindmap illustrates how these attributes align to create a proficient threat hunter. I'll touch upon these in details in this chapter. 
 
 ```mermaid
 mindmap
@@ -56,163 +58,179 @@ mindmap
 
 ---
 
+## Education
+
+To pinpoint the exact path for education for a threat hunter isn't feasible as their background is as diverse as the IT field itself. 
+
+```mermaid
+block-beta
+  columns 4
+  a["Continous Learning"]:4
+  block:academia:2
+   columns 1
+   b["Practical Training"]
+   c["Academia"]
+  end
+  block:military:2
+   d["Military"]
+  end
+  e["Interest"]:4
+```
+
+### Interest
+
+At its core, a Threat Hunter is motivated by their deep love and interest for the discipline. There's a special kind of people I want to attract - those who lives and breath IT-security and technology. Whenever I conduct job interview I try to drill down into the interest field. For instance, when did your interest start, what made you chose the education path you did? Stuff like that. 
+
 ### Education
 
-A solid educational foundation is pivotal to developing the threathunter persona. While formal education isn't the sole pathway, it provides a structured understanding of cybersecurity principles.
+An educated threat hunter is worth its weight in gold. In general, when I look for a SOC analyst or a Threat Hunter I try figure out if there's an continuation in their education. 
 
-#### Academic Background
+#### Academia
 
-##### Relevant Degrees
+##### High School
 
-Degrees in Computer Science, Cybersecurity, or Information Technology are common among threathunters. These programs cover foundational topics like programming, networking, and system architecture.
+```mermaid
+flowchart LR
+ a["Freshman Year"]
+ b["Sophomore Year"]
+ c["Junior Year"]
+ d["Senior Year"]
 
-Certifications: Certifications such as [Certified Information Systems Security Professional (CISSP)](https://www.isc2.org/Certifications/CISSP), [GIAC Certified Incident Handler (GCIH)](https://www.giac.org/certifications/certified-incident-handler-gcih/), and [Certified Ethical Hacker (CEH)](https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/) validate advanced skills and commitment to the field.
+ a-->b-->c-->d
+```
 
-However, certifications doesn't need to be those costly ones that takes forever to complete and master. For instance, AttackIQ offers excellent [free certifications and learning paths](https://www.academy.attackiq.com/learning-paths) on everything from MITRE ATT&CK to Attack & Breach simulation. If you are able to show me badge list on [Credly](https://info.credly.com/) built up on such certficiations, then I am more than happy! 
+| Science | Technology | Engineering | Mathematics |
+| ------- | ---------- | ----------- | ----------- |
+| Biology |	Computer Science | Aerospace Engineering | Pure Mathematics |
+| Chemistry	| Information Technology | Civil Engineering	| Applied Mathematics |
+| Physics | Electronics	| Mechanical Engineering | Statistics |
+| Earth and Environmental Sciences | |	Electrical Engineering | 	
+
+##### Degrees
+
+Like as for high school, I also regard degrees as stackable and an continuation of the chosen education path. 
+
+```mermaid
+flowchart LR
+ a["Bachelor of Science (BS)"]
+ b["Master of Science (MS)"]
+
+ a-->b
+```
+
+Stating which studies are important or not is futile at this level. From my experience, universities has a tendency to mix and mash topics into a degree and it is inherently different to keep track of who offers what. Instead, by looking at the curriculum I have found that the following topics often yields good threat hunters (and SOC analysts):
+
+- Network security
+- Computer security
+- Programming and scripting languages
+- Data analysis
+- Digital forensics
+- Network forensics
+- Operating systems
+- Cryptography
+- Malware analysis
+- Incident response
+- Machine learning
+- Cyber threat intelligence
+- Statistical analysis
+- Reverse engineering
+
+When it comes to "Master of Science" degrees, I pay extra attention to what the candidate has done prior. Often, if there are no prior IT relevant education or experience, then that's a red flag. Two years of study doesn't make you prepared for the work you are to embark upon (actually it is, but it takes more effort than people are willing to invest).
+
+
+#### Military
+
+I have choosen to include the military as a separate and distinct path when it comes to education. In my experience, which may differ from militaries in other countries, is that the military offers mostly the same topics as public (and private) schools do. However, the military has an unique way of teaching what you actually need to do your assigned job - no fluff and straight into action, and it is all based on experience. Thus, practical training comes included! 
 
 #### Practical Training
 
-- Bootcamps and Courses: Practical, hands-on training like SANS courses or online platforms such as [TryHackMe](https://tryhackme.com/) and [Hack The Box](https://www.hackthebox.com/) enhance real-world skills.
-- Workshops and Labs: Immersive experiences, including capture-the-flag (CTF) competitions, prepare threathunters to tackle complex challenges.
+Hands-on training bridges the gap between theory and practice. Bootcamps, workshops, online webinars/classes and Capture-the-Flag (CTF) competitions simulate real-world scenarios, sharpening investigative and problem-solving skills. Platforms like TryHackMe and Hack The Box offer immersive environments for honing technical expertise. CTFs like SANS Holiday Hack Challenge offers a myriad of relevant objectives to solve and learn from each year. 
 
-#### Continuous Learning
+#### Continuos learning
 
-- What It Entails: Cyber threats evolve rapidly. A threathunter must engage in lifelong learning through webinars, conferences, and resources like [The DFIR Report](https://thedfirreport.com/).
-- Application: Staying updated with the latest attack techniques and tools ensures readiness for emerging threats.
+A strong educational foundation is crucial to the threathunter persona. While formal education provides structure, continuous learning shape a hunter's ability to adapt. Cyber threats evolve rapidly, making continuous learning indispensable. Webinars, conferences, and resources like The DFIR Report ensure hunters stay abreast of emerging attack techniques. Continous learning is about taking certfications and classes, whatever measure to learn something new outside of academia. Think of it this way: you have studied hard to learn the basics, you tried and trained the concepts out in the field. Now it is time to expand further.
 
 ---
 
-### Technical Mastery
+## Technical Mastery
 
-#### 1. Understanding the Threat Landscape
-   - What It Entails: Threathunters possess an in-depth understanding of the tactics, techniques, and procedures (TTPs) of adversaries. Familiarity with frameworks like [MITRE ATT&CK](https://attack.mitre.org/) helps them anticipate and counteract malicious activity.
-   - Tool: [MITRE ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/).
-   - Application: Mapping observed attack patterns (e.g., credential dumping) to MITRE ATT&CK techniques to predict the attacker’s next move.
+Proficiency in technical domains underpins a threat hunter’s success. This mastery extends across diverse areas, enabling them to identify and neutralize sophisticated threats.
 
-#### 2. Networking Savvy
-   - What It Entails: A threathunter’s deep understanding of network protocols (e.g., TCP/IP, HTTP/S, DNS) enables them to analyze and interpret network traffic effectively.
-   - Tool: [Wireshark](https://www.wireshark.org/) or [Zeek](https://zeek.org/).
-   - Application: Uncovering data exfiltration attempts by investigating anomalies such as repetitive DNS queries.
+Here’s the updated table with more detailed descriptions:
 
-#### 3. Endpoint Expertise
-   - What It Entails: Threathunters leverage endpoint detection tools to monitor and analyze suspicious activity on devices.
-   - Tool: [CrowdStrike Falcon](https://www.crowdstrike.com/).
-   - Application: Investigating alerts for processes like unusual PowerShell execution and correlating them to uncover hidden threats.
-
-#### 4. Log Wizardry
-   - What It Entails: Parsing and analyzing logs from various systems is a cornerstone of the threathunter persona.
-   - Tool: [Splunk](https://www.splunk.com/) or [ELK Stack](https://www.elastic.co/what-is/elk-stack).
-   - Application: Writing queries to detect brute-force login attempts followed by successful authentication.
-
-#### 5. Threat Intelligence Integration
-   - What It Entails: A threathunter enriches their investigations with contextual information from threat intelligence feeds.
-   - Tool: [MISP](https://www.misp-project.org/) or [Recorded Future](https://www.recordedfuture.com/).
-   - Application: Associating indicators of compromise (IOCs) from logs with known adversary campaigns.
-
-#### 6. Scripting and Automation
-   - What It Entails: Automating repetitive tasks to streamline investigations.
-   - Tool: Python or PowerShell.
-   - Application: Crafting scripts to match suspicious domains against threat intelligence databases.
-
-#### 7. Forensic Finesse
-   - What It Entails: Threathunters delve into memory, disk, and network forensics to uncover stealthy threats.
-   - Tool: [Volatility](https://www.volatilityfoundation.org/).
-   - Application: Analyzing memory dumps to identify malware that operates solely in memory.
-
-#### 8. SIEM Savviness
-   - What It Entails: Managing and refining detection rules in Security Information and Event Management (SIEM) systems.
-   - Tool: [QRadar](https://www.ibm.com/products/qradar-siem).
-   - Application: Creating rules to flag excessive file downloads, indicating potential data theft.
-
-#### 9. Malware Analysis
-   - What It Entails: Identifying malicious capabilities in suspicious files.
-   - Tool: [Ghidra](https://ghidra-sre.org/).
-   - Application: Dissecting an executable to uncover malicious functions like keylogging.
+| **Term**                     | **Description**                                                                                                                                               |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Understanding the Threat Landscape** | Threat hunters excel at identifying and interpreting adversaries’ Tactics, Techniques, and Procedures (TTPs), which are the behavioral patterns used in cyberattacks. Frameworks like MITRE ATT&CK provide a structured approach to map these TTPs and assess potential attack vectors. This allows hunters to anticipate the adversary's next move, making the defense strategy proactive rather than reactive. |
+| **Networking Savvy**          | A deep understanding of network protocols (e.g., TCP/IP, DNS, HTTP/S) is vital for detecting subtle anomalies in network traffic that could signal malicious activities. Threat hunters use tools like Wireshark to capture and analyze packets or Zeek for network monitoring to detect and investigate suspicious traffic patterns, such as data exfiltration, lateral movement, or Command and Control (C2) communication. |
+| **Endpoint Expertise**        | Proficiency in Endpoint Detection and Response (EDR) tools like CrowdStrike Falcon enables threat hunters to track and investigate endpoint activities. They focus on unusual system behaviors, such as unexpected PowerShell executions, which could indicate malicious actions like ransomware deployment or credential theft. EDR tools often provide detailed forensic data that aids in identifying the root cause of the attack and understanding the attacker’s techniques. |
+| **Log Analysis**              | Threat hunters parse and correlate logs from various sources like firewalls, servers, and security devices to detect hidden patterns indicative of malicious activity. Tools like Splunk and ELK Stack allow them to craft complex queries to identify specific events, such as brute-force login attempts, privilege escalation, or lateral movement across the network. Detailed log analysis is key in uncovering stealthy attacks that evade traditional detection mechanisms. |
+| **Threat Intelligence Integration** | Threat intelligence enhances threat hunting efforts by providing timely and contextual data about emerging threats, attack methodologies, and known adversary tactics. Platforms like MISP and Recorded Future aggregate Indicators of Compromise (IOCs) and link them to known threat actor campaigns. This helps hunters identify patterns in adversary behavior, predict future actions, and link current investigations to broader threat landscapes. |
+| **Scripting and Automation**  | Threat hunters leverage scripting languages like Python or PowerShell to automate repetitive tasks such as IOC matching, data aggregation, and anomaly detection. Automation not only saves time but also improves consistency in investigations. By creating custom scripts, hunters can rapidly deploy countermeasures, detect changes in system configurations, and ensure a more efficient response to complex threats. |
+| **Malware Analysis**          | Malware analysis helps threat hunters understand the functionality and purpose of malicious code used by adversaries. Using tools like Ghidra (for static analysis) or Volatility (for memory analysis), they reverse-engineer files, examine code, and analyze system memory to uncover techniques like code injection, keylogging, or ransomware triggers. This analysis aids in crafting effective defenses and understanding the tools and techniques used by specific threat actors. |
 
 ---
 
-### Jack of All Trades
+## Analytical Skills
 
-A threathunter must possess a versatile skill set, combining expertise across multiple disciplines:
+Analytical skills are integral to threat hunting, empowering hunters to interpret data and connect disparate events.
 
-- DFIR (Digital Forensics and Incident Response): To manage incidents and investigate breaches effectively.
-- Programming: Skills in Python, PowerShell, or similar languages for scripting and automation.
-- Querying: Proficiency in writing SQL, Splunk queries, or custom data search scripts.
-- Data Analysis: Ability to interpret large datasets for patterns and anomalies.
-- Network Administration: Understanding network architecture and security.
-- Firewall Administration: Basic knowledge of configuring and analyzing firewall rules.
-- Operating System Expertise: Familiarity with Windows, Linux, and to some degree, macOS.
-- Relevant Knowledge Areas:
-  - Cloud Security (AWS, Azure, GCP)
-  - Identity and Access Management (IAM)
-  - DevSecOps Practices
-  - Cryptography Basics
+Here’s the table with detailed descriptions for the new content:
 
-These competencies empower threathunters to adapt and respond effectively to varied challenges in the cybersecurity landscape.
+| **Skill**                     | **Description**                                                                                                                                               |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Critical Thinking**         | Threat hunters use structured reasoning and analytical thinking to assess anomalies within the environment. By forming hypotheses based on initial observations, they systematically test and refine their theories to uncover the true cause of suspicious behavior. This critical thinking process allows them to distinguish between benign activity and genuine threats, enabling them to respond with precision and minimize false positives. |
+| **Pattern Recognition**       | The ability to spot trends or deviations within large datasets is essential for identifying emerging threats. Threat hunters look for recurring patterns, such as repeated login failures followed by successful authentications, which can indicate brute-force or credential stuffing attacks. Recognizing these patterns early allows them to detect attacks in progress and take preventative actions before significant damage occurs. |
+| **Incident Correlation**      | Threat hunters excel in connecting seemingly unrelated events to build a comprehensive understanding of a potential attack. For instance, correlating phishing emails with suspicious outbound traffic could reveal adversary activities like data exfiltration or Command and Control (C2) communications. By understanding the full context of an incident, hunters can trace an attack back to its origin and uncover hidden, multi-stage adversary actions. |
 
 ---
 
-### Analytical skills
+## Soft Skills
 
-#### 1. Critical Thinking
-   - What It Entails: Threathunters approach problems methodically, forming and testing hypotheses.
-   - Application: Investigating anomalous login behavior across geolocations to confirm or rule out compromise.
+While technical expertise is vital, soft skills ensure effective collaboration and communication within security teams and with stakeholders.
 
-#### 2. Pattern Recognition
-   - What It Entails: Spotting trends and anomalies in vast datasets.
-   - Application: Detecting repeated login failures followed by successful access, potentially signaling brute-force attacks.
-
-#### 3. Incident Correlation
-   - What It Entails: Connecting seemingly unrelated events to reveal the full scope of an attack.
-   - Application: Linking a phishing email, suspicious script execution, and outbound traffic to a known malicious IP address.
-
+| **Term**                     | **Description**                                                                                                                                               |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Effective Communication**   | Threat hunters must be skilled in translating complex technical findings into clear, actionable insights for both technical and non-technical audiences. This involves not only technical reporting but also presenting information in a way that informs decision-makers, helps prioritize actions, and ensures the response aligns with organizational goals. Clear incident reporting enhances the organization’s ability to understand and act on threats quickly and efficiently. |
+| **Collaboration**             | Threat hunters work closely with Security Operations Center (SOC), intelligence, and incident response teams to enhance the overall security posture. Effective collaboration across teams ensures that threat hunting insights are integrated into broader defense strategies, improves information sharing, and helps identify emerging threats faster. By pooling resources and expertise, teams can improve detection capabilities and provide a more comprehensive response to attacks. |
+| **Problem-Solving Ingenuity** | The ever-evolving nature of cyber threats demands that threat hunters approach challenges with creativity and resourcefulness. They continuously devise new strategies, tools, and methods to outmaneuver adversaries and detect evolving tactics. Whether developing custom detection rules or innovating on existing tools, problem-solving ingenuity allows hunters to stay one step ahead of attackers and improve defense mechanisms in response to new threats. |
 ---
 
-### Soft Skills That Define the Persona
+## Conclusion
 
-#### 1. Effective Communication
-   - What It Entails: Conveying findings clearly to both technical and non-technical stakeholders.
-   - Application: Delivering concise reports to a CISO outlining the impact and mitigation of an identified APT.
+Threat hunting requires more than technical skills. It demands a mindset characterized by curiosity, persistence, and adaptability. This mindset ensures that hunters not only react to threats but also anticipate them, staying ahead in an ever-changing landscape.
 
-#### 2. Collaborative Spirit
-   - What It Entails: Partnering with SOC, incident response, and intelligence teams to enhance security posture.
-   - Application: Coordinating with SOC analysts to escalate critical alerts for immediate action.
+### Building Team Dynamics
 
-#### 3. Continuous Learning
-   - What It Entails: Staying ahead of evolving threats by engaging with resources like [The DFIR Report](https://thedfirreport.com/).
-   - Application: Applying insights from recent attack techniques to refine detection capabilities.
+Organizations must identify and nurture individuals with both the skills and mindset for effective threat hunting. Collaboration within the security team fosters shared learning and resilience.
 
-#### 4. Problem-Solving Ingenuity
-   - What It Entails: Crafting innovative solutions for emerging challenges.
-   - Application: Developing methods to identify malicious activity within encrypted traffic by analyzing metadata and traffic patterns.
+### Continuous Improvement
 
----
+Threat hunters evolve through experience, embracing new technologies and methodologies to refine their approach. This commitment to growth enhances their ability to protect against sophisticated adversaries.
 
-### Driving the Threathunter Persona
+```mermaid
+flowchart TD
+    A[Technical Mastery]
+    B[Analytical Prowess]
+    C[Soft Skills]
+    D[Mindset]
+    E[Threathunter Persona]
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+```
 
-As the saying goes, "Everyone can drive a car, but not everyone should be driving a car." This analogy applies aptly to the role of a threathunter. While many may possess the technical skills to analyze data or use tools, not everyone has the mindset, experience, or instincts required for effective threat hunting. 
-
-#### What It Means for Threat Hunting
-   - Skill Versus Mindset: Mastering tools is important, but threat hunting requires an innate sense of curiosity, persistence, and the ability to think like an adversary.
-   - Risk Awareness: Just as driving demands responsibility and awareness of risks, a threathunter must navigate the complexities of modern cyber threats with precision and caution.
-   - Continuous Improvement: Like advanced driving skills honed over time, a threathunter evolves through experience and continuous learning to adapt to the ever-changing threat landscape.
-
-#### Application
-   - Team Dynamics: Organizations need to ensure the right individuals are in the "driver’s seat," leading proactive threat-hunting efforts while collaborating with the broader security team.
-   - Capability Building: Beyond technical training, fostering a threat-hunting mindset within teams amplifies the organization’s security posture.
-
----
-
-### Conclusion
-
-The threathunter persona is more than just a role; it’s a mindset. A lifestyle- By combining technical mastery, analytical skills, and interpersonal skills, threathunters proactively safeguard organizations from advanced threats. Continuous learning and a collaborative approach are the hallmarks of this indispensable cybersecurity professional.
+The threathunter persona is more than a role; it’s a lifestyle. Combining technical mastery, analytical acumen, and interpersonal skills, threat hunters proactively defend organizations from advanced threats. Through continuous learning and collaboration, they form an indispensable component of modern cybersecurity defenses.
 
 ## Resources
 
-* [Offsec - What is a threat hunter?](https://www.offsec.com/cybersecurity-roles/threat-hunter)
-* [WGU - What Is a Threat Hunter?](https://www.wgu.edu/career-guide/information-technology/threat-hunter-career.html)
-* [LetsDefend.io - How to Become a Threat Hunter](https://letsdefend.io/blog/how-to-become-a-threat-hunter)
-* [Three key aspects of being a threat hunter](https://blogs.opentext.com/three-key-aspects-of-being-a-threat-hunter/)
-* [Comptia - Your Next Move: Threat Hunter](https://www.comptia.org/blog/your-next-move-threat-hunter)
-* [SnapAttacl - How to Become a Cyber Threat Hunter: A Guide to Level Up Your Security Team](https://www.snapattack.com/become-a-threat-hunter/)
-* [CyberSN - Threat Hunter](https://cybersn.com/role/threat-hunter/)
+These are some of the resources I have used for this chapter.
+
+- [Offsec - What is a Threat Hunter?](https://www.offsec.com/cybersecurity-roles/threat-hunter)
+- [WGU - What Is a Threat Hunter?](https://www.wgu.edu/career-guide/information-technology/threat-hunter-career.html)
+- [LetsDefend.io - How to Become a Threat Hunter](https://letsdefend.io/blog/how-to-become-a-threat-hunter)
+- [Three Key Aspects of Being a Threat Hunter](https://blogs.opentext.com/three-key-aspects-of-being-a-threat-hunter/)
+- [Comptia - Your Next Move: Threat Hunter](https://www.comptia.org/blog/your-next-move-threat-hunter)
+- [SnapAttack - How to Become a Cyber Threat Hunter](https://www.snapattack.com/become-a-threat-hunter/)
+- [CyberSN - Threat Hunter](https://cybersn.com/role/threat-hunter/)
+
