@@ -26,19 +26,20 @@ This content has been meticulously refined using tools like ChatGPT to enhance g
 ## Recent Changes and Additions  
 
 | **Date**          | **Change/Addition**                                                                                 |
-|--------------------|----------------------------------------------------------------------------------------------------|
-| **Dec. 27, 2024** | - Added the "Release Plan" page, accessible via the left site menu.                                 |
+|-------------------|-----------------------------------------------------------------------------------------------------|
+| **Jan. 11, 2025** | - Added "[The Threathunter Persona](/part-1/introduction/the-threathunter-persona)" page |
+| **Dec. 27, 2024** | - Added the "[Release Plan](/releases)" page, accessible via the left site menu.                                 |
 |                    | - Improved the left site menu by removing chapter/part prefixes.                                   |
-| **Nov. 03, 2024** | Added a page on *No Result Hunts*.                                                                  |
-| **Nov. 02, 2024** | Added a page on creating hypotheses.                                                                |
-| **Oct. 27, 2024** | - Added a page on *T1105* from a recent threat hunt investigation.                                  |
-|                    | - Added a page on starting a threat hunt.                                                          |
-|                    | - Added a page on intelligence resources.                                                          |
-| **Oct. 26, 2024** | - Added a page on starting a threat hunting program.                                                |
-|                    | - Added pages on threat hunting deliveries.                                                        |
+| **Nov. 03, 2024** | Added a page on *[No Result Hunts](/part-1/delivieries/no-result-hunts/)*.                                                                  |
+| **Nov. 02, 2024** | Added a page on [creating hypotheses](/part-1/introduction/creating-hypothesis/index.html).                                                                |
+| **Oct. 27, 2024** | - Added a page on *[T1105](/part-4/mitre/t1105/index.html)* from a recent threat hunt investigation.                                  |
+|                    | - Added a page on [planning a threat hunt](/part-1/introduction/planning-a-threat-hunt/index.html).                                                          |
+|                    | - Added a page on [intelligence resources](/part-4/intelligence-resources/index.html).                                                          |
+| **Oct. 26, 2024** | - Added a page on [starting a threat hunting program](/part-1/introduction/how-to-start-a-threat-hunting-program/index.html).                                                |
+|                    | - Added pages on [threat hunting deliveries](/part-1/delivieries/index.html).                                                        |
 | **Oct. 21, 2024** | Revised the introduction for *Threat Hunting Deliveries*.                                           |
 | **Oct. 20, 2024** | Added a section on *Threat Hunting Deliveries*.                                                     |
-| **Oct. 19, 2024** | Added a section on conditional access for *T1566*.                                                  |
+| **Oct. 19, 2024** | Added a section on conditional access for *[T1566](/part-4/mitre/t1566/index.html)*.                                                  |
 | **Oct. 15, 2024** | Added a tip on Windows Login.                                                                       |
 | **Oct. 13, 2024** | Introduced a new section: *Deliveries under Part 1*, including the new page *SITREP*.               |
 | **Oct. 12, 2024** | Introduced a new section: *Mitre Field Notes*, featuring the page *T1566 - Phishing*.               |
@@ -46,8 +47,8 @@ This content has been meticulously refined using tools like ChatGPT to enhance g
 | **Oct. 06, 2024** | - Quality assured the OpenSearch Python API ingester.                                               |
 |                    | - Improved document formatting across the site.                                                    |
 |                    | - Added tips for Windows event log success and failure.                                            |
-| **Sep. 30, 2024** | Added a "FAQ" page.                                                                                 |
-| **Sep. 29, 2024** | Added a page on *Understanding Data*.                                                               |
+| **Sep. 30, 2024** | Added a "[FAQ](/about/faq/index.html)" page.                                                                                 |
+| **Sep. 29, 2024** | Added a page on *[Understanding Data](/part-3/understanding-data/index.html)*.                                                               |
 
 ---
 
