@@ -27,6 +27,7 @@ This content has been meticulously refined using tools like ChatGPT to enhance g
 
 | **Date**          | **Change/Addition**                                                                                 |
 |-------------------|-----------------------------------------------------------------------------------------------------|
+| **Feb. 15, 2025** | - Added "[Siem Query Languages](/part-4/siem-query-languages)" page |
 | **Jan. 11, 2025** | - Added "[The Threathunter Persona](/part-1/introduction/the-threathunter-persona)" page |
 | **Dec. 27, 2024** | - Added the "[Release Plan](/releases)" page, accessible via the left site menu.                                 |
 |                    | - Improved the left site menu by removing chapter/part prefixes.                                   |
