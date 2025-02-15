@@ -11,9 +11,11 @@ weight: 3
 
 ## Introduction
 
-Early in my SOC and threat hunting career, I was thrown into the deep end with IBM QRadar. As I recall, the handover was abrupt: "This is our SIEM, QRadar. It's yours now – good luck!" Faced with an unfamiliar system, I quickly realized the immense value of cheat sheets, a concept I'd come to rely on throughout my journey.
+**Early in my SOC and threat hunting career, I was thrown into the deep end with IBM QRadar. As I recall, the handover was abrupt: "This is our SIEM, QRadar. It's yours now – good luck!" Faced with an unfamiliar system, I quickly realized the immense value of cheat sheets, a concept I'd come to rely on throughout my journey.**
 
-Cheat sheets are indispensable tools for navigating complex systems like SIEMs, particularly when you're working with a platform you're unfamiliar with. While they won't magically transform you into an expert, they offer a practical approach to rapidly acquire operational knowledge and build confidence. Think of them as valuable aids that help you dissect intricate SIEMs and accelerate your learning curve.
+**Cheat sheets are indispensable tools for navigating complex systems like SIEMs, particularly when you're working with a platform you're unfamiliar with. While they won't magically transform you into an expert, they offer a practical approach to rapidly acquire operational knowledge and build confidence. Think of them as valuable aids that help you dissect intricate SIEMs and accelerate your learning curve.**
+
+---
 
 ## What is a Cheat Sheet?
 
@@ -86,17 +88,17 @@ index=security sourcetype=windows_security
 - [Splunk Cheat Sheet](https://7958885.fs1.hubspotusercontent-na1.net/hubfs/7958885/Downloadable%20Assets/Brochures/QAL/Campaign/Cyber%20Pulse/Cheat%20Sheets/Splunk_Cheat_Sheet.pdf)
 
 
-### 3. Lucene Query Language / OpenSearch Query DSL - OpenSearch DSL
+### 3.  Elastic Query DSL - OpenSearch Query DSL
 
-OpenSearch offers two primary methods for querying data: the Lucene Query Language and its own JSON-based Query DSL. This section focuses on the Query DSL, highlighting its structure and capabilities for OpenSearch. While Lucene is a powerful underlying technology, the Query DSL is the more commonly used and flexible approach for most OpenSearch users.
+OpenSearch and Elastic uses a powerful, JSON-based query language called Query DSL (Domain Specific Language) to search and analyze data. Query DSL allows you to build complex queries with a structured syntax, making it ideal for programmatic use and automation. In all essence, it is an JSON representation of a query. One nifty feature is that you can easily store DSL's into files and share them. The receiver can then just simply copy and paste the DSL query into either Elastic or OpenSearch DSL search feature!
 
-#### Features:
+**Features**
 
 - Supports full-text search, aggregations, and filtering for comprehensive analysis.
 - Designed for structured, programmatic searches using JSON format.
 - Enables complex queries with boolean logic, range filters, and more.
 
-#### Example Query (Query DSL):
+**Example Query (Query DSL)**
 
 ```json
 {
@@ -113,7 +115,7 @@ OpenSearch offers two primary methods for querying data: the Lucene Query Langua
 }
 ```
 
-#### Resources:
+**Resources**
 
 - [OpenSearch Query DSL Documentation](https://opensearch.org/docs/latest/query-dsl/index/)
 - [Lucene Query Syntax](https://lucene.apache.org/core/2_9_4/queryparsersyntax.html)
