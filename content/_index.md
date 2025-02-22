@@ -27,7 +27,8 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
-| Feb. 22, 2025 | Overhaul of multiple pages to improve meaning                                                   |
+| Feb. 22, 2025 | - Overhaul of multiple pages to improve meaning                                                   |
+|               | - Added "[Establishing the Foundation](/part-1/introduction/establishing-the-foundations/)" page| 
 | Feb. 15, 2025 | - Added "[Siem Query Languages](/part-4/siem-query-languages)" page                              |
 | Jan. 11, 2025 | - Added "[The Threathunter Persona](/part-1/introduction/the-threathunter-persona)" page         |
 | Dec. 27, 2024 | - Added the "[Release Plan](/releases)" page, accessible via the left site menu.                 |

@@ -2,7 +2,7 @@
 title: "Planning a Threat Hunt"
 date: 2024-10-27T11:10:42+01:00
 draft: false
-weight: 5
+weight: 6
 ---
 
 | Revised Date | Comment |

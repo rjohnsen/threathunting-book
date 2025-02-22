@@ -2,7 +2,7 @@
 title: "The Threathunter Persona"
 date: 2025-01-01T11:37:38+01:00
 draft: false
-weight: 3
+weight: 4
 ---
 
 | Revised Date | Comment |
