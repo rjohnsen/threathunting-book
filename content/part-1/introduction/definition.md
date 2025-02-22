@@ -7,7 +7,7 @@ weight: 1
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| 22.02.2025   | Improved formatting and revised wording | 
 
 ## Introduction
 
@@ -17,39 +17,32 @@ weight: 1
 
 ## Definition
 
-Several companies and researchers have attempted to define the concept of threat hunting. Among these, Cyborg Security, established in 2019, stands out as a leading authority. Comprising a team of experienced threat hunters, threat intelligence analysts, and security researchers based in North America, Cyborg Security has played a pivotal role in popularizing and democratizing threat hunting through initiatives such as free training programs. Here is how Cyborg Security defines threat hunting:
+Several companies and researchers have attempted to define the concept of threat hunting. Among these, Cyborg Security, established in 2019 and later acquired by Intel471, stands out as a leading authority. Comprising a team of experienced threat hunters, threat intelligence analysts, and security researchers based in North America, Cyborg Security has played a pivotal role in popularizing and democratizing threat hunting through initiatives such as free training programs. Here is how they define threat hunting:
 
 > Threat hunting is an iterative and proactive process whereby threat hunters seek out anomalous activity, artifacts, and 
 > behaviors within an environment with the objective of identifying previously unknown and undetected threats. This definition has 
 > two critical components:
 >
-> **Repeatable**
->
-> A hunt (the commonly accepted term for activity carried out by these teams) has value in its execution, but only for the duration 
+> Repeatable: A hunt (the commonly accepted term for activity carried out by these teams) has value in its execution, but only for the duration 
 > of its execution. Once the hunt is complete, any subsequent malicious activity may remain unidentified. Therefore, hunts need to 
 > be carried out in an iterative fashion based on the prevalence of the technique, and the relative risk to the organization.
 > 
-> **Threat hunting must be proactive**
-> 
-> The objective of threat hunting is, ultimately, to identify previously undetected malicious activity in an environment. This 
+> Threat hunting must be proactive: The objective of threat hunting is, ultimately, to identify previously undetected malicious activity in an environment. This 
 > objective is accomplished through a variety of analysis methods, especially those involving behavioral and statistical analysis. 
 > This process, however, absolutely does not rely on searching through an environment using atomic indicators of compromise 
 > (IOC). That practice belongs strictly to the domain of traditional security operations, not threat hunting.
-> *
-
--– [Cyborg Threat Hunting Framework](https://www.cyborgsecurity.com/library/white-paper/threat-hunting-framework/)*
+>
+> Source: [Cyborg Threat Hunting Framework](https://intel471.com/resources/whitepapers/threat-hunting-framework)
 
 Their definition resonates with my perception of threat hunting:
 
-> Threat Hunting can be seen as an amplified version of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, threat hunting involves a proactive approach. Rather than waiting for alerts, a threat hunter meticulously examines log data to uncover anomalies and potential blind spots. This process requires formulating and testing hypotheses by correlating diverse sets of data. Data can be logs themselves, but also statistics drawn out from the logs. Threat Hunting isn't just about following trails in logs, but also understanding patterns existing within the logs. 
+> Threat hunting can be seen as an advanced extension of SOC analytics. While SOC analysts typically respond reactively to alerts from specific incidents, threat hunters take a proactive approach. Rather than waiting for alerts, they actively analyze data from various sources—including logs, network traffic, endpoint telemetry, and threat intelligence—to identify anomalies and uncover potential blind spots. This process involves developing and testing hypotheses by correlating diverse data points. Threat hunting is not just about tracing activity within logs but also recognizing patterns across different datasets to detect hidden threats.
 
 ## Reasons why for Threat Hunting
 
-### Why Should We Employ Threat Hunters?
+In today’s complex cybersecurity landscape, employing dedicated threat hunters has become crucial for organizations aiming to stay ahead of advanced and persistent threats. Here’s why threat hunters are essential and what they bring to the table
 
-In today’s complex cybersecurity landscape, employing dedicated threat hunters has become crucial for organizations aiming to stay ahead of advanced and persistent threats. Here’s why threat hunters are essential and what they bring to the table:
-
-#### The Value of Threat Hunters:
+### The Value of Threat Hunters:
 
 1. **Proactive Threat Detection:** 
    Threat hunters actively seek out potential threats within the network, rather than waiting for automated systems to flag an issue. This proactive approach helps identify and mitigate threats before they can cause significant damage. Becoming aware of threats that are lurking or hidden but active is a key advantage.
@@ -85,42 +78,15 @@ While Security Operations Center (SOC) analysts play a vital role in maintaining
 3. **Specialized Skill Set**
    Threat hunting requires a unique set of skills, including advanced knowledge of threat actors, their behaviors, and their methods. While SOC analysts are skilled in incident response, threat hunters bring specialized expertise in tracking and neutralizing advanced threats.
 
-### Conclusion
-
 Employing threat hunters adds a crucial layer of defense to your cybersecurity strategy. Their proactive approach, specialized skills, and ability to uncover sophisticated threats complement the efforts of SOC analysts, ensuring a more robust and resilient security posture. By integrating threat hunters into your security team, you can enhance your organization’s ability to detect, respond to, and prevent advanced cyber threats. And not to forget, Threat Hunters will add value to the importance of understanding the Organization’s [Threat-Discovery Maturity](https://www.infosecinstitute.com/resources/threat-hunting/10-benefits-of-threat-hunting/):
 
-{{<mermaid align="center">}}
-flowchart TD
-    A["
-       LEVEL 0 - INITIAL
-
-       Relies primarily on automated alerting
-       Little or no routine data collection
-    "]
-
-    B["LEVEL 1 - MINIMAL
-       
-       Incorporates threat intelligence indicator searches
-       Moderate or high level of routine data collections
-    "]
-    
-    C["LEVEL 2 - PROCEDURAL
-       Follows data analysis procedures created by others
-       High or very high level of routine data collection
-    "]
-
-    D["LEVEL 3 - INNOVATIVE
-       Creates new data analysis procedures
-       High or very high level of routine data collection
-    "]
-    
-    E["LEVEL 4 - LEADING
-        Automates the majority of successful data analysis procedures
-        High or very high level of routine data collection
-    "]
-
-    A --> B --> C --> D --> E
-{{< /mermaid >}}
+| Level | Name | Description |
+| ----- | ---- | ----------- |
+| 0 | Initial | Relies primarily on automated alerting. Little or no routine data collection |
+| 1 | MINIMAL | Incorporates threat intelligence indicator searches. Moderate or high level of routine data collections |
+| 2 | PROCEDURAL | Follows data analysis procedures created by others. High or very high level of routine data collection |
+| 3 | INNOVATIVE | Creates new data analysis procedures. High or very high level of routine data collection |
+| 4 | LEADING | Automates the majority of successful data analysis procedures. High or very high level of routine data collection |
 
 ## Differences between Threat Detection and Threat Hunting
 
@@ -215,9 +181,7 @@ Threat hunters possess advanced expertise and maturity in log analysis, which ma
 
 In summary, involving threat hunters in log analytics during incidents leverages their advanced skills to enhance detection, improve incident response efficiency, and provide critical support in identifying and addressing internal threats. Their expertise ensures a more robust and effective approach to managing and mitigating security incidents.
 
-## Various ways of Threat Hunting
-
-### Types
+## Various types of Threat Hunting
 
 Traditionally, threat hunts have been categorized into two distinct types: structured and unstructured. I have expanded this traditional model to include a third category, which combines elements of both types. The definitions for these three types are as follows:
 

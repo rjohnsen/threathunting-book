@@ -7,152 +7,295 @@ weight: 3
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 26.10.2024   | Page added | 
+| 22.02.2025   | Improved formatting and revised wording | 
 
 {{% notice info %}}  
 This page serves as a template for manual Standard Operating Procedures (SOPs). Please modify as sees fit.
 {{% /notice %}}
 
-Template starts below the line
+Template starts below the line. Example of applied template follows template below.
 
 ---
 
-| Title             | Phishing Email |
+| Title             | [SOP Title] |
 | ----------------- |:-------------- |
-| **ID**            | SOP-000001 |
-| **Title**         | T1566.001: Spearphishing Attachment |
-| **Description**   | Procedure for detecting, analyzing, mitigating, and responding to spearphishing emails containing malicious attachments. |
-| **Author**         | [Author Name]                               |
-| **Creation Date**  | [Date]                                      |
-| **Last Updated**   | [Date of last update]                       |
-| **ATT&amp;CK Tactic**  | [TA0001: Initial Access](https://attack.mitre.org/tactics/TA0001) |
-| **ATT&amp;CK Technique**  | [T1566.001: Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001) |
-| **Tags**          | phishing, spearphishing, malicious attachments |
+| **ID**            | [Unique Document ID, e.g., SOP-000001] |
+| **Description**   | [Brief summary of the SOP’s purpose] |
+| **Author**        | [Author Name or Team] |
+| **Creation Date** | [Date] |
+| **Last Updated**  | [Date of last revision] |
+| **Associated Frameworks** | [Relevant security frameworks, e.g., NIST, MITRE ATT&CK] |
+| **Tags**          | [Keywords related to the SOP] |
 
-## Objective
+---
 
-> Define the procedure for detecting, analyzing, mitigating, and responding to spearphishing emails containing malicious attachments, with a focus on preventing the execution of malicious payloads and minimizing the impact on the organization.
+## 1. Objective
 
-## Scope
+> [Clearly define the goal of this SOP. What is it intended to achieve?]
 
-> This SOP applies to SOC analysts, IT security teams, and any personnel responsible for email security, threat detection, and incident response.
+---
 
-## Procedure
+## 2. Scope
 
-### 1. Detection and Alerting
+> [Specify who this SOP applies to, such as SOC analysts, IT security teams, system administrators, etc.]
 
-#### Email Gateway Configuration
+> [Define the systems, processes, and environments covered by this SOP.]
 
-- Ensure all inbound emails are scanned by a secure email gateway (SEG) with advanced threat protection (ATP) features.
-- Enable attachment scanning with a focus on high-risk file types (e.g., `.exe`, `.zip`, `.docm`), commonly used in phishing attacks.
-- Configure sandbox analysis to detonate suspicious attachments, detecting obfuscation techniques such as encoded scripts or embedded macros.
+---
 
-#### Threat Intelligence Integration
+## 3. Roles and Responsibilities
 
-- Integrate threat intelligence feeds into the SEG to flag known malicious file hashes, domains, or IP addresses.
-- Continuously update signature databases to detect spearphishing campaigns and common malware (e.g., Emotet, TrickBot).
+| Role | Responsibilities |
+|------|----------------|
+| [Role Name] | [Responsibilities related to this SOP] |
+| [Role Name] | [Responsibilities related to this SOP] |
 
-#### User Reporting Mechanism
+---
 
-Set up internal tools (e.g., PhishAlarm) that allow users to report suspicious emails and attachments directly to the SOC for further analysis.
+## 4. Prerequisites and Dependencies
 
-#### Behavioral Monitoring
+- [List any tools, access permissions, or setup required before executing this SOP.]
+- [Mention dependencies on other SOPs, policies, or external teams.]
 
-Use endpoint detection and response (EDR) tools to monitor for suspicious activities associated with opening email attachments, such as unusual file downloads, process creation, or command execution via PowerShell or wscript.
+---
 
-### 2. Initial Analysis
+## 5. Procedure
 
-#### Email Header Analysis
+### **Step 1: Initial Actions**
+- [Define the first actions to take when executing this procedure.]
+- [Include automated alerts, monitoring tools, or initial response steps.]
 
-Investigate sender domains and IP addresses using threat intelligence databases, and verify email authentication mechanisms (SPF, DKIM, DMARC) to detect spoofed emails.
+### **Step 2: Data Collection & Analysis**
+- [Describe data sources and analysis methods.]
+- [Specify logs, threat intelligence feeds, or forensic tools used.]
 
-#### Attachment Static Analysis
+### **Step 3: Containment & Mitigation**
+- [Outline how to prevent further impact (e.g., isolating affected systems, blocking malicious indicators).]
 
-- Extract and analyze attachment metadata (e.g., file hash, embedded macros).
-- Use tools such as `oletools`, `YARA`, or `exiftool` to identify suspicious code or anomalies in the attachment (e.g., macros in Office files like `.doc` or `.xls`).
-- Conduct a file hash lookup through repositories like VirusTotal to check if the file has been flagged as malicious.
+### **Step 4: Eradication**
+- [Detail steps to remove threats or resolve the issue permanently.]
 
-#### Attachment Dynamic Analysis
+### **Step 5: Recovery & Validation**
+- [Define actions to restore normal operations and ensure the issue is fully resolved.]
 
-- Use sandboxing solutions (e.g., Cuckoo Sandbox, FireEye AX) to detonate the attachment in a controlled environment. Observe:
-  - Network activity (e.g., command-and-control communications)
-  - File system modifications (e.g., dropping malware in startup folders)
-  - Registry changes and process creation
-  - Privilege escalation attempts
-- Correlate indicators (e.g., IP addresses, domains, file hashes) with known spearphishing campaigns to identify potential threats.
+### **Step 6: Reporting & Documentation**
+- [Specify how findings should be documented and reported.]
+- [List required details for an incident report or post-mortem review.]
 
-#### Network Traffic Analysis
+### **Step 7: Preventive Measures & Continuous Improvement**
+- [Outline best practices to reduce the likelihood of future occurrences.]
+- [Specify updates to security policies, user training, or automation improvements.]
 
-- Analyze communication attempts from the attachment (if executed) using network-based threat detection systems (e.g., Suricata, Zeek).
-- Investigate DNS logs and URL requests associated with the email to identify connections to malicious domains.
+---
 
-### 3. Containment
+## 6. Escalation & Exception Handling
 
-#### Quarantine Email
+- [Define escalation procedures if the standard response is insufficient.]
+- [Specify exception handling for cases where the SOP may not fully apply.]
 
-If determined malicious, quarantine the spearphishing email across the organization using email gateway capabilities.
+---
 
-#### Isolate Affected Systems
+## 7. References
 
-If the attachment has been executed, isolate the compromised machine from the network to prevent further spread or data exfiltration.
+> [Provide links to relevant policies, standards, frameworks, or related SOPs.]
 
-#### Block Malicious Indicators
+---
 
-- Add identified malicious file hashes, IP addresses, and domains to the organization’s blocking lists (e.g., firewall, web proxy, EDR tools).
-- Update signatures in intrusion detection/prevention systems (IDS/IPS) and antivirus solutions.
+## 8. Change Log
 
-### 4. Eradication
+| Date | Change Description | Updated By |
+|------|-------------------|------------|
+| [Date] | [Summary of change] | [Author] |
+| [Date] | [Summary of change] | [Author] |
 
-#### Account Compromise
+--- 
 
-If user credentials were compromised through an attachment (e.g., via a fake login form), reset the affected user's password and enforce multi-factor authentication (MFA) if not already in place.
+## Example
 
-#### Malware Removal
+| Title             | Detection and Response to Spearphishing Attachments |
+| ----------------- |:--------------------------------------------------- |
+| **ID**            | SOP-2024-001 |
+| **Description**   | Procedure for identifying, analyzing, mitigating, and responding to spearphishing emails containing malicious attachments. |
+| **Author**        | Security Operations Center (SOC) Team |
+| **Creation Date** | 2024-10-05 |
+| **Last Updated**  | 2024-10-05 |
+| **Associated Frameworks** | [MITRE ATT&CK: [T1566.001 - Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001)] |
+| **Tags**          | phishing, spearphishing, malicious attachments, email security |
 
-Use EDR solutions to locate and remove any malicious scripts, processes, or malware that were deployed as a result of the attachment.
+---
 
-#### Artifact Cleanup
+## 1. Objective
 
-Manually or automatically remove malware artifacts, and check for persistence mechanisms such as scheduled tasks, registry run keys, or installed services linked to the spearphishing attachment.
+> This SOP defines the steps required to detect, analyze, mitigate, and respond to spearphishing emails containing malicious attachments. The primary goal is to prevent the execution of malicious payloads and minimize the risk to the organization.
 
-### 5. Recovery
+---
 
-#### System Patching
+## 2. Scope
 
-Ensure all affected systems are updated with the latest security patches, especially for vulnerabilities exploited by spearphishing attachments (e.g., CVEs in Microsoft Office or Adobe products).
+> This SOP applies to SOC analysts, IT security teams, and any personnel responsible for email security, threat detection, and incident response.  
+> It covers spearphishing attempts that use malicious attachments to deliver malware or steal credentials.
 
-#### Backup Restoration
+---
 
-If necessary, restore affected systems from a clean backup, ensuring no malware remnants remain.
+## 3. Roles and Responsibilities
 
-### 6. Reporting and Documentation
+| Role | Responsibilities |
+|------|----------------|
+| SOC Analysts | Monitor for and investigate suspected spearphishing emails. |
+| IT Security Team | Manage email security policies and implement mitigations. |
+| Incident Response Team | Contain and remediate compromised systems. |
+| End Users | Report suspicious emails and avoid interacting with unverified attachments. |
 
-#### IOC Sharing
+---
 
-Document all indicators of compromise (IOCs) such as malicious file hashes, IP addresses, and domains. Share these IOCs with internal teams and external threat-sharing platforms (e.g., ISACs, VirusTotal).
+## 4. Prerequisites and Dependencies
 
-#### Incident Report
+- Access to security tools: Email Security Gateway (Proofpoint), SIEM (OpenSearch), Endpoint Detection & Response (CrowdStrike Falcon), Threat Intelligence feeds (VirusTotal, MISP).  
+- Threat intelligence sources: Internal reports, external feeds (VirusTotal, URLhaus, AbuseIPDB).  
+- Sandbox environment: Cuckoo Sandbox for safe detonation of suspicious attachments.  
+- Logging and alerting configuration: Ensure logs from email gateways, endpoints, and network traffic analysis tools are ingested into OpenSearch.
 
-Compile a full incident report detailing:
-- The nature of the spearphishing email
-- Analysis findings (e.g., sender, attachment details, IOCs)
-- Affected users and actions taken (e.g., quarantine, credential resets)
-- Lessons learned and recommendations for future prevention
+---
 
-### 7. Preventive Measures
+## 5. Procedure
 
-#### Email Filtering Rules
+### **Step 1: Detection and Initial Alerting**
 
-Continuously refine email filtering rules, incorporating detections for advanced spearphishing tactics, such as encrypted or zipped attachments.
+**Email Gateway Monitoring**
+- Ensure inbound emails pass through a Secure Email Gateway (Proofpoint) with advanced threat protection.
+- Configure the SEG to flag emails containing high-risk attachment types (`.exe`, `.zip`, `.docm`, `.js`).
+- Enable sandbox analysis for automated detonation of suspicious attachments.
 
-#### User Awareness Training
+**Threat Intelligence Integration**
+- Correlate incoming email attachments with known malicious hashes.
+- Enrich alerts using external intelligence sources (VirusTotal, AbuseIPDB, URLhaus).
+- Identify patterns from ongoing phishing campaigns.
 
-Conduct regular user training and phishing simulations to educate staff on recognizing and reporting spearphishing emails with malicious attachments.
+**User Reporting**
+- Ensure users can report suspicious emails via a report phishing button in Outlook.
+- Automate SOC alerts when multiple reports of the same email occur.
 
-#### Zero Trust Architecture
+---
 
-Implement a zero-trust architecture, where each attachment execution is treated as suspicious, and user access is restricted until verified.
+### **Step 2: Initial Analysis**
 
-#### Harden Endpoint Security
+**Email Header Analysis**
+- Verify sender domain, SPF, DKIM, and DMARC** records.
+- Identify anomalies in email routing paths.
 
-Enable endpoint security controls such as macro-blocking in Office files, disabling PowerShell for non-admin users, and limiting attachment execution permissions.
+**Attachment Static Analysis**
+- Extract file hashes and check against threat intelligence databases.
+- Analyze embedded macros, scripts, or encoded payloads.
+- Use tools such as `oletools`, `exiftool`, and `YARA` for pattern detection.
+
+**Attachment Dynamic Analysis**
+- Detonate the file in Cuckoo Sandbox.
+- Observe:
+  - Network activity (e.g., C2 beaconing)
+  - File system modifications
+  - Process injection or privilege escalation attempts
+
+**Network Traffic Analysis**
+- Check DNS logs and URL requests generated by the attachment.
+- Flag connections to known phishing infrastructure.
+
+---
+
+### **Step 3: Containment and Mitigation**
+
+**Email Quarantine**
+- If confirmed malicious, quarantine the email across all user inboxes.
+- Notify affected users and relevant teams.
+
+**Affected System Isolation**
+- If the attachment was opened and malware executed, isolate the machine.
+- Collect forensic evidence before remediation.
+
+**Blocking Malicious Indicators**
+- Add malicious file hashes, domains, and IPs** to block lists (firewall, proxy, EDR).
+- Update IDS/IPS signatures for future detections.
+
+---
+
+### **Step 4: Eradication**
+
+**Credential Reset**
+- If the phishing attempt aimed at stealing credentials, enforce a password reset.
+- Require multi-factor authentication (MFA).
+
+**Malware Removal**
+- Use CrowdStrike Falcon to locate and remove malware.
+- Investigate persistence mechanisms (registry keys, scheduled tasks).
+
+**Artifact Cleanup**
+- Manually remove phishing-related artifacts.
+- Monitor for secondary infections.
+
+---
+
+### **Step 5: Recovery & Validation**
+
+**System Hardening**
+- Patch email security solutions and endpoint protections.
+- Implement stricter attachment filtering policies.
+
+**Backup Restoration**
+- If data was compromised, restore from a clean backup.
+
+---
+
+### **Step 6: Reporting & Documentation**
+
+**IOC Sharing**
+- Document Indicators of Compromise (IOCs) such as:
+  - Malicious file hashes (`d41d8cd98f00b204e9800998ecf8427e`)
+  - Phishing URLs (`hxxp://malicious-example.com/login`)
+  - C2 server IPs (`192.168.1.123`)
+- Share findings with internal teams and external threat-sharing platforms (MISP, VirusTotal).
+
+**Incident Report**
+- Create a detailed report including:
+  - Summary of the spearphishing attempt
+  - Analysis findings** (sender, attachment details, behavior)
+  - Affected users and actions taken
+  - Lessons learned and recommendations
+
+---
+
+### **Step 7: Preventive Measures & Continuous Improvement**
+
+**Email Security Enhancements**
+- Enforce stricter email filtering rules for attachments.
+- Implement DMARC quarantine/reject policies.
+
+**User Awareness Training**
+- Conduct regular phishing simulations.
+- Educate employees on phishing red flags.
+
+**Automation & Zero Trust**
+- Deploy automated phishing detection playbooks in OpenSearch.
+- Enforce zero-trust execution policies for email attachments.
+
+---
+
+## 6. Escalation & Exception Handling
+
+- Escalate to Incident Response Team if a confirmed breach occurs.
+- If false positives occur frequently, refine detection rules in SEG and SIEM.
+
+---
+
+## 7. References
+
+- [MITRE ATT&CK T1566.001 - Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001)
+- [NIST 800-61 - Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [CISA Phishing Awareness](https://www.cisa.gov/resources-tools/resources/phishing-awareness)
+
+---
+
+## 8. Change Log
+
+| Date | Change Description | Updated By |
+|------|-------------------|------------|
+| 2024-10-05 | Initial version | SOC Team |
+| 2025-10-05 | Added sandboxing details | SOC Lead |

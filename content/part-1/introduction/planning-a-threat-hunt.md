@@ -7,7 +7,7 @@ weight: 5
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 27.10.2024   | Added page | 
+| 22.02.2025   | Improved formatting and revised wording | 
 
 ## Introduction
 
@@ -19,27 +19,19 @@ weight: 5
 
 We will now explore the key steps involved in planning an effective threat hunt and we are going to take basis in the following illustrated flowchart. From defining the scope and objectives to continuously improving our hunting methodologies, each step plays a critical role in enhancing our overall security posture. Let’s delve into these steps to understand how we can implement a successful threat hunting strategy.
 
-{{<mermaid align="center">}}
-graph TD
-    A[Define the Scope and Objectives]
-    B[Gather Intelligence and Research]
-    C[Data Collection]
-    D[Develop the Hunt Plan]
-    E[Execute the Hunt]
-    F[Analyze and Validate]
-    G[Report and Remediate]
-    H[Continuous Improvement]
+| Step | Description |
+|------|------------|
+| 1    | Define the Scope and Objectives |
+| 2    | Gather Intelligence and Research |
+| 3    | Data Collection |
+| 4    | Develop the Hunt Plan |
+| 5    | Execute the Hunt |
+| 6    | Analyze and Validate |
+| 7    | Report and Remediate |
+| 8    | Continuous Improvement |
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
-{{< /mermaid >}}
 
-### 1. Define the Scope and Objectives
+### Step 1 - Define the Scope and Objectives
 
 > The very first step is to clearly define the purpose and scope of the threat hunt, we can do so by focusing on certain aspects.
 
@@ -61,7 +53,7 @@ graph TD
 Use AI to generate potential hypotheses based on existing threat intelligence and past incidents. Great for inspiration, but please vet the output from AI in all cases! 
 {{% /notice %}}
 
-### 2. Gather Intelligence and Research
+### Step 2 - Gather Intelligence and Research
 
 > Gather relevant intelligence to guide the threat hunt. 
 
@@ -82,7 +74,7 @@ Use AI to generate potential hypotheses based on existing threat intelligence an
 Leverage AI to analyze large volumes of threat data and extract key insights, helping you to prioritize.
 {{% /notice %}}
 
-### 3. Data Collection
+### Step 3 - Data Collection
 
 > Identify and collect the necessary data for your hunt.
 
@@ -102,7 +94,7 @@ Leverage AI to analyze large volumes of threat data and extract key insights, he
 Use AI to automate the data collection process if possible, ensuring comprehensive coverage and reducing manual effort. Many SIEMs and SOARs utilizes AI to establish baselines and for user behavior analytics. Utilize such inbuilt functionality if present.
 {{% /notice %}}
 
-### 4. Develop the Hunt Plan
+### Step 4 - Develop the Hunt Plan
 
 > Based on the gathered intelligence, develop a detailed hunt plan.
 
@@ -130,7 +122,7 @@ Use AI to automate the data collection process if possible, ensuring comprehensi
 AI can help generate automated scripts for data queries or create detection rules based on patterns identified in the data. As always, AI is a helping tool - not a silver bullet. Please pay attention and review the output.
 {{% /notice %}}
 
-### 5. Execute the Hunt
+### Step 5 - Execute the Hunt
 
 > Begin the hunt by following the plan developed.
 
@@ -150,7 +142,7 @@ AI can help generate automated scripts for data queries or create detection rule
 Utilize AI to analyze results in real-time, helping to identify patterns that may not be immediately visible to human analysts.
 {{% /notice %}}
 
-### 6. Analyze and Validate
+### Step 6 - Analyze and Validate
 
 > After collecting data, analyze and validate your findings.
 
@@ -170,7 +162,7 @@ Utilize AI to analyze results in real-time, helping to identify patterns that ma
 Employ AI to automate correlation tasks and suggest possible explanations for detected anomalies.
 {{% /notice %}}
 
-### 7. Report and Remediate
+### Step 7 - Report and Remediate
 
 > Summarize the outcomes of the threat hunt.
 
@@ -190,7 +182,7 @@ Employ AI to automate correlation tasks and suggest possible explanations for de
 Use AI to generate reports that highlight key findings and actionable insights in a concise manner.
 {{% /notice %}}
 
-### 8. Continuous Improvement
+### Step 8 - Continuous Improvement
 
 > Use the insights gained from the hunt for future enhancements.
 
