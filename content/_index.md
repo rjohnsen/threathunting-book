@@ -27,6 +27,7 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
+| Feb. 28, 2025 | Updated contact information. Added e-mail | 
 | Feb. 22, 2025 | - Overhaul of multiple pages to improve meaning                                                   |
 |               | - Added "[Hierarchy of Needs](/part-1/introduction/hierarchy-of-needs)" page| 
 | Feb. 15, 2025 | - Added "[Siem Query Languages](/part-4/siem-query-languages)" page                              |
