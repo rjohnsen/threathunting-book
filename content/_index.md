@@ -27,6 +27,8 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
+| Mar. 16, 2025 | New section, "[cheat sheets](/part-5/)"  |
+|               | Added support fort tags for easier grouping of articles. Testing out in "cheat sheets" section | 
 | Feb. 28, 2025 | Updated contact information. Added e-mail | 
 | Feb. 22, 2025 | - Overhaul of multiple pages to improve meaning                                                   |
 |               | - Added "[Hierarchy of Needs](/part-1/introduction/hierarchy-of-needs)" page| 
