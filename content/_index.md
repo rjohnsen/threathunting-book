@@ -27,6 +27,7 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
+| Mar. 21, 2025 | New cheatsheets based on hunts conducted this week, "[Kusto Sentinel Tables](/part-5/kusto-sentinel-tables/)", "[Sysmon](/part-5/sysmon/)" and "[Windows Registry](/part-5/windows-registry/)"  |
 | Mar. 16, 2025 | New section, "[cheat sheets](/part-5/)"  |
 |               | Added support fort tags for easier grouping of articles. Testing out in "cheat sheets" section | 
 | Feb. 28, 2025 | Updated contact information. Added e-mail | 
