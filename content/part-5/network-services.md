@@ -15,6 +15,8 @@ summary: ""
 | ----------- | ------ | ------- |
 | 16.03.2025  | Roger Johnsen | Article added |
 
+## Introduction
+
 **As a Threat Hunter, you'll need to work with network services and ports. You should know the most commonly used network services and ports by heart. While you'll encounter familiar ports regularly, you'll also come across lesser-known ones. Let's face it—no one has a complete overview of all ports and services. That's why we rely on cheat sheets.**
 
 ---
