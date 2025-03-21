@@ -8,6 +8,7 @@ tags:
     - cheatsheet
     - registry
     - windows
+    - microsoft
 summary: ""
 ---
 

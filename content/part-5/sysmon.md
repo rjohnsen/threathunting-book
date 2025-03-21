@@ -9,6 +9,7 @@ tags:
     - sysmon
     - events
     - windows
+    - microsoft
 summary: ""
 ---
 

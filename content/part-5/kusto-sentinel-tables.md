@@ -9,6 +9,7 @@ tags:
     - kusto
     - tables
     - windows
+    - microsoft
 summary: ""
 ---
 
