@@ -3,7 +3,7 @@ title: "Sysmon"
 date: 2025-03-21T20:10:23+01:00
 draft: false
 hidden: false
-weight: 4
+weight: 5
 tags:
     - cheatsheet
     - sysmon

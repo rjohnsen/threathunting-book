@@ -3,7 +3,7 @@ title: "Windows Registry"
 date: 2025-03-21T20:10:17+01:00
 draft: false
 hidden: false
-weight: 5
+weight: 6
 tags:
     - cheatsheet
     - registry
