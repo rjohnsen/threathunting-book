@@ -27,6 +27,7 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
+| Mar. 29, 2025 | Added page on [When to engage threat hunters](/part-1/introduction/when-to-engage-threat-hunters/) |
 | Mar. 21, 2025 | New cheatsheets based on hunts conducted this week, "[Kusto Sentinel Tables](/part-5/kusto-sentinel-tables/)", "[Sysmon](/part-5/sysmon/)", "[Windows Registry](/part-5/windows-registry/)" and "[Power Shell](/part-5/powershell/)" |
 | Mar. 16, 2025 | New section, "[cheat sheets](/part-5/)"  |
 |               | Added support fort tags for easier grouping of articles. Testing out in "cheat sheets" section | 

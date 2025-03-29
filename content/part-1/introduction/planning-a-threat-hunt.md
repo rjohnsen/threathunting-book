@@ -3,6 +3,11 @@ title: "Planning a Threat Hunt"
 date: 2024-10-27T11:10:42+01:00
 draft: false
 weight: 6
+tags:
+    - introduction
+    - foundation
+    - planning
+    - executing
 ---
 
 | Revised Date | Comment |

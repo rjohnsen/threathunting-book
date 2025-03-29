@@ -3,6 +3,10 @@ title: "Creating Hypothesis"
 date: 2024-11-02T15:09:15+01:00
 draft: false
 weight: 7
+tags:
+    - introduction
+    - foundation
+    - hypothesis
 ---
 
 | Revised Date | Comment |

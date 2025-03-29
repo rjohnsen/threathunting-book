@@ -26,7 +26,7 @@ The following are the tentative release plan for articles and notes from my libr
 
 #### Threat hunting and where it fits in a SOC and/or DFIR setting
 
-- [ ] When to engage in threat hunting compared to alerts, triage, incident response, and digital forensics and incident response (DFIR). Explore how threat hunting fits into the broader incident response lifecycle. Provide examples of scenarios where proactive threat hunting can identify potential risks before they trigger alerts. Discuss its complementarity with triage and DFIR, emphasizing how hunting uncovers patterns that automated alerts may miss.  
+- [x] When to engage in threat hunting compared to alerts, triage, incident response, and digital forensics and incident response (DFIR). Explore how threat hunting fits into the broader incident response lifecycle. Provide examples of scenarios where proactive threat hunting can identify potential risks before they trigger alerts. Discuss its complementarity with triage and DFIR, emphasizing how hunting uncovers patterns that automated alerts may miss.  
 - [x] Introduction to what needs to be in place before you can call your SOC and Threat Hunting efforts a success. 
 
 #### Hunting as a broad discipline
