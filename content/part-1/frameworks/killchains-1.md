@@ -3,6 +3,9 @@ title: "Lockheed Martin Killchain"
 date: 2024-06-22T10:17:04+02:00
 draft: false
 weight: 2
+tags:
+    - framework
+summary: ""
 ---
 
 | Revised Date | Comment |

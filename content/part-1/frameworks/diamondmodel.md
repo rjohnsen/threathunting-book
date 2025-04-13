@@ -3,6 +3,9 @@ title: "Diamond Model"
 date: 2024-06-23T20:15:39+02:00
 draft: false
 weight: 1
+tags:
+    - framework
+summary: ""
 ---
 
 | Revised Date | Comment |

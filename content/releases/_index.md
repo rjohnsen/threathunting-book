@@ -47,6 +47,12 @@ The following are the tentative release plan for articles and notes from my libr
 ### Frameworks
 
 - [ ] **Extend the Framework Section to Include Other Relevant Frameworks** Expand this section to cover frameworks like PEAK, Magma Framework, ATC React, Tahiti, Cyborg Framework, and Mitre CWE. Include a brief overview of each framework, highlighting its relevance to threat hunting. Discuss how these frameworks can be integrated into daily practices and how they complement each other in building a comprehensive hunting strategy.  
+  - [x] PEAK
+  - [x] Tahiti
+  - [x] Magma Framework
+  - [ ] ATC React
+  - [ ] Cyborg Framewwork
+  - [ ] Mitre CWE
 
 ### Planning
 

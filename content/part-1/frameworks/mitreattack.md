@@ -3,6 +3,9 @@ title: "MITRE ATT&CK"
 date: 2024-06-23T20:15:47+02:00
 draft: false
 weight: 4
+tags:
+    - framework
+summary: ""
 ---
 
 | Revised Date | Comment |
