@@ -2,6 +2,7 @@
 title: "Peak"
 date: 2024-09-22T13:40:11+02:00
 draft: false
+hidden: false
 weight: 7
 tags:
     - framework
