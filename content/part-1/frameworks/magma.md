@@ -1,7 +1,7 @@
 ---
 title: "Magma"
 date: 2025-04-13T10:45:06+02:00
-draft: true
+draft: false
 hidden: false
 weight: 9
 tags:
@@ -12,6 +12,10 @@ summary: ""
 | Revised | Author         | Comment        |
 | ------- | -------------- | -------------- |
 | 13.04.2025 | Roger Johnsen  | Article added  |
+
+{{% notice warning %}}
+This article is a work in progress and please consider this as a sneak peak. Quality checks hasn't been applied yet. If you find something off, please contact me directly. 
+{{% /notice %}}
 
 ## Introduction
 

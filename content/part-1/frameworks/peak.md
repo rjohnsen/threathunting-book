@@ -1,7 +1,7 @@
 ---
 title: "Peak"
 date: 2024-09-22T13:40:11+02:00
-draft: true
+draft: false
 weight: 7
 tags:
     - framework
@@ -12,6 +12,10 @@ summary: ""
 | ----------- | ------ | ------- |
 | 13.04.2025  | Roger Johnsen | Article added |
 
+{{% notice warning %}}
+This article is a work in progress and please consider this as a sneak peak. Quality checks hasn't been applied yet. If you find something off, please contact me directly. 
+{{% /notice %}}
+
 ## Introduction
 
 **Threat hunting is not just an activity. It is a mindset. As defenders mature, they move from passive alert review to active pursuit of adversaries. The PEAK Threat Hunting Framework, developed by Splunk’s SURGe team (David Bianco, Dr. Ryan Fetterman, and Sydney Marrone), offers a comprehensive approach that helps hunters structure their methodology while driving measurable improvements.**
@@ -20,13 +24,7 @@ summary: ""
 
 ## Why PEAK?
 
-PEAK stands for: 
-
-- Prepare
-- Execute
-- Act with Knowledge
-
-It is more than a model, it is a philosophy for continuous advancement in proactive defense. PEAK focuses on building repeatable, scalable, and professionalized hunting operations that evolve with your environment. It addresses common gaps in threat hunting; like poor documentation, inconsistent outcomes, and lack of follow-through. This by defining a lifecycle that emphasizes *preparation, execution, and impact*.
+PEAK stands for "Prepare, Execute, and Act with Knowledge". It is more than a model, it is a philosophy for continuous advancement in proactive defense. PEAK focuses on building repeatable, scalable, and professionalized hunting operations that evolve with your environment. It addresses common gaps in threat hunting; like poor documentation, inconsistent outcomes, and lack of follow-through. This by defining a lifecycle that emphasizes *preparation, execution, and impact*.
 
 Unlike other frameworks that focus heavily on hypothesis testing alone, PEAK emphasizes *people*, *process*, and *planning* as much as *analysis*. It also introduces *three hunt types*:
 
