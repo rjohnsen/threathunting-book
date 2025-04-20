@@ -8,9 +8,9 @@ chapter = false
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 11.01.2025   | Page updated. Added checkboxes to mark status | 
+| 20.04.2025   | Page updated. | 
 
-## Tentative Release Plan spring 2025
+## Tentative Release Plan 2025
 
 {{% notice info %}}
 The following are the tentative release plan for articles and notes from my library, as well as an overview of general site improvements. These points are in no particular order and the forecasted content may differ from the actual released content.
