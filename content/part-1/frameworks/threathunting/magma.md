@@ -13,6 +13,8 @@ summary: ""
 | ------- | -------------- | -------------- |
 | 20.04.2025 | Roger Johnsen  | Article rewritten  |
 
+## Introduction
+
 **In proactive cybersecurity, effective threat hunting demands more than just technical acumen; it requires a structured approach to documenting, organizing, and learning from each investigation. MaGMa (Management, Growth, Metrics & assessment), developed to support the TaHiTI (Targeted Hunting integrating Threat Intelligence) framework, provides this essential structure, transforming individual hunts into a collective body of knowledge that drives continuous improvement and proactive threat mitigation.**
 
 ---

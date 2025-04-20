@@ -13,6 +13,8 @@ summary: ""
 | ----------- | ------ | ------- |
 | 20.04.2025  | Roger Johnsen | Article rewritten |
 
+## Introduction
+
 **In modern cybersecurity, proactive threat hunting is essential. As attackers bypass automated defenses, structured threat hunting frameworks have emerged. One such framework is TaHiTI (Targeted Hunting integrating Threat Intelligence), developed by the Dutch financial sector (FI-ISAC). TaHiTI offers a structured, intelligence-driven approach, transforming ad hoc investigations into repeatable hunts. It refines hypotheses, identifies detection gaps, and integrates findings into security measures, emphasizing the use of threat intelligence for targeted and efficient hunts.**
 
 ---
