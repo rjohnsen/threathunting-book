@@ -10,6 +10,8 @@ tags:
 | ----------- | ------ | ------- |
 | 20.04.2025  | Roger Johnsen | Article added |
 
+## Introduction
+
 **In my introduction to this book I wrote that if you were to inquire about threat hunting, you would likely encounter a wide range of interpretations, comparable to the multitudes of stars in the night sky. The same woul apply if you inquire on how to do threat hunting. Everyone out there appears to have their own methodology. Given that there are a multitude of methodologies out there, multiple instances has tried to put their frameworks onto paper and promote their ideas. This resulting in a set of frameworks released over the years. Some have been thought of as the folden standard, until a new one came alone. Whilst others has just been memos on how to do XYZ. In this article, I’ve gathered a selection of threat hunting frameworks that have shaped the field. Some are community-born, others come from leading cybersecurity vendors, and a few are still under-the-radar gems. Together, they form a reference landscape for practitioners and decision-makers looking to mature their hunting practices.**
 
 ---
