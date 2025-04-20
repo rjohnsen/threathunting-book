@@ -3,7 +3,7 @@ title: "Magma"
 date: 2025-04-13T10:45:06+02:00
 draft: false
 hidden: false
-weight: 9
+pweight: 9
 tags:
     - Tagname
 summary: ""
@@ -11,215 +11,63 @@ summary: ""
 
 | Revised | Author         | Comment        |
 | ------- | -------------- | -------------- |
-| 13.04.2025 | Roger Johnsen  | Article added  |
+| 20.04.2025 | Roger Johnsen  | Article rewritten  |
 
-{{% notice warning %}}
-This article is a work in progress and please consider this as a sneak peak. Quality checks hasn't been applied yet. If you find something off, please contact me directly. 
-{{% /notice %}}
-
-## Introduction
-
-**The MaGMa Use Case Framework (UCF) is a structured methodology for managing security monitoring scenarios within Security Operations Centers (SOCs). Developed collaboratively by the *Dutch Financial Information Sharing and Analysis Community (FI-ISAC)*, MaGMa (Management, Growth, Metrics & Assessment) provides systematic documentation of detection use cases across three layers and four lifecycle phases.**
+**In proactive cybersecurity, effective threat hunting demands more than just technical acumen; it requires a structured approach to documenting, organizing, and learning from each investigation. MaGMa (Management, Growth, Metrics & assessment), developed to support the TaHiTI (Targeted Hunting integrating Threat Intelligence) framework, provides this essential structure, transforming individual hunts into a collective body of knowledge that drives continuous improvement and proactive threat mitigation.**
 
 ---
 
-## Structured Approach to Use Case Management
+## Why MaGMa?
 
-SOCs typically manage dozens to hundreds of detection use cases, which often become disorganized. MaGMa addresses this by:
+MaGMa addresses critical challenges in operationalizing threat hunting programs, such as inconsistent documentation, difficulty in tracking progress and outcomes, and the absence of a centralized repository for lessons learned. By providing a structured framework for documenting every stage of a threat hunt, MaGMa ensures that valuable insights are captured consistently and readily accessible for analysis and future hunting endeavors.
 
-- Establishing traceability between business objectives and technical implementations  
-- Standardizing documentation through predefined templates  
-- Embedding metrics to measure framework maturity  
-- Supporting full lifecycle management  
+MaGMa serves as a framework enabler, ensuring the organization of hunting outcomes. It enables security teams to identify recurring patterns, refine detection strategies, and measure the effectiveness of their hunting efforts, transforming isolated activities into a cohesive knowledge base. The TaHiTI whitepaper emphasizes the need for well-defined threat hunting processes, and MaGMa operationalizes this by providing a clear, repeatable structure.
 
----
+Furthermore, MaGMa functions as a guide throughout the threat hunting lifecycle, aligning seamlessly with methodologies like TaHiTI. It prompts hunters to consider key aspects of each hunt, ensuring critical information capture and adherence to a defined, repeatable pattern. This guidance is valuable for onboarding new hunters and ensuring team consistency.
 
-## The Three-Layer Model
+As highlighted in the TaHiTI whitepaper, the iterative nature of threat hunting requires a tool that can manage the complexity of investigations. MaGMa simplifies this process by providing a centralized location for planning, execution, and analysis.
 
-The MaGMa Use Case Framework is structured across three distinct but interconnected layers: Business, Threat, and Implementation. Each layer captures specific aspects of a use case, ensuring alignment from strategic objectives down to technical execution. The diagram below illustrates how information flows between these layers, with key elements represented at each level:
+## Core Functionalities of MaGMa
 
-```mermaid
-graph LR
-    subgraph Business Layer
-        A1[Purpose]
-        A2[Drivers]
-        A3[Stakeholders]
-        A4[Output]
-    end
+The core functionalities of MaGMa for threat hunting include:
 
-    subgraph Threat Layer
-        B1[ATT&CK Tactics]
-        B2[Kill Chain Mapping]
-        B3[Threat Actor Profiles]
-        B4[Behavioral Indicators]
-    end
+| Functionality | Description |
+| ------------- | ----------- |
+| Structured Hunt Documentation: | Predefined templates and fields for recording crucial information about each hunt, such as the objective, scope, hypotheses, data sources, queries used, findings, and conclusions. This structured documentation aligns with the TaHiTI principle of maintaining clear records for future reference and analysis. |
+| Hypothesis Management | Allowing hunters to articulate and track hypotheses being tested, along with their rationale. As emphasized in the TaHiTI framework, hypothesis-driven hunting is essential for focusing efforts and validating assumptions. |
+| Evidence and Artifact Tracking | Enabling the systematic logging and linking of relevant data, logs, and artifacts discovered during the investigation. |
+| Collaboration and Knowledge Sharing | Facilitating team collaboration by providing a centralized platform for accessing and contributing to hunt records. The TaHiTI framework highlights the importance of collaboration and knowledge sharing within the threat hunting team. |
+| Outcome and Recommendation Management | Providing a dedicated space to document hunt outcomes, including identified threats, false positives, and recommendations for improving security controls or detection logic. |
+| Reporting and Analysis | Offering capabilities to generate reports on hunting activities, track key metrics (e.g., number of hunts, findings per hunt), and analyze trends in hunting outcomes. |
+| Integration with Threat Intelligence | Integrating with threat intelligence platforms to enrich hunt records with relevant contextual information, enabling hunters to prioritize and contextualize their investigations. |
 
-    subgraph Implementation Layer
-        C1[Data Sources]
-        C2[Detection Logic]
-        C3[Status]
-        C4[Tuning Guidance]
-    end
+## MaGMa in Practice: A Practical Example
 
-    A1 --> B1
-    A2 --> B2
-    A3 --> B3
-    A4 --> B4
+**Scenario**
 
-    B1 --> C1
-    B2 --> C2
-    B3 --> C3
-    B4 --> C4
-```
+> Your threat intelligence team has identified a new phishing campaign targeting employees, potentially leading to credential harvesting. You decide to conduct a threat hunt to proactively identify any successful compromises.
 
-### 1. Business Layer (Strategic)  
+**Leveraging MaGMa:**
 
-Focuses on why the use case matters to the organization. It documents business objectives, compliance drivers, involved stakeholders, and the intended output (e.g., alerts, reports). Documents organizational relevance with:  
+1.  **Initiating the Hunt (in MaGMa):** Create a new hunt record in MaGMa, defining the objective ("Identify potential credential harvesting resulting from recent phishing campaign") and the scope (email logs, endpoint authentication logs, web proxy logs).
+2.  **Formulating Hypotheses (in MaGMa):** Document specific hypotheses, such as "Look for unusual login attempts from non-standard locations following receipt of the phishing emails" and "Identify any successful execution of suspicious attachments from the phishing emails."
+3.  **Executing the Hunt & Documenting (in MaGMa):** As you execute queries and analyze data, record findings directly within MaGMa, including queries used, anomalies identified, and evidence collected. This step aligns with TaHiTI's emphasis on documenting all actions taken during the hunt.
+4.  **Collaboration (in MaGMa):** If collaboration is needed, MaGMa provides a centralized platform for sharing information and discussing potential leads.
+5.  **Documenting Outcomes and Recommendations (in MaGMa):** Meticulously document details of any confirmed compromises or suspicious activity, along with recommendations for remediation, such as password resets or blocking malicious domains.
+6.  **Knowledge Retention (in MaGMa):** The complete record of the hunt, including intelligence, hypotheses, queries, findings, and recommendations, is stored in MaGMa, serving as a valuable resource for future hunts and team learning.
 
-| What | Description |
-| ---- | ----------- |
-| Purpose | Business value proposition (e.g., fraud prevention) |  
-| Drivers | Compliance requirements (e.g., PCI DSS, GDPR) |   
-| Stakeholders | Responsible business units |
-| Output | Expected deliverables (alerts, reports) |
+## Hunt Program Maturity with MaGMa
 
-### 2. Threat Layer (Tactical)  
+Adopting a tool like MaGMa represents a significant step toward building a mature and effective threat hunting program. As organizations mature, they progress from ad-hoc hunting activities to a systematic, proactive approach that integrates threat intelligence and leverages structured methodologies. MaGMa facilitates this transition by providing the necessary framework and tools for managing and documenting the entire threat hunting lifecycle.
 
-Bridges the gap between business intent and technical implementation. This layer maps the use case to threat intelligence elements such as MITRE ATT&CK techniques, adversary behaviors, and known threat actors. Aligns with adversary behaviors through:  
+## References
 
-| What | Description |
-| ---- | ----------- |
-| MITRE ATT&CK | techniques and tactics |  
-| Kill Chain | positioning | 
-| Threat Actor | profiles | 
-| Behavioral Indicators | Specific TTP  |
-
-### 3. Implementation Layer (Operational)  
-
-Defines how the use case is executed on a technical level. It includes log source requirements, detection logic (queries/rules), development status, and tuning considerations. Details technical execution:  
-
-| What | Description |
-| ---- | ----------- |
-| Data Sources | Required logs (Windows Event IDs, EDR) |
-| Detection Logic | SIEM queries, correlation rules |  
-| Status | Development stage (PoC → Production) |
-| Tuning Guidance | Known false positives |
-
-## Lifecycle Management
-
-Effective use case management requires more than initial deployment—it demands continuous oversight. MaGMa structures this through a four-phase lifecycle model that ensures each use case remains relevant, actionable, and aligned with evolving threats and business needs. This lifecycle spans onboarding, daily operations, ongoing maintenance, and eventual retirement.
-
-MaGMa formalizes four management phases:
-
-```mermaid
-flowchart LR
-    Onboarding[Onboarding<br/>Define scope, requirements<br/>Business case, mapping]
-    Operational[Operational<br/>Monitoring & triage<br/>Runbooks, escalations]
-    Maintenance[Maintenance<br/>Adjust to changes<br/>Logs, test results]
-    Offloading[Offloading<br/>Retire detection<br/>Justification archive]
-
-    Onboarding --> Operational --> Maintenance --> Offloading
-```
-
-| Phase | Key Activities | Documentation Requirements |
-|-------|----------------|-----------------------------|
-| Onboarding | Define scope, document requirements | Business case, threat mapping |
-| Operational | Daily monitoring execution | Runbooks, escalation paths |
-| Maintenance | Update for threat/IT changes | Change logs, test results |
-| Offloading | Archive obsolete use cases | Retirement justification |
-
-## Metrics Framework
-
-To ensure continuous improvement and accountability, MaGMa integrates a structured metrics framework. These metrics allow SOC teams to assess the maturity, effectiveness, and growth of their detection use cases over time. By tracking implementation status, operational output, and strategic alignment, the framework supports data-driven decision-making and justifies resource allocation.
-
-```mermaid
-graph TD
-    Metrics[Metrics Framework] --> E[Embedded Metrics]
-    Metrics --> C[Control Metrics]
-    Metrics --> O[Output Metrics]
-
-    E --> E1[Implementation Completeness]
-    E --> E2[Data Source Coverage]
-
-    C --> C1[Framework Growth Rate]
-    C --> C2[Maintenance Backlog]
-
-    O --> O1[Alert Volume]
-    O --> O2[Incident Conversion Rate]
-```
-
-Three metric types are embedded:
-
-1. **Embedded Metrics**  
-   - Implementation completeness (0-100%)  
-   - Data source availability  
-
-2. **Control Metrics**  
-   - Framework growth rate  
-   - Maintenance backlog  
-
-3. **Output Metrics**  
-   - Alert volume and quality  
-   - Incident conversion rates  
-
-## Implementation Tool
-
-To streamline adoption and operationalization of the MaGMa framework, an Excel-based Implementation Tool is provided. This tool includes standardized templates, automated scoring mechanisms, and built-in support for traceability across all layers. It simplifies documentation, promotes consistency, and helps teams track use case development and maturity over time.
-
-The **MaGMa UCF Tool** (Excel-based) provides:  
-- Preconfigured templates for all framework elements  
-- Automated maturity scoring  
-- Cross-layer traceability features  
-
-> **Download**: [MaGMa UCF Tool](https://www.betaalvereniging.nl/wp-content/uploads/Magma-UCF-Tool.xlsx)
-
-## Example Use Case
-
-```mermaid
-graph TD
-    UC[Use Case:<br/>Unauthorized Service Account Usage]
-
-    UC --> BZ[Business Layer]
-    BZ --> BZ1[Purpose:<br/>Credential Theft Detection]
-    BZ --> BZ2[Driver:<br/>FFIEC CAT]
-
-    UC --> TL[Threat Layer]
-    TL --> TL1[Technique:<br/>T1078.002]
-    TL --> TL2[Actor:<br/>FIN8, TA505]
-
-    UC --> IL[Implementation Layer]
-    IL --> IL1[Data Sources:<br/>AD Logs, EDR]
-    IL --> IL2[Status:<br/>Production<br/>FP <3%]
-```
-
-**Unauthorized Service Account Usage**  
-*Business Layer*  
-- **Purpose**: Detect credential theft/abuse  
-- **Driver**: FFIEC CAT requirements  
-
-*Threat Layer*  
-- **Technique**: T1078.002 (Valid Accounts: Domain Accounts)  
-- **Actor**: FIN8, TA505  
-
-*Implementation Layer*  
-- **Data Sources**: Active Directory logs, EDR  
-- **Status**: Production (FP rate <3%)  
-
-## When to Adopt MaGMa
-
-Ideal for organizations that:  
-- Manage 50+ detection use cases  
-- Require audit-ready documentation  
-- Need to demonstrate SOC maturity  
-- Experience alert fatigue from unmaintained rules  
-
----
-
-## Resources
+Got it! Here’s the table you requested in the format you’ve provided, with example links:
 
 | Resource | Description |
-|----------|-------------|
-| [Full Documentation](https://www.betaalvereniging.nl/wp-content/uploads/FI-ISAC-Use-Case-Framework-Full-Documentation.pdf) | Official specification document |
-| [MaGMa UCF Tool](https://www.betaalvereniging.nl/wp-content/uploads/Magma-UCF-Tool.xlsx) | Excel implementation template | 
-| [FI-ISAC Portal](https://www.betaalvereniging.nl/en/safety/magma/) | Framework overview | 
-| [Short Whitepaper](https://www.betaalvereniging.nl/wp-content/uploads/FI-ISAC-use-case-framework-verkorte-versie.pdf) | Concise introduction |
+|---|---|
+| [MaGMa: a framework and tool for use case management](https://www.betaalvereniging.nl/wp-content/uploads/FI-ISAC-use-case-framework-verkorte-versie.pdf) | Whitepaper |
+| [MaGMa](https://www.betaalvereniging.nl/en/safety/magma/) | Introduction |
+| [ATT&CK Use Cases with MaGMa!](https://medium.com/adarma-tech-blog/att-ck-use-cases-with-magma-3a5c83775d86) | ATT&CK Use Cases with MaGMa! |
+| [SOC-CMM MaGMa UCF - Tools for effective Cyber Defense](https://www.first.org/resources/papers/amsterdam2019/2019.04.03-SOC-CMM-MaGMa-FIRST.pdf) | Presentation   |
+
