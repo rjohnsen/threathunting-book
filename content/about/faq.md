@@ -7,7 +7,7 @@ weight: 2
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 30.09.2024   | Added page | 
+| 22.04.2025   | Updated page | 
 
 **Is this content really free? Are there any limitations?**
 
@@ -33,5 +33,9 @@ For personal use. For further details see question "_Is this content really free
 **Will you offer night mode theme for this book**
 
 Most likely no. 
+
+**Do you offer classes, courses, interviews?**
+
+Yes. Feel free to contact me. 
 
 
