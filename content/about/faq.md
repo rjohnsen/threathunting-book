@@ -16,11 +16,11 @@ Yes, I offer this as an effort to educate people for free. However, there are so
 - Give credit where credit is due. Proper attribution must be provided whenever content from this book is used.
 - No monetization. You are not permitted to monetize this content or profit directly from the book itself.
 - No modifications without consent. You may not alter or adapt the content for any purpose without prior approval.
-- Written consent required for external use. If you wish to include any content from this book in another book, website, or publication, you must obtain written consent from the author. These consents will be posted on this site for transparency.
+- Written consent required for external use. If you wish to include any content from this book in another book, website, or publication, you must obtain written consent from the author. These consents will be posted on this site for transparency. 
 - Respect intellectual property. You may not claim any part of the content as your own or misrepresent the original author.
 - Non-commercial use only. Content is provided for educational and non-commercial purposes only.
+- Content from this online publication should not be hosted on internal company platforms such as wikis or similar resources. It is intended to remain publicly accessible to everyone.
 - Exceptions may apply. Contact the author for further details (see contact page).
-
 
 **Will there be a PDF or e-book version of this threat hunting book?**
 
