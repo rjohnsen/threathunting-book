@@ -27,6 +27,7 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 | Date          | Change/Addition                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------|
+| Oct. 18, 2025 | New article "From alerts to hypothesis" |
 | Apr. 20, 2025 | Added [threat hunting framework section](/part-1/frameworks/threathunting/) and collect all hunting related articles beneath it | 
 | Apr. 13, 2025 | Added framework pages: [Magma](/part-1/frameworks/threathunting/magma/), [TaHiTI](/part-1/frameworks/threathunting/tahiti/) and [Peak](/part-1/frameworks/threathunting/peak/)| 
 | Mar. 29, 2025 | Added page on [When to engage threat hunters](/part-1/introduction/when-to-engage-threat-hunters/) |
