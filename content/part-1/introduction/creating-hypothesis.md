@@ -2,7 +2,7 @@
 title: "Creating Hypothesis"
 date: 2024-11-02T15:09:15+01:00
 draft: false
-weight: 7
+weight: 8
 tags:
     - introduction
     - foundation
