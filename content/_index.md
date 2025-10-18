@@ -6,7 +6,7 @@ draft: false
 
 This notebook provides a comprehensive guide to Threat Hunting, structured in the form of a book. With years of experience in establishing SOC departments for Norwegian cybersecurity firms and actively working as a threat hunter, I’ve gathered valuable insights that I’m eager to share. 
 
-As I transition into managing a Cyber Security Operations Center (CSOC), my goal is to help SOC analysts become proficient threat hunters from day one. 
+My goal is to help SOC analysts become proficient threat hunters from day one. 
 
 **_Roger C.B. Johnsen_**
 
