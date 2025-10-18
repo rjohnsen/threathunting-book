@@ -16,7 +16,7 @@ tags:
 
 ## Introduction
 
-**Threat hunting can be considered an enhanced form of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, a threat hunter adopts a proactive approach. Instead of waiting for alerts, a threat hunter meticulously examines log data to identify anomalies and potential blind spots. This process involves formulating and testing hypotheses by correlating diverse sets of data, including both the raw logs and the statistics derived from them. Threat hunting is not just about following trails in logs; it is about understanding the underlying patterns within them.**
+**This is the first part of my series on defining who the Hunter is. Threat hunting can be considered an enhanced form of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, a threat hunter adopts a proactive approach. Instead of waiting for alerts, a threat hunter meticulously examines log data to identify anomalies and potential blind spots. This process involves formulating and testing hypotheses by correlating diverse sets of data, including both the raw logs and the statistics derived from them. Threat hunting is not just about following trails in logs; it is about understanding the underlying patterns within them.**
 
 ---
 

@@ -12,11 +12,11 @@ tags:
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 11.01.2025   | Added page | 
+| 28.10.2025   | Updated page with reference to next chapter | 
 
 ## Introduction
 
-**The role of a threat hunter is, in my opinion, the natural progression for SOC analysts, representing the culmination of years spent mastering the art of monitoring, analyzing, and responding to security events while drawing expertise from related disciplines like Digital Forensics and Incident Response (DFIR), Computer Security Incident Response Teams (CSIRT), and penetration testing. A threat hunter embodies the fusion of defensive (blue) and offensive (red) cybersecurity expertise, exemplifying the “purple teamer” by integrating skills from multiple domains to proactively identify and neutralize threats. More than a practitioner, they are strategists equipped with multidisciplinary expertise to stay ahead of adversaries in an ever-evolving threat landscape. This chapter delves into the unique skills, mindset, and tools that define the modern threat hunter and underscores their pivotal role in advanced cybersecurity operations**
+**This is the second part of my series on defining who the Hunter is. The role of a threat hunter is, in my opinion, the natural progression for SOC analysts, representing the culmination of years spent mastering the art of monitoring, analyzing, and responding to security events while drawing expertise from related disciplines like Digital Forensics and Incident Response (DFIR), Computer Security Incident Response Teams (CSIRT), and penetration testing. A threat hunter embodies the fusion of defensive (blue) and offensive (red) cybersecurity expertise, exemplifying the “purple teamer” by integrating skills from multiple domains to proactively identify and neutralize threats. More than a practitioner, they are strategists equipped with multidisciplinary expertise to stay ahead of adversaries in an ever-evolving threat landscape. This chapter delves into the unique skills, mindset, and tools that define the modern threat hunter and underscores their pivotal role in advanced cybersecurity operations**
 
 ---
 
@@ -234,6 +234,8 @@ flowchart TD
     G --> I
     H --> I
 ```
+
+The next chapter, From Alerts to Hypotheses, continues this line of thought. It shows how the hunter’s mindset turns into method; how curiosity becomes process, and how experience evolves into structured exploration.
 
 ---
 

@@ -19,7 +19,7 @@ summary: ""
 
 ## Introduction 
 
-**In the previous chapter, we explored the hunter as a persona. The hunter is curious, methodical, and unwilling to accept the surface explanation of an event. This chapter continues that exploration and shows how mindset becomes method.**
+**This is the third part of my series on defining who the Threat Hunter is. In the previous chapter, we explored the hunter as a persona. The hunter is curious, methodical, and unwilling to accept the surface explanation of an event. This chapter continues that exploration and shows how mindset becomes method.**
 
 **Building on the principles outlined in my article [The Analyst Mindset](/part-1/introduction/analystmindset/), this chapter explores how analytical thinking turns into structured hunting practice. You know, where questions become hypotheses and reasoning becomes method.**
 
@@ -192,6 +192,4 @@ graph LR
 
 ## Summary
 
-Threat hunting is the disciplined exploration of what lies beyond alerts. It grows out of the SOC’s analytical foundation but applies that reasoning to uncertainty. Its strength lies in structured curiosity, collaboration, and constant learning.  
-
-The outcome is more than threat discovery. It is the gradual transformation of how an organization perceives itself — from reactive monitoring to proactive understanding. SOC protects what is known. Threat hunting protects the knowledge itself. Together they embody the practical core of Threat Informed Defense.  
+Threat hunting is the disciplined exploration of what lies beyond alerts. It grows out of the SOC’s analytical foundation but applies that reasoning to uncertainty. Its strength lies in structured curiosity, collaboration, and constant learning. The outcome is more than threat discovery. It is the gradual transformation of how an organization perceives itself. Everything from reactive monitoring to proactive understanding. SOC protects what is known. Threat hunting protects the knowledge itself. Together they embody the practical core of Threat Informed Defense.  
