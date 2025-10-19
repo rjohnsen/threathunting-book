@@ -313,3 +313,262 @@ figcaption { color:var(--text-muted); font-size:.92rem; margin-top:.4rem; text-a
 
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important; } }
+
+
+
+
+
+
+
+
+
+
+
+/* ===== HUNTBOOK Mermaid – Dark Nodes (#111c22) + White Text + Gold Borders ===== */
+.mermaid {
+  background: #ffffff !important;              /* Lys bakgrunn for kontrast */
+  border: 1px solid #d6dee3;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.mermaid svg {
+  background: #ffffff !important;
+}
+
+/* Bokser / noder */
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .cluster rect {
+  fill: #111c22 !important;                    /* mørk Huntbook-blå */
+  stroke: #b49a6c !important;                  /* gullramme */
+  stroke-width: 2px !important;
+  rx: 6; ry: 6;
+}
+
+/* Tekst i bokser — alltid hvit */
+.mermaid .node text,
+.mermaid .label text,
+.mermaid .label,
+.mermaid text,
+.mermaid tspan {
+  fill: #ffffff !important;                    /* ren hvit */
+  color: #ffffff !important;
+  font-family: "Inter","Atkinson Hyperlegible",system-ui,sans-serif;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  opacity: 1 !important;
+}
+
+/* Linjer og piler */
+.mermaid .edgePath path,
+.mermaid .relation,
+.mermaid .messageLine0,
+.mermaid .messageLine1 {
+  stroke: #b49a6c !important;                  /* gull-linjer */
+  stroke-width: 1.8px !important;
+  opacity: 1 !important;
+}
+.mermaid .marker {
+  fill: #b49a6c !important;
+  stroke: #b49a6c !important;
+}
+
+/* Kantetiketter (tekst på linjene) */
+.mermaid .edgeLabel rect {
+  fill: #ffffff !important;
+  stroke: #b49a6c !important;
+  stroke-width: 1px !important;
+}
+.mermaid .edgeLabel text,
+.mermaid .edgeLabel tspan {
+  fill: #111c22 !important;                    /* mørk tekst mot hvit bakgrunn */
+  font-weight: 700 !important;
+}
+
+/* Clustere (rammer rundt grupper) */
+.mermaid .cluster rect {
+  fill: #111c22 !important;
+  stroke: #b49a6c !important;
+}
+.mermaid .cluster text {
+  fill: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Sekvensdiagrammer og Gantt */
+.mermaid .actor rect,
+.mermaid .activation0,
+.mermaid .activation1,
+.mermaid .task rect {
+  fill: #111c22 !important;
+  stroke: #b49a6c !important;
+}
+.mermaid .actor text,
+.mermaid .taskText,
+.mermaid .sectionTitle,
+.mermaid .pieTitle {
+  fill: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Mermaid – lys bakgrunn, mørke bokser, hvit tekst, ingen doble rammer */
+.mermaid{background:#fff!important;border:1px solid #d6dee3;border-radius:10px;padding:1rem;box-shadow:0 4px 10px rgba(0,0,0,.08)}
+.mermaid svg{background:#fff!important}
+
+/* Bokser */
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .cluster rect{fill:#111c22!important;stroke:#b49a6c!important;stroke-width:2px!important;rx:8;ry:8}
+
+/* Fjern indre label-rect som gir “dobbelt-ramme” */
+.mermaid .label rect{fill:transparent!important;stroke:none!important}
+
+/* Tekst alltid hvit og fet – også når foreignObject brukes */
+.mermaid .node text,
+.mermaid .label,
+.mermaid text,.mermaid tspan{fill:#fff!important;color:#fff!important;font-weight:800!important}
+.mermaid .label foreignObject div{color:#fff!important;font-weight:800!important}
+
+/* Linjer og piler i gull */
+.mermaid .edgePath path,.mermaid .relation,.mermaid .messageLine0,.mermaid .messageLine1{stroke:#b49a6c!important;stroke-width:2px!important;opacity:1!important}
+.mermaid .marker{fill:#b49a6c!important;stroke:#b49a6c!important}
+
+/* Kantetiketter: hvit kapsel + mørk tekst */
+.mermaid .edgeLabel rect{fill:#fff!important;stroke:#b49a6c!important}
+.mermaid .edgeLabel text,.mermaid .edgeLabel tspan{fill:#111c22!important;font-weight:700!important}
+
+/* === Mermaid: lesbar hvit tekst i bokser === */
+.mermaid .node rect { fill:#111c22 !important; stroke:#b49a6c !important; stroke-width:2px !important; fill-opacity:1 !important; }
+
+.mermaid .edgePath path { stroke:#b49a6c !important; stroke-width:2px !important; stroke-opacity:1 !important; }
+
+/* SVG-tekst */
+.mermaid .label,
+.mermaid .nodeLabel,
+.mermaid text,
+.mermaid tspan{
+  fill:#ffffff !important;
+  opacity:1 !important;
+  font-weight:800 !important;
+  font-size:16px !important;
+  stroke:none !important;
+}
+
+/* HTML-etiketter (foreignObject) */
+.mermaid .label foreignObject,
+.mermaid .label foreignObject *,
+.mermaid .node foreignObject,
+.mermaid .node foreignObject *{
+  color:#ffffff !important;
+  opacity:1 !important;
+  font-weight:800 !important;
+  font-size:16px !important;
+  filter:none !important;
+}
+
+/* Fjern indre lyse label-rect som skaper ekstra ramme */
+.mermaid .label rect{ fill:transparent !important; stroke:none !important; }
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Academic print layout ===== */
+@media print {
+
+  /* Core scaling */
+  html, body {
+    font-size: 11px !important;          /* use 10px or 12px if you prefer */
+    line-height: 1.4 !important;
+    color: #000 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Headings */
+  h1 {
+    font-size: 16px !important;
+    text-transform: uppercase;
+    background: none !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+  }
+  h2 { font-size: 14px !important; margin-top: 1.5rem !important; }
+  h3 { font-size: 12px !important; margin-top: 1.2rem !important; }
+
+  /* Paragraphs and text */
+  p, li, td, th, blockquote, figcaption {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    color: #000 !important;
+  }
+
+  /* Remove sidebar, backgrounds, buttons, links, etc. */
+  #R-sidebar, #sidebar, .btn, nav, header, footer {
+    display: none !important;
+  }
+  #body {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Tables */
+  table {
+    border: 1px solid #000 !important;
+    border-collapse: collapse !important;
+    font-size: 10px !important;
+  }
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 4px 6px !important;
+  }
+
+  /* Code blocks */
+  pre, code {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    font-size: 9px !important;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    border-left: 2px solid #000 !important;
+    background: none !important;
+    font-size: 11px !important;
+    padding-left: 1rem !important;
+  }
+
+  /* Figures */
+  img, svg {
+    max-width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+  }
+
+  /* Mermaid diagrams – keep readable */
+  .mermaid text,
+  .mermaid tspan,
+  .mermaid foreignObject,
+  .mermaid foreignObject * {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    fill: #000 !important;
+    color: #000 !important;
+  }
+}
