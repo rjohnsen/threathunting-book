@@ -24,42 +24,57 @@ A colleague of mine said something like this during one of our long discussions 
 
 > A threat hunter and a penetration tester share the same fascination for finding security holes—one by probing systems directly, the other by analyzing the traces left behind. Both are driven by curiosity and the thrill of discovery, but while the penetration tester emulates the adversary to break in, the threat hunter follows their digital footprints to uncover breaches that may already exist. 
 
-With basis in this, I want to depict further how the threat hunter persona can be perceived. I will tru to visualize it through interconnected aspects of education, technical mastery, analytical prowess, and soft skills. The following mindmap illustrates how these attributes align to create a proficient threat hunter. I'll touch upon these in detail in this chapter. 
+With basis in this, I want to depict further how the threat hunter persona can be perceived. I will tru to visualize it through interconnected aspects of education, technical mastery, analytical prowess, and soft skills. The following diagram illustrates how these attributes align to create a proficient threat hunter. I'll touch upon these in detail in this chapter. 
 
 ```mermaid
-mindmap
-  root((Threathunter Persona))
-    Education
-      Academic Background
-        Relevant Degrees
-        Certifications
-      Practical Training
-        Bootcamps and Courses
-        Workshops and Labs
-      Continuous Learning
-    Technical Mastery
-      Understanding the Threat Landscape
-      Networking Savvy
-      Endpoint Expertise
-      Log Wizardry
-      Threat Intelligence Integration
-      Scripting and Automation
-      Forensic Finesse
-      SIEM Savviness
-      Malware Analysis
-    Analytical Prowess
-      Critical Thinking
-      Pattern Recognition
-      Incident Correlation
-    Soft Skills
-      Effective Communication
-      Collaborative Spirit
-      Continuous Learning
-      Problem-Solving Ingenuity
-    Driving the Persona
-      Skill Versus Mindset
-      Risk Awareness
-      Continuous Improvement
+flowchart LR
+  A((Threat Hunter Persona))
+
+  %% Main branches
+  A --> B[Education]
+  A --> C[Technical Mastery]
+  A --> D[Analytical Prowess]
+  A --> E[Soft Skills]
+  A --> F[Driving the Persona]
+
+  %% Education branch
+  B --> B1[Academic Background]
+  B1 --> B1a[Relevant Degrees]
+  B1 --> B1b[Certifications]
+  B --> B2[Practical Training]
+  B2 --> B2a[Bootcamps & Courses]
+  B2 --> B2b[Workshops & Labs]
+  B --> B3[Continuous Learning]
+  B3 --> B3a[Self-Study]
+  B3 --> B3b[Research Reading]
+  B3 --> B3c[Mentorship]
+
+  %% Technical Mastery branch
+  C --> C1[Threat Landscape Understanding]
+  C --> C2[Networking Fundamentals]
+  C --> C3[Endpoint Expertise]
+  C --> C4[Log Analysis]
+  C --> C5[Threat Intelligence Integration]
+  C --> C6[Scripting & Automation]
+  C --> C7[Forensics]
+  C --> C8[SIEM Mastery]
+  C --> C9[Malware Analysis]
+
+  %% Analytical Prowess branch
+  D --> D1[Critical Thinking]
+  D --> D2[Pattern Recognition]
+  D --> D3[Incident Correlation]
+
+  %% Soft Skills branch
+  E --> E1[Communication]
+  E --> E2[Collaboration]
+  E --> E3[Problem-Solving]
+  E --> E4[Adaptability]
+
+  %% Driving the Persona branch
+  F --> F1[Skill vs Mindset]
+  F --> F2[Risk Awareness]
+  F --> F3[Continuous Improvement]
 ```
 
 ## Education

@@ -16,21 +16,22 @@ tags:
 
 ---
 
-To provide an overview of what's out there, the mindmap below depicts a handful of frameworks available. I have chosen those I belive are the most usefule ones to know: 
+To provide an overview of what's out there, the diagram below depicts a handful of frameworks available. I have chosen those I belive are the most usefule ones to know: 
 
 ```mermaid
-mindmap
-  root((Threat Hunting Frameworks))
-    Intel 471 Threat Hunting Framework
-    PEAK Threat Hunting Framework
-    Group-IB Threat Hunting Framework
-    5-Step Threat Hunting Framework
-    Open Threat Hunting Framework
-    MITRE ATT&CK-Based Hunting
-    Threat Hunter’s Playbook
-    TaHiTI Threat Hunting Framework
-    Hunting Maturity Model (HMM)
-    Sqrrl Threat Hunting Framework  
+flowchart LR
+  A((Threat Hunting Frameworks))
+
+  A --> B["Intel 471 Threat Hunting Framework"]
+  A --> C["PEAK Threat Hunting Framework"]
+  A --> D["Group-IB Threat Hunting Framework"]
+  A --> E["5-Step Threat Hunting Framework"]
+  A --> F["Open Threat Hunting Framework"]
+  A --> G["MITRE ATT&CK-Based Hunting"]
+  A --> H["Threat Hunter’s Playbook"]
+  A --> I["TaHiTI Threat Hunting Framework"]
+  A --> J["Hunting Maturity Model (HMM)"]
+  A --> K["Sqrrl Threat Hunting Framework"]
 ```
 
 Furhter, the table below summarizes each framework with a short description and a reference link. These frameworks span a variety of perspectives. Some focus on process, others on tooling, data, intelligence integration, or organizational development. They are not ranked in any particular order, and each offers something unique. Whether you're building a hunting program from scratch or refining your current approach, these frameworks can serve as starting points or sources of inspiration. They do really make a great starting point for aspiring Threat Hunters!

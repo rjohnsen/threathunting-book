@@ -17,23 +17,34 @@ __Author:__ _Roger C.B. Johnsen_
 As I stated - few things are worthless, we just have to find the value of things. These are the positives sides of "failure". As we can see in the mind map under, there are quite a few sides to consider. I'll describe each one in the next section.
 
 {{<mermaid align="center">}}
-mindmap
-  (Positive sides)
-    Boosting Confidence in Security Posture
-    Validating and Refining Detection Rules
-      Review Rules for Effectiveness
-      Adjust Rules to Reduce Noise
-      Broaden Detection Focus
-    Improving and Understanding Baselines
-      Establish Normal Behavior
-      Detect Abnormal Activity
-    Contributing to Documentation and Audit Readiness
-      Document Proactive Efforts
-      Create Repeatable Processes
-      Enhance Audit Transparency
-    Knowledge Gained About the Organization
-      Learn System Behavior
-      Faster Incident Response
+flowchart LR
+  A((Positive Sides))
+
+  %% Main branches
+  A --> B[Boosting Confidence in Security Posture]
+  A --> C[Validating and Refining Detection Rules]
+  A --> D[Improving and Understanding Baselines]
+  A --> E[Contributing to Documentation and Audit Readiness]
+  A --> F[Knowledge Gained About the Organization]
+
+  %% Detection Rules branch
+  C --> C1[Review Rules for Effectiveness]
+  C --> C2[Adjust Rules to Reduce Noise]
+  C --> C3[Broaden Detection Focus]
+
+  %% Baselines branch
+  D --> D1[Establish Normal Behavior]
+  D --> D2[Detect Abnormal Activity]
+
+  %% Documentation branch
+  E --> E1[Document Proactive Efforts]
+  E --> E2[Create Repeatable Processes]
+  E --> E3[Enhance Audit Transparency]
+
+  %% Knowledge branch
+  F --> F1[Learn System Behavior]
+  F --> F2[Faster Incident Response]
+
 {{< /mermaid >}}
 
 ### Boosting Confidence in Security Posture
@@ -83,33 +94,42 @@ If a threat hunt yields no findings, that doesn’t mean there’s no room for r
 Here are some ways to optimize future hunts based on what you learn from a "clean" result:
 
 {{<mermaid align="center">}}
-mindmap
-  (Refining Future Hunts)
-    Check for Gaps in Coverage
-      Identify Missing Data Sources
-      Expand to Cloud Environments
-      Include Endpoints and Third-Party Segments
-    
-    Review Hypotheses and Indicators
-      Align with Latest Threat Intelligence
-      Reference The DFIR Report
-      Adapt to Adversarial Tactics and Techniques
-    
-    Fine-Tune Detection Rules
-      Refine Rules to Catch Subtle Patterns
-      Adjust for Low-Level Process Activity
-      Focus on Unusual Login Behaviors
-      Reduce Noise, Increase Anomaly Detection
-    
-    Incorporate Behavioral and Anomaly-Based Detection
-      Add Behavior-Based Rules
-      Flag Deviations from Normal Baselines
-      Strengthen Detection of Sophisticated Threats
-    
-    Automate and Streamline
-      Automate Documentation
-      Use Templates for Reporting
-      Reduce Repetitive Tasks for Analysts
+flowchart LR
+  A((Refining Future Hunts))
+
+  %% Main branches
+  A --> B[Check for Gaps in Coverage]
+  A --> C[Review Hypotheses and Indicators]
+  A --> D[Fine-Tune Detection Rules]
+  A --> E[Incorporate Behavioral and Anomaly-Based Detection]
+  A --> F[Automate and Streamline]
+
+  %% Gaps in Coverage branch
+  B --> B1[Identify Missing Data Sources]
+  B --> B2[Expand to Cloud Environments]
+  B --> B3[Include Endpoints and Third-Party Segments]
+
+  %% Hypotheses and Indicators branch
+  C --> C1[Align with Latest Threat Intelligence]
+  C --> C2[Reference The DFIR Report]
+  C --> C3[Adapt to Adversarial Tactics and Techniques]
+
+  %% Detection Rules branch
+  D --> D1[Refine Rules to Catch Subtle Patterns]
+  D --> D2[Adjust for Low-Level Process Activity]
+  D --> D3[Focus on Unusual Login Behaviors]
+  D --> D4[Reduce Noise, Increase Anomaly Detection]
+
+  %% Behavioral Detection branch
+  E --> E1[Add Behavior-Based Rules]
+  E --> E2[Flag Deviations from Normal Baselines]
+  E --> E3[Strengthen Detection of Sophisticated Threats]
+
+  %% Automation branch
+  F --> F1[Automate Documentation]
+  F --> F2[Use Templates for Reporting]
+  F --> F3[Reduce Repetitive Tasks for Analysts]
+
 {{< /mermaid >}}
 
 Let me jog through these concepts, below - but first let me repeat myself a bit first: 
