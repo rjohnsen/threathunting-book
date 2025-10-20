@@ -9,4 +9,7 @@ draft: false
 
 -- Nicolaus Copernicus
 
+![Threat Hunting Illustration](/images/huntbook-raven.png)  
+
+
 

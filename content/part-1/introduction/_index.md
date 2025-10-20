@@ -9,3 +9,6 @@ pre = "1. - "
 > Every new beginning comes from some other beginning’s end.
 
 – Seneca
+
+![Threat Hunting Illustration](/images/huntbook-raven.png)  
+

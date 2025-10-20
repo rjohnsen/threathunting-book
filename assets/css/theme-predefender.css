@@ -1,4 +1,4 @@
-/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v16 ============ */
+/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v17 ============ */
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap");
 
 :root {
@@ -30,7 +30,7 @@
   --sidebar-border:#0b1419;
   --sidebar-text:#d8dddf;
   --sidebar-text-hover:#ffffff;
-  --sidebar-active-bg:#b49a6c; /* gold */
+  --sidebar-active-bg:#b49a6c;
   --sidebar-active-text:#111c22;
 
   /* Code */
@@ -146,7 +146,7 @@ h3 {
   box-shadow:0 0 18px rgba(0,0,0,.45);
 }
 
-/* Sidebar search */
+/* Sidebar search + links */
 #R-sidebar input[type="search"], #sidebar input[type="search"] {
   background:#0d1419;
   color:var(--sidebar-text);
@@ -155,11 +155,7 @@ h3 {
   margin:0.4rem 1rem;
 }
 #R-sidebar input[type="search"]::placeholder,
-#sidebar input[type="search"]::placeholder {
-  color:#94a1a9;
-}
-
-/* Sidebar links */
+#sidebar input[type="search"]::placeholder { color:#94a1a9; }
 #R-sidebar a, #sidebar a {
   display:block;
   color:var(--sidebar-text) !important;
@@ -196,13 +192,7 @@ h3 {
 #R-sidebar::-webkit-scrollbar { width:6px; }
 #R-sidebar::-webkit-scrollbar-thumb { background:#475056; border-radius:6px; }
 @media (max-width:1100px) {
-  #R-sidebar {
-    position:relative;
-    width:100%;
-    height:auto;
-    border-right:none !important;
-    border-bottom:1px solid var(--sidebar-border) !important;
-  }
+  #R-sidebar { position:relative; width:100%; height:auto; border-right:none !important; border-bottom:1px solid var(--sidebar-border) !important; }
   #body{ margin:0 var(--gutter); }
 }
 
@@ -220,12 +210,6 @@ h3 {
   color:#1b2227 !important;
   text-decoration:none;
   box-shadow:0 1px 2px rgba(0,0,0,.06);
-}
-.tags a::before,.page-tags a::before,.meta a::before,.post-tags a::before {
-  content:""; width:.45rem; height:.45rem; border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, #fff 0%, #fff 25%, color-mix(in oklab,var(--accent) 85%, #7a653f) 60%);
-  box-shadow:0 0 0 1px color-mix(in oklab,var(--accent) 70%, #c5c5c5);
-  position:absolute; left:.38rem;
 }
 
 /* Tables */
@@ -261,24 +245,8 @@ code:not(pre code) {
   border:1px solid var(--code-border);
   font-size:.92em;
 }
-code .keyword{ color:var(--code-keyword); font-weight:600; }
-code .function{ color:var(--code-func); }
-code .string{ color:var(--code-string); }
-code .comment{ color:var(--code-comment); font-style:italic; }
 
-/* Mermaid */
-.mermaid, pre.mermaid, code.language-mermaid, pre code.language-mermaid {
-  background:#ffffff !important;
-  color:var(--ink) !important;
-  border:1px solid var(--slate-2);
-  border-radius:10px;
-  padding:.6rem .8rem;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-.mermaid svg { background:#ffffff !important; }
-.mermaid rect[class*="background"], .mermaid .cluster rect { fill:#ffffff !important; }
-
-/* Blockquotes */
+/* Blockquotes + Notices + Buttons */
 blockquote {
   margin:1.6rem 0;
   padding:1.1rem 1.4rem 1.1rem 2rem;
@@ -290,18 +258,10 @@ blockquote {
   font-style:italic;
   font-weight:600;
 }
-
-/* Notices */
-.notice {
-  border-radius:12px;
-  padding:.9rem 1rem;
-  box-shadow:0 1px 2px rgba(0,0,0,.06);
-}
+.notice { border-radius:12px; padding:.9rem 1rem; box-shadow:0 1px 2px rgba(0,0,0,.06); }
 .notice.note { background:var(--note-bg); border-left:4px solid var(--note-bd); }
 .notice.warning { background:var(--warn-bg); border-left:4px solid var(--warn-bd); }
 .notice.error { background:var(--err-bg); border-left:4px solid var(--err-bd); }
-
-/* Buttons */
 .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-radius:14px; font:800 .88rem/1 "Inter",system-ui,sans-serif; text-transform:uppercase; border:0; cursor:pointer; transition:.15s; }
 .btn-primary { background:var(--brand); color:#f7f7f7; }
 .btn-primary:hover { background:var(--brand-strong); }
@@ -314,261 +274,126 @@ figcaption { color:var(--text-muted); font-size:.92rem; margin-top:.4rem; text-a
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important; } }
 
-
-
-
-
-
-
-
-
-
-
-/* ===== HUNTBOOK Mermaid – Dark Nodes (#111c22) + White Text + Gold Borders ===== */
-.mermaid {
-  background: #ffffff !important;              /* Lys bakgrunn for kontrast */
-  border: 1px solid #d6dee3;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+/* ===================== MERMAID – Unified Huntbook Style ===================== */
+.mermaid,
+pre.mermaid,
+code.language-mermaid,
+pre code.language-mermaid{
+  background:#ffffff !important;
+  color:var(--ink) !important;
+  border:1px solid #d6dee3 !important;
+  border-radius:10px !important;
+  padding:.8rem 1rem !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
+.mermaid svg{ background:#ffffff !important; }
 
-.mermaid svg {
-  background: #ffffff !important;
-}
-
-/* Bokser / noder */
+/* Nodes */
 .mermaid .node rect,
 .mermaid .node polygon,
-.mermaid .cluster rect {
-  fill: #111c22 !important;                    /* mørk Huntbook-blå */
-  stroke: #b49a6c !important;                  /* gullramme */
-  stroke-width: 2px !important;
-  rx: 6; ry: 6;
+.mermaid .node circle,
+.mermaid .node ellipse{
+  fill:#111c22 !important;
+  stroke:#b49a6c !important;
+  stroke-width:2px !important;
+  rx:8; ry:8;
 }
+.mermaid .node .label rect{ fill:transparent !important; stroke:none !important; }
 
-/* Tekst i bokser — alltid hvit */
+/* Node text */
 .mermaid .node text,
-.mermaid .label text,
-.mermaid .label,
-.mermaid text,
-.mermaid tspan {
-  fill: #ffffff !important;                    /* ren hvit */
-  color: #ffffff !important;
-  font-family: "Inter","Atkinson Hyperlegible",system-ui,sans-serif;
-  font-weight: 800 !important;
-  font-size: 15px !important;
-  opacity: 1 !important;
-}
-
-/* Linjer og piler */
-.mermaid .edgePath path,
-.mermaid .relation,
-.mermaid .messageLine0,
-.mermaid .messageLine1 {
-  stroke: #b49a6c !important;                  /* gull-linjer */
-  stroke-width: 1.8px !important;
-  opacity: 1 !important;
-}
-.mermaid .marker {
-  fill: #b49a6c !important;
-  stroke: #b49a6c !important;
-}
-
-/* Kantetiketter (tekst på linjene) */
-.mermaid .edgeLabel rect {
-  fill: #ffffff !important;
-  stroke: #b49a6c !important;
-  stroke-width: 1px !important;
-}
-.mermaid .edgeLabel text,
-.mermaid .edgeLabel tspan {
-  fill: #111c22 !important;                    /* mørk tekst mot hvit bakgrunn */
-  font-weight: 700 !important;
-}
-
-/* Clustere (rammer rundt grupper) */
-.mermaid .cluster rect {
-  fill: #111c22 !important;
-  stroke: #b49a6c !important;
-}
-.mermaid .cluster text {
-  fill: #ffffff !important;
-  font-weight: 800 !important;
-}
-
-/* Sekvensdiagrammer og Gantt */
-.mermaid .actor rect,
-.mermaid .activation0,
-.mermaid .activation1,
-.mermaid .task rect {
-  fill: #111c22 !important;
-  stroke: #b49a6c !important;
-}
-.mermaid .actor text,
-.mermaid .taskText,
-.mermaid .sectionTitle,
-.mermaid .pieTitle {
-  fill: #ffffff !important;
-  font-weight: 700 !important;
-}
-
-/* Mermaid – lys bakgrunn, mørke bokser, hvit tekst, ingen doble rammer */
-.mermaid{background:#fff!important;border:1px solid #d6dee3;border-radius:10px;padding:1rem;box-shadow:0 4px 10px rgba(0,0,0,.08)}
-.mermaid svg{background:#fff!important}
-
-/* Bokser */
-.mermaid .node rect,
-.mermaid .node polygon,
-.mermaid .cluster rect{fill:#111c22!important;stroke:#b49a6c!important;stroke-width:2px!important;rx:8;ry:8}
-
-/* Fjern indre label-rect som gir “dobbelt-ramme” */
-.mermaid .label rect{fill:transparent!important;stroke:none!important}
-
-/* Tekst alltid hvit og fet – også når foreignObject brukes */
-.mermaid .node text,
-.mermaid .label,
-.mermaid text,.mermaid tspan{fill:#fff!important;color:#fff!important;font-weight:800!important}
-.mermaid .label foreignObject div{color:#fff!important;font-weight:800!important}
-
-/* Linjer og piler i gull */
-.mermaid .edgePath path,.mermaid .relation,.mermaid .messageLine0,.mermaid .messageLine1{stroke:#b49a6c!important;stroke-width:2px!important;opacity:1!important}
-.mermaid .marker{fill:#b49a6c!important;stroke:#b49a6c!important}
-
-/* Kantetiketter: hvit kapsel + mørk tekst */
-.mermaid .edgeLabel rect{fill:#fff!important;stroke:#b49a6c!important}
-.mermaid .edgeLabel text,.mermaid .edgeLabel tspan{fill:#111c22!important;font-weight:700!important}
-
-/* === Mermaid: lesbar hvit tekst i bokser === */
-.mermaid .node rect { fill:#111c22 !important; stroke:#b49a6c !important; stroke-width:2px !important; fill-opacity:1 !important; }
-
-.mermaid .edgePath path { stroke:#b49a6c !important; stroke-width:2px !important; stroke-opacity:1 !important; }
-
-/* SVG-tekst */
-.mermaid .label,
-.mermaid .nodeLabel,
-.mermaid text,
-.mermaid tspan{
+.mermaid .node .label,
+.mermaid .node tspan,
+.mermaid .node foreignObject,
+.mermaid .node foreignObject *{
   fill:#ffffff !important;
-  opacity:1 !important;
+  color:#ffffff !important;
+  font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   font-weight:800 !important;
   font-size:16px !important;
+  opacity:1 !important;
   stroke:none !important;
 }
 
-/* HTML-etiketter (foreignObject) */
-.mermaid .label foreignObject,
-.mermaid .label foreignObject *,
-.mermaid .node foreignObject,
-.mermaid .node foreignObject *{
-  color:#ffffff !important;
+/* Edges */
+.mermaid .edgePath path,
+.mermaid .relation,
+.mermaid .messageLine0,
+.mermaid .messageLine1{
+  stroke:#b49a6c !important;
+  stroke-width:2px !important;
   opacity:1 !important;
-  font-weight:800 !important;
-  font-size:16px !important;
-  filter:none !important;
+}
+.mermaid .marker{ fill:#b49a6c !important; stroke:#b49a6c !important; }
+
+/* Edge labels */
+.mermaid .edgeLabel rect{
+  fill:#ffffff !important;
+  stroke:#b49a6c !important;
+  stroke-width:1px !important;
+}
+.mermaid .edgeLabel text,
+.mermaid .edgeLabel tspan{
+  fill:#111c22 !important;
+  font-weight:700 !important;
 }
 
-/* Fjern indre lyse label-rect som skaper ekstra ramme */
-.mermaid .label rect{ fill:transparent !important; stroke:none !important; }
+/* Clusters */
+.mermaid .cluster rect{
+  fill:#111c22 !important;
+  stroke:#b49a6c !important;
+  stroke-width:2px !important;
+  rx:8; ry:8;
+}
+.mermaid .cluster text{ fill:#ffffff !important; font-weight:800 !important; }
 
+/* ===================== PRINT ===================== */
+@media print{
+  @page{ size:A4 portrait; margin:12mm; }
 
-
-
-
-
-
-
-
-
-
-/* ===== Academic print layout ===== */
-@media print {
-
-  /* Core scaling */
-  html, body {
-    font-size: 11px !important;          /* use 10px or 12px if you prefer */
-    line-height: 1.4 !important;
-    color: #000 !important;
-    background: #fff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  html, body{
+    font-size:11px !important;
+    line-height:1.4 !important;
+    color:#000 !important;
+    background:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
   }
 
-  /* Headings */
-  h1 {
-    font-size: 16px !important;
-    text-transform: uppercase;
-    background: none !important;
-    color: #000 !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid #000;
-    padding-bottom: 4px;
-  }
-  h2 { font-size: 14px !important; margin-top: 1.5rem !important; }
-  h3 { font-size: 12px !important; margin-top: 1.2rem !important; }
+  h1,h2,h3{ color:#000 !important; background:none !important; box-shadow:none !important; text-shadow:none !important; }
+  h1{ border-bottom:1px solid #000; padding-bottom:4px; }
 
-  /* Paragraphs and text */
-  p, li, td, th, blockquote, figcaption {
-    font-size: 11px !important;
-    line-height: 1.4 !important;
-    color: #000 !important;
-  }
+  #R-sidebar,#sidebar,nav,header,footer,.btn{ display:none !important; }
+  #body{ margin:0 auto !important; padding:0 !important; max-width:100% !important; }
 
-  /* Remove sidebar, backgrounds, buttons, links, etc. */
-  #R-sidebar, #sidebar, .btn, nav, header, footer {
-    display: none !important;
+  .mermaid, pre.mermaid{
+    position:relative !important;
+    display:block !important;
+    break-inside:avoid !important;
+    page-break-inside:avoid !important;
+    margin:8mm 0 !important;
+    overflow:visible !important;
+    border:1px solid #000 !important;
+    box-shadow:none !important;
   }
-  #body {
-    margin: 0 auto !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-    background: #fff !important;
-    color: #000 !important;
+  .mermaid svg{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:180mm !important;
+    max-height:240mm !important;
+    transform-origin:top left !important;
   }
 
-  /* Tables */
-  table {
-    border: 1px solid #000 !important;
-    border-collapse: collapse !important;
-    font-size: 10px !important;
-  }
-  th, td {
-    border: 1px solid #000 !important;
-    padding: 4px 6px !important;
+  .mermaid .node text,
+  .mermaid .node .label,
+  .mermaid .node tspan,
+  .mermaid .node foreignObject,
+  .mermaid .node foreignObject *{
+    font-size:12px !important;
   }
 
-  /* Code blocks */
-  pre, code {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1px solid #000 !important;
-    font-size: 9px !important;
-  }
-
-  /* Blockquotes */
-  blockquote {
-    border-left: 2px solid #000 !important;
-    background: none !important;
-    font-size: 11px !important;
-    padding-left: 1rem !important;
-  }
-
-  /* Figures */
-  img, svg {
-    max-width: 100% !important;
-    height: auto !important;
-    box-shadow: none !important;
-  }
-
-  /* Mermaid diagrams – keep readable */
-  .mermaid text,
-  .mermaid tspan,
-  .mermaid foreignObject,
-  .mermaid foreignObject * {
-    font-size: 10px !important;
-    font-weight: 700 !important;
-    fill: #000 !important;
-    color: #000 !important;
-  }
+  .mermaid.pagebreak-after{ page-break-after:always !important; }
+  .mermaid.print-compact svg{ transform:scale(0.85) !important; }
+  .mermaid + *{ clear:both !important; }
 }

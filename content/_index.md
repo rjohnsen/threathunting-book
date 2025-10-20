@@ -63,4 +63,4 @@ The content has been carefully refined with the help of tools like ChatGPT to im
 
 ---
 
-![Threat Hunting Illustration](/images/mainpage-illustration-small.png)  
+![Threat Hunting Illustration](/images/huntbook-raven.png)  

@@ -9,3 +9,5 @@ pre = "4. - "
 > The improvement of understanding is for two ends: first, our own increase of knowledge; secondly, to enable us to deliver that knowledge to others.
 
 -- John Locke
+
+![Threat Hunting Illustration](/images/huntbook-raven.png)

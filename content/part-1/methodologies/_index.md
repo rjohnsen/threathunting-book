@@ -9,3 +9,5 @@ pre = "3. - "
 > I am not here to speak the Truth. I am here just to give you a method to perceive it.
 
 -- Jaggi Vasudev, Of Mystics & Mistakes
+
+![Threat Hunting Illustration](/images/huntbook-raven.png)  
