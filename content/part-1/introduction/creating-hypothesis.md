@@ -9,10 +9,6 @@ tags:
     - hypothesis
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 02.11.2024   | Added page | 
-
 ## Introduction
 
 **Effective threat hunting relies on more than just intuition and experience. It demands a structured approach to identifying and investigating potential threats. At the heart of this process is the formulation of well-crafted hypotheses that guide us to uncover hidden adversaries within the networks. A strong hypothesis serves as a focal point, directing efforts towards specific attack vectors, tactics, techniques, and procedures (TTPs) that are relevant to an organization’s unique threat landscape.**
@@ -194,3 +190,8 @@ Using SMART (Specific, Measurable, Achievable, Relevant, Time-Bound) criteria ca
 10. [Doran, G. T. (1981). “There’s a S.M.A.R.T. Way to Write Management’s Goals and Objectives.” *Management Review*, 70(11), 35-36.](https://www.jstor.org/stable/40604294)
 11. [McCarthy, J. (2016). “Hypothesis in Research.” *Research Methods*.](https://www.researchgate.net/publication/316250109_Hypothesis_in_Research)
 
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 02.11.2024   | Added page | 

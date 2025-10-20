@@ -5,10 +5,6 @@ weight: 2
 draft: false
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **In the chapter "[Setting Up a Basic Lab](https://huntbook.predefender.com/part-2/setting-up-a-basic-lab/)," we covered how to install a simple Threat Hunting lab using OpenSearch on Alma Linux in VirtualBox. Now, in this chapter, we'll focus on building a more comprehensive lab environment with additional tools based on the system described in the previous chapter. Our main goal here is to automate the installation process so the environment can be easily set up and torn down as needed.**
@@ -186,3 +182,9 @@ PUT _cluster/settings
 _Check HTTPS settings and credentials_
 
 Check if you need to update connection data in shippers to use HTTPS. Change or add credentials accordingly.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

@@ -5,10 +5,6 @@ draft: false
 weight: 1
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 27.10.2024   | Added page | 
-
 ## Introduction
 
 **As threat hunters, access to reliable threat intelligence resources is crucial in our defenses against malicious activities. The following table is my personal and curated list of valuable tools and platforms that security professionals can leverage for various purposes, including threat detection, analysis, and response.**
@@ -52,3 +48,9 @@ Many of these resources offers API's, or HTTP GET query arguments. If you know p
 | [VirusTotal (IP Address)](https://www.virustotal.com/) | Similar to its file analysis service, this URL allows users to check IP addresses for malware and malicious activity. |
 | [Wigle](https://wigle.net/) | A platform for searching and mapping open Wi-Fi networks globally, useful for researchers and security professionals analyzing wireless vulnerabilities. |
 | [Zoomeye](https://www.zoomeye.org/) | A search engine for internet-connected devices, offering insights into their configurations and vulnerabilities, assisting in threat research. |
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 27.10.2024   | Added page | 

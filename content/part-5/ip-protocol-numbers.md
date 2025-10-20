@@ -11,10 +11,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 16.03.2025  | Roger Johnsen | Article added |
-
 ## Introduction
 
 **For threat hunters, knowing the list of IP protocol numbers is crucial for identifying and analyzing network traffic - or when even working with partially parsed logs. Each protocol number in the IP header represents a specific protocol used within a network, helping you quickly identify the type of traffic - such as TCP, UDP, or ICMP - that’s flowing through your environment. This understanding allows you to pinpoint anomalies or unauthorized activities that could indicate malicious behavior. While some protocols are commonly used, others may be less familiar, making it vital to have a reference list for accurate analysis.**
@@ -183,3 +179,9 @@ The following list is sourced from "[List of IP protocol numbers](https://en.wik
 | Resource | Description |
 | ----- | --- |
 | [List of IP protocol numbers](https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers) | List of IP protocol numbers |
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 16.03.2025  | Roger Johnsen | Article added |

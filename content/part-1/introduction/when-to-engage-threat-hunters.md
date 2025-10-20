@@ -11,10 +11,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 29.03.2025  | Roger Johnsen | Article added |
-
 ## Introduction
 
 **Effective cybersecurity is more than just responding to alerts. It requires proactive efforts to detect and neutralize threats before they escalate and cause havoc. Threat hunting plays a crucial role in this approach, working alongside traditional alerting, triage, incident response (IR), digital forensics and incident response (DFIR). This article explores when to engage in threat hunting versus other security processes, how it fits into the broader incident response lifecycle, and real-world scenarios where proactive threat hunting can uncover hidden risks before detections trigger those pesky alerts.**
@@ -103,3 +99,9 @@ Threat hunting serves as a crucial component of a mature cybersecurity strategy.
 | [MITRE ATT&CK Framework](https://attack.mitre.org/) | Adversary tactics, techniques, and procedures (TTPs) |
 | [SANS Threat Hunting & Incident Response Summit](https://www.sans.org/cyber-security-training-events/threat-hunting-summit/) | Industry best practices and case studies |
 | [Open Threat Hunting Frameworks](https://www.threathunting.net/) | Resources and methodologies for proactive security |
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 29.03.2025  | Roger Johnsen | Article added |

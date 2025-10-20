@@ -5,10 +5,6 @@ draft: false
 weight: 3
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 28.02.2025   | Updated contact information. Added e-mail | 
-
 > I'm usually available for a chat. Just scan the QR code below if you are using Whatsapp. Quick note: I won't accept voice or video calls without prior notification. [Please keep in mind, don't just say hi - state your question at the very start!](https://nohello.net/en/)
 
 ![Whatsapp](/images/whatsapp-qr.png)
@@ -22,3 +18,8 @@ weight: 3
 | LinkedIn | [Public profile](https://www.linkedin.com/in/rogerjohnsen) | 
 | Mastodon | [@rjohnsen](https://social.vivaldi.net/@rjohnsen) |
 
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 28.02.2025   | Updated contact information. Added e-mail | 

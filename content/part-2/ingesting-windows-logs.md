@@ -5,10 +5,6 @@ draft: false
 weight: 4
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviors, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analyzing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defenses.**
@@ -145,3 +141,9 @@ Then point to a time field to use and click save (as mentioned in the "A note on
 If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in. 
 
 ![Manage dashboard 6](/images/winlogbeat-discovery.png)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

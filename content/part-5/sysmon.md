@@ -13,10 +13,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |
-
 ## Introduction
 
 **Sysmon event IDs are a powerful tool for threat hunters, offering detailed insights into system activities that help detect malicious behavior and abnormal patterns. By capturing critical events like process creation, network connections, and registry modifications, Sysmon enhances visibility into Windows environments. These logs are crucial for identifying persistence mechanisms, lateral movement, and other tactics outlined in the MITRE ATT&CK framework. By leveraging Sysmon event IDs, security teams can proactively hunt for threats, investigate incidents, and strengthen their organization's security posture.**
@@ -57,3 +53,9 @@ summary: ""
 | 28 | FileBlockShredding | Detects attempts to securely delete files | [T1070.004: Indicator Removal on Host: File Deletion](https://attack.mitre.org/techniques/T1070/004/), [T1561: Disk Wipe](https://attack.mitre.org/techniques/T1561/) |
 | 29 | FileExecutableDetected | Records when an executable file is detected | [T1204: User Execution](https://attack.mitre.org/techniques/T1204/), [T1569: System Services](https://attack.mitre.org/techniques/T1569/) |
 | 255 | Error | Indicates an error condition in Sysmon | N/A |
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 21.03.2025  | Roger Johnsen | Article added |

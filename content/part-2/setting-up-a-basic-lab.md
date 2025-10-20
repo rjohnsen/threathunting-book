@@ -5,10 +5,6 @@ weight: 1
 draft: false
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, to just name a few:**
@@ -290,3 +286,9 @@ http://127.0.0.1:5601/app/home#/
 ```
 
 If things goes awry, please consult either the Docker, Alma or OpenSearch technial documentation and/or forums.
+
+## Revision 
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

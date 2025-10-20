@@ -13,10 +13,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |
-
 ## Introduction
 
 **For threat hunters, having a comprehensive understanding of these tables is crucial to identifying, investigating, and mitigating potential security threats. Each table in Microsoft Defender Advanced Hunting provides unique insights into various aspects of an organization's environment—such as device activity, user behavior, network connections, and email threats. By correlating data across these tables, threat hunters can uncover patterns, detect anomalies, and trace the pathways of potential attacks. This approach enables proactive threat detection and enhances the ability to respond effectively to incidents, ensuring the security and integrity of the organization's systems and data.**
@@ -92,3 +88,9 @@ graph TD
 ```
 
 These are just two examples, think of all the possibilities that opens up when you start joining resultsets on other pivotpoints to connect data! 
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 21.03.2025  | Roger Johnsen | Article added |

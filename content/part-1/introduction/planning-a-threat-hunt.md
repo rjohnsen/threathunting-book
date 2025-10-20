@@ -10,10 +10,6 @@ tags:
     - executing
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 
-
 ## Introduction
 
 **In this chapter we will jump into action by planning a threat hunt. Hopefully you got a threat hunting program already initiated- Planning a threat hunt involves a structured approach to proactively search for signs of malicious activity within an environment. I would love to stress that structured part. A threat hunting program based on "happy-go-lucky" isn't worth much. Anyway, below is a step-by-step guide to planning a threat hunt, combining tables with explanatory text and highlighting where AI can assist. Yes - I have chosen to involve AI in my threat hunts. You will be amazed how much value it can give you.**
@@ -234,3 +230,9 @@ To illustrate the threat hunting process in a short and concise manner:
 12. [Validating Threat Hunting Findings](https://www.sans.org/white-papers/39208/)
 13. [Forensic Reporting](https://www.forensicfocus.com/articles/how-to-prepare-a-forensic-report/)
 14. [NIST Incident Response Guide](https://www.nist.gov/publications/guide-cybersecurity-incident)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 22.02.2025   | Improved formatting and revised wording | 

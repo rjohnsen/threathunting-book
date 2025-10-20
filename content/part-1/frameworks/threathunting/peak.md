@@ -9,10 +9,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 20.04.2025  | Roger Johnsen | Article rewritten |
-
 ## Introduction
 
 **Threat hunting is not just an activity; it’s a mindset. As defenders mature, they evolve from passively reviewing alerts to actively pursuing adversaries. The PEAK Threat Hunting Framework, developed by Splunk’s SURGe team (David Bianco, Dr. Ryan Fetterman, and Sydney Marrone), offers a comprehensive approach that helps hunters structure their methodology while driving measurable improvements.** 
@@ -200,3 +196,9 @@ Threat hunting is more than just finding threats—it’s about building a smart
 | [ThreatHunting.org](https://threathunting.org) | Community-driven hunt library and knowledge base. |
 | [Pyramid of Pain – David Bianco](https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html) | A framework for understanding the value of detection targets. |
 | [Red Canary's Threat Detection Report](https://redcanary.com/threat-detection-report/) | Annual report providing insights into detection trends and best practices. |
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 20.04.2025  | Roger Johnsen | Article rewritten |

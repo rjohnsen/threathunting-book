@@ -4,10 +4,6 @@ date: 2024-07-29T18:34:54+02:00
 draft: false
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **Intelligence-driven threat hunting leverages detailed threat intelligence to proactively identify and mitigate threats within a network or system. This approach utilizes actionable intelligence about adversaries, their tactics, techniques, and procedures (TTPs), and indicators of compromise (IoCs) to guide the threat hunting process. By integrating this intelligence into the threat hunting workflow, organizations can focus their efforts on specific, known threats, improving the efficiency and effectiveness of their cybersecurity operations.**
@@ -87,3 +83,9 @@ Intelligence-driven threat hunting is a strategic approach that uses actionable 
 2. [How to Use Threat Intelligence for Effective Threat Hunting](https://www.exabeam.com/information-security/threat-hunting/)
 3. [Understanding Threat Intelligence and Its Role in Cyber Defense](https://www.sans.org/white-papers/37978/)
 4. [Effective Threat Hunting with Threat Intelligence](https://www.varonis.com/blog/threat-hunting-with-threat-intelligence)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

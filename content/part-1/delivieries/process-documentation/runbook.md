@@ -5,10 +5,6 @@ draft: false
 weight: 1
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 26.10.2024   | Page added | 
-
 {{% notice info %}} 
 This page serves as a template for runbooks. Please modify as sees fit.
 {{% /notice %}}
@@ -104,3 +100,9 @@ Template starts below the line
 
 - **Time-Sensitive Actions**: Immediate containment actions (e.g., quarantining emails, isolating affected systems) should be prioritized to prevent further spread.
 - **Automation Integration**: Where feasible, integrate automation into response workflows to streamline tasks like email analysis, IOCs correlation, and account isolation.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 26.10.2024   | Page added | 

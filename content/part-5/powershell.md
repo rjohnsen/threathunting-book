@@ -11,10 +11,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |
-
 ## Introduction
 
 **Understanding PowerShell flags and commonly abused cmdlets is vital for threat hunters as attackers frequently exploit them for stealthy execution, data exfiltration, and persistence. This knowledge helps identify malicious activity, map it to known attack techniques like those in MITRE ATT&CK, and strengthen detection and response strategies against threats effectively.**
@@ -53,3 +49,10 @@ summary: ""
 | `Get-Credential`        | Prompts for user credentials in a secure dialog box.                                                    | [T1056.004 (Credential API Hooking)](https://attack.mitre.org/techniques/T1056/004/)                           |
 | `Export-Csv`            | Exports data to a CSV file.                                                                             | [T1020 (Data Transfer)](https://attack.mitre.org/techniques/T1020/)                                            |
 | `Where-Object`          | Filters objects in the pipeline. May be used in scripts to obfuscate data collection.                   | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
+
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 21.03.2025  | Roger Johnsen | Article added |

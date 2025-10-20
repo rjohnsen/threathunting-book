@@ -5,10 +5,6 @@ weight: 2
 draft: false
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events—a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.**
@@ -100,3 +96,9 @@ Furthermore, timelines assist in identifying the root cause of an incident by sh
 Overall, timelines significantly enhance the effectiveness of threat-hunting efforts by providing a structured view of the incident, which is essential for thorough investigation, effective response, and continuous improvement.
 
 Additionally, timelines are crucial for training and awareness. For instance, in our example, the threat hunter discovered that a simple phishing email triggered the attack. By tracing the timeline, we could see how that initial email led to a chain of events resulting in data loss for the customer, illustrating the importance of understanding the full scope of an attack for both prevention and education.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

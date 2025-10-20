@@ -8,10 +8,6 @@ tags:
 summary: ""
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **Lockheed Martin's Cyber Kill Chain is a security framework designed to help organizations understand and counteract cyber threats. The model outlines the stages of a cyberattack, from initial reconnaissance to the final objective. By identifying and interrupting these stages, organizations can improve their threat detection and response capabilities.**
@@ -95,3 +91,8 @@ In threat hunting, the Cyber Kill Chain can be used to proactively search for in
 
 By leveraging the Cyber Kill Chain model, organizations can enhance their threat hunting processes, improve their security posture, and effectively mitigate cyber threats.
 
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

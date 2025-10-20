@@ -9,10 +9,6 @@ tags:
 summary: ""
 ---
 
-| Revised | Author         | Comment        |
-| ------- | -------------- | -------------- |
-| 20.04.2025 | Roger Johnsen  | Article rewritten  |
-
 ## Introduction
 
 **In proactive cybersecurity, effective threat hunting demands more than just technical acumen; it requires a structured approach to documenting, organizing, and learning from each investigation. MaGMa (Management, Growth, Metrics & assessment), developed to support the TaHiTI (Targeted Hunting integrating Threat Intelligence) framework, provides this essential structure, transforming individual hunts into a collective body of knowledge that drives continuous improvement and proactive threat mitigation.**
@@ -72,4 +68,10 @@ Got it! Here’s the table you requested in the format you’ve provided, with e
 | [MaGMa](https://www.betaalvereniging.nl/en/safety/magma/) | Introduction |
 | [ATT&CK Use Cases with MaGMa!](https://medium.com/adarma-tech-blog/att-ck-use-cases-with-magma-3a5c83775d86) | ATT&CK Use Cases with MaGMa! |
 | [SOC-CMM MaGMa UCF - Tools for effective Cyber Defense](https://www.first.org/resources/papers/amsterdam2019/2019.04.03-SOC-CMM-MaGMa-FIRST.pdf) | Presentation   |
+
+## Revision
+
+| Revised | Author         | Comment        |
+| ------- | -------------- | -------------- |
+| 20.04.2025 | Roger Johnsen  | Article rewritten  |
 

@@ -9,10 +9,6 @@ tags:
 summary: ""
 ---
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 20.04.2025  | Roger Johnsen | Article rewritten |
-
 ## Introduction
 
 **In modern cybersecurity, proactive threat hunting is essential. As attackers bypass automated defenses, structured threat hunting frameworks have emerged. One such framework is TaHiTI (Targeted Hunting integrating Threat Intelligence), developed by the Dutch financial sector (FI-ISAC). TaHiTI offers a structured, intelligence-driven approach, transforming ad hoc investigations into repeatable hunts. It refines hypotheses, identifies detection gaps, and integrates findings into security measures, emphasizing the use of threat intelligence for targeted and efficient hunts.**
@@ -78,3 +74,9 @@ The TaHiTI Threat Hunting Framework offers a valuable and collaborative approach
 | [DEF-TaHiTI-Threat-Hunting-Methodology.pdf](https://www.betaalvereniging.nl/wp-content/uploads/DEF-TaHiTI-Threat-Hunting-Methodology.pdf) | The official document outlining the TaHiTI Threat Hunting Methodology. |
 | [FI-ISAC (Dutch financial institutes information sharing community)](https://www.betaalvereniging.nl/en/payments-in-the-netherlands/security/fi-isac/) | Information about the Dutch financial sector's information sharing community. |
 | [MaGMa for threat hunting](https://www.betaalvereniging.nl/wp-content/uploads/FI-ISAC-use-case-framework-verkorte-versie.pdf) | A tool developed to support the documentation and structuring of threat hunting activities within the TaHiTI framework (specific public documentation may vary). |
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 20.04.2025  | Roger Johnsen | Article rewritten |

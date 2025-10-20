@@ -11,10 +11,6 @@ tags:
     - program
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 26.10.2024   | Added page | 
-
 ## Introduction
 
 **One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.**
@@ -109,3 +105,9 @@ By following these steps, I think you can lay a solid foundation for a threat hu
 - [Hunt for Threats: The Art and Science of Threat Hunting](https://www.csoonline.com/article/3569268/hunt-for-threats-the-art-and-science-of-threat-hunting.html)
 - [Threat Hunting: Analyzing Security Events](https://www.microsoft.com/security/blog/2020/06/16/threat-hunting-analyzing-security-events/)
 - [Open Threat Hunting Framework](https://www.openthreat.hunting)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 26.10.2024   | Added page | 

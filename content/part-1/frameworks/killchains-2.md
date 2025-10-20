@@ -8,10 +8,6 @@ tags:
 summary: ""
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **The Unified Kill Chain (UKC) is a comprehensive framework designed to describe and analyze cyber attacks by mapping the entire lifecycle of an adversary’s operation. It merges key concepts from two popular models: the Cyber Kill Chain (CKC) and MITRE ATT&CK. By combining the strengths of both, UKC provides a holistic view of attack techniques, from reconnaissance and initial intrusion to lateral movement and impact. This helps cybersecurity professionals enhance threat detection, improve defenses, and streamline incident response by understanding attackers' methods at each stage of an attack.**
@@ -127,3 +123,9 @@ By leveraging the Unified Kill Chain, organizations can systematically enhance t
   - Endpoint detection and response (EDR) solutions
   - Network monitoring tools
   - Security information and event management (SIEM) systems
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

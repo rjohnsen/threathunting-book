@@ -5,10 +5,6 @@ draft: false
 weight: 2
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.04.2025   | Updated page | 
-
 **Is this content really free? Are there any limitations?**
 
 Yes, I offer this as an effort to educate people for free. However, there are some fair usage limitations:
@@ -37,5 +33,11 @@ Most likely no.
 **Do you offer classes, courses, interviews?**
 
 Yes. Feel free to contact me. 
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 22.04.2025   | Updated page | 
 
 

@@ -5,10 +5,6 @@ weight: 1
 draft: false
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **A threat hunter makes a living from understanding data. All kind of data. But what does it mean? Understanding data means grasping the context, meaning, structure, and insights within a dataset. It involves knowing where the data comes from and what it represents, such as financial transactions, network logs, or customer feedback. Recognizing different data types, like numbers, text, or timestamps, and understanding how to work with them is crucial. It's also about identifying patterns, trends, or anomalies in the data and assessing its quality to ensure it's complete, accurate, and consistent. Additionally, understanding data involves making sense of the relationships between different variables and how they connect to real-world phenomena, like detecting a potential security breach from a spike in network traffic. Finally, it’s about extracting useful insights, making inferences, and applying the right analytical methods to interpret the data effectively. In our field, this would mean understanding how to interpret security logs, threat intelligence feeds, and other data sources to spot threats, trends, and anomalies in network behavior.**
@@ -204,3 +200,9 @@ Over the years I have amassed some thoughts regarding interpreting logs and data
 * [How Grouping Analysis works](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/how-grouping-analysis-works.htm)
 * [Grouping Data in Data Science](https://towardsdatascience.com/grouping-data-in-data-science-be7387870c4d)
 * [Baseline Hunting with the PEAK Framework](https://www.splunk.com/en_us/blog/security/peak-baseline-hunting.html)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

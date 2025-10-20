@@ -5,10 +5,6 @@ draft: false
 weight: 3
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 15.02.2025   | Added page | 
-
 ## Introduction
 
 **Early in my SOC and threat hunting career, I was thrown into the deep end with IBM QRadar. As I recall, the handover was abrupt: "This is our SIEM, QRadar. It's yours now – good luck!" Faced with an unfamiliar system, I quickly realized the immense value of cheat sheets, a concept I'd come to rely on throughout my journey.**
@@ -204,3 +200,9 @@ condition: selection
 This article isn't designed to make you an overnight expert in any specific SIEM query language. Instead, the intent is to share an approach to quickly and simply gain familiarity with essential languages that you might encounter as a threat hunter. My personal experience with cheat sheets is that they serve as a great way to familiarize myself with essential technologies and quickly understand the fundamentals.
 
 The key takeaway is that while cheat sheets provide a fantastic starting point and ongoing reference, they are a stepping stone to deeper understanding. By using them to grasp the core concepts and then diving into the official documentation, you can effectively build a strong foundation in any SIEM query language and enhance your capabilities as a threat hunter. Embrace cheat sheets as a tool to accelerate your learning and navigate the complex world of cybersecurity with greater confidence and efficiency.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 15.02.2025   | Added page | 

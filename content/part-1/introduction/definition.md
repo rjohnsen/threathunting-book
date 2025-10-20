@@ -9,10 +9,6 @@ tags:
     - definition
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 
-
 ## Introduction
 
 **If you inquire about "threat hunting," you are likely to encounter a wide range of interpretations, comparable to the multitude of stars in the night sky. One Security Operations Center (SOC) might claim to engage in threat hunting, yet upon closer examination, their activities may be confined to validating Indicators of Compromise (IOCs). Conversely, another SOC might describe their approach as centered around crafting detection rules informed by threat intelligence. In this article, I aim to provide a comprehensive explanation of threat hunting, distinguish it from detection engineering, elucidate its importance, explore various methodologies of threat hunting, and more. My primary objective is to establish a foundational framework for conducting effective threat hunts and to outline the essential knowledge needed to excel in this role.**
@@ -233,3 +229,9 @@ Resources and references
 * [Cyber Wardog Lab by Roberto Rodriguez](https://cyberwardog.blogspot.com/)
 * [10 Benefits of Threat Hunting](https://resources.infosecinstitute.com/topic/10-benefits-of-threat-hunting)
 * [Flavio Queiro on what Threat Hunting isn't](https://www.linkedin.com/posts/flavioqueiroz_threathunting-threatdetection-threatanalysis-activity-7207336024216133632-bdvv/?utm_source=share&utm_medium=member_desktop)
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 22.02.2025   | Improved formatting and revised wording | 

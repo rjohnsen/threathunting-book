@@ -5,10 +5,6 @@ draft: false
 weight: 3
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 
-
 {{% notice info %}}  
 This page serves as a template for manual Standard Operating Procedures (SOPs). Please modify as sees fit.
 {{% /notice %}}
@@ -285,7 +281,7 @@ Template starts below the line. Example of applied template follows template bel
 
 ---
 
-## 7. References
+## References
 
 - [MITRE ATT&CK T1566.001 - Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001)
 - [NIST 800-61 - Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
@@ -293,9 +289,11 @@ Template starts below the line. Example of applied template follows template bel
 
 ---
 
-## 8. Change Log
+## Revision
 
 | Date | Change Description | Updated By |
 |------|-------------------|------------|
 | 2024-10-05 | Initial version | SOC Team |
+| 2025-02-22 | Improved formatting and revised wording | 
 | 2025-10-05 | Added sandboxing details | SOC Lead |
+

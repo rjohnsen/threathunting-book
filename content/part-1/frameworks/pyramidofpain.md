@@ -8,10 +8,6 @@ tags:
 summary: ""
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-
 ## Introduction
 
 **The Pyramid of Pain is a conceptual model created by David J. Bianco that illustrates the relative difficulty and impact of detecting and responding to different types of indicators used in threat hunting and incident response. The model helps cybersecurity professionals understand the value of various types of indicators and how effectively they can disrupt adversary activities.**
@@ -101,3 +97,9 @@ Suppose an organization detects an ongoing attack. By leveraging the Pyramid of 
   - Network monitoring and analysis tools (e.g., Wireshark, Zeek)
 
 By applying the Pyramid of Pain model in threat hunting, organizations can prioritize their efforts to cause maximum disruption to adversaries, making it more challenging and costly for them to achieve their objectives.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 06.10.2024   | Improved formatting and wording | 

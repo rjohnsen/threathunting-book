@@ -9,11 +9,6 @@ tags:
     - structure
 ---
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025  | Added page |
-| 18.02.2025  | Updated page |
-
 ## Introduction
 
 **In today's cybersecurity landscape, many organizations rush to establish Security Operations Centers (SOC) and threat hunting capabilities without fully understanding the necessary groundwork. It's common to see businesses trying to jump directly into these advanced activities, only to find their efforts taking a solid nosedive since they lack the foundational components their efforts depend on. I've seen many lackluster implementations of SOC services – all bearing the same trademark: the lack of supporting layers.**
@@ -76,3 +71,10 @@ From my stance, Swannman's model is a good and straight forward depiction on wha
 Together, these models show that cybersecurity is a layered, progressive process - starting from basic security hygiene and moving toward sophisticated, proactive defenses like threat hunting. By thinking in terms of these two models, organizations can ensure that their security program grows in a structured, manageable way and is always prepared for the next wave of threats.
 
 Perhaps the most critical takeaway is this: this model serves as a strategic framework to prevent your incident management, SOC, and Threat Hunting efforts from devolving into a chaotic, ineffective state, where you’re forced to rebuild from the ground up. By following a structured progression, you significantly reduce the risk of missteps, ensuring that each phase of your security operations is built on solid foundations. Not only does this lead to a more resilient and adaptive defense posture, but it also creates an environment where your employees can thrive, as they work within a clear, well-supported framework that fosters growth and success.
+
+## Revision
+
+| Revised Date | Comment |
+| ------------ | ------- |
+| 22.02.2025  | Added page |
+| 18.02.2025  | Updated page |

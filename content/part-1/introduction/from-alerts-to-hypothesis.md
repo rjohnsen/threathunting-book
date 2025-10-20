@@ -12,11 +12,6 @@ tags:
 summary: ""
 ---
 
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 18.10.2025  | Roger Johnsen | Article added |
-
 ## Introduction 
 
 **This is the third part of my series on defining who the Threat Hunter is. In the previous chapter, we explored the hunter as a persona. The hunter is curious, methodical, and unwilling to accept the surface explanation of an event. This chapter continues that exploration and shows how mindset becomes method.**
@@ -193,3 +188,9 @@ graph LR
 ## Summary
 
 Threat hunting is the disciplined exploration of what lies beyond alerts. It grows out of the SOC’s analytical foundation but applies that reasoning to uncertainty. Its strength lies in structured curiosity, collaboration, and constant learning. The outcome is more than threat discovery. It is the gradual transformation of how an organization perceives itself. Everything from reactive monitoring to proactive understanding. SOC protects what is known. Threat hunting protects the knowledge itself. Together they embody the practical core of Threat Informed Defense.  
+
+## Revision
+
+|Revised Date | Author | Comment |
+| ----------- | ------ | ------- |
+| 18.10.2025  | Roger Johnsen | Article added |
