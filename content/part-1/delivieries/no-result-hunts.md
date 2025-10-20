@@ -4,6 +4,8 @@ date: 2024-11-03T09:48:57+01:00
 draft: false
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Let me kick of this chapter with a simple statement: "_threat hunts are valuable even when no threats are found_". In cybersecurity, and in life in general, any action yielding no answers are deemed pointless and valueless. My personal opinion - few things are worthless, we just have to find the value of things. The absence of tangible results doesn't mean failure - quite the contrary. In threat hunting, the absence of findings doesn’t mean the hunt was a failure - in fact, it can be an indicator of a strong security posture. Proactive threat hunting remains one of the best ways to stay ahead of adversaries, regardless of what you uncover. In this chapter we are going to have a look on why a hunt that yields no findings is still a critical part of your security program and how to use these results to refine future hunts for even greater effectiveness.**

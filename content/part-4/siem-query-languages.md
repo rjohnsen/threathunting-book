@@ -5,6 +5,8 @@ draft: false
 weight: 3
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Early in my SOC and threat hunting career, I was thrown into the deep end with IBM QRadar. As I recall, the handover was abrupt: "This is our SIEM, QRadar. It's yours now – good luck!" Faced with an unfamiliar system, I quickly realized the immense value of cheat sheets, a concept I'd come to rely on throughout my journey.**

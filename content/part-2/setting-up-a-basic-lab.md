@@ -5,6 +5,8 @@ weight: 1
 draft: false
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, to just name a few:**

@@ -5,6 +5,8 @@ draft: false
 weight: 4
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 {{% notice tip %}}
 This article references event IDs found in the Microsoft Windows Security Logs. A general tip when handling any type of log is to pay close attention to which specific log you are investigating. This is important because, depending on the context, an event ID or any other identifier might be logged in different places or mean different things, leading to potential misinterpretation if not carefully understood.
 {{% /notice %}}

@@ -9,6 +9,8 @@ tags:
     - structure
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **In today's cybersecurity landscape, many organizations rush to establish Security Operations Centers (SOC) and threat hunting capabilities without fully understanding the necessary groundwork. It's common to see businesses trying to jump directly into these advanced activities, only to find their efforts taking a solid nosedive since they lack the foundational components their efforts depend on. I've seen many lackluster implementations of SOC services – all bearing the same trademark: the lack of supporting layers.**

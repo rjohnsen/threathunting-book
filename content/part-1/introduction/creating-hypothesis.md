@@ -9,6 +9,8 @@ tags:
     - hypothesis
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Effective threat hunting relies on more than just intuition and experience. It demands a structured approach to identifying and investigating potential threats. At the heart of this process is the formulation of well-crafted hypotheses that guide us to uncover hidden adversaries within the networks. A strong hypothesis serves as a focal point, directing efforts towards specific attack vectors, tactics, techniques, and procedures (TTPs) that are relevant to an organization’s unique threat landscape.**

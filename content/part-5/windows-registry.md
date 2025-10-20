@@ -12,6 +12,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **The Windows Registry is a critical component of the Windows operating system that serves as a hierarchical database for storing system configurations, application settings, and user preferences. For threat hunters, it is an invaluable resource for detecting malicious activity, identifying persistence mechanisms, and analyzing system behavior. Attackers frequently leverage the registry to hide malware, execute fileless attacks, or establish persistence by modifying startup keys and injecting code into registry values. By monitoring and analyzing registry changes, threat hunters can uncover unauthorized modifications, trace the origins of security breaches, and mitigate stealthy threats such as Advanced Persistent Threats (APTs). Its vast scope of information makes the registry a goldmine for forensic investigations and proactive threat detection.**

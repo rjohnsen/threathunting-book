@@ -11,6 +11,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Understanding PowerShell flags and commonly abused cmdlets is vital for threat hunters as attackers frequently exploit them for stealthy execution, data exfiltration, and persistence. This knowledge helps identify malicious activity, map it to known attack techniques like those in MITRE ATT&CK, and strengthen detection and response strategies against threats effectively.**

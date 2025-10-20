@@ -11,6 +11,8 @@ tags:
     - program
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.**

@@ -12,6 +12,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction 
 
 **This is the third part of my series on defining who the Threat Hunter is. In the previous chapter, we explored the hunter as a persona. The hunter is curious, methodical, and unwilling to accept the surface explanation of an event. This chapter continues that exploration and shows how mindset becomes method.**

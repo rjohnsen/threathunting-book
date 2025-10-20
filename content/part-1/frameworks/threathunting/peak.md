@@ -9,6 +9,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Threat hunting is not just an activity; it’s a mindset. As defenders mature, they evolve from passively reviewing alerts to actively pursuing adversaries. The PEAK Threat Hunting Framework, developed by Splunk’s SURGe team (David Bianco, Dr. Ryan Fetterman, and Sydney Marrone), offers a comprehensive approach that helps hunters structure their methodology while driving measurable improvements.** 

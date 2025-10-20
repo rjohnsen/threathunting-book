@@ -5,6 +5,8 @@ weight: 2
 draft: false
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events—a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.**

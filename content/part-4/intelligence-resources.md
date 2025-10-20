@@ -5,6 +5,8 @@ draft: false
 weight: 1
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **As threat hunters, access to reliable threat intelligence resources is crucial in our defenses against malicious activities. The following table is my personal and curated list of valuable tools and platforms that security professionals can leverage for various purposes, including threat detection, analysis, and response.**

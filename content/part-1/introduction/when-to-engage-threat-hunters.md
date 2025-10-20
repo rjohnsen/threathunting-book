@@ -11,6 +11,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Effective cybersecurity is more than just responding to alerts. It requires proactive efforts to detect and neutralize threats before they escalate and cause havoc. Threat hunting plays a crucial role in this approach, working alongside traditional alerting, triage, incident response (IR), digital forensics and incident response (DFIR). This article explores when to engage in threat hunting versus other security processes, how it fits into the broader incident response lifecycle, and real-world scenarios where proactive threat hunting can uncover hidden risks before detections trigger those pesky alerts.**

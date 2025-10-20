@@ -13,6 +13,8 @@ tags:
 summary: ""
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Sysmon event IDs are a powerful tool for threat hunters, offering detailed insights into system activities that help detect malicious behavior and abnormal patterns. By capturing critical events like process creation, network connections, and registry modifications, Sysmon enhances visibility into Windows environments. These logs are crucial for identifying persistence mechanisms, lateral movement, and other tactics outlined in the MITRE ATT&CK framework. By leveraging Sysmon event IDs, security teams can proactively hunt for threats, investigate incidents, and strengthen their organization's security posture.**

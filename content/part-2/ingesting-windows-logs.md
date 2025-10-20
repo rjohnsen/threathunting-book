@@ -5,6 +5,8 @@ draft: false
 weight: 4
 ---
 
+__Author:__ _Roger C.B. Johnsen_
+
 ## Introduction
 
 **Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviors, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analyzing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defenses.**
