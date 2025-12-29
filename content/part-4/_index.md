@@ -1,7 +1,7 @@
 +++
 title = "Tips and tricks"
 date = 2024-07-07T11:47:52+02:00
-weight = 5
+weight = 8
 chapter = false
 +++
 
