@@ -11,7 +11,7 @@ Threat-Informed Defense (TID) is not a framework, a control set, or a maturity m
 
 In a threat-informed organization, threats are not used to generate urgency or justify tooling. They are used to **prioritize effort, validate assumptions, and force learning**.
 
-Defense is treated as a system — one that can be observed, challenged, and improved.
+Defense is treated as a system - one that can be observed, challenged, and improved.
 
 ---
 
@@ -39,7 +39,7 @@ This implies several uncomfortable but necessary truths:
 - claimed coverage must be validated  
 - detections must be exercised, not assumed  
 - blind spots must be acknowledged, not rationalized  
-- failure is expected — and documented  
+- failure is expected - and documented  
 
 Threats are not predictions. They are probes.
 
@@ -76,7 +76,7 @@ It is measured by whether it changes one or more of the following:
 * what is tested
 * how response is shaped
 
-Threat intelligence that only informs awareness, but does not alter defensive posture, remains informational — not operational.
+Threat intelligence that only informs awareness, but does not alter defensive posture, remains informational - not operational.
 
 This book treats intelligence as something that is both **consumed and produced**.
 

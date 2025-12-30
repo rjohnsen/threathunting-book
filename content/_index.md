@@ -8,7 +8,7 @@ draft: false
 
 ---
 
-Huntbook is an opinionated, experience-driven notebook on how threat hunting and detection **actually work** in real organizations — not how vendors, frameworks, or certifications claim they do.
+Huntbook is an opinionated, experience-driven notebook on how threat hunting and detection **actually work** in real organizations - not how vendors, frameworks, or certifications claim they do.
 
 It is written from the perspective of someone who has:
 
@@ -16,7 +16,7 @@ It is written from the perspective of someone who has:
 * worked hands-on as a threat hunter
 * lived with the downstream consequences of poor logging, unclear ownership, and performative security
 
-The focus is not on tools, queries, or checklists in isolation, but on **mental models, trade-offs, and failure modes** that determine whether threat hunting creates value — or merely the illusion of it.
+The focus is not on tools, queries, or checklists in isolation, but on **mental models, trade-offs, and failure modes** that determine whether threat hunting creates value - or merely the illusion of it.
 
 Huntbook treats threat hunting as a practice embedded in a larger system:
 assets, telemetry, detection engineering, incident response, and organizational reality.
@@ -31,14 +31,14 @@ Huntbook is **not**:
 * a catalog of MITRE ATT&CK techniques
 * a dump of KQL or EDR queries
 * a vendor-neutral brochure
-* a “how to become a threat hunter fast” guide
+* a "how to become a threat hunter fast" guide
 * a blog
 
 Huntbook **is**:
 
 * a field manual for thinking in hypotheses, visibility, and verification
 * a critique of common security shortcuts
-* a place where threat hunting is framed as validation of detection capability — not IOC chasing
+* a place where threat hunting is framed as validation of detection capability - not IOC chasing
 * a living body of notes, essays, and field observations meant to be challenged and refined
 
 Some sections may be uncomfortable. That is intentional.
@@ -59,8 +59,7 @@ If you are looking for polished promises or universal answers, this is not the r
 ---
 
 **Roger C. B. Johnsen**
-Threat Hunter · Security Architect
-Author of Huntbook
+Threat Hunter · Security Architect · Author of Huntbook
 
 ---
 

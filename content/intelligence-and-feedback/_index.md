@@ -7,51 +7,42 @@ weight: 4
 
 ## Why intelligence needs feedback
 
-Threat intelligence is frequently treated as an input:
-something that arrives, is consumed, and then archived.
+Threat intelligence is frequently treated as an input: something that arrives, is consumed, and then archived.
 
-In a Threat-Informed Defense model, intelligence only has value
-if it **participates in a feedback loop**.
+In a Threat-Informed Defense model, intelligence only has value if it **participates in a feedback loop**.
 
-Without feedback, intelligence becomes static.
-With feedback, it becomes corrective.
+Without feedback, intelligence becomes static. With feedback, it becomes corrective.
 
-This section describes how intelligence is used, produced,
-and validated through defensive work.
+This section describes how intelligence is used, produced, and validated through defensive work.
 
 ---
 
 ## Intelligence as a function, not a feed
 
-In Huntbook, threat intelligence is not defined by format, source, or branding.
-It is defined by **what it enables**.
+In Huntbook, threat intelligence is not defined by format, source, or branding. It is defined by **what it enables**.
 
 Threat intelligence is useful when it:
+
 - informs prioritization
 - shapes hypotheses
 - challenges assumptions
 - changes defensive posture
 
-If it does not influence decisions or action,
-it remains informational rather than operational.
+If it does not influence decisions or action, it remains informational rather than operational.
 
 ---
 
 ## Consumption is only half the picture
 
-Most organizations focus heavily on consuming intelligence:
-reports, feeds, advisories, and briefings.
-
-Consumption alone does not make a defense threat-informed.
+Most organizations focus heavily on consuming intelligence: reports, feeds, advisories, and briefings. Consumption alone does not make a defense threat-informed.
 
 External intelligence should:
+
 - suggest which adversary behaviors matter
 - inform what should be tested
 - highlight where blind spots may exist
 
-But it cannot, on its own, confirm whether defenses work.
-
-That confirmation must come from inside the system.
+But it cannot, on its own, confirm whether defenses work. That confirmation must come from inside the system.
 
 ---
 
@@ -60,14 +51,14 @@ That confirmation must come from inside the system.
 A functioning defensive system produces intelligence as a byproduct of its work.
 
 Examples include:
+
 - threat hunting results
 - detection failures
 - incident timelines
 - observed absence of expected signals
 - validation of assumed coverage
 
-This internally produced intelligence is often more actionable
-than external reporting, because it is grounded in the local environment.
+This internally produced intelligence is often more actionable than external reporting, because it is grounded in the local environment.
 
 Ignoring it breaks the feedback loop.
 
@@ -75,9 +66,7 @@ Ignoring it breaks the feedback loop.
 
 ## Feedback turns observation into learning
 
-Feedback is the mechanism that turns intelligence into improvement.
-
-A simplified pattern looks like this:
+Feedback is the mechanism that turns intelligence into improvement. A simplified pattern looks like this:
 
 - intelligence informs a hypothesis
 - the hypothesis is tested through hunting or validation
@@ -91,16 +80,14 @@ Without this cycle, intelligence accumulates but defense stagnates.
 
 ## Where feedback commonly breaks
 
-Feedback loops often fail silently.
+Feedback loops often fail silently. Common failure points include:
 
-Common failure points include:
 - hunting results that are documented but never acted on
 - incidents that close without changing detections
 - vulnerability findings that never influence prioritization
 - intelligence briefings that do not translate into hypotheses
 
-When feedback breaks, organizations compensate with activity:
-more alerts, more tools, more reports.
+When feedback breaks, organizations compensate with activity: more alerts, more tools, more reports.
 
 None of these restore learning.
 
@@ -108,10 +95,10 @@ None of these restore learning.
 
 ## Intelligence without authority
 
-Producing intelligence is not enough.
-There must be **authority to act on it**.
+Producing intelligence is not enough. There must be **authority to act on it**.
 
 If teams can identify gaps but cannot:
+
 - change logging
 - adjust detections
 - influence architecture
@@ -119,8 +106,7 @@ If teams can identify gaps but cannot:
 
 then intelligence becomes observational rather than corrective.
 
-In such environments, frustration is often misattributed to
-people or skill gaps, when the root cause is structural.
+In such environments, frustration is often misattributed to people or skill gaps, when the root cause is structural.
 
 ---
 

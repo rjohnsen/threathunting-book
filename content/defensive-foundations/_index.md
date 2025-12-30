@@ -7,11 +7,7 @@ weight: 3
 
 ## Why foundations matter
 
-Advanced defensive practices fail surprisingly often, not because they are flawed, but because the environment they are introduced into cannot support them.
-
-Threat hunting, detection engineering, and incident response all assume that certain foundational conditions exist. When those conditions are missing or unstable, defensive work becomes reactive, noisy, or performative.
-
-Defensive Foundations describe the **preconditions that make learning, validation, and correction possible**.
+Advanced defensive practices fail surprisingly often, not because they are flawed, but because the environment they are introduced into cannot support them. Threat hunting, detection engineering, and incident response all assume that certain foundational conditions exist. When those conditions are missing or unstable, defensive work becomes reactive, noisy, or performative. Defensive Foundations describe the **preconditions that make learning, validation, and correction possible**.
 
 ---
 
@@ -41,8 +37,7 @@ They do need to exist.
 
 You cannot defend what you do not know exists.
 
-Asset awareness does not mean a static CMDB or an inventory spreadsheet.
-It means having a **reasonable and current understanding** of:
+Asset awareness does not mean a static CMDB or an inventory spreadsheet. It means having a **reasonable and current understanding** of:
 
 - systems and services in scope
 - ownership and responsibility
@@ -66,16 +61,16 @@ Logs that are:
 - delayed
 - or unaudited
 
-do not create visibility — they create confidence without evidence.
+do not create visibility - they create confidence without evidence.
 
 Usable telemetry is:
+
 - intentional
 - understood
 - verified
 - and owned
 
-If you cannot explain *why* a log exists, *what* it should show, and *how* you would
-notice if it stopped working, it is not a foundation. It is decoration.
+If you cannot explain *why* a log exists, *what* it should show, and *how* you would notice if it stopped working, it is not a foundation. It is decoration.
 
 ---
 
@@ -84,15 +79,13 @@ notice if it stopped working, it is not a foundation. It is decoration.
 Detections that belong to “the system” belong to no one.
 
 A defensive organization must know:
+
 - who owns a detection
 - what it is meant to catch
 - how it is validated
 - when it should be changed or removed
 
-Ownership enables learning.
-Without it, alerts accumulate, quality degrades, and failures repeat.
-
-Detection ownership is a structural property, not a SOC maturity level.
+Ownership enables learning. Without it, alerts accumulate, quality degrades, and failures repeat. Detection ownership is a structural property, not a SOC maturity level.
 
 ---
 
@@ -101,13 +94,13 @@ Detection ownership is a structural property, not a SOC maturity level.
 Threat-Informed Defense assumes that observations can lead to correction.
 
 This requires:
+
 - the authority to adjust logging
 - the ability to modify detections
 - the capacity to change architecture or configuration
 - feedback paths between teams
 
-If defensive teams can observe problems but not act on them, the system cannot learn.
-In such environments, hunting produces insight — but no improvement.
+If defensive teams can observe problems but not act on them, the system cannot learn. In such environments, hunting produces insight - but no improvement.
 
 ---
 
@@ -129,9 +122,7 @@ flowchart TB
     F --> T
 ````
 
-When lower layers are weak, higher layers absorb the strain.
-This is often misinterpreted as analyst failure or skill gaps,
-when the real cause is architectural.
+When lower layers are weak, higher layers absorb the strain. This is often misinterpreted as analyst failure or skill gaps, when the real cause is architectural.
 
 ---
 
@@ -156,11 +147,11 @@ Foundations are rarely fully present or fully absent.
 
 The relevant question is not:
 
-> “Are we mature enough?”
+> "Are we mature enough?"
 
 but:
 
-> “Which assumptions currently hold, and which do not?”
+> "Which assumptions currently hold, and which do not?"
 
 Being explicit about missing foundations allows teams to:
 
@@ -169,7 +160,7 @@ Being explicit about missing foundations allows teams to:
 * explain constraints honestly
 * reduce frustration and blame
 
-Saying “not yet” is often the most threat-informed decision available.
+Saying "not yet" is often the most threat-informed decision available.
 
 ---
 
@@ -183,8 +174,8 @@ By treating foundations as first-class concerns, defensive work becomes:
 * more honest
 * and more correctable
 
-Everything that follows in Huntbook — threat hunting, intelligence handling,
-and response — assumes that these foundations are understood.
+Everything that follows in Huntbook - threat hunting, intelligence handling,
+and response - assumes that these foundations are understood.
 
 ---
 
