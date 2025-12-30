@@ -1,4 +1,13 @@
-/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v17 ============ */
+/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v18 ============ */
+/* Changes vs v17:
+   - Remove "banner/card" look on H1 (book-like chapter title)
+   - Reduce ALL CAPS usage (H2/H3 sentence case)
+   - Reduce gold usage (gold = structure, not decoration)
+   - Sidebar feels more like TOC (less hover “UI”, calmer)
+   - Tables + blockquotes more “print/book” friendly on screen
+   - Print: enforce white table headers with black text (no “unreadable”),
+            mermaid never overlaps (block formatting + scaling), no box border
+*/
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap");
 
 :root {
@@ -6,8 +15,10 @@
   --slate-0:#f6f8f9; --slate-1:#e9eef1; --slate-2:#d6dee3;
   --slate-3:#b8c4cb; --slate-4:#8fa1ab; --slate-5:#718792;
   --slate-6:#44565e; --slate-7:#2f3f46;
+
   --gold:#b49a6c;
-  --ink:#0f1417; --ink-muted:#4b5960;
+  --ink:#0f1417;
+  --ink-muted:#4b5960;
 
   /* Core */
   --bg:#ffffff;
@@ -16,6 +27,8 @@
   --text-muted:var(--ink-muted);
   --brand:var(--slate-7);
   --brand-strong:#1b2227;
+
+  /* Accent: use sparingly (structure only) */
   --accent:var(--gold);
   --focus:var(--accent);
 
@@ -46,6 +59,7 @@
   --table-head-bg:#e9eef1;
   --table-head-text:#233038;
   --table-row-alt:#f6f9fb;
+
   --note-bg:#eef3f6;
   --note-bd:#c9d6df;
   --warn-bg:#f3ead9;
@@ -56,69 +70,75 @@
 
 /* ============ BASE ============ */
 html, body { background:var(--bg); color:var(--text); }
-body {
+body{
   font:17px/var(--lh) "Atkinson Hyperlegible","Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-#body {
+#body{
   max-width:var(--maxw);
   margin:0 var(--gutter) 0 calc(var(--sidebar-w) + var(--gutter));
   padding:2.2rem 0;
   background:var(--surface);
 }
 @media (max-width:1100px){ #body{ margin:0 var(--gutter); } }
+
 a{ color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
 a:hover{ color:var(--brand-strong); }
-:where(a,button,input,select,textarea,[role="button"],.clickable):focus {
+
+:where(a,button,input,select,textarea,[role="button"],.clickable):focus{
   outline:2px solid var(--focus);
   outline-offset:2px;
   box-shadow:0 0 0 2px color-mix(in oklab,var(--focus),transparent 70%);
 }
 
-/* ============ HEADINGS ============ */
-h1 {
+/* ============ HEADINGS (book-like) ============ */
+/* Kill the banner. Make H1 feel like a chapter title in a book. */
+h1{
   font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
-  letter-spacing:.045em;
   font-weight:900;
-  display:block;
-  width:100%;
-  margin:2rem 0 1.2rem;
-  padding:.9rem 0;
-  text-align:center;
-  text-transform:uppercase;
-  background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);
-  color:#fff !important;
-  text-shadow:0 2px 5px rgba(0,0,0,.35);
-  border-radius:10px;
-  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  letter-spacing:.02em;
+  text-transform:none;              /* no ALL CAPS */
+  text-align:left;                 /* book, not hero banner */
+  margin:0 0 1.1rem;
+  padding:0 0 .45rem;
+  color:var(--ink) !important;
+  background:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  border-bottom:1px solid var(--slate-2);
 }
-h2 {
+
+/* H2/H3: stop shouting. */
+h2{
   font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   color:var(--text);
   font-weight:850;
-  text-transform:uppercase;
-  letter-spacing:.035em;
-  margin-top:2rem;
+  text-transform:none;              /* no ALL CAPS */
+  letter-spacing:.01em;
+  margin-top:2.0rem;
   position:relative;
 }
-h2::after {
+h2::after{
   content:"";
   display:block;
-  height:4px;
-  width:96px;
+  height:3px;
+  width:72px;                      /* smaller = calmer */
   margin-top:.45rem;
   background:var(--accent);
   border-radius:2px;
+  opacity:.85;
 }
-h3 {
+
+h3{
   font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   color:var(--text);
   font-weight:750;
-  margin-top:1.4rem;
+  margin-top:1.35rem;
 }
 
-/* ============ SIDEBAR ============ */
-#R-sidebar, #sidebar {
+/* ============ SIDEBAR (TOC feel, calmer) ============ */
+#R-sidebar, #sidebar{
   position:fixed;
   inset:0 auto 0 0;
   width:var(--sidebar-w);
@@ -130,13 +150,14 @@ h3 {
   scrollbar-width:thin;
   scrollbar-color:#3d474c transparent;
 }
-#R-sidebar #header-wrapper, #sidebar #header-wrapper {
+
+#R-sidebar #header-wrapper, #sidebar #header-wrapper{
   background-color:var(--sidebar-bg) !important;
-  border-bottom:1px solid var(--sidebar-border) !important;
+  border-bottom:1px solid rgba(255,255,255,0.06) !important;
   padding:2rem 0 1.2rem !important;
   text-align:center;
 }
-#R-sidebar #header-wrapper img, #sidebar #header-wrapper img {
+#R-sidebar #header-wrapper img, #sidebar #header-wrapper img{
   display:block;
   margin:0 auto;
   max-width:200px;
@@ -146,8 +167,8 @@ h3 {
   box-shadow:0 0 18px rgba(0,0,0,.45);
 }
 
-/* Sidebar search + links */
-#R-sidebar input[type="search"], #sidebar input[type="search"] {
+/* Search */
+#R-sidebar input[type="search"], #sidebar input[type="search"]{
   background:#0d1419;
   color:var(--sidebar-text);
   border:1px solid #1d2a30;
@@ -155,89 +176,109 @@ h3 {
   margin:0.4rem 1rem;
 }
 #R-sidebar input[type="search"]::placeholder,
-#sidebar input[type="search"]::placeholder { color:#94a1a9; }
-#R-sidebar a, #sidebar a {
+#sidebar input[type="search"]::placeholder{ color:#94a1a9; }
+
+/* Links: less “button”, more TOC */
+#R-sidebar a, #sidebar a{
   display:block;
   color:var(--sidebar-text) !important;
   text-decoration:none !important;
-  padding:0.6rem 1rem;
+  padding:0.55rem 1rem;
   border-left:3px solid transparent;
-  border-radius:0 8px 8px 0;
-  font:600 .98rem/1.2 "Inter","Atkinson Hyperlegible",system-ui,sans-serif;
-  transition:all .18s ease;
+  border-radius:0;                 /* TOC-like */
+  font:600 .98rem/1.25 "Inter","Atkinson Hyperlegible",system-ui,sans-serif;
+  transition:background-color .12s ease, color .12s ease, border-color .12s ease;
 }
-#R-sidebar a:hover, #sidebar a:hover {
-  background:rgba(255,255,255,.08);
+#R-sidebar a:hover, #sidebar a:hover{
+  background:rgba(255,255,255,.05); /* calmer hover */
   color:var(--sidebar-text-hover) !important;
-  border-left-color:var(--sidebar-active-bg);
+  border-left-color:rgba(180,154,108,.55);
 }
-#R-sidebar li.active > a, #sidebar li.active > a {
+#R-sidebar li.active > a, #sidebar li.active > a{
   background:var(--sidebar-active-bg) !important;
   color:var(--sidebar-active-text) !important;
   border-left:4px solid #e6d5ab !important;
   font-weight:800;
 }
-#R-sidebar strong, #sidebar strong {
+
+/* Section headings inside sidebar: keep, but less aggressive */
+#R-sidebar strong, #sidebar strong{
   color:#f2f2f2 !important;
   font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.03em;
+  text-transform:none;             /* no ALL CAPS */
+  letter-spacing:.01em;
 }
-#R-sidebar hr, #sidebar hr {
+
+#R-sidebar hr, #sidebar hr{
   border:none;
   border-top:1px solid rgba(255,255,255,0.08);
   margin:.8rem 1rem;
   opacity:.6;
 }
-#R-sidebar::-webkit-scrollbar { width:6px; }
-#R-sidebar::-webkit-scrollbar-thumb { background:#475056; border-radius:6px; }
-@media (max-width:1100px) {
-  #R-sidebar { position:relative; width:100%; height:auto; border-right:none !important; border-bottom:1px solid var(--sidebar-border) !important; }
+#R-sidebar::-webkit-scrollbar{ width:6px; }
+#R-sidebar::-webkit-scrollbar-thumb{ background:#475056; border-radius:6px; }
+
+@media (max-width:1100px){
+  #R-sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    border-right:none !important;
+    border-bottom:1px solid var(--sidebar-border) !important;
+  }
   #body{ margin:0 var(--gutter); }
 }
 
 /* ============ CONTENT ELEMENTS ============ */
-.tags,.page-tags,.meta,.post-tags {
+.tags,.page-tags,.meta,.post-tags{
   display:flex; flex-wrap:wrap; gap:.5rem; margin:.6rem 0 1rem;
 }
-.tags a,.page-tags a,.meta a,.post-tags a,.badge,.label {
+.tags a,.page-tags a,.meta a,.post-tags a,.badge,.label{
   display:inline-flex; align-items:center; gap:.4rem;
   padding:.32rem .72rem .32rem .9rem;
   border-radius:999px;
   font:800 .86rem/1 "Inter",system-ui,sans-serif;
-  background:linear-gradient(180deg, color-mix(in oklab,var(--accent) 18%, #fff) 0%, #ffffff 100%);
-  border:1px solid color-mix(in oklab,var(--accent) 55%, #dcdcdc);
+  background:linear-gradient(180deg, color-mix(in oklab,var(--accent) 14%, #fff) 0%, #ffffff 100%);
+  border:1px solid color-mix(in oklab,var(--accent) 45%, #dcdcdc);
   color:#1b2227 !important;
   text-decoration:none;
   box-shadow:0 1px 2px rgba(0,0,0,.06);
 }
 
-/* Tables */
-table { width:100%; border-collapse:collapse; border:1px solid var(--slate-2); border-radius:10px; overflow:hidden; }
-thead th {
+/* Tables (screen) */
+table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--slate-2);
+  border-radius:10px;
+  overflow:hidden;
+}
+thead th{
   background:var(--table-head-bg);
   color:var(--table-head-text);
   text-transform:uppercase;
   font:800 .88rem/1.2 "Inter",system-ui,sans-serif;
   letter-spacing:.03em;
 }
-th,td { padding:.75rem 1rem; border:1px solid var(--slate-2); }
+th,td{ padding:.75rem 1rem; border:1px solid var(--slate-2); }
 tbody tr:nth-child(even){ background:var(--table-row-alt); }
 
 /* Code */
-pre, code { font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace; }
-pre:not(.mermaid), pre:not(.mermaid) code {
+pre, code{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+pre:not(.mermaid), pre:not(.mermaid) code{
   background:var(--code-bg)!important;
   color:var(--code-text);
 }
-pre:not(.mermaid) {
+pre:not(.mermaid){
   border:1px solid var(--code-border);
   border-radius:10px;
   padding:1rem 1.2rem;
   overflow:auto;
   box-shadow:0 6px 16px rgba(0,0,0,.14);
 }
-code:not(pre code) {
+code:not(pre code){
   background:var(--code-bg);
   color:var(--code-text);
   padding:.15rem .4rem;
@@ -247,34 +288,51 @@ code:not(pre code) {
 }
 
 /* Blockquotes + Notices + Buttons */
-blockquote {
-  margin:1.6rem 0;
-  padding:1.1rem 1.4rem 1.1rem 2rem;
-  background:#f8fafb;
+/* More book-like: remove “card” feel; keep a clean left rule. */
+blockquote{
+  margin:1.4rem 0;
+  padding:0.2rem 0 0.2rem 1.1rem;
+  background:transparent;
   color:var(--text);
-  border-left:6px solid var(--brand);
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  border-left:3px solid var(--brand);  /* not gold */
+  border-radius:0;
+  box-shadow:none;
   font-style:italic;
   font-weight:600;
 }
-.notice { border-radius:12px; padding:.9rem 1rem; box-shadow:0 1px 2px rgba(0,0,0,.06); }
-.notice.note { background:var(--note-bg); border-left:4px solid var(--note-bd); }
-.notice.warning { background:var(--warn-bg); border-left:4px solid var(--warn-bd); }
-.notice.error { background:var(--err-bg); border-left:4px solid var(--err-bd); }
-.btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-radius:14px; font:800 .88rem/1 "Inter",system-ui,sans-serif; text-transform:uppercase; border:0; cursor:pointer; transition:.15s; }
-.btn-primary { background:var(--brand); color:#f7f7f7; }
-.btn-primary:hover { background:var(--brand-strong); }
+
+/* Notices: keep subtle, avoid heavy tint */
+.notice{
+  border-radius:10px;
+  padding:.9rem 1rem;
+  box-shadow:none;
+  border:1px solid var(--slate-2);
+  background:#fff;
+}
+.notice.note{ border-left:4px solid var(--note-bd); background:var(--note-bg); }
+.notice.warning{ border-left:4px solid var(--warn-bd); background:var(--warn-bg); }
+.notice.error{ border-left:4px solid var(--err-bd); background:var(--err-bg); }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem 1rem;
+  border-radius:14px;
+  font:800 .88rem/1 "Inter",system-ui,sans-serif;
+  text-transform:uppercase;
+  border:0; cursor:pointer; transition:.15s;
+}
+.btn-primary{ background:var(--brand); color:#f7f7f7; }
+.btn-primary:hover{ background:var(--brand-strong); }
 
 /* Figures */
-img, svg { max-width:100%; height:auto; }
-figure { margin:1.4rem 0; }
-figcaption { color:var(--text-muted); font-size:.92rem; margin-top:.4rem; text-align:center; }
+img, svg{ max-width:100%; height:auto; }
+figure{ margin:1.4rem 0; }
+figcaption{ color:var(--text-muted); font-size:.92rem; margin-top:.4rem; text-align:center; }
 
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important; } }
 
-/* ===================== MERMAID – Unified Huntbook Style ===================== */
+/* ===================== MERMAID – Unified Huntbook Style (screen) ===================== */
 .mermaid,
 pre.mermaid,
 code.language-mermaid,
@@ -285,6 +343,7 @@ pre code.language-mermaid{
   border-radius:10px !important;
   padding:.8rem 1rem !important;
   box-shadow:0 2px 8px rgba(0,0,0,.06);
+  overflow:auto;
 }
 .mermaid svg{ background:#ffffff !important; }
 
@@ -360,40 +419,127 @@ pre code.language-mermaid{
     print-color-adjust:exact;
   }
 
-  h1,h2,h3{ color:#000 !important; background:none !important; box-shadow:none !important; text-shadow:none !important; }
-  h1{ border-bottom:1px solid #000; padding-bottom:4px; }
-
+  /* Hide UI */
   #R-sidebar,#sidebar,nav,header,footer,.btn{ display:none !important; }
-  #body{ margin:0 auto !important; padding:0 !important; max-width:100% !important; }
 
-  .mermaid, pre.mermaid{
-    position:relative !important;
-    display:block !important;
-    break-inside:avoid !important;
-    page-break-inside:avoid !important;
-    margin:8mm 0 !important;
-    overflow:visible !important;
-    border:1px solid #000 !important;
-    box-shadow:none !important;
+  /* Content full width */
+  #body{
+    margin:0 auto !important;
+    padding:0 !important;
+    max-width:100% !important;
   }
+
+  /* Headings: plain */
+  h1,h2,h3{
+    color:#000 !important;
+    background:none !important;
+    box-shadow:none !important;
+    text-shadow:none !important;
+  }
+  h1{
+    border-bottom:1px solid #000;
+    padding-bottom:4px;
+    margin:0 0 10px 0;
+  }
+  h2::after{ background:#000 !important; width:50px; height:2px; }
+
+  /* Quotes: no tint, no gold */
+  blockquote{
+    background:transparent !important;
+    border-left:3px solid #000 !important;
+    padding:0 0 0 10px !important;
+    margin:10px 0 !important;
+  }
+
+  /* Tables: FIX readability.
+     In print we do WHITE header with BLACK text (readable on all printers).
+     (If you want the inverse—black header + white text—tell me, but this is the safest.) */
+  table{
+    width:100% !important;
+    border-collapse:collapse !important;
+    border:1px solid #000 !important;
+    page-break-inside:avoid !important;
+    break-inside:avoid !important;
+  }
+  thead th{
+    background:#fff !important;
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
+    border:1px solid #000 !important;
+    font-size:9.5px !important;
+    font-weight:800 !important;
+  }
+  th,td{
+    border:1px solid #000 !important;
+    padding:6px 7px !important;
+    vertical-align:top !important;
+    font-size:9.5px !important;
+  }
+
+  /* Mermaid: no box border, never overlap, scale to page */
+  .mermaid, pre.mermaid, code.language-mermaid, pre code.language-mermaid{
+    display:block !important;
+    clear:both !important;
+    position:static !important;
+    float:none !important;
+    margin:10mm 0 !important;
+    padding:0 !important;
+    border:0 !important;           /* no border in print */
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+    page-break-inside:avoid !important;
+    break-inside:avoid !important;
+  }
+
   .mermaid svg{
     display:block !important;
     width:100% !important;
-    height:auto !important;
     max-width:180mm !important;
+    height:auto !important;
     max-height:240mm !important;
-    transform-origin:top left !important;
+    transform:none !important;     /* avoid skewed transforms */
   }
 
-  .mermaid .node text,
-  .mermaid .node .label,
-  .mermaid .node tspan,
-  .mermaid .node foreignObject,
-  .mermaid .node foreignObject *{
-    font-size:12px !important;
+  /* Mermaid B/W */
+  .mermaid .node rect,
+  .mermaid .node polygon,
+  .mermaid .node circle,
+  .mermaid .node ellipse,
+  .mermaid .cluster rect{
+    fill:#fff !important;
+    stroke:#000 !important;
+    stroke-width:1.2px !important;
   }
 
-  .mermaid.pagebreak-after{ page-break-after:always !important; }
-  .mermaid.print-compact svg{ transform:scale(0.85) !important; }
-  .mermaid + *{ clear:both !important; }
+  .mermaid text,
+  .mermaid tspan,
+  .mermaid .edgeLabel text,
+  .mermaid .edgeLabel tspan,
+  .mermaid foreignObject,
+  .mermaid foreignObject *{
+    fill:#000 !important;
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
+    font-size:9.5px !important;
+    font-weight:700 !important;
+  }
+
+  .mermaid .edgePath path,
+  .mermaid .relation,
+  .mermaid .messageLine0,
+  .mermaid .messageLine1{
+    stroke:#000 !important;
+    stroke-width:1.2px !important;
+  }
+  .mermaid .marker{ fill:#000 !important; stroke:#000 !important; }
+
+  .mermaid .edgeLabel rect{
+    fill:#fff !important;
+    stroke:#000 !important;
+    stroke-width:1px !important;
+  }
+
+  /* Avoid accidental “min-width” rules affecting print */
+  pre.mermaid svg{ min-width:0 !important; }
 }
