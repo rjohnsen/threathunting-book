@@ -1,0 +1,36 @@
+{{/* ============================
+   Huntbook – Content Footer
+   Academic citation friendly
+   ============================ */}}
+
+{{ $author  := site.Params.huntbookAuthor | default site.Params.author | default "Roger Johnsen" }}
+{{ $book    := site.Params.huntbookTitle  | default "Huntbook" }}
+{{ $edition := site.Params.huntbookEdition | default "2026.1" }}
+{{ $title   := .Title }}
+{{ $url     := .Permalink }}
+
+{{ $year := (.Lastmod | time.Format "2006") }}
+{{ $last := (.Lastmod | time.Format ":date_long") }}
+
+<hr>
+
+<div class="hb-cite">
+
+  <div class="hb-cite-title">Cite this page</div>
+
+  <div class="hb-cite-block">
+    {{ $author }} ({{ $year }}).
+    <em>{{ $book }}: {{ $title }}</em>.
+    Edition {{ $edition }}.
+    Available at: {{ $url }}
+    (Accessed: {{ now | time.Format ":date_long" }}).
+  </div>
+
+  <div class="hb-cite-meta">
+    <div><strong>Edition:</strong> {{ $edition }}</div>
+    <div><strong>Author:</strong> {{ $author }}</div>
+    <div><strong>Last updated:</strong> {{ $last }}</div>
+    <div><strong>URL:</strong> <a href="{{ $url }}">{{ $url }}</a></div>
+  </div>
+
+</div>

@@ -1,6 +1,6 @@
 baseURL = 'https://huntbook.predefender.com/'
 languageCode = 'en-us'
-title = 'Predefender Threat Hunt Book'
+title = 'Huntbook by Predefender'
 theme = 'hugo-theme-relearn' 
 
 [params]
@@ -44,3 +44,6 @@ theme = 'hugo-theme-relearn'
   custom_css = ["css/foo.css", "css/bar.css"]
   # Change the title separator. Default to "::".
   titleSeparator = "-"
+  huntbookAuthor = "Roger Johnsen"
+  huntbookTitle  = "Huntbook"
+  huntbookEdition = "2026.1"
