@@ -5,7 +5,7 @@ draft: false
 weight: 3
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+
 
 ## Introduction
 

@@ -5,7 +5,7 @@ draft: false
 weight: 3
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+
 
 {{% notice info %}}  
 This page serves as a template for manual Standard Operating Procedures (SOPs). Please modify as sees fit.

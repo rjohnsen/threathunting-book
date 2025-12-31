@@ -4,7 +4,7 @@ date: 2024-11-03T09:48:57+01:00
 draft: false
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+
 
 ## Introduction
 

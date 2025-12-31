@@ -9,7 +9,7 @@ tags:
     - hypothesis
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+
 
 ## Introduction
 
