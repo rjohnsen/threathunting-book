@@ -3,11 +3,6 @@ title: "Analyst Mindset"
 date: 2024-07-14T12:47:36+02:00
 draft: false
 weight: 3
-tags:
-    - introduction
-    - foundation
-    - mindset
-    - thinking
 ---
 
 

@@ -2,8 +2,6 @@
 title: "Threathunting Frameworks"
 date: 2025-04-20T10:42:55+02:00
 draft: false
-tags:
-    - framework
 ---
 
 |Revised Date | Author | Comment |

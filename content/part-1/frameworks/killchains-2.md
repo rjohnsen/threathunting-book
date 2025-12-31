@@ -3,8 +3,6 @@ title: "Unified Kill Chain"
 date: 2024-07-07T11:39:29+02:00
 draft: false
 weight: 3
-tags:
-    - framework
 summary: ""
 ---
 

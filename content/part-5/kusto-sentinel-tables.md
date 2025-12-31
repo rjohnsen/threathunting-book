@@ -4,12 +4,6 @@ date: 2025-03-21T20:10:35+01:00
 draft: false
 hidden: false
 weight: 2
-tags:
-    - cheatsheet
-    - kusto
-    - tables
-    - windows
-    - microsoft
 summary: ""
 ---
 

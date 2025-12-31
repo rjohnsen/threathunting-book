@@ -3,10 +3,6 @@ title: "Definition"
 date: 2024-06-22T11:37:31+02:00
 draft: false
 weight: 1
-tags:
-    - introduction
-    - foundation
-    - definition
 ---
 
 

@@ -4,8 +4,6 @@ date: 2025-04-13T10:45:06+02:00
 draft: false
 hidden: false
 pweight: 9
-tags:
-    - framework
 summary: ""
 ---
 

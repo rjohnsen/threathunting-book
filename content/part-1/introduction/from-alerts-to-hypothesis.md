@@ -4,11 +4,6 @@ date: 2025-10-18T17:10:11+02:00
 draft: false
 hidden: false
 weight: 5
-tags:
-    - introduction
-    - foundation
-    - mindset
-    - persona
 summary: ""
 ---
 

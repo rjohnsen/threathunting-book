@@ -5,9 +5,6 @@ date: 2025-03-29T15:04:35+01:00
 draft: false
 hidden: false
 weight: 9
-tags:
-    - introduction
-    - foundation
 summary: ""
 ---
 
