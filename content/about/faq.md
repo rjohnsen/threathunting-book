@@ -5,39 +5,140 @@ draft: false
 weight: 2
 ---
 
-**Is this content really free? Are there any limitations?**
+## Frequently Asked Questions
 
-Yes, I offer this as an effort to educate people for free. However, there are some fair usage limitations:
+### **Is this content really free? Are there any limitations?**
 
-- Give credit where credit is due. Proper attribution must be provided whenever content from this book is used.
-- No monetization. You are not permitted to monetize this content or profit directly from the book itself.
-- No modifications without consent. You may not alter or adapt the content for any purpose without prior approval.
-- Written consent required for external use. If you wish to include any content from this book in another book, website, or publication, you must obtain written consent from the author. These consents will be posted on this site for transparency. 
-- Respect intellectual property. You may not claim any part of the content as your own or misrepresent the original author.
-- Non-commercial use only. Content is provided for educational and non-commercial purposes only.
-- Content from this online publication should not be hosted on internal company platforms such as wikis or similar resources. It is intended to remain publicly accessible to everyone.
-- Exceptions may apply. Contact the author for further details (see contact page).
+Yes. Huntbook is published as a **free educational resource**.
+However, "free" does not mean unowned or unrestricted.
 
-**Will there be a PDF or e-book version of this threat hunting book?**
+Use of the content is governed by fair and reasonable limitations, summarized below and explained in more detail further down this page.
 
-Due to the nature of the project, formats other than HTML/Markdown are not possible because of the release schedule I am following. Currently, I spend my weekends converting my notes for this project, so new content is added as I go. Having a static format such as PDF or e-book would be cumbersome and would quickly become outdated. However, once the content reaches a more mature and stable state, other formats may become possible.
+---
 
-**Can I make my own PDF or e-book?**
+### **Can I reference Huntbook in academic work (university, college, exams)?**
 
-For personal use. For further details see question "_Is this content really free?_" above.
+Yes.
 
-**Will you offer night mode theme for this book**
+Huntbook is explicitly intended to be **used and cited in academic contexts**, including:
 
-Most likely no. 
+* university and college assignments
+* exams
+* bachelor and master theses
+* technical reports
 
-**Do you offer classes, courses, interviews?**
+When referencing Huntbook, always include:
 
-Yes. Feel free to contact me. 
+* Author
+* Title
+* Edition
+* URL
+* Access date
 
-## Revision
+A recommended citation format is provided at the bottom of each page.
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.04.2025   | Updated page | 
+---
 
+### **Will there be a PDF or e-book version?**
 
+Not at this stage.
+
+Huntbook is developed continuously and published incrementally. Maintaining static formats such as PDF or e-books would introduce significant overhead and would quickly result in outdated material.
+
+Once the content reaches a more stable and mature state, additional formats may be considered.
+
+---
+
+### **Can I create my own PDF or e-book version?**
+
+* **For personal use:** Yes
+* **For sharing or distribution:** No, without prior consent
+
+For details, see the **License Summary** below.
+
+---
+
+### **Can I use Huntbook content in teaching or training?**
+
+* **Non-commercial, public education:**
+  Usually acceptable with proper attribution.
+
+* **Commercial courses, paid programs, or internal corporate training:**
+  Require prior written approval.
+
+If you are unsure where your use falls, ask first.
+
+---
+
+### **Will there be a night mode or dark theme?**
+
+Unlikely.
+
+Huntbook prioritizes structured reading and long-form study. Additional themes increase maintenance complexity and reduce editorial focus. For now, effort is directed toward content.
+
+---
+
+### **Do you offer talks, courses, or interviews?**
+
+Yes.
+
+Contact details are available on the site.
+Please be specific in your request.
+
+> Messages framed as *"I want to pick your brain"* will be ignored.
+
+---
+
+## License Summary (Plain Language)
+
+Huntbook is published as a **free, educational resource**.
+You are welcome to read it, reference it, and learn from it - within the boundaries outlined below.
+
+### You are allowed to
+
+* Read and use the content for learning and study
+* Reference and cite Huntbook in academic work
+* Create personal copies (e.g. local PDFs for your own use)
+* Link to Huntbook pages freely
+
+### You must
+
+* Give proper attribution when quoting or referencing content
+* Preserve authorship and context
+* Reference the edition and URL in academic use
+
+### You are not allowed to
+
+* Monetize the content or use it for commercial gain
+* Republish, mirror, or host the content on other websites or internal company platforms
+* Modify, adapt, or remix the content without prior written consent
+* Present the content as your own or obscure its origin
+
+### Teaching and training
+
+* **Non-commercial, public education:** Generally acceptable with attribution
+* **Commercial courses, internal corporate training, or paid programs:**
+  Require prior approval
+
+### Distribution
+
+* **Personal use:** Allowed
+* **Sharing, redistribution, or inclusion in other publications:**
+  Requires written consent from the author
+
+### Exceptions
+
+Some uses may fall into grey areas.
+If you are unsure whether your intended use is acceptable, contact the author.
+
+---
+
+### **In short**
+
+Huntbook is:
+
+* **Free to read**
+* **Free to cite**
+* **Not free to resell, repackage, or appropriate**
+
+The goal is openness **without loss of authorship, context, or public accessibility**.

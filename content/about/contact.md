@@ -5,21 +5,24 @@ draft: false
 weight: 3
 ---
 
-> I'm usually available for a chat. Just scan the QR code below if you are using Whatsapp. Quick note: I won't accept voice or video calls without prior notification. [Please keep in mind, don't just say hi - state your question at the very start!](https://nohello.net/en/)
+I am available for written inquiries related to Huntbook, threat hunting, and associated topics. To ensure efficient communication, please **state your question or purpose clearly in your initial message**. Messages that consist only of greetings (e.g. “Hi”) without context may be ignored.
 
-![Whatsapp](/images/whatsapp-qr.png)
+Voice or video calls are **not accepted** unless agreed upon in advance.
 
-## Other
+---
 
-| Media | Username / link |
-| -- | -- |
-| E-mail | [contact@predefender.com](mailto:contact@predefender.com) |
-| BlueSky | [rjohnsen.bsky.social](https://bsky.app/profile/rjohnsen.bsky.social)|
-| LinkedIn | [Public profile](https://www.linkedin.com/in/rogerjohnsen) | 
-| Mastodon | [@rjohnsen](https://social.vivaldi.net/@rjohnsen) |
+## Contact channels
 
-## Revision
+| Medium       | Details                                                               |
+| ------------ | --------------------------------------------------------------------- |
+| **E-mail**   | [contact@predefender.com](mailto:contact@predefender.com)             |
+| **BlueSky**  | [rjohnsen.bsky.social](https://bsky.app/profile/rjohnsen.bsky.social) |
+| **LinkedIn** | [Public profile](https://www.linkedin.com/in/rogerjohnsen)            |
+| **Mastodon** | [@rjohnsen](https://social.vivaldi.net/@rjohnsen)                     |
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 28.02.2025   | Updated contact information. Added e-mail | 
+---
+
+### Notes
+
+* Academic inquiries, collaboration proposals, and speaking requests are welcome.
+* Be specific. Context up front saves time for both parties.
