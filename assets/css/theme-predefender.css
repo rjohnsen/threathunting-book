@@ -1,12 +1,11 @@
-/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v18 ============ */
-/* Changes vs v17:
-   - Remove "banner/card" look on H1 (book-like chapter title)
-   - Reduce ALL CAPS usage (H2/H3 sentence case)
-   - Reduce gold usage (gold = structure, not decoration)
-   - Sidebar feels more like TOC (less hover “UI”, calmer)
-   - Tables + blockquotes more “print/book” friendly on screen
-   - Print: enforce white table headers with black text (no “unreadable”),
-            mermaid never overlaps (block formatting + scaling), no box border
+/* ============ HUNTBOOK SLATE+GOLD – CLEAN READER THEME v19 ============ */
+/* Goals
+   - Screen: book-like, calm, professional. White is softened (not “hospital white”).
+   - Sidebar: dark TOC stays.
+   - Topbar: visually integrated (no “floating white strip”).
+   - Tables: readable and consistent.
+   - Mermaid: consistent on screen; in print: B/W, fits page, never overlaps.
+   - Print: plain white background + black text, tables with BLACK headers + WHITE header text.
 */
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap");
 
@@ -20,15 +19,18 @@
   --ink:#0f1417;
   --ink-muted:#4b5960;
 
-  /* Core */
-  --bg:#ffffff;
-  --surface:#ffffff;
+  /* Screen surfaces */
+  --bg:#f2f3f4;              /* soft paper around the page */
+  --surface:#fbfbfc;         /* page itself (soft white) */
+  --surface-elev:#ffffff;    /* subtle elevation for tables/mermaid if needed */
+
+  /* Text */
   --text:var(--ink);
   --text-muted:var(--ink-muted);
+
+  /* Brand */
   --brand:var(--slate-7);
   --brand-strong:#1b2227;
-
-  /* Accent: use sparingly (structure only) */
   --accent:var(--gold);
   --focus:var(--accent);
 
@@ -46,14 +48,14 @@
   --sidebar-active-bg:#b49a6c;
   --sidebar-active-text:#111c22;
 
+  /* Topbar */
+  --topbar-bg:var(--surface);
+  --topbar-border:rgba(15,20,23,.10);
+
   /* Code */
   --code-bg:#1b2326;
   --code-border:#2c3538;
   --code-text:#f2f5f5;
-  --code-keyword:#ffb86c;
-  --code-func:#61afef;
-  --code-string:#98c379;
-  --code-comment:#5c6b6e;
 
   /* Tables + notices */
   --table-head-bg:#e9eef1;
@@ -74,11 +76,13 @@ body{
   font:17px/var(--lh) "Atkinson Hyperlegible","Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
+
+/* Main content column */
 #body{
   max-width:var(--maxw);
   margin:0 var(--gutter) 0 calc(var(--sidebar-w) + var(--gutter));
   padding:2.2rem 0;
-  background:var(--surface);
+  background:transparent; /* page background handled on inner content */
 }
 @media (max-width:1100px){ #body{ margin:0 var(--gutter); } }
 
@@ -91,14 +95,32 @@ a:hover{ color:var(--brand-strong); }
   box-shadow:0 0 0 2px color-mix(in oklab,var(--focus),transparent 70%);
 }
 
+/* Give the content a “paper page” feel without harsh white */
+#body > *:first-child,
+#body article,
+#body .content,
+#body .default {
+  background:var(--surface);
+  border-radius:12px;
+  padding:1.8rem 1.8rem;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  border:1px solid rgba(15,20,23,.06);
+}
+
+/* In Relearn, content is often directly inside main container.
+   Keep it robust without overfitting a single selector. */
+#R-body, #R-body-inner, main#R-body-inner, #content, .main, article {
+  background:transparent;
+  color:var(--text);
+}
+
 /* ============ HEADINGS (book-like) ============ */
-/* Kill the banner. Make H1 feel like a chapter title in a book. */
 h1{
   font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   font-weight:900;
   letter-spacing:.02em;
-  text-transform:none;              /* no ALL CAPS */
-  text-align:left;                 /* book, not hero banner */
+  text-transform:none;
+  text-align:left;
   margin:0 0 1.1rem;
   padding:0 0 .45rem;
   color:var(--ink) !important;
@@ -109,12 +131,11 @@ h1{
   border-bottom:1px solid var(--slate-2);
 }
 
-/* H2/H3: stop shouting. */
 h2{
   font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   color:var(--text);
   font-weight:850;
-  text-transform:none;              /* no ALL CAPS */
+  text-transform:none;
   letter-spacing:.01em;
   margin-top:2.0rem;
   position:relative;
@@ -123,7 +144,7 @@ h2::after{
   content:"";
   display:block;
   height:3px;
-  width:72px;                      /* smaller = calmer */
+  width:72px;
   margin-top:.45rem;
   background:var(--accent);
   border-radius:2px;
@@ -137,7 +158,59 @@ h3{
   margin-top:1.35rem;
 }
 
-/* ============ SIDEBAR (TOC feel, calmer) ============ */
+/* ============ TOPBAR (make it fit) ============ */
+/* The issue in your screenshot is usually: topbar keeps theme-default white + borders/shadows
+   while content is “book page”. We pin it to the same surface and align spacing. */
+#R-topbar,
+.topbar,
+#topbar{
+  background:var(--topbar-bg) !important;
+  color:var(--ink) !important;
+  border-bottom:1px solid var(--topbar-border) !important;
+  box-shadow:none !important;
+}
+
+/* Ensure wrapper inherits */
+#R-topbar .topbar-wrapper,
+#R-topbar .topbar-content,
+#R-topbar .topbar-content-wrapper{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+/* Breadcrumbs/control colors */
+#R-topbar .topbar-breadcrumbs,
+#R-topbar .topbar-breadcrumbs a{
+  color:var(--ink) !important;
+  opacity:.9;
+}
+#R-topbar .topbar-control{
+  background:transparent !important;
+  border:1px solid rgba(15,20,23,.12) !important;
+  border-radius:10px;
+  color:var(--ink) !important;
+}
+#R-topbar .topbar-control:hover{
+  border-color:color-mix(in oklab, var(--accent) 50%, rgba(15,20,23,.12)) !important;
+}
+
+/* Dropdowns/flyouts should look like the same “paper” */
+#R-topbar .topbar-content{
+  background:var(--surface) !important;
+  border:1px solid rgba(15,20,23,.10) !important;
+  border-radius:12px !important;
+  box-shadow:0 12px 26px rgba(0,0,0,.12) !important;
+}
+#R-topbar .topbar-content a{ color:var(--brand) !important; }
+
+/* Give the content page a little breathing room under the topbar (if sticky) */
+#R-topbar + #R-body,
+#R-topbar + #R-body-inner,
+#R-topbar + main{
+  padding-top:0.75rem;
+}
+
+/* ============ SIDEBAR (TOC feel) ============ */
 #R-sidebar, #sidebar{
   position:fixed;
   inset:0 auto 0 0;
@@ -167,7 +240,6 @@ h3{
   box-shadow:0 0 18px rgba(0,0,0,.45);
 }
 
-/* Search */
 #R-sidebar input[type="search"], #sidebar input[type="search"]{
   background:#0d1419;
   color:var(--sidebar-text);
@@ -178,19 +250,18 @@ h3{
 #R-sidebar input[type="search"]::placeholder,
 #sidebar input[type="search"]::placeholder{ color:#94a1a9; }
 
-/* Links: less “button”, more TOC */
 #R-sidebar a, #sidebar a{
   display:block;
   color:var(--sidebar-text) !important;
   text-decoration:none !important;
   padding:0.55rem 1rem;
   border-left:3px solid transparent;
-  border-radius:0;                 /* TOC-like */
+  border-radius:0;
   font:600 .98rem/1.25 "Inter","Atkinson Hyperlegible",system-ui,sans-serif;
   transition:background-color .12s ease, color .12s ease, border-color .12s ease;
 }
 #R-sidebar a:hover, #sidebar a:hover{
-  background:rgba(255,255,255,.05); /* calmer hover */
+  background:rgba(255,255,255,.05);
   color:var(--sidebar-text-hover) !important;
   border-left-color:rgba(180,154,108,.55);
 }
@@ -201,11 +272,10 @@ h3{
   font-weight:800;
 }
 
-/* Section headings inside sidebar: keep, but less aggressive */
 #R-sidebar strong, #sidebar strong{
   color:#f2f2f2 !important;
   font-weight:700;
-  text-transform:none;             /* no ALL CAPS */
+  text-transform:none;
   letter-spacing:.01em;
 }
 
@@ -252,6 +322,7 @@ table{
   border:1px solid var(--slate-2);
   border-radius:10px;
   overflow:hidden;
+  background:var(--surface-elev);
 }
 thead th{
   background:var(--table-head-bg);
@@ -287,32 +358,32 @@ code:not(pre code){
   font-size:.92em;
 }
 
-/* Blockquotes + Notices + Buttons */
-/* More book-like: remove “card” feel; keep a clean left rule. */
+/* Blockquotes: book-like */
 blockquote{
   margin:1.4rem 0;
   padding:0.2rem 0 0.2rem 1.1rem;
   background:transparent;
   color:var(--text);
-  border-left:3px solid var(--brand);  /* not gold */
+  border-left:3px solid var(--brand);
   border-radius:0;
   box-shadow:none;
   font-style:italic;
   font-weight:600;
 }
 
-/* Notices: keep subtle, avoid heavy tint */
+/* Notices */
 .notice{
   border-radius:10px;
   padding:.9rem 1rem;
   box-shadow:none;
   border:1px solid var(--slate-2);
-  background:#fff;
+  background:var(--surface-elev);
 }
 .notice.note{ border-left:4px solid var(--note-bd); background:var(--note-bg); }
 .notice.warning{ border-left:4px solid var(--warn-bd); background:var(--warn-bg); }
 .notice.error{ border-left:4px solid var(--err-bd); background:var(--err-bg); }
 
+/* Buttons */
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
   padding:.6rem 1rem;
@@ -337,7 +408,7 @@ figcaption{ color:var(--text-muted); font-size:.92rem; margin-top:.4rem; text-al
 pre.mermaid,
 code.language-mermaid,
 pre code.language-mermaid{
-  background:#ffffff !important;
+  background:var(--surface-elev) !important;
   color:var(--ink) !important;
   border:1px solid #d6dee3 !important;
   border-radius:10px !important;
@@ -345,7 +416,7 @@ pre code.language-mermaid{
   box-shadow:0 2px 8px rgba(0,0,0,.06);
   overflow:auto;
 }
-.mermaid svg{ background:#ffffff !important; }
+.mermaid svg{ background:var(--surface-elev) !important; }
 
 /* Nodes */
 .mermaid .node rect,
@@ -387,7 +458,7 @@ pre code.language-mermaid{
 
 /* Edge labels */
 .mermaid .edgeLabel rect{
-  fill:#ffffff !important;
+  fill:var(--surface-elev) !important;
   stroke:#b49a6c !important;
   stroke-width:1px !important;
 }
@@ -420,13 +491,27 @@ pre code.language-mermaid{
   }
 
   /* Hide UI */
-  #R-sidebar,#sidebar,nav,header,footer,.btn{ display:none !important; }
+  #R-sidebar,#sidebar,nav,header,footer,.btn,
+  #R-topbar,.topbar,#topbar{
+    display:none !important;
+  }
 
-  /* Content full width */
+  /* Content full width + remove page boxing */
   #body{
     margin:0 auto !important;
     padding:0 !important;
     max-width:100% !important;
+    background:transparent !important;
+  }
+  #body > *:first-child,
+  #body article,
+  #body .content,
+  #body .default{
+    background:#fff !important;
+    border:0 !important;
+    border-radius:0 !important;
+    padding:0 !important;
+    box-shadow:none !important;
   }
 
   /* Headings: plain */
@@ -443,7 +528,7 @@ pre code.language-mermaid{
   }
   h2::after{ background:#000 !important; width:50px; height:2px; }
 
-  /* Quotes: no tint, no gold */
+  /* Quotes: no tint */
   blockquote{
     background:transparent !important;
     border-left:3px solid #000 !important;
@@ -451,20 +536,19 @@ pre code.language-mermaid{
     margin:10px 0 !important;
   }
 
-  /* Tables: FIX readability.
-     In print we do WHITE header with BLACK text (readable on all printers).
-     (If you want the inverse—black header + white text—tell me, but this is the safest.) */
+  /* Tables: BLACK header + WHITE text (readable) */
   table{
     width:100% !important;
     border-collapse:collapse !important;
     border:1px solid #000 !important;
     page-break-inside:avoid !important;
     break-inside:avoid !important;
+    background:#fff !important;
   }
   thead th{
-    background:#fff !important;
-    color:#000 !important;
-    -webkit-text-fill-color:#000 !important;
+    background:#000 !important;
+    color:#fff !important;
+    -webkit-text-fill-color:#fff !important;
     border:1px solid #000 !important;
     font-size:9.5px !important;
     font-weight:800 !important;
@@ -474,6 +558,8 @@ pre code.language-mermaid{
     padding:6px 7px !important;
     vertical-align:top !important;
     font-size:9.5px !important;
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
   }
 
   /* Mermaid: no box border, never overlap, scale to page */
@@ -484,21 +570,20 @@ pre code.language-mermaid{
     float:none !important;
     margin:10mm 0 !important;
     padding:0 !important;
-    border:0 !important;           /* no border in print */
+    border:0 !important;
     background:transparent !important;
     box-shadow:none !important;
     overflow:visible !important;
     page-break-inside:avoid !important;
     break-inside:avoid !important;
   }
-
   .mermaid svg{
     display:block !important;
     width:100% !important;
     max-width:180mm !important;
     height:auto !important;
     max-height:240mm !important;
-    transform:none !important;     /* avoid skewed transforms */
+    transform:none !important;
   }
 
   /* Mermaid B/W */
@@ -540,6 +625,167 @@ pre code.language-mermaid{
     stroke-width:1px !important;
   }
 
-  /* Avoid accidental “min-width” rules affecting print */
   pre.mermaid svg{ min-width:0 !important; }
+}
+
+/* ============ ADMONITIONS (Relearn boxes) ============ */
+/* Base container */
+.box.notices{
+  position:relative;
+  margin:1.6rem 0;
+  padding:0;
+  border-radius:10px;
+  background:#f8fafb;
+  border:1px solid var(--slate-2);
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+  overflow:hidden;
+}
+
+/* Left rule */
+.box.notices::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:8px;
+  background:var(--slate-4);
+}
+
+/* Label row */
+.box.notices .box-label{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.55rem 1rem .45rem 1.2rem;
+  font-family:"Inter","Atkinson Hyperlegible",system-ui,sans-serif;
+  font-weight:900;
+  font-size:.78rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:1px solid var(--slate-2);
+}
+
+/* Icon: keep subtle */
+.box.notices .box-label i{
+  opacity:.65;
+  font-size:.9em;
+}
+
+/* Content */
+.box.notices .box-content{
+  padding:.9rem 1.2rem 1rem 1.2rem;
+  color:var(--text);
+}
+.box.notices .box-content p{
+  margin:.4rem 0;
+}
+
+/* ============ TYPE VARIANTS ============ */
+
+/* NOTE – neutral guidance */
+.box.notices.cstyle.note{
+  background:#f4f7f9;
+}
+.box.notices.cstyle.note::before{
+  background:var(--slate-5);
+}
+
+/* INFO – factual, explanatory */
+.box.notices.cstyle.info{
+  background:#eef4f7;
+}
+.box.notices.cstyle.info::before{
+  background:#6f8fa3;
+}
+
+/* TIP – practical advice (gold accent, restrained) */
+.box.notices.cstyle.tip{
+  background:#f6f2ea;
+}
+.box.notices.cstyle.tip::before{
+  background:var(--gold);
+}
+
+/* IMPORTANT – architectural / conceptual */
+.box.notices.cstyle.important{
+  background:#f3f5f6;
+}
+.box.notices.cstyle.important::before{
+  background:#44565e;
+}
+.box.notices.cstyle.important .box-label{
+  font-weight:950;
+}
+
+/* CAUTION – risk, but not failure */
+.box.notices.cstyle.caution{
+  background:#fbf4e8;
+}
+.box.notices.cstyle.caution::before{
+  background:#c28a2c;
+}
+
+/* WARNING – something will break */
+.box.notices.cstyle.warning{
+  background:#f8eaea;
+}
+.box.notices.cstyle.warning::before{
+  background:#b54834;
+}
+.box.notices.cstyle.warning .box-label{
+  color:#5a1e14;
+}
+
+/* Typography inside boxes */
+.box.notices strong{
+  font-weight:800;
+}
+.box.notices code{
+  background:rgba(15,20,23,.06);
+  border:1px solid rgba(15,20,23,.10);
+  border-radius:5px;
+  padding:.12rem .35rem;
+}
+
+/* ============ PRINT ============ */
+@media print{
+  .box.notices{
+    background:#fff !important;
+    box-shadow:none !important;
+    border:1px solid #000 !important;
+  }
+  .box.notices::before{
+    background:#000 !important;
+    width:4px !important;
+  }
+  .box.notices .box-label{
+    color:#000 !important;
+    border-bottom:1px solid #000 !important;
+  }
+}
+
+.hb-cite {
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  opacity: 0.95;
+}
+
+.hb-cite-title {
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.hb-cite-block {
+  padding: .75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: .75rem;
+}
+
+.hb-cite-meta {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.hb-cite-meta div {
+  margin: .15rem 0;
 }
