@@ -185,8 +185,3 @@ _Check HTTPS settings and credentials_
 
 Check if you need to update connection data in shippers to use HTTPS. Change or add credentials accordingly.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

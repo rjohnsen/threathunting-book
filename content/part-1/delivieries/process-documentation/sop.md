@@ -291,11 +291,3 @@ Template starts below the line. Example of applied template follows template bel
 
 ---
 
-## Revision
-
-| Date | Change Description | Updated By |
-|------|-------------------|------------|
-| 2024-10-05 | Initial version | SOC Team |
-| 2025-02-22 | Improved formatting and revised wording | 
-| 2025-10-05 | Added sandboxing details | SOC Lead |
-

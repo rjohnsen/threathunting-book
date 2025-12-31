@@ -91,8 +91,3 @@ graph TD
 
 These are just two examples, think of all the possibilities that opens up when you start joining resultsets on other pivotpoints to connect data! 
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |

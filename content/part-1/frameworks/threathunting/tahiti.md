@@ -77,8 +77,3 @@ The TaHiTI Threat Hunting Framework offers a valuable and collaborative approach
 | [FI-ISAC (Dutch financial institutes information sharing community)](https://www.betaalvereniging.nl/en/payments-in-the-netherlands/security/fi-isac/) | Information about the Dutch financial sector's information sharing community. |
 | [MaGMa for threat hunting](https://www.betaalvereniging.nl/wp-content/uploads/FI-ISAC-use-case-framework-verkorte-versie.pdf) | A tool developed to support the documentation and structuring of threat hunting activities within the TaHiTI framework (specific public documentation may vary). |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 20.04.2025  | Roger Johnsen | Article rewritten |

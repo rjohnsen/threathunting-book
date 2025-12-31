@@ -157,8 +157,3 @@ In threat hunting, the MITRE ATT&CK framework can be used to identify and mitiga
 
 By leveraging the MITRE ATT&CK framework, organizations can enhance their threat hunting capabilities, gain a detailed understanding of attacker tactics and techniques, and implement comprehensive defense strategies to protect against sophisticated cyber threats.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

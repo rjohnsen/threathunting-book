@@ -192,8 +192,3 @@ Using SMART (Specific, Measurable, Achievable, Relevant, Time-Bound) criteria ca
 10. [Doran, G. T. (1981). “There’s a S.M.A.R.T. Way to Write Management’s Goals and Objectives.” *Management Review*, 70(11), 35-36.](https://www.jstor.org/stable/40604294)
 11. [McCarthy, J. (2016). “Hypothesis in Research.” *Research Methods*.](https://www.researchgate.net/publication/316250109_Hypothesis_in_Research)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 02.11.2024   | Added page | 

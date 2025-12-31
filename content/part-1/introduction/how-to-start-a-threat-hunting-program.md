@@ -108,8 +108,3 @@ By following these steps, I think you can lay a solid foundation for a threat hu
 - [Threat Hunting: Analyzing Security Events](https://www.microsoft.com/security/blog/2020/06/16/threat-hunting-analyzing-security-events/)
 - [Open Threat Hunting Framework](https://www.openthreat.hunting)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 26.10.2024   | Added page | 

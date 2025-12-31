@@ -203,8 +203,3 @@ This article isn't designed to make you an overnight expert in any specific SIEM
 
 The key takeaway is that while cheat sheets provide a fantastic starting point and ongoing reference, they are a stepping stone to deeper understanding. By using them to grasp the core concepts and then diving into the official documentation, you can effectively build a strong foundation in any SIEM query language and enhance your capabilities as a threat hunter. Embrace cheat sheets as a tool to accelerate your learning and navigate the complex world of cybersecurity with greater confidence and efficiency.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 15.02.2025   | Added page | 

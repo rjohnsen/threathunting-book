@@ -71,9 +71,3 @@ Got it! Here’s the table you requested in the format you’ve provided, with e
 | [ATT&CK Use Cases with MaGMa!](https://medium.com/adarma-tech-blog/att-ck-use-cases-with-magma-3a5c83775d86) | ATT&CK Use Cases with MaGMa! |
 | [SOC-CMM MaGMa UCF - Tools for effective Cyber Defense](https://www.first.org/resources/papers/amsterdam2019/2019.04.03-SOC-CMM-MaGMa-FIRST.pdf) | Presentation   |
 
-## Revision
-
-| Revised | Author         | Comment        |
-| ------- | -------------- | -------------- |
-| 20.04.2025 | Roger Johnsen  | Article rewritten  |
-

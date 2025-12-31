@@ -191,8 +191,3 @@ graph LR
 
 Threat hunting is the disciplined exploration of what lies beyond alerts. It grows out of the SOC’s analytical foundation but applies that reasoning to uncertainty. Its strength lies in structured curiosity, collaboration, and constant learning. The outcome is more than threat discovery. It is the gradual transformation of how an organization perceives itself. Everything from reactive monitoring to proactive understanding. SOC protects what is known. Threat hunting protects the knowledge itself. Together they embody the practical core of Threat Informed Defense.  
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 18.10.2025  | Roger Johnsen | Article added |

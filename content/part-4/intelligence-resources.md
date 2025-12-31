@@ -51,8 +51,3 @@ Many of these resources offers API's, or HTTP GET query arguments. If you know p
 | [Wigle](https://wigle.net/) | A platform for searching and mapping open Wi-Fi networks globally, useful for researchers and security professionals analyzing wireless vulnerabilities. |
 | [Zoomeye](https://www.zoomeye.org/) | A search engine for internet-connected devices, offering insights into their configurations and vulnerabilities, assisting in threat research. |
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 27.10.2024   | Added page | 

@@ -130,8 +130,3 @@ Throughout my time in the SOC, I have developed several versions of this templat
 - [Wiktionary - Sitrep Definition](https://en.wiktionary.org/wiki/sitrep)
 - [Persimmon Group - Situation Report (SITREP) Template](https://thepersimmongroup.com/situation-report-sitrep-template/)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 13.10.2024   | Page added | 

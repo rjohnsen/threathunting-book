@@ -53,8 +53,3 @@ summary: ""
 | `Where-Object`          | Filters objects in the pipeline. May be used in scripts to obfuscate data collection.                   | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
 
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |

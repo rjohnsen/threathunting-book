@@ -100,8 +100,3 @@ Suppose an organization detects an ongoing attack. By leveraging the Pyramid of 
 
 By applying the Pyramid of Pain model in threat hunting, organizations can prioritize their efforts to cause maximum disruption to adversaries, making it more challenging and costly for them to achieve their objectives.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

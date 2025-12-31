@@ -317,8 +317,3 @@ directplaysrvr  47624/udp                           #Direct Play Server
 | -------- | ----------- |
 | [IANA Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) | Comprehensive live over ports |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 16.03.2025  | Roger Johnsen | Article added |

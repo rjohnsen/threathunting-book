@@ -102,8 +102,3 @@ Threat hunting serves as a crucial component of a mature cybersecurity strategy.
 | [SANS Threat Hunting & Incident Response Summit](https://www.sans.org/cyber-security-training-events/threat-hunting-summit/) | Industry best practices and case studies |
 | [Open Threat Hunting Frameworks](https://www.threathunting.net/) | Resources and methodologies for proactive security |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 29.03.2025  | Roger Johnsen | Article added |

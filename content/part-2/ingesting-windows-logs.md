@@ -144,8 +144,3 @@ If we go back to __"Discover"__, we can now see that our __"Index alias"__ is av
 
 ![Manage dashboard 6](/images/winlogbeat-discovery.png)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

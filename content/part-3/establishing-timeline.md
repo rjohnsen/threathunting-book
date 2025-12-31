@@ -99,8 +99,3 @@ Overall, timelines significantly enhance the effectiveness of threat-hunting eff
 
 Additionally, timelines are crucial for training and awareness. For instance, in our example, the threat hunter discovered that a simple phishing email triggered the attack. By tracing the timeline, we could see how that initial email led to a chain of events resulting in data loss for the customer, illustrating the importance of understanding the full scope of an attack for both prevention and education.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

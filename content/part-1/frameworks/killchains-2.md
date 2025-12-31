@@ -126,8 +126,3 @@ By leveraging the Unified Kill Chain, organizations can systematically enhance t
   - Network monitoring tools
   - Security information and event management (SIEM) systems
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

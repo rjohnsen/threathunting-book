@@ -83,8 +83,3 @@ Hypothesis-driven threat hunting is a strategic and focused approach to detectin
 3. [Leveraging Threat Intelligence for Effective Threat Hunting](https://www.exabeam.com/information-security/threat-hunting/)
 4. [How to Use Hypothesis-Driven Threat Hunting](https://www.crowdstrike.com/blog/hypothesis-driven-threat-hunting/)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

@@ -264,8 +264,3 @@ If we go back to __"Discover"__, we can now see that our __"Index alias"__ is av
 
 ![Manage dashboard 6](/images/manage-dashboard-6.png)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Script rewritten and content updated accordingly | 

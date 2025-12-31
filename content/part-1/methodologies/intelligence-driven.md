@@ -86,8 +86,3 @@ Intelligence-driven threat hunting is a strategic approach that uses actionable 
 3. [Understanding Threat Intelligence and Its Role in Cyber Defense](https://www.sans.org/white-papers/37978/)
 4. [Effective Threat Hunting with Threat Intelligence](https://www.varonis.com/blog/threat-hunting-with-threat-intelligence)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

@@ -93,8 +93,3 @@ In threat hunting, the Cyber Kill Chain can be used to proactively search for in
 
 By leveraging the Cyber Kill Chain model, organizations can enhance their threat hunting processes, improve their security posture, and effectively mitigate cyber threats.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

@@ -221,8 +221,3 @@ We are not limited to just looking for event code 4625 and 4625 during our hunts
 4. **Security Events Explained**
    - [Understanding Windows Security Events](https://www.petri.com/windows-security-event-logging)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 15.10.2024   | Page revised, added tip on top of page. | 

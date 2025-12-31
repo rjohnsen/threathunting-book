@@ -78,8 +78,3 @@ For this Playbook to be useful, you should for each step include links to releva
 - Conduct a post-incident review to evaluate the response process. [Link to SOP]().
 - Update training materials and security awareness programs based on lessons learned. [Link to SOP]().
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 26.10.2024   | Page added | 

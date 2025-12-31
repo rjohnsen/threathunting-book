@@ -323,8 +323,3 @@ By integrating these psychological insights and methodologies, we not only impro
 * [How to Become a Cyber Threat Hunter: A Guide to Level Up Your Security Team](https://www.snapattack.com/become-a-threat-hunter/)
 * [Threat Hunting Series: What Makes a Good Threat Hunter](https://kostas-ts.medium.com/threat-hunting-series-what-makes-a-good-threat-hunter-e2b1d0d07e8c)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

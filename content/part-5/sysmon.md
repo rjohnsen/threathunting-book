@@ -56,8 +56,3 @@ summary: ""
 | 29 | FileExecutableDetected | Records when an executable file is detected | [T1204: User Execution](https://attack.mitre.org/techniques/T1204/), [T1569: System Services](https://attack.mitre.org/techniques/T1569/) |
 | 255 | Error | Indicates an error condition in Sysmon | N/A |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |

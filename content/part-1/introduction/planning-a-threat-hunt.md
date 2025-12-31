@@ -233,8 +233,3 @@ To illustrate the threat hunting process in a short and concise manner:
 13. [Forensic Reporting](https://www.forensicfocus.com/articles/how-to-prepare-a-forensic-report/)
 14. [NIST Incident Response Guide](https://www.nist.gov/publications/guide-cybersecurity-incident)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 

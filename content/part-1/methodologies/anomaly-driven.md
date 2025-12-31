@@ -88,8 +88,3 @@ Anomaly-driven threat hunting is a powerful approach to detecting and mitigating
 2. [How to Implement Anomaly Detection for Security Monitoring](https://www.exabeam.com/information-security/anomaly-detection/)
 3. [Proactive Threat Detection Using Anomaly Detection](https://ieeexplore.ieee.org/document/8424917)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

@@ -232,8 +232,3 @@ Resources and references
 * [10 Benefits of Threat Hunting](https://resources.infosecinstitute.com/topic/10-benefits-of-threat-hunting)
 * [Flavio Queiro on what Threat Hunting isn't](https://www.linkedin.com/posts/flavioqueiroz_threathunting-threatdetection-threatanalysis-activity-7207336024216133632-bdvv/?utm_source=share&utm_medium=member_desktop)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 

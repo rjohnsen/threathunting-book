@@ -203,8 +203,3 @@ Over the years I have amassed some thoughts regarding interpreting logs and data
 * [Grouping Data in Data Science](https://towardsdatascience.com/grouping-data-in-data-science-be7387870c4d)
 * [Baseline Hunting with the PEAK Framework](https://www.splunk.com/en_us/blog/security/peak-baseline-hunting.html)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

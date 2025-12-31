@@ -68,9 +68,3 @@ For more detailed information, you can explore the following resources:
 - [ThreatConnect](https://threatconnect.com/blog/importance-of-diamond-model-cyber-threat-intelligence/)
 - [Official documentation (PDF)](https://www.threatintel.academy/wp-content/uploads/2020/07/diamond_summary.pdf)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
-

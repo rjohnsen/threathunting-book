@@ -182,8 +182,3 @@ The following list is sourced from "[List of IP protocol numbers](https://en.wik
 | ----- | --- |
 | [List of IP protocol numbers](https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers) | List of IP protocol numbers |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 16.03.2025  | Roger Johnsen | Article added |

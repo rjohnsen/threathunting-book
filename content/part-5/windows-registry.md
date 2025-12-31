@@ -78,8 +78,3 @@ summary: ""
 |--------------|-------------|-----------------|----------------------|--------------|
 | `HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest` | WDigest credential storage setting | `UseLogonCredential` (`0` or `1`) | Should be 0 to prevent credential storage | [T1003](https://attack.mitre.org/techniques/T1003/) |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |

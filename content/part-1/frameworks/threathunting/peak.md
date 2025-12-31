@@ -199,8 +199,3 @@ Threat hunting is more than just finding threats—it’s about building a smart
 | [Pyramid of Pain – David Bianco](https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html) | A framework for understanding the value of detection targets. |
 | [Red Canary's Threat Detection Report](https://redcanary.com/threat-detection-report/) | Annual report providing insights into detection trends and best practices. |
 
-## Revision
-
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 20.04.2025  | Roger Johnsen | Article rewritten |

@@ -166,8 +166,3 @@ A threat hunt that yields no findings is not a failure. In fact, it’s a signal
 
 In the complex landscape of modern cyber threats, even a "quiet" hunt is a valuable investment. Refining future hunts to include broader coverage, behavior-based analysis, and automated documentation will ensure that teams remain sharp, agile, and ready to detect and respond to any new challenges that may arise.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 03.11.2024   | Page added | 

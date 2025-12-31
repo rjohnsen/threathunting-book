@@ -264,8 +264,3 @@ These are some of the resources I have used for this chapter.
 - [SnapAttack - How to Become a Cyber Threat Hunter](https://www.snapattack.com/become-a-threat-hunter/)
 - [CyberSN - Threat Hunter](https://cybersn.com/role/threat-hunter/)
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 28.10.2025   | Updated page with reference to next chapter | 

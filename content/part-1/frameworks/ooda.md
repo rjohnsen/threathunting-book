@@ -71,8 +71,3 @@ For more detailed information and examples of the OODA Loop in practice, you can
 
 These sources provide a comprehensive overview of the OODA Loop and its various applications.
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 

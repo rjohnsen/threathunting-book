@@ -11,9 +11,3 @@ weight: 3
 
 ---
 
-## Revision
-
-| Revised Date | Comment |
-| ------------ | ------- |
-| 13.10.2024   | Skeleton added | 
-
