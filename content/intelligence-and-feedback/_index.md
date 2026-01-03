@@ -2,7 +2,7 @@
 title: "Intelligence and Feedback"
 date: 2025-12-29T12:56:49+01:00
 draft: true
-weight: 4
+weight: 3
 ---
 
 ## Why intelligence needs feedback

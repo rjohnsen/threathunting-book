@@ -2,7 +2,7 @@
 title: "Threat Informed Defense"
 date: 2025-12-29T11:16:55+01:00
 draft: true
-weight: 2
+weight: 4
 ---
 
 ## Threat-Informed Defense as an operating model

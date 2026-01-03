@@ -2,7 +2,7 @@
 title: "Defensive Foundations"
 date: 2025-12-29T11:17:16+01:00
 draft: true
-weight: 3
+weight: 2
 ---
 
 ## Why foundations matter
