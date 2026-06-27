@@ -5,8 +5,6 @@ draft: false
 weight: 5
 ---
 
-# MAC Addresses
-
 __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
