@@ -16,7 +16,7 @@ __Author:__ _Roger C.B. Johnsen_
 **That question is where threat hunting starts to overlap with detection engineering. Detection engineering is not just writing rules. It is the process of turning behavior, telemetry and context into something an analyst can act on. Threat hunters are useful in that process because they often see suspicious behavior before it becomes mature detection logic.**
 
 {{% notice info %}}
-The information herein are also relevant for SOC analysts.
+The information in this article is also relevant for SOC analysts.
 {{% /notice %}} 
 
 ---
@@ -37,7 +37,7 @@ That is much more useful than:
 Suspicious executable observed.
 ```
 
-The first version describes behavior. The second version describes a feeling. IMHO, Detection engineering needs more behavior.
+The first version describes behavior. The second version describes a feeling. Detection engineering needs behavior.
 
 ---
 
@@ -81,7 +81,7 @@ Now we have something that begins to look like detection engineering material. T
 
 Threat hunters need to separate three related but different concepts.
 
-> The term IOB is not as universally standardized as IOC or IOA, and some teams simply refer to this as behavioral indicators. I use it here as a practical distinction: the behavior itself sits between the concrete artifact and the telemetry pattern used for detection.
+> The term IOB is not as universally standardized as IOC or IOA, and some teams simply refer to this as behavioral indicators. I use it here as a 1 distinction: the behavior itself sits between the concrete artifact and the telemetry pattern used for detection.
 
 | Type | Meaning                 | Detection Value                                                    |
 | ---- | ----------------------- | ------------------------------------------------------------------ |
@@ -177,29 +177,18 @@ How does this behavior appear in our data?
 
 The practical value of the IOB -> IOA transition is that it forces the hunter to translate behavior into telemetry.
 
-Example:
+A simple example:
 
-* **Observation:**
-  `winword.exe` launched `powershell.exe`
+| Step                | Example                                                                                                                  | Purpose                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Observation         | `winword.exe` launched `powershell.exe`                                                                                  | A concrete event observed in telemetry                             |
+| IOB                 | User-facing application spawned a scripting interpreter                                                                  | Describes the behavior without depending on one exact process pair |
+| MITRE mapping       | Command and Scripting Interpreter, User Execution, and possibly Phishing if document or email context exists             | Classifies the behavior using a shared language                    |
+| IOA                 | Office process spawning a scripting interpreter with suspicious command-line arguments                                   | Describes how the behavior appears as attack-relevant telemetry    |
+| Hunt query          | Search process events for Office parent processes launching PowerShell, CMD, WScript, CScript, or MSHTA                  | Turns the behavior into something the hunter can search for        |
+| Detection candidate | Alert on Office-to-scripting-interpreter chains with suspicious command-line patterns or follow-on network/file activity | Turns the hunting logic into a candidate for operational detection |
 
-* **IOB:**
-  User-facing application spawned a scripting interpreter.
-
-* **MITRE mapping:**
-  Command and Scripting Interpreter, User Execution, and possibly Phishing if document or email context exists.
-
-* **IOA:**
-  Office process spawning a scripting interpreter with suspicious command-line arguments.
-
-* **Hunt query:**
-  Search process events for Office parent processes launching PowerShell, CMD, WScript, CScript, or MSHTA.
-
-* **Detection candidate:**
-  Alert on Office-to-scripting-interpreter chains with suspicious command-line patterns or follow-on network/file activity.
-
-This is where threat hunters contribute directly.
-
-A detection engineer may write the final production logic, but the hunter often understands the behavior, the investigative context, and the weak signals that made the activity suspicious in the first place.
+This is where threat hunters contribute directly. A detection engineer may write the final production logic, but the hunter often understands the behavior, the investigative context, and the weak signals that made the activity suspicious in the first place.
 
 The handover should preserve that thinking.
 
@@ -228,13 +217,10 @@ The exact order may vary in real investigations. Sometimes the hunter starts wit
 
 A hunt query and a detection rule are not the same thing. This is one of the most common mistakes in detection work. Someone writes a useful hunt query, sees that it finds interesting things, and wants to turn it directly into an alert. Sometimes that works. Often it does not.
 
-A **hunt query** is exploratory. It can be broad, noisy, interactive, and interpretation-heavy. It helps a human think.
-
-A **detection rule** is operational. It runs continuously, enters the SOC queue, consumes analyst time, and must support triage. It needs enough precision and context to help an analyst make a decision.
-
-A hunt query can change quickly. A detection rule must be maintained.
-
-A good hunt query can still be a bad alert.
+* A **hunt query** is exploratory. It can be broad, noisy, interactive, and interpretation-heavy. It helps a human think.
+* A **detection rule** is operational. It runs continuously, enters the SOC queue, consumes analyst time, and must support triage. It needs enough precision and context to help an analyst make a decision.
+* A hunt query can change quickly. A detection rule must be maintained.
+* A good hunt query can still be a bad alert.
 
 That does not make the query bad. It means more engineering is needed before it becomes production detection logic.
 
@@ -282,96 +268,105 @@ Noise becomes information when the analyst changes the question!
 
 ## False Positives as Design Feedback
 
-False positives are part of alert noise, but they should not only be counted. They should be classified.
+False positives are part of alert noise, but they should not only be counted. They should be classified. A false positive can tell you something important about the detection, the telemetry, or the environment.
 
-A false positive can tell you:
-
-* The detection assumes something that is not true in the environment
-* The query logic is too broad
-* The data source lacks needed context
-* The detection needs enrichment
-* The behavior is common for a specific team, tool, or system
-* The detection should be split into variants
-* The severity is too high
-* The triage guidance is unclear
-* The rule catches benign behavior that still resembles adversary tradecraft
+| What the false positive tells you                                    | What it may mean                                                                                 |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| The detection assumes something that is not true in the environment  | The rule was built on an incorrect assumption about normal behavior                              |
+| The query logic is too broad                                         | The detection matches too many generic patterns                                                  |
+| The data source lacks needed context                                 | Additional telemetry or enrichment is required                                                   |
+| The detection needs enrichment                                       | Fields such as device role, user role, signer, path, prevalence, or parent process may be needed |
+| The behavior is common for a specific team, tool, or system          | The detection may need scoped logic or environment-specific tuning                               |
+| The detection should be split into variants                          | One rule may be trying to cover too many different behaviors                                     |
+| The severity is too high                                             | The detection may be useful, but not as urgent as originally assumed                             |
+| The triage guidance is unclear                                       | Analysts do not have enough information to make a decision                                       |
+| The rule catches benign behavior that resembles adversary tradecraft | The behavior may still be worth tracking, but it needs better context                            |
 
 Useful false positive categories include:
 
-* **Expected admin behavior**
-  Remote execution from a known admin platform.
-
-* **Business process**
-  An application legitimately performs unusual file operations.
-
-* **Developer behavior**
-  Build tools, scripts, and test frameworks trigger suspicious patterns.
-
-* **Security tooling**
-  EDR, vulnerability scanners, deployment systems, or testing tools mimic attacker behavior.
-
-* **Weak query logic**
-  The rule matches too many generic command-line patterns.
-
-* **Missing context**
-  The alert lacks device role, user role, signer, path, prevalence, or other enrichment.
-
-* **Bad assumption**
-  The behavior was assumed rare, but is normal in the environment.
+| Category                | Example                                                                                   | Detection lesson                                                       |
+| ----------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Expected admin behavior | Remote execution from a known admin platform                                              | Suppress, scope, or enrich with known administrative tooling           |
+| Business process        | An application legitimately performs unusual file operations                              | Understand the business workflow before tuning the rule                |
+| Developer behavior      | Build tools, scripts, and test frameworks trigger suspicious patterns                     | Separate developer workstations or build systems from normal endpoints |
+| Security tooling        | EDR, vulnerability scanners, deployment systems, or testing tools mimic attacker behavior | Identify and tag trusted security tooling                              |
+| Weak query logic        | The rule matches too many generic command-line patterns                                   | Tighten the logic or add additional behavioral conditions              |
+| Missing context         | The alert lacks device role, user role, signer, path, prevalence, or other enrichment     | Improve enrichment before promoting the rule                           |
+| Bad assumption          | The behavior was assumed rare, but is normal in the environment                           | Revisit the hypothesis behind the detection                            |
 
 A false positive is only wasted if nobody learns from it.
 
 ---
 
-## Practical Example - Office Spawning PowerShell
+### Practical Example - Office Spawning PowerShell
 
-Let us walk through a simple example.
+Let us walk through a simple example:
 
-### Observation
+A common suspicious pattern is a Microsoft Office process launching a scripting interpreter. On its own, this is not enough to prove malicious activity. Office automation, legacy macros, business workflows, and security testing can all create similar behavior.
+
+But it is still a useful starting point because the behavior is meaningful.
+
+### Starting Observation
+
+The starting observation:
 
 ```text
 winword.exe launched powershell.exe
 ```
 
-This is suspicious, but not enough by itself.
+This observation tells us that a user-facing application spawned a scripting interpreter. That is the first important step. We are no longer looking only at a process name. We are looking at a relationship between processes.
 
-### IOB
+### Turning the Observation into Behavior
+
+The behavior can be described more generally:
 
 ```text
 User-facing application spawned a scripting interpreter.
 ```
 
-This describes the behavior without depending on the specific executable names.
+This is an IOB. It describes what happened without depending on the exact process names.
+
+The specific observation was `winword.exe` launching `powershell.exe`, but the broader behavior may also include other Office applications launching scripting or execution tools such as:
+
+* `cmd.exe`
+* `powershell.exe`
+* `pwsh.exe`
+* `wscript.exe`
+* `cscript.exe`
+* `mshta.exe`
+
+This makes the hunt more durable. We are not only searching for one executable pair. We are searching for a class of suspicious behavior.
 
 ### MITRE Mapping
 
-Possible mappings:
+### MITRE Mapping
 
-* **T1059 - Command and Scripting Interpreter**
-  Relevant because PowerShell is a command and scripting interpreter.
+Possible mappings include:
 
-* **T1204 - User Execution**
-  Relevant if the user opened a malicious document.
+| Technique                                     | Why it may apply                                              | Evidence needed                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **T1059 - Command and Scripting Interpreter** | PowerShell is a command and scripting interpreter             | `powershell.exe`, `pwsh.exe`, `cmd.exe`, or similar interpreter execution          |
+| **T1204 - User Execution**                    | The behavior may have started when the user opened a document | Evidence that the user opened or interacted with the file                          |
+| **T1566 - Phishing**                          | The document may have been delivered through email            | Email delivery, attachment metadata, sender context, or URL evidence               |
+| **T1105 - Ingress Tool Transfer**             | The command may have downloaded a payload                     | Network connection, download command, file creation, or external transfer evidence |
 
-* **T1566 - Phishing**
-  Relevant if delivery came through email.
+The mapping depends on the full context. Do not force a technique if the evidence is not there. MITRE helps classify the behavior. It does not replace the investigation.
 
-* **T1105 - Ingress Tool Transfer**
-  Relevant if the command downloaded a payload.
+### From Behavior to IOA
 
-The mapping depends on the full context. Do not force a technique if the evidence is not there.
-
-### IOA
+The IOA describes how the behavior appears in telemetry as attack-relevant activity. A simple IOA could be:
 
 ```text
 Office application spawned a scripting interpreter with suspicious command-line arguments.
 ```
 
-Stronger version:
+A stronger IOA would include follow-on activity:
 
 ```text
 Office application spawned a scripting interpreter with suspicious command-line arguments, followed by file creation in a user-writable directory and outbound network communication.
 ```
+
+The second version is stronger because it describes a sequence. It connects execution, staging, and communication. That sequence is more useful for detection engineering than the original observation alone.
 
 ### Example Hunt Query
 
@@ -395,7 +390,7 @@ This query is useful for hunting. It is not automatically a production detection
 
 ### Detection Candidate
 
-A production candidate may need to add context:
+A production detection may need more context before it is useful for the SOC. Useful additions could include:
 
 * Suspicious command-line arguments
 * Encoded commands
@@ -406,9 +401,15 @@ A production candidate may need to add context:
 * Follow-on file creation
 * Exclusion of known business macros or management tooling
 
+The detection candidate should focus on the behavior, not only the executable names. A better detection candidate could be described as:
+
+```text
+Alert when an Office application launches a scripting interpreter with suspicious command-line characteristics, especially when followed by file creation in a user-writable directory or outbound network communication.
+```
+
 ### Expected False Positives
 
-Potential benign sources:
+Potential benign sources include:
 
 * Internal Office automation
 * Legacy macros
@@ -416,6 +417,8 @@ Potential benign sources:
 * Security testing
 * Admin-created scripts
 * Business workflows using Office as a launcher
+
+These false positives are not just noise. They are design feedback. They tell us what context the rule needs before it can become useful detection logic.
 
 ### Analyst Guidance
 
@@ -425,6 +428,7 @@ When this alert fires, the analyst should check:
 * Where did the document come from?
 * Was it email-delivered?
 * What command line was executed?
+* Was the command encoded or obfuscated?
 * Did the process write files?
 * Did it connect externally?
 * Did it spawn additional processes?
@@ -533,13 +537,19 @@ The work is not finished when the finding is explained. A threat hunter should b
 
 The pivot chain in summary:
 
-```text
-Observation -> Behavior -> MITRE -> Telemetry -> Hunt Query -> Signal/Noise -> Detection Candidate -> Validation -> Analyst Guidance
+```mermaid
+flowchart LR
+    A[Observation] --> B[Behavior]
+    B --> C[MITRE]
+    C --> D[Telemetry]
+    D --> E[Hunt Query]
+    E --> F[Signal / Noise]
+    F --> G[Detection Candidate]
+    G --> H[Validation]
+    H --> I[Analyst Guidance]
 ```
 
-That chain is the difference between a finding that stays in a case note and a finding that improves detection capability.
-
-For a threat hunter, the next question is often the most important one:
+That chain is the difference between a finding that stays in a case note and a finding that improves detection capability. For a threat hunter, the next question is often the most important one:
 
 ```text
 How would we find this again?

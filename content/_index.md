@@ -29,6 +29,14 @@ It includes a curated collection of notes, articles, presentations, cheat sheets
 
 ## Latest Updates
 
+### Jun. 28, 2026
+
+**New section**: [Detection Engineering](/part-6/)
+New section to cover detection engineering handcraft
+
+**New article:** [Hunter to Detection](/part-6/hunter-to-detection/)
+A practical look on threat hunters role in detection engineering, and important tips for the SOC
+
 ### Jun. 27, 2026
 
 **New article:** [MAC Addresses](/part-4/mac-addresses/)
