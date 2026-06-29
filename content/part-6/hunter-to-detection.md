@@ -339,22 +339,20 @@ This makes the hunt more durable. We are not only searching for one executable p
 
 ### MITRE Mapping
 
-### MITRE Mapping
-
 Possible mappings include:
 
 | Technique                                     | Why it may apply                                              | Evidence needed                                                                    |
 | --------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **T1059 - Command and Scripting Interpreter** | PowerShell is a command and scripting interpreter             | `powershell.exe`, `pwsh.exe`, `cmd.exe`, or similar interpreter execution          |
-| **T1204 - User Execution**                    | The behavior may have started when the user opened a document | Evidence that the user opened or interacted with the file                          |
-| **T1566 - Phishing**                          | The document may have been delivered through email            | Email delivery, attachment metadata, sender context, or URL evidence               |
-| **T1105 - Ingress Tool Transfer**             | The command may have downloaded a payload                     | Network connection, download command, file creation, or external transfer evidence |
+| T1059 - Command and Scripting Interpreter | PowerShell is a command and scripting interpreter             | `powershell.exe`, `pwsh.exe`, `cmd.exe`, or similar interpreter execution          |
+| T1204 - User Execution                    | The behavior may have started when the user opened a document | Evidence that the user opened or interacted with the file                          |
+| T1566 - Phishing                          | The document may have been delivered through email            | Email delivery, attachment metadata, sender context, or URL evidence               |
+| T1105 - Ingress Tool Transfer             | The command may have downloaded a payload                     | Network connection, download command, file creation, or external transfer evidence |
 
 The mapping depends on the full context. Do not force a technique if the evidence is not there. MITRE helps classify the behavior. It does not replace the investigation.
 
 ### From Behavior to IOA
 
-The IOA describes how the behavior appears in telemetry as attack-relevant activity. A simple IOA could be:
+The IOA describes how the behavior appears in telemetry as attack-relevant activity.  A simple IOA could be:
 
 ```text
 Office application spawned a scripting interpreter with suspicious command-line arguments.
@@ -554,6 +552,32 @@ That chain is the difference between a finding that stays in a case note and a f
 ```text
 How would we find this again?
 ```
+
+## What This Means for SOC Analysts
+
+SOC analysts should not treat an alert as truth. **An alert is a claim made by detection logic**. That claim may be strong, weak, precise, vague, well-contextualized, or misleading. The analyst's job is not only to read the alert name, but to understand what the detection actually observed. This distinction matters.
+
+A detection may be named:
+
+```text
+BloodHound Activity Observed
+```
+
+But the underlying logic may not detect BloodHound itself. It may only detect a small fragment of activity that can be associated with BloodHound-style enumeration, such as SMB access, LDAP queries, or other directory-related behavior. That means the alert does not prove that BloodHound was used. It means the observed activity may be consistent with one part of BloodHound-like behavior, or with other legitimate or suspicious activity that uses similar protocols and access patterns.
+
+For SOC analysts, the first questions should be:
+
+* What did the detection actually match?
+* Which fields, events, or conditions triggered the alert?
+* Does the alert name overstate what the logic proves?
+* What additional evidence would confirm or weaken the hypothesis?
+* Is this a single weak signal, or part of a broader sequence?
+* Does the observed activity make sense for this user, device, role, or system?
+* Are there related process, authentication, network, directory, or file events?
+
+This is where SOC analysis becomes more than alert handling. A good analyst separates the alert label from the evidence. The alert may point in the right direction, but the investigation must determine whether the direction is valid. Detection names should guide investigation. They should not replace it. A good SOC does not only close alerts. It tests the claim made by the alert, documents what was actually observed, and feeds that knowledge back into detection engineering.
+
+
 
 ---
 
