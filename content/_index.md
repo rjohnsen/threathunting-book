@@ -4,38 +4,102 @@ date: 2024-06-22T10:25:28+02:00
 draft: false
 ---
 
-This notebook provides a comprehensive guide to Threat Hunting, structured in the form of a book.
+Threat hunting is not about running random queries and hoping something suspicious appears.
 
-With years of experience establishing SOC departments for Norwegian cybersecurity firms and working hands-on as a threat hunter, I have gathered practical lessons, field notes, and methods that I want to share.
+It is about understanding behaviour, building context, forming hypotheses, testing assumptions, and turning observations into knowledge the organisation can use.
 
-My goal is simple: help SOC analysts become effective threat hunters from day one.
+This book is a practical guide to how threat hunters think, investigate, document, and improve detection capability.
 
-***Roger C.B. Johnsen***
+-- Roger C.B. Johnsen
 
 ---
 
-> **Have feedback?**
-> I welcome thoughts, suggestions, and corrections. Feel free to reach out via [my preferred contact links](/about/contact/).
+## What This Book Is
+
+Threat Hunt Book is a practical handbook for threat hunting. It is written from the perspective of someone who has worked hands-on with SOC operations, investigations, detection, and threat hunting, and who has also helped establish SOC capabilities for Norwegian cybersecurity firms. The goal is not to provide a perfect academic model of threat hunting. The goal is to share practical methods, field notes, mental models, and lessons learned from real operational security work.
+
+This book is about how to think during a hunt:
+
+* how to move from observation to context
+* how to build and test hypotheses
+* how to understand security data
+* how to reason about attacker behaviour
+* how to document findings
+* how to turn hunting knowledge into better detection
+* how to avoid common analytical traps
+
+Threat hunting is not a tool. It is a discipline.
+
+---
+
+## Who This Book Is For
+
+This book is primarily written for threat hunters and security analysts who want to become better at structured investigation.
+
+It is also relevant for:
+
+* SOC analysts who want to move beyond alert handling
+* detection engineers who want to understand how hunting findings become detection logic
+* security architects who need to understand how detection, telemetry, and response fit together
+* incident responders who need better context during investigations
+* defenders who want to understand how attacker behaviour appears in real environments
+
+The aim is simple: help analysts become more effective threat hunters by understanding the method behind the work.
+
+---
+
+## How to Use This Book
+
+This is not meant to be read only from beginning to end. Use it as a practical reference. Read the methodology chapters to understand the thinking. Use the framework pages to compare hunting models. Use the field notes and technique pages when you need examples. Use the cheat sheets when you need quick reminders during investigations.
+
+Some articles are conceptual. Some are practical. Some are reflective. Together, they describe how I approach threat hunting as a discipline.
+
+If you are new to threat hunting, start with:
+
+* [Definition](/part-1/introduction/definition/)
+* [Analyst Mindset](/part-1/introduction/analystmindset/)
+* [Context Before Conclusion](/part-1/introduction/context-before-conclusion/)
+* [Creating Hypothesis](/part-1/introduction/creating-hypothesis/)
+* [Planning a Threat Hunt](/part-1/introduction/planning-a-threat-hunt/)
+
+If you are interested in detection engineering, start with:
+
+* [Hunter to Detection](/part-6/hunter-to-detection/)
 
 ---
 
 ## About the Content
 
-The content has been refined with the help of tools like ChatGPT to improve grammar, clarity, and readability.
+The content includes articles, notes, presentations, cheat sheets, field reflections, and practical guidance based on years of hands-on work in threat hunting, SOC operations, detection, and investigations.
 
-It includes a curated collection of notes, articles, presentations, cheat sheets, and personal reflections based on years of hands-on experience in threat hunting, SOC work, detection, and investigations.
+Some pages are polished articles. Others are practical references or field notes. The common thread is that the content should help defenders understand what they are looking at, why it matters, and what to do next.
+
+The content has been refined with the help of tools like ChatGPT to improve grammar, clarity, structure, and readability. The ideas, experience, opinions, and editorial direction are my own.
+
+---
+
+## Feedback
+
+I welcome thoughts, suggestions, corrections, and professional disagreement.
+
+If something is unclear, wrong, outdated, or useful, feel free to reach out via [my preferred contact links](/about/contact/).
 
 ---
 
 ## Latest Updates
 
+### Jul. 05, 2026
+
+**New article:** [Context Before Conclusion](/part-1/introduction/context-before-conclusion/)
+An article about building context around an observation before reaching a conclusion.
+
 ### Jun. 28, 2026
 
-**New section**: [Detection Engineering](/part-6/)
-New section to cover detection engineering handcraft
+**New section:** [Detection Engineering](/part-6/)
+A new section covering how threat hunting findings can contribute to detection engineering.
 
 **New article:** [Hunter to Detection](/part-6/hunter-to-detection/)
-A practical look on threat hunters role in detection engineering, and important tips for the SOC
+A practical look at the threat hunter's role in detection engineering, including the difference between hunt queries, detection candidates, and operational detection logic.
 
 ### Jun. 27, 2026
 
@@ -44,7 +108,7 @@ A practical look at MAC addresses, OUI lookups, MAC randomization, and how Layer
 
 ### Oct. 18, 2025
 
-**New article:** From Alerts to Hypothesis
+**New article:** [From Alerts to Hypothesis](/part-1/introduction/from-alerts-to-hypothesis/)
 How to move from alert-driven triage toward hypothesis-driven threat hunting.
 
 ### Apr. 20, 2025
@@ -84,19 +148,19 @@ Quick references based on recent hunts and common investigation needs.
 ### Feb. 22, 2025
 
 * Overhauled multiple pages to improve clarity and meaning.
-* Added [Hierarchy of Needs](/part-1/introduction/hierarchy-of-needs).
+* Added [Hierarchy of Needs](/part-1/introduction/hierarchy-of-needs/).
 
 ### Feb. 15, 2025
 
-* Added [SIEM Query Languages](/part-4/siem-query-languages).
+* Added [SIEM Query Languages](/part-4/siem-query-languages/).
 
 ### Jan. 11, 2025
 
-* Added [The Threat Hunter Persona](/part-1/introduction/the-threathunter-persona).
+* Added [The Threat Hunter Persona](/part-1/introduction/the-threathunter-persona/).
 
 ### Dec. 27, 2024
 
-* Added the [Release Plan](/releases) page, accessible from the left site menu.
+* Added the [Release Plan](/releases/) page, accessible from the left site menu.
 * Improved the left site menu by removing chapter and part prefixes.
 
 ### Nov. 03, 2024
@@ -105,18 +169,18 @@ Quick references based on recent hunts and common investigation needs.
 
 ### Nov. 02, 2024
 
-* Added [Creating Hypotheses](/part-1/introduction/creating-hypothesis/index.html).
+* Added [Creating Hypotheses](/part-1/introduction/creating-hypothesis/).
 
 ### Oct. 27, 2024
 
-* Added [T1105](/part-4/mitre/t1105/index.html), based on a recent threat hunt investigation.
-* Added [Planning a Threat Hunt](/part-1/introduction/planning-a-threat-hunt/index.html).
-* Added [Intelligence Resources](/part-4/intelligence-resources/index.html).
+* Added [T1105](/part-4/mitre/t1105/), based on a recent threat hunt investigation.
+* Added [Planning a Threat Hunt](/part-1/introduction/planning-a-threat-hunt/).
+* Added [Intelligence Resources](/part-4/intelligence-resources/).
 
 ### Oct. 26, 2024
 
-* Added [Starting a Threat Hunting Program](/part-1/introduction/how-to-start-a-threat-hunting-program/index.html).
-* Added pages on [Threat Hunting Deliveries](/part-1/delivieries/index.html).
+* Added [Starting a Threat Hunting Program](/part-1/introduction/how-to-start-a-threat-hunting-program/).
+* Added pages on [Threat Hunting Deliveries](/part-1/delivieries/).
 
 ### Oct. 21, 2024
 
@@ -128,7 +192,7 @@ Quick references based on recent hunts and common investigation needs.
 
 ### Oct. 19, 2024
 
-* Added a section on conditional access for [T1566 - Phishing](/part-4/mitre/t1566/index.html).
+* Added a section on conditional access for [T1566 - Phishing](/part-4/mitre/t1566/).
 
 ### Oct. 15, 2024
 
@@ -154,11 +218,11 @@ Quick references based on recent hunts and common investigation needs.
 
 ### Sep. 30, 2024
 
-* Added the [FAQ](/about/faq/index.html) page.
+* Added the [FAQ](/about/faq/) page.
 
 ### Sep. 29, 2024
 
-* Added [Understanding Data](/part-3/understanding-data/index.html).
+* Added [Understanding Data](/part-3/understanding-data/).
 
 ---
 
