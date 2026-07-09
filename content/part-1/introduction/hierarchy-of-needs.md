@@ -1,82 +1,181 @@
 ---
 title: "Hierarchy of Needs"
+description: "Why threat hunting depends on basic operational foundations such as asset inventory, telemetry, detection, triage and incident response capability."
 date: 2025-02-22T17:46:03+01:00
 draft: false
 weight: 2
 tags:
-    - introduction
-    - foundation
-    - structure
+    - fundamentals
+    - threat hunting
+    - telemetry
+    - incident response
+keywords:
+    - threat hunting
+    - incident response hierarchy of needs
+    - SOC
+    - telemetry
+    - asset inventory
+    - detection
+    - triage
+    - security operations
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**In today's cybersecurity landscape, many organizations rush to establish Security Operations Centers (SOC) and threat hunting capabilities without fully understanding the necessary groundwork. It's common to see businesses trying to jump directly into these advanced activities, only to find their efforts taking a solid nosedive since they lack the foundational components their efforts depend on. I've seen many lackluster implementations of SOC services – all bearing the same trademark: the lack of supporting layers.**
+**Threat hunting does not start with a clever hypothesis. It starts with the boring layers underneath it: assets, telemetry, detection, triage and incident response capability.**
 
-**The reality is that neither SOC nor threat hunting can function effectively without the layers beneath them. For a SOC to detect and respond to incidents, it needs a solid foundation of logs, data sources, and an asset inventory. Similarly, threat hunters need a comprehensive view of the organization's systems, network traffic, and endpoint activities to identify subtle indicators of compromise (IOCs). Without understanding what assets are at risk and having the logs to monitor them, both teams are left without the tools and context needed to perform their jobs effectively. In this topic, we are taking a dive into these layers.**
+**Many organisations want threat hunting before they have the foundations needed to support it. They want proactive investigation, but they do not know what they own. They want behavioural analysis, but they do not collect the right telemetry. They want hunters to find what detections miss, but the SOC is still struggling to understand ordinary alerts.**
+
+That gap matters.
+
+Threat hunting can only be as good as the environment it operates in. If the asset inventory is poor, the hunter does not know what matters. If telemetry is missing, the hunter cannot see the behaviour. If triage and incident response are immature, findings may have nowhere useful to go.
+
+This page uses Swannman’s Incident Response Hierarchy of Needs to explain why threat hunting depends on lower layers of operational maturity. The model is useful because it makes one thing clear: advanced security work must be built on something.
 
 ---
 
-## Incident Response Hierarchy of Needs
+## Swannman’s Incident Response Hierarchy of Needs
 
-This article is based on [Swannman's Incident Response Hierarchy of Needs](https://github.com/swannman/ircapabilities), because it depicts in an eminent way the layers needed for success in SOC and Threat Hunting. His model offers a structured approach to building an effective incident response program, with a clear emphasis on the layers that must be established before advanced functions like SOC or threat hunting can thrive. The pyramid consists of 10 layers, each building on the one below it. Coupled with this pyramid is Swannman's *Plateaus Model*, which tracks an organization's progression through different levels of maturity in its security operations. Together, these models provide a roadmap for building and evolving a comprehensive incident response strategy.
+This page is based on [Swannman’s Incident Response Hierarchy of Needs](https://github.com/swannman/ircapabilities). I use it because it explains a problem I have seen many times: organisations try to build advanced security functions before the basic operational layers are ready.
+
+Threat hunting is high in the model for a reason. It depends on the layers below it. A hunter without asset context, telemetry, detection coverage and response capability is mostly left with assumptions.
 
 ![Hierarchy](/images/hierarchy.png)
 
-### Understanding the Incident Response Hierarchy of Needs
+Swannman’s model describes a set of capabilities that build on each other. The lower layers are not glamorous, but they decide whether the upper layers can function.
 
-Swannman's pyramid is a visual framework that helps organizations understand how to progressively improve their security posture. The layers represent different capabilities, from basic foundational needs at the bottom to more sophisticated, proactive strategies at the top. *Threat hunting occupies the upper part of the pyramid, meaning that it is a highly specialized function that depends on having the right tools and processes in place lower down.*
+That is the point.
 
-### The 10 Layers of Swannman's Pyramid
+A SOC cannot reliably detect and respond if it does not know what systems exist, what data is collected, and which alerts matter. Threat hunting has the same dependency. It may be more exploratory than alert triage, but it is still limited by the available context and telemetry.
 
-Each layer in Swannman's model plays a crucial role in an organization's incident response and detection capabilities. Here's how threat hunting fits into the broader structure:
+## Why the Model Matters for Threat Hunting
 
-| # | Layer | Description |
-| --- | -----------|-----------------|
-| 1 | Asset Inventory | The base of the pyramid is an accurate inventory of assets. Organizations must first identify and classify their assets, including hardware, software, and sensitive data. Understanding what needs protection is critical before any detection or response strategies can be implemented. |
-| 2 | Telemetry | Telemetry encompasses the collection of system, network, and endpoint data that is essential for security monitoring. This layer ensures that organizations have the necessary data to identify potential threats and observe normal and abnormal activities. |
-| 3 | Detection | Detection focuses on the tools and mechanisms used to identify threats. This could include intrusion detection systems (IDS), SIEM solutions, and other automated detection tools that generate alerts for suspicious activity. This layer is vital for providing visibility into potential security incidents. |
-| 4 | Triage | Triage involves the process of analyzing and prioritizing detected incidents to determine their severity and potential impact. Security teams assess the alerts and focus on the most critical incidents that need immediate attention. Efficient triage is crucial for avoiding alert fatigue and ensuring a quick response to genuine threats. |
-| 5 | Threats | At this stage, organizations actively monitor for specific threat actors, tactics, techniques, and procedures (TTPs). This layer uses threat intelligence to identify known and emerging threats, enabling security teams to stay ahead of adversaries. |
-| 6 | Behaviors | The "Behaviors" layer involves analyzing anomalous or suspicious behaviors that could indicate a security incident. Rather than relying solely on signature-based detection, organizations focus on identifying abnormal activity patterns and deviations from normal behavior. |
-| 7 | Hunt  | Threat hunting is a proactive approach to cybersecurity, where security teams actively search for hidden threats across networks, endpoints, and data sources. Rather than waiting for alerts to be triggered, threat hunters dig deeper into the data to uncover signs of compromise that may have evaded traditional detection systems. |
-| 8 | Track | Tracking involves continuously monitoring and following the actions of adversaries once they have been identified. Organizations maintain visibility over the threat’s movement and evolution, providing the context needed to anticipate the adversary’s next steps. |
-| 9 | Act | The "Act" layer involves taking appropriate actions in response to identified threats. This could include containment, remediation, and recovery efforts. At this stage, security teams take decisive steps to neutralize the threat and prevent further damage. |
-| 10 | Collaboration | The final layer emphasizes the importance of collaboration with trusted partners, such as industry peers, government agencies, and threat intelligence groups. By working together, organizations can share valuable insights and intelligence to disrupt adversary campaigns and improve defenses on a broader scale. |
+Threat hunting is often presented as an advanced function, and that is fair enough. But “advanced” does not mean detached from the basics.
 
-### A Complement to the Hierarchy of Needs
+A hunt usually needs answers to ordinary questions:
 
-Swannman's plateaus model is designed to illustrate how organizations progress through different levels of maturity in their security operations. While the pyramid defines the foundational needs at each level, the plateaus model represents the milestones or stages of maturity that an organization reaches as it enhances its detection and incident response capabilities. Sure, we've all seen various maturity models for SOC over the years, but this one albeit old is easy to grasp.
+* Which systems are in scope?
+* Which identities matter?
+* Which logs are collected?
+* Which fields are populated?
+* How far back does the data go?
+* What is normal for this environment?
+* Who owns the finding if the hunt discovers something?
+* Can the SOC, incident response team or platform team act on the output?
+
+If those questions cannot be answered, the hunt may still be useful, but the organisation should be honest about the limitation. Sometimes the best output from a hunt is not a detection rule. Sometimes it is a visibility gap, a logging requirement, or a clear statement that the current data is not good enough to test the hypothesis.
+
+## The Layers
+
+Each layer in Swannman’s model supports the layers above it. This is how I read the model from a SOC and threat hunting perspective:
+
+| #  | Layer           | Why it matters                                                                                    |
+| --- | --------------- | ------------------------------------------------------------------------------------------------- |
+| 1  | Asset Inventory | You cannot protect, monitor or hunt across systems you do not know exist.                         |
+| 2  | Telemetry       | Hunting depends on observable data. Missing telemetry means missing behaviour.                    |
+| 3  | Detection       | Detection gives the SOC known signals and gives hunters something to test, challenge and improve. |
+| 4  | Triage          | Alerts must be understood and prioritised before they can become useful hunting input.            |
+| 5  | Threats         | Threat intelligence helps shape questions about actors, behaviours and likely techniques.         |
+| 6  | Behaviours      | Behavioural understanding moves the team beyond simple indicators and isolated alerts.            |
+| 7  | Hunt            | Hunting tests assumptions, searches for missed behaviour and identifies visibility gaps.          |
+| 8  | Track           | Tracking keeps attention on adversary activity over time, not just isolated events.               |
+| 9  | Act             | Findings must lead to containment, remediation, detection improvement or other action.            |
+| 10 | Collaboration   | Mature teams share useful intelligence, context and lessons with trusted partners.                |
+
+The order matters, but it should not be read as a perfect maturity staircase. Real organisations are uneven. They may have strong endpoint telemetry but poor asset ownership. They may have good detections but weak triage. They may have incident response plans that look good on paper but are rarely exercised.
+
+The model is still useful because it forces a basic question: _Which layer is weak, and what does that weakness do to the work above it?_ That question is often more useful than asking whether the organisation is “mature”.
+
+## The Plateaus Model
+
+Swannman’s Plateaus Model complements the hierarchy by showing how organisations move through levels of capability over time.
 
 ![Plateaus](/images/plateaus.png)
 
-The plateaus model divides an organization's journey into distinct stages of growth, reflecting how they improve their ability to handle incidents and detect threats. These plateaus are not strictly linear, meaning organizations may need to circle back and reinforce previous stages as they evolve their strategies. However, they provide a clear framework for understanding the continuous progress toward a mature, adaptive security posture.
+Most maturity models become too abstract. This one is useful because it is easy to understand: an organisation does not become good at incident response, SOC operations or threat hunting in one leap. It reaches plateaus. Each plateau gives the organisation a stronger foundation for the next type of work.
 
-## Extending the plateau thought
+The plateaus are not strictly linear. An organisation may need to go back and fix weak telemetry after it has already started building detections. It may discover during threat hunting that its asset inventory is not good enough. It may build an incident response process and later realise that triage does not produce the context responders need.
 
-While the pyramid describes the necessary components for building a solid security foundation, the plateaus model tracks an organization's progression through different levels of maturity. Each plateau represents a point where the organization achieves a significant improvement in its capabilities. In the following the table I have taken the liberty to explain the model from my view and stance:
+That is normal.
 
-| # | Plateau | Description |
-| --- | ------- | ------------| 
-| 1 | Basic Detection and Awareness | This plateau focuses on establishing visibility into the organization's systems, networks, and assets. Really, eastablishing the bare minimum. This aligns with the Asset Inventory and Telemetry layers in the pyramid. |
-| 2 | Incident Response and Initial Triage | As organizations gain detection capability, they should start formalizing incident response plans, including triage and containment. This corresponds with the Triage and Incident Response Capabilities layers. |
-| 3 | Advanced Detection and Threat Intelligence Integration | At this stage, organizations starts integrating threat intelligence feeds and advanced detection systems, such as SIEM and EDR. This plateau reflects the Detection and Threats layers. |
-| 4 | Proactive Threat Hunting and Vulnerability Management | Organizations starts actively hunting for threats and improving their vulnerability management. This aligns with the 'Hunt and Behaviors layers in the pyramid. |
-| 5 | Full Operational Maturity | The final plateau represents a fully mature security posture, where all elements of the pyramid work together seamlessly, enabling the organization to effectively detect, respond to, and prevent sophisticated threats. This corresponds with the Collaboration and Track layers. |
+The important part is not pretending that the upper layers can compensate for weak lower layers indefinitely.
 
-### Conclusion
-    
-From my stance, Swannman's model is a good and straight forward depiction on what companies and organziations should focus on when establishing their security efforts. The pyramid provides a foundational framework for building detection and response strategies, while the plateaus model tracks the evolution of an organization's maturity. Threat hunting, as one of the final stages, relies on having a solid base of detection and incident response practices already in place.
+## My Reading of the Plateaus
 
-Together, these models show that cybersecurity is a layered, progressive process - starting from basic security hygiene and moving toward sophisticated, proactive defenses like threat hunting. By thinking in terms of these two models, organizations can ensure that their security program grows in a structured, manageable way and is always prepared for the next wave of threats.
+The following table is my practical reading of the plateaus from a SOC and threat hunting perspective:
 
-Perhaps the most critical takeaway is this: this model serves as a strategic framework to prevent your incident management, SOC, and Threat Hunting efforts from devolving into a chaotic, ineffective state, where you’re forced to rebuild from the ground up. By following a structured progression, you significantly reduce the risk of missteps, ensuring that each phase of your security operations is built on solid foundations. Not only does this lead to a more resilient and adaptive defense posture, but it also creates an environment where your employees can thrive, as they work within a clear, well-supported framework that fosters growth and success.
+| # | Plateau                                                | My reading                                                                                            |
+| --- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| 1 | Basic Detection and Awareness                          | The organisation starts to understand what it owns and what it can observe. This is the bare minimum. |
+| 2 | Incident Response and Initial Triage                   | Alerts and incidents become structured enough that people know what to do next.                       |
+| 3 | Advanced Detection and Threat Intelligence Integration | Detection and intelligence begin to shape each other, but the work is still mostly reactive.          |
+| 4 | Proactive Threat Hunting and Vulnerability Management  | The team can start asking better questions because enough data, process and context exist.            |
+| 5 | Full Operational Maturity                              | Hunting, detection, response and collaboration form a feedback loop instead of separate activities.   |
+
+The fourth plateau is where threat hunting starts to make more sense. That does not mean an organisation must be perfect before it can hunt. It means the organisation needs enough structure to make the hunt useful.
+
+A weak environment can still run hunts, but the output will often expose foundation problems rather than hidden attackers. That is not failure. It is useful knowledge, as long as someone acts on it.
+
+## What Usually Goes Wrong
+
+The common failure mode is building the visible function before the supporting layers.
+
+Some patterns repeat:
+
+* **SOC as a log viewer:** the organisation has a SOC, but the analysts mostly watch disconnected alerts without enough asset context, telemetry quality or response authority.
+* **SIEM before asset understanding:** logs are collected before anyone has a clear view of what systems exist, which ones matter, and who owns them.
+* **Detection without data ownership:** rules are written, but nobody owns the log source quality, parsing, retention or missing fields needed to make those rules reliable.
+* **Threat hunting as a reporting function:** hunters are expected to produce interesting reports, but findings do not become detections, logging requirements, response actions or better analyst guidance.
+* **Maturity by job title:** the organisation hires a threat hunter and assumes it has created threat hunting capability.
+
+That does not mean the organisation should wait for perfection. It means the team must be honest about which layer is weak:
+
+* If the asset inventory is poor, hunting will miss scope.
+* If telemetry is poor, hunting will miss behaviour.
+* If detection is poor, hunting will not have a reliable baseline.
+* If triage is poor, hunting output will not feed cleanly back into operations.
+* If response capability is poor, findings may create awareness without action.
+
+Threat hunting can help expose these weaknesses, but it cannot magically compensate for all of them.
+
+## Why This Matters in Practice
+
+The hierarchy is useful because it prevents a common misunderstanding: that threat hunting is mainly a staffing or tooling decision. It is not.
+
+Hiring a threat hunter does not automatically create threat hunting capability. Buying a tool with a hunting module does not automatically create threat hunting capability. Adding “proactive hunting” to a SOC service description does not automatically create threat hunting capability. The capability depends on the layers underneath.
+
+A threat hunter needs data, access, context, time, documentation and a place for the output to go. Without that, the work becomes fragile. It may depend too much on individual effort. It may produce findings that cannot be operationalised. It may create reports that people read once and then forget.
+
+That is not how hunting becomes useful. Threat hunting becomes useful when it feeds the rest of security operations:
+
+* visibility gaps become logging requirements
+* suspicious behaviours become detection ideas
+* repeated observations become baselines
+* findings become response actions
+* weak triage logic becomes better analyst guidance
+* assumptions become testable questions
+
+That is the real value of the hierarchy. It shows that hunting is not separate from the rest of security operations. It depends on it and should improve it.
+
+## Working Position for This Book
+
+Swannman’s model is useful because it makes threat hunting less mystical. Threat hunting is not something an organisation simply decides to have. It becomes possible when enough operational layers are in place: asset knowledge, telemetry, detection, triage, threat understanding, behavioural analysis and response capability.
+
+The layers do not need to be perfect. They rarely are. But they need to be understood. For the rest of this book, this matters because every hunt depends on the same basic question: _Do we have enough context and telemetry to test what we claim to be testing?_
+
+If the answer is no, the hunt may still produce value. It may reveal a visibility gap, a logging requirement, a weak process or an assumption that needs to be fixed. That is still useful.
+
+But it also means the organisation should be honest about where it is in the hierarchy.
+
+> Threat hunting built on weak foundations usually becomes guesswork with better branding.
+>
+> -- Roger Johnsen
 
 ## Revision
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025  | Added page |
-| 18.02.2025  | Updated page |
+| Revised Date | Comment                                                                                                     |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| 2026-07-09   | Rewritten to establish a clearer practitioner voice and align the page with the book’s fundamentals section |
+| 2025-02-22   | Added page                                                                                                  |
