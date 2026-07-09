@@ -1,8 +1,24 @@
 ---
-title: "Context before Conclusion"
+title: "Context Before Conclusion"
+description: "Why threat hunters should treat indicators, alerts and anomalies as starting points, and build enough context before deciding what an observation means."
 date: 2026-07-05T11:00:59+02:00
 draft: false
 weight: 6
+tags:
+- fundamentals
+- threat hunting
+- context
+- analysis
+keywords:
+- threat hunting
+- context before conclusion
+- indicator analysis
+- security telemetry
+- entity context
+- temporal context
+- relationship context
+- environmental context
+- hypothesis validation
 ---
 
 __Author:__ _Roger C.B. Johnsen:_
@@ -52,10 +68,14 @@ Suspicion usually appears when behaviour and context do not fit together. A proc
 The mental model is simple:
 
 ```text
-Context + Behaviour = Suspicion
+Behaviour + Context Mismatch = Suspicion
 ```
 
-_The behaviour tells you what happened. The context tells you whether it makes sense._ This does not mean that every unusual event is malicious. It means that the hunter should look for the point where behaviour, baseline, role, timing, and environment stop fitting together.
+_The behaviour tells you what happened. The context tells you whether it makes sense._ This does not mean that every unusual event is malicious. It means that the hunter should look for the point where behaviour, baseline, role, timing, and environment stop fitting together. 
+
+> Behaviour without context is just activity. Behaviour that does not fit its context becomes suspicion.
+>
+> -- Roger Johnsen
 
 ---
 
@@ -373,7 +393,7 @@ SOC analysts can use the same mental model. An alert is a starting point, not a 
 * Suspicion appears when behaviour and context do not fit together.
 * A hypothesis should be tested, not protected.
 * Always ask: what else could this be?
-  {{% /notice %}}
+{{% /notice %}}
 
 ---
 
@@ -402,6 +422,5 @@ An indicator tells you where to start. Context tells you whether it matters.
 
 | Revised Date | Author        | Comment       |
 | ------------ | ------------- | ------------- |
-| 05.07.2026   | Roger Johnsen | Article added |
-
+| 2026-07-05 | Roger Johnsen | Article added |
 
