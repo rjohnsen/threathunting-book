@@ -2,6 +2,7 @@
 title: "Creating Hypotheses"
 description: "How to create threat hunting hypotheses that are specific, testable, relevant and useful enough to drive a real hunt."
 date: 2024-11-02T15:09:15+01:00
+lastmod: 2026-07-09
 draft: false
 weight: 9
 tags:

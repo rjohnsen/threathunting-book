@@ -2,6 +2,7 @@
 title: "Definition"
 description: "A practical definition of threat hunting, how it differs from SOC alert triage and detection engineering, and why hunts should leave useful security work behind."
 date: 2024-06-22T11:37:31+02:00
+lastmod: 2026-07-09
 draft: false
 weight: 1
 tags:

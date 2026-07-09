@@ -1,0 +1,6 @@
+{{ $limit := .Get 0 | default 10 }}
+<ul class="recent-updates">
+{{ range first $limit .Site.RegularPages.ByLastmod.Reverse }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> - {{ .Lastmod.Format "Jan. 02, 2006" }}</li>
+{{ end }}
+</ul>

@@ -2,6 +2,7 @@
 title: "Context Before Conclusion"
 description: "Why threat hunters should treat indicators, alerts and anomalies as starting points, and build enough context before deciding what an observation means."
 date: 2026-07-05T11:00:59+02:00
+lastmod: 2026-07-09
 draft: false
 weight: 6
 tags:

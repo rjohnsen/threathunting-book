@@ -3,6 +3,7 @@
 title: "How to Start a Threat Hunting Program"
 description: "How to start and grow a threat hunting programme by establishing foundations, defining objectives, running structured hunts, and turning results into operational improvement."
 date: 2024-10-26T16:40:47+02:00
+lastmod: 2026-07-09
 draft: false
 weight: 7
 tags:

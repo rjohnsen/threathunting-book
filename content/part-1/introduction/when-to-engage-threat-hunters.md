@@ -2,6 +2,7 @@
 title: "When to Engage Threat Hunters"
 description: "When threat hunters should be involved, how they complement SOC triage, incident response and DFIR, and when hunting is the wrong tool for the job."
 date: 2025-03-29T15:04:35+01:00
+lastmod: 2026-07-09
 draft: false
 hidden: false
 weight: 10

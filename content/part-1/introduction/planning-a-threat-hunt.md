@@ -2,6 +2,7 @@
 title: "Planning a Threat Hunt"
 description: "How to turn a hunting idea or hypothesis into a scoped, executable and reviewable threat hunt plan."
 date: 2024-10-27T11:10:42+01:00
+lastmod: 2026-07-09
 draft: false
 weight: 8
 tags:

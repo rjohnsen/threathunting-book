@@ -2,6 +2,7 @@
 title: "The Threat Hunter Persona"
 description: "What makes a threat hunter useful in practice: curiosity, technical range, analytical discipline, communication skills and the ability to turn uncertainty into structured security work."
 date: 2025-01-01T11:37:38+01:00
+lastmod: 2026-07-09
 draft: false
 weight: 4
 tags:

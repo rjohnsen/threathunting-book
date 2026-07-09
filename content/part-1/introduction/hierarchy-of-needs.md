@@ -2,6 +2,7 @@
 title: "Hierarchy of Needs"
 description: "Why threat hunting depends on basic operational foundations such as asset inventory, telemetry, detection, triage and incident response capability."
 date: 2025-02-22T17:46:03+01:00
+lastmod: 2026-07-09
 draft: false
 weight: 2
 tags:

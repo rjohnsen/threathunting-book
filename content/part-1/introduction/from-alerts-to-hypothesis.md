@@ -2,6 +2,7 @@
 title: "From Alerts to Hypotheses"
 description: "How SOC alert handling can develop into hypothesis-driven threat hunting by turning observations, gaps and recurring questions into structured investigations."
 date: 2025-10-18T17:10:11+02:00
+lastmod: 2026-07-09
 draft: false
 hidden: false
 weight: 5
