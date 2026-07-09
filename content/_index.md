@@ -22,9 +22,9 @@ detection capability.
 
 ---
 
-## {{% icon book-open %}} What This Book Is
+## What This Book Is
 
-Threat Hunt Book is a practical handbook for threat hunting. It's written from the perspective of
+{{% icon book-open %}} Threat Hunt Book is a practical handbook for threat hunting. It's written from the perspective of
 someone who has worked hands-on with SOC operations, investigations, detection, and threat hunting,
 and who has also helped establish SOC capabilities for Norwegian cybersecurity firms. The goal isn't
 a perfect academic model of threat hunting. It's to share practical methods, field notes, mental
@@ -44,9 +44,9 @@ Threat hunting is not a tool. It's a discipline.
 
 ---
 
-## {{% icon users %}} Who This Book Is For
+## Who This Book Is For
 
-This book is primarily written for threat hunters and security analysts who want to become better
+{{% icon users %}} This book is primarily written for threat hunters and security analysts who want to become better
 at structured investigation.
 
 It's also relevant for:
@@ -62,9 +62,9 @@ behind the work.
 
 ---
 
-## {{% icon map-signs %}} How to Use This Book
+## How to Use This Book
 
-This isn't meant to be read only from beginning to end. Use it as a practical reference. Read the
+{{% icon map-signs %}} This isn't meant to be read only from beginning to end. Use it as a practical reference. Read the
 methodology chapters to understand the thinking. Use the framework pages to compare hunting models.
 Use the field notes and technique pages when you need examples. Use the cheat sheets when you need
 quick reminders during investigations.
@@ -86,9 +86,9 @@ I approach threat hunting as a discipline.
 
 ---
 
-## {{% icon file-lines %}} About the Content
+## About the Content
 
-The content includes articles, notes, presentations, cheat sheets, field reflections, and practical
+{{% icon file-lines %}} The content includes articles, notes, presentations, cheat sheets, field reflections, and practical
 guidance based on years of hands-on work in threat hunting, SOC operations, detection, and
 investigations.
 
@@ -101,9 +101,9 @@ structure, and readability. The ideas, experience, opinions, and editorial direc
 
 ---
 
-## {{% icon comment-dots %}} Feedback
+## Feedback
 
-I welcome thoughts, suggestions, corrections, and professional disagreement.
+{{% icon comment-dots %}} I welcome thoughts, suggestions, corrections, and professional disagreement.
 
 If something is unclear, wrong, outdated, or useful, feel free to reach out via
 [my preferred contact links](about/contact/).
