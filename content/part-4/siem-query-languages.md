@@ -1,5 +1,5 @@
 ---
-title: "Siem Query Languages"
+title: "SIEM Query Languages"
 date: 2025-02-15T15:29:12+01:00
 draft: false
 weight: 3

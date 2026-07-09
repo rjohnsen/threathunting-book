@@ -1,5 +1,5 @@
 ---
-title: "Faq"
+title: "FAQ"
 date: 2024-09-30T18:06:50+02:00
 draft: false
 weight: 2

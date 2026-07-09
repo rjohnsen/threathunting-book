@@ -1,5 +1,5 @@
 ---
-title: "Setting up a complete lab"
+title: "Setting Up a Complete Lab"
 date: 2024-09-13T13:05:47+02:00
 weight: 2
 draft: false

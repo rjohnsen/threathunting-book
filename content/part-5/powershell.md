@@ -1,5 +1,5 @@
 ---
-title: "Powershell"
+title: "PowerShell"
 date: 2025-03-21T21:22:12+01:00
 draft: false
 hidden: false

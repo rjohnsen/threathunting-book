@@ -76,7 +76,7 @@ I approach threat hunting as a discipline.
 - [Definition](part-1/introduction/definition/)
 - [Analyst Mindset](part-1/introduction/analystmindset/)
 - [Context Before Conclusion](part-1/introduction/context-before-conclusion/)
-- [Creating Hypothesis](part-1/introduction/creating-hypothesis/)
+- [Creating Hypotheses](part-1/introduction/creating-hypothesis/)
 - [Planning a Threat Hunt](part-1/introduction/planning-a-threat-hunt/)
 {{% /expand %}}
 

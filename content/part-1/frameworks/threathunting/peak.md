@@ -1,5 +1,5 @@
 ---
-title: "Peak"
+title: "PEAK"
 date: 2024-09-22T13:40:11+02:00
 draft: false
 hidden: false

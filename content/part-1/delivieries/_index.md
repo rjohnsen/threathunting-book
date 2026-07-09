@@ -1,5 +1,5 @@
 +++
-title = "Delivieries"
+title = "Deliveries"
 date = 2024-10-13T09:06:05+02:00
 weight = 4
 chapter = false

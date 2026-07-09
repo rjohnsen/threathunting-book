@@ -1,5 +1,5 @@
 ---
-title: "Sitrep"
+title: "SITREP"
 date: 2024-10-13T09:09:44+02:00
 draft: false
 weight: 5

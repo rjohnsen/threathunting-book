@@ -1,5 +1,5 @@
 ---
-title: "Mac Addresses"
+title: "MAC Addresses"
 date: 2026-06-27T15:53:32+02:00
 draft: false
 weight: 5
