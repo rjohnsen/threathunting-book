@@ -1,240 +1,468 @@
 ---
 title: "Planning a Threat Hunt"
+description: "How to turn a hunting idea or hypothesis into a scoped, executable and reviewable threat hunt plan."
 date: 2024-10-27T11:10:42+01:00
 draft: false
 weight: 8
 tags:
-    - introduction
-    - foundation
+    - fundamentals
+    - threat hunting
     - planning
-    - executing
+    - methodology
+keywords:
+    - threat hunt planning
+    - threat hunting plan
+    - threat hunting methodology
+    - hunting hypothesis
+    - threat hunting scope
+    - threat hunting telemetry
+    - threat hunting output
+    - threat hunting validation
+    - AI assisted threat hunting
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**In this chapter we will jump into action by planning a threat hunt. Hopefully you got a threat hunting program already initiated- Planning a threat hunt involves a structured approach to proactively search for signs of malicious activity within an environment. I would love to stress that structured part. A threat hunting program based on "happy-go-lucky" isn't worth much. Anyway, below is a step-by-step guide to planning a threat hunt, combining tables with explanatory text and highlighting where AI can assist. Yes - I have chosen to involve AI in my threat hunts. You will be amazed how much value it can give you.**
+**The previous chapter described how to start and grow a threat hunting programme. This chapter moves one level down: how to plan a single hunt.**
 
----
+A threat hunting programme gives you the capability. A hunt plan turns that capability into a specific investigation.
 
-## Steps
+That distinction matters.
 
-We will now explore the key steps involved in planning an effective threat hunt and we are going to take basis in the following illustrated flowchart. From defining the scope and objectives to continuously improving our hunting methodologies, each step plays a critical role in enhancing our overall security posture. Let’s delve into these steps to understand how we can implement a successful threat hunting strategy.
+A hunt plan is not a project plan. It is not a long document written to satisfy process requirements. It is the bridge between a hypothesis and an investigation. It explains what the team is trying to find, why it matters, where to look, how to test it, how to validate the result and what useful output may come from the work. A hunt based on “let us just look around” may occasionally find something interesting, but it is difficult to repeat, review or improve. A structured hunt plan does not remove creativity. It gives creativity a shape.
 
-| Step | Description |
-|------|------------|
-| 1    | Define the Scope and Objectives |
-| 2    | Gather Intelligence and Research |
-| 3    | Data Collection |
-| 4    | Develop the Hunt Plan |
-| 5    | Execute the Hunt |
-| 6    | Analyze and Validate |
-| 7    | Report and Remediate |
-| 8    | Continuous Improvement |
+> A threat hunt should be structured enough that someone else can understand the reasoning, but flexible enough that the hunter can follow the evidence.
+>
+> -- Roger Johnsen
 
+## What a Hunt Plan Is
 
-### Step 1 - Define the Scope and Objectives
+A hunt plan is a practical working document. It should help the hunter move from an idea to an executable investigation. It should also help someone else understand what was tested afterwards.
 
-> The very first step is to clearly define the purpose and scope of the threat hunt, we can do so by focusing on certain aspects.
+At minimum, a hunt plan should answer:
 
-| **Aspect**             | **Description** |
-|------------------------| --------------- |
-| **Purpose**            | Identify the main goal of the threat hunt (examples: detect adversaries, investigate an incident, test defenses).  |
-| **Scope**              | Specify which assets or systems to focus on (examples: endpoints, network, cloud environments).                    |
-| **Hunting Hypothesis** | Formulate a hypothesis based on threat intelligence or known attack patterns (examples: PowerShell-based malware). |
+| Question                                     | Why it matters                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------- |
+| What are we trying to test?                  | Defines the purpose of the hunt.                                    |
+| Why does this matter?                        | Connects the hunt to risk, threat intelligence or operational need. |
+| What is the hypothesis?                      | Gives the hunt a testable direction.                                |
+| What behaviour would support the hypothesis? | Turns the idea into observable activity.                            |
+| Which data sources are required?             | Determines whether the hunt is possible.                            |
+| What is in scope and out of scope?           | Keeps the hunt controlled.                                          |
+| How will we search or analyse?               | Defines the method.                                                 |
+| How will we validate findings?               | Protects against weak conclusions.                                  |
+| What output should the hunt produce?         | Connects the hunt to improvement.                                   |
 
-#### Key Considerations
+A hunt plan should be short enough to use, but clear enough to survive review. If the plan cannot explain what the hunt is testing, the hunt is probably not ready.
 
-- **Data Sources**: Identify which logs and telemetry will be used in the hunt.
-- **Focus**: Decide whether the hunt will be broad (entire network) or narrow (specific systems).
-- **Duration**: Determine how long the hunt will last.
+## Start With the Question
 
-#### AI Assistance
+A hunt usually starts with a question. The question may come from:
 
-{{% notice tip %}}
-Use AI to generate potential hypotheses based on existing threat intelligence and past incidents. Great for inspiration, but please vet the output from AI in all cases! 
-{{% /notice %}}
+* a SOC observation
+* a recurring alert pattern
+* a recent incident
+* threat intelligence
+* a vulnerability or exposure
+* a detection gap
+* a red team or purple team finding
+* a new technique described in public reporting
+* uncertainty about whether a behaviour is visible in the environment
 
-### Step 2 - Gather Intelligence and Research
+Examples:
 
-> Gather relevant intelligence to guide the threat hunt. 
+* Can we identify Office applications spawning command interpreters on ordinary user workstations?
+* Do we have visibility into suspicious PowerShell activity across managed endpoints?
+* Can we detect successful authentication after password spraying behaviour?
+* Are administrative tools being used from systems where they are not expected?
 
-| **Aspect**              | **Description** |
-| ----------------------- | --------------- |
-| **Threat Intelligence**  | Use external sources (examples: MITRE ATT&CK, threat feeds) and internal intelligence (examples: SOC reports) to guide the hunt. |
-| **Known Attack Patterns**| Study common attack techniques relevant to your environment. |
-| **Relevant IOCs**        | Prepare a list of known Indicators of Compromise (IP addresses, domains, file hashes, etc.). But don't let the IOC take the focus of the threat hunt. You are looking for TTPs since IOCs are often short lived and might not be present in your systems as they appear in the reports. |
+The question does not need to be complicated. It needs to be useful. A weak question is:
 
-#### Key Considerations
+```text
+Are there attackers in the environment?
+```
 
-- Review recent vulnerabilities and attack campaigns that may affect your environment.
-- Focus on ongoing threats, such as phishing or malware attacks targeting the network.
+That may be what the organisation ultimately cares about, but it is too broad for a single hunt. A better question is:
 
-#### AI Assistance
+```text
+Can we identify user workstations where Office applications spawned PowerShell, cmd.exe, wscript.exe or similar interpreters during the last 30 days?
+```
 
-{{% notice tip %}}
-Leverage AI to analyze large volumes of threat data and extract key insights, helping you to prioritize.
-{{% /notice %}}
+That question can be tested.
 
-### Step 3 - Data Collection
+## Define Scope and Boundaries
 
-> Identify and collect the necessary data for your hunt.
+Scope is what keeps the hunt from becoming endless. A hunt should define what is included and what is not included. This is not bureaucracy. It is how the team prevents a good question from turning into an uncontrolled investigation. Scope may include:
 
-| **Aspect**             | **Description** |
-| ---------------------- | --------------- |
-| **Identify Data Sources** | Choose relevant data for hunting: EDR, network traffic, SIEM logs, DNS, or firewall logs. |
-| **Baseline Understanding**| Establish what normal activity looks like within the environment to help detect anomalies. |
+| Scope element   | Example                                                        |
+| --------------- | -------------------------------------------------------------- |
+| Time window     | Last 7 days, last 30 days, last 90 days                        |
+| Asset type      | Workstations, servers, domain controllers, cloud workloads     |
+| User population | All users, privileged users, finance users, external accounts  |
+| Data source     | EDR process telemetry, identity logs, DNS logs, proxy logs     |
+| Environment     | Production, corporate IT, cloud tenant, specific business unit |
+| Technique       | PowerShell execution, credential dumping, lateral movement     |
+| Exclusion       | Known admin jump hosts, lab machines, test tenants             |
 
-#### Key Considerations
+The hunt should also define boundaries. For example:
 
-- Ensure access to all necessary data sources.
-- Check that the collected data is sufficient and of high quality.
+```text
+This hunt looks for suspicious Office-spawned command interpreters on managed Windows workstations. It does not attempt full malware analysis, user forensics or incident response. Confirmed suspicious activity will be escalated.
+```
 
-#### AI Assistance 
+That kind of boundary is useful. It protects the hunt from becoming everything at once.
 
-{{% notice tip %}}
-Use AI to automate the data collection process if possible, ensuring comprehensive coverage and reducing manual effort. Many SIEMs and SOARs utilizes AI to establish baselines and for user behavior analytics. Utilize such inbuilt functionality if present.
-{{% /notice %}}
+## Turn the Hypothesis Into Observable Behaviour
 
-### Step 4 - Develop the Hunt Plan
+A hypothesis is useful only when it can be tested against data. A common mistake is to write a hypothesis that sounds good but does not translate into observable behaviour.
 
-> Based on the gathered intelligence, develop a detailed hunt plan.
+Weak hypothesis:
 
-| **Aspect** | **Description** |
-| ---------- | --------------- |
-| **Hunting Techniques**  | Decide whether to use anomaly detection, signature-based detection, or behavioral analysis for the hunt.    |
-| **Tools**              | Select tools like SIEM, EDR platforms, or custom scripts to help execute the hunt. |
+```text
+Attackers may be using malware in the environment.
+```
 
-#### Hunting Techniques
+Better hypothesis:
 
-| **Technique**             | **Description**                                                                                          |
-|---------------------------|----------------------------------------------------------------------------------------------------------|
-| **Anomaly Detection**      | Look for deviations from baseline behavior (examples: , unusual file or network activity).|
-| **Signature-Based Detection**| Use predefined IOCs (examples: , IPs, hashes) to identify known threats. It is more important to look at the context how the IOC is used, rather than looking at the IOC itself. IOC from a threat intel report might not exist in your log, but the context on how it was used may exist. |
-| **Behavioral Analysis**    | Search for behaviors indicative of known attacks (examples: , credential dumping, lateral movement).|
+```text
+If malicious documents are used for initial execution, Office applications may spawn PowerShell, cmd.exe, wscript.exe or similar interpreters on user workstations.
+```
 
-#### Key Considerations
+The second hypothesis gives the hunter something to look for. The next step is to identify observable behaviours:
 
-- Decide if the hunt will focus on real-time data or historical data.
-- Prepare any custom scripts, tools, or automation needed to enhance the hunt.
+| Hypothesis element           | Observable behaviour                                                       |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| Malicious document execution | Office process starts script interpreter or shell                          |
+| PowerShell abuse             | Encoded command, hidden window, download cradle, suspicious parent process |
+| Credential access            | LSASS access, credential dumping tool behaviour, unusual handle access     |
+| Lateral movement             | Remote service creation, admin share access, unusual remote execution      |
+| Data staging                 | Large archive creation, unusual compression, staging paths                 |
+| Exfiltration                 | Unusual outbound volume, rare destination, abnormal protocol use           |
 
-#### AI Assistance
+This is where the hunt becomes practical.
 
-{{% notice tip %}}
-AI can help generate automated scripts for data queries or create detection rules based on patterns identified in the data. As always, AI is a helping tool - not a silver bullet. Please pay attention and review the output.
-{{% /notice %}}
+> A hypothesis is not useful because it sounds intelligent. It is useful when it can be tested against observable behaviour.
+>
+> -- Roger Johnsen
 
-### Step 5 - Execute the Hunt
+## Identify Required Data Sources
 
-> Begin the hunt by following the plan developed.
+A hunt plan should identify the data needed to test the hypothesis. This is where many hunts fail. The idea may be good, but the required telemetry may not exist, may not be retained long enough, may not be parsed correctly, or may not contain the fields needed to answer the question.
 
-| **Aspect** | **Description** |
-| ---------- | --------------- |
-| **Search and Investigate**   | Execute searches based on your hypothesis. Look for anomalies or suspicious activity.|
-| **Document Findings**        | Record suspicious activities and log details such as timestamps and affected systems.|
+For each data source, ask:
 
-#### Key Considerations
+| Question                         | Why it matters                                               |
+| -------------------------------- | ------------------------------------------------------------ |
+| Does the data exist?             | Determines whether the hunt is possible.                     |
+| Is the data searchable?          | Determines whether the hunt can be executed efficiently.     |
+| Is the time window sufficient?   | Determines whether historical behaviour can be tested.       |
+| Are the required fields present? | Determines whether the query can answer the question.        |
+| Is the data reliable?            | Determines whether conclusions can be trusted.               |
+| Is enrichment available?         | Helps connect entities, users, devices and business context. |
 
-- Identify any signs of unauthorized access or malicious activity.
-- Ensure that findings are correlated across different data sources.
+Example for an Office-spawned PowerShell hunt:
 
-#### AI Assistance
+| Data source            | Purpose                                                        |
+| ---------------------- | -------------------------------------------------------------- |
+| EDR process telemetry  | Identify parent-child process relationships                    |
+| Command-line telemetry | Inspect PowerShell arguments and execution patterns            |
+| Device inventory       | Separate managed workstations from servers and special systems |
+| User context           | Identify user, role and expected behaviour                     |
+| Network telemetry      | Check whether execution led to outbound connections            |
+| DNS or proxy logs      | Identify rare or suspicious destinations                       |
 
-{{% notice tip %}}
-Utilize AI to analyze results in real-time, helping to identify patterns that may not be immediately visible to human analysts.
-{{% /notice %}}
+If a required data source is missing, the hunt can still be useful. It may become a visibility-gap hunt. That should be documented clearly.
 
-### Step 6 - Analyze and Validate
+```text
+The hypothesis could not be fully tested because unmanaged devices do not provide endpoint process telemetry.
+```
 
-> After collecting data, analyze and validate your findings.
+That is not a failure. That is an output.
 
-| **Aspect** | **Description** |
-| ---------- | --------------- |
-| **Correlate Data**          | Combine findings from different data sources to confirm or rule out an actual threat. |
-| **Filter False Positives**  | Ensure anomalies are not caused by benign activity (examples: , system updates, administrative tasks). |
+## Decide the Method
 
-#### Key Considerations
+The hunt plan should describe how the team will test the hypothesis. This does not need to be overly detailed, but it should be clear enough that another analyst can understand the approach.
 
-- Determine whether the observed activity can be traced to a legitimate cause or is part of an attack.
-- Refine the hypothesis or pivot to another area based on findings.
+Common hunting methods include:
 
-#### AI Assistance
+| Method                     | Use when                                                            |
+| -------------------------- | ------------------------------------------------------------------- |
+| Behavioural search         | Looking for activity patterns associated with attacker tradecraft   |
+| Anomaly detection          | Looking for deviations from expected behaviour                      |
+| Baseline comparison        | Comparing observed behaviour against known normal activity          |
+| IOC pivoting               | Using indicators as a starting point, not the entire hunt           |
+| Entity-based investigation | Following users, devices, IPs, files or identities through the data |
+| Temporal analysis          | Looking at sequence, timing and causality                           |
+| Relationship analysis      | Connecting events across systems or data sources                    |
 
-{{% notice tip %}}
-Employ AI to automate correlation tasks and suggest possible explanations for detected anomalies.
-{{% /notice %}}
+A good plan may combine several methods.
 
-### Step 7 - Report and Remediate
+For example:
 
-> Summarize the outcomes of the threat hunt.
+```text
+Search for Office applications spawning command interpreters, baseline frequency across workstations, exclude known packaging hosts, review command-line arguments, and pivot to network connections within five minutes of execution.
+```
 
-| **Aspect** | **Description** |
-| ---------- | --------------- |
-| **Document Results**      | Summarize findings, including detected incidents, anomalies, and overall results of the threat hunt.    |
-| **Alert and Respond**     | Escalate real threats to the SOC or incident response team for remediation. Include actionable details. |
+That tells the team what to do. It also makes the hunt reviewable.
 
-#### Key Considerations
+## Prepare Queries, Enrichment and Notes
 
-- If real threats are found, outline the systems affected and type of threat.
-- Conduct a post-hunt review to gather insights and improve future hunts.
+A hunt plan should prepare the practical material needed for execution. This may include:
 
-#### AI Assistance
+* initial queries
+* field mappings
+* known exclusions
+* enrichment sources
+* lookup tables
+* asset context
+* user context
+* known administrative tools
+* notes from previous hunts
+* expected false positives
+* triage questions
 
-{{% notice tip %}}
-Use AI to generate reports that highlight key findings and actionable insights in a concise manner.
-{{% /notice %}}
+Do not wait until the hunt is finished to think about documentation. Good notes during the hunt should capture:
 
-### Step 8 - Continuous Improvement
+| Note type      | Example                                                                    |
+| -------------- | -------------------------------------------------------------------------- |
+| Assumption     | Office applications rarely spawn command interpreters in this environment. |
+| Query decision | Excluded known software packaging hosts after validation.                  |
+| Pivot          | Checked DNS and proxy logs for outbound activity after process execution.  |
+| Limitation     | Some unmanaged endpoints lack process telemetry.                           |
+| Validation     | Confirmed activity on one host was legitimate packaging work.              |
+| Open question  | Need to confirm whether macro-enabled documents are logged separately.     |
 
-> Use the insights gained from the hunt for future enhancements.
+This is where many hunts become fragile. The analyst may remember why something was done, but the organisation will not.
 
-| **Aspect** | **Description** |
-| ---------- | --------------- |
-| **Update Detection Rules**  | Use insights from the hunt to improve detection capabilities (examples: , SIEM rules, IOCs, playbooks).    |
-| **Feedback Loop**           | Refine threat hunting methodologies, tools, and strategies based on findings and evolving threats.   |
+> The reasoning is part of the hunt. If you do not document it, you lose part of the evidence.
+>
+> -- Roger Johnsen
 
-#### Key Considerations
+## Execute With Discipline
 
-- Document any new attack methods discovered during the hunt.
-- Identify gaps in the environment that need to be addressed.
+Execution should follow the plan, but not blindly. The plan gives direction. The data may still force the hunter to adjust.
 
-#### AI Assistance
+During execution, the hunter should:
 
-{{% notice tip %}}
-AI can facilitate continuous learning by analyzing past hunts and suggesting adjustments to processes and tools based on results.
-{{% /notice %}}
+* run the planned queries
+* inspect the results
+* validate obvious false positives
+* pivot when evidence justifies it
+* record query changes
+* document assumptions
+* note gaps or unexpected behaviour
+* avoid turning every interesting result into a new hunt
 
-### Threat Hunt Example
+That last point matters. Threat hunting requires curiosity, but curiosity without discipline becomes wandering. If a new lead appears, the team should decide whether it belongs inside the current hunt or should become a separate hypothesis.
 
-To illustrate the threat hunting process in a short and concise manner:
+Example:
 
-| Term | Description |
-| ---- | ----------- |
-| **Hypothesis** | Attackers may have compromised internal systems using spear-phishing and are using PowerShell scripts for remote access. |
-| **Data Sources** | PowerShell logs, EDR telemetry, and DNS logs. |
-| **Hunt Method** | Look for PowerShell command invocations, outbound connections to suspicious domains, and abnormal DNS traffic. |
-| **Outcome** | Identified multiple anomalous PowerShell executions tied to unauthorized remote access attempts. Incident escalated to incident response team.  |
+```text
+The hunt for Office-spawned PowerShell reveals unusual rundll32 behaviour. If this is not directly connected to the hypothesis, document it as a follow-up hunt instead of derailing the current one.
+```
+
+A disciplined hunt does not ignore interesting findings. It controls them.
+
+## Validate Before Concluding
+
+A hunt should not jump from observation to conclusion. Finding a suspicious pattern is not the same as proving malicious activity.
+
+Validation may include:
+
+| Validation question                               | Purpose                             |
+| ------------------------------------------------- | ----------------------------------- |
+| Is the activity expected for this user or system? | Adds entity context.                |
+| Is this common in the environment?                | Adds baseline context.              |
+| Is there a legitimate administrative explanation? | Reduces false positives.            |
+| Did related activity occur before or after?       | Adds temporal context.              |
+| Are multiple data sources consistent?             | Strengthens confidence.             |
+| Could the hypothesis be wrong?                    | Protects against confirmation bias. |
+
+The hunter should be especially careful with language.
+
+Weak conclusion:
+
+```text
+This host was compromised.
+```
+
+Better conclusion:
+
+```text
+This host showed rare Office-spawned PowerShell execution followed by outbound connections to an uncommon domain. The activity is inconsistent with observed baseline behaviour and should be escalated for incident response validation.
+```
+
+That is stronger because it separates observation, context and recommended action.
+
+> The hunt does not end when something looks suspicious. It ends when the team has tested what the observation can and cannot support.
+>
+> -- Roger Johnsen
+
+## Decide the Output
+
+A hunt plan should define what useful output may come from the hunt. Not every hunt ends with an incident. That is normal.
+
+Possible outputs include:
+
+| Output                       | Description                                       |
+| ---------------------------- | ------------------------------------------------- |
+| Confirmed finding            | Activity requiring escalation or response         |
+| Detection idea               | Logic that can become a detection                 |
+| Detection improvement        | Better tuning, enrichment or triage guidance      |
+| Visibility gap               | Missing telemetry, retention, parsing or coverage |
+| Baseline                     | Better understanding of normal behaviour          |
+| Hunt package                 | Reusable hypothesis, queries and notes            |
+| Threat intelligence feedback | Local observations that refine intelligence       |
+| Follow-up hypothesis         | A new question that emerged during the hunt       |
+
+This should be considered during planning, not only after execution. The hunt is more useful when the team knows what kind of improvement it is trying to produce.
+
+```text
+If we find suspicious activity, we escalate it.
+If we find no suspicious activity, we still document baseline and visibility gaps.
+If we find missing data, we create a telemetry improvement request.
+If we find repeatable logic, we hand it to detection engineering.
+```
+
+That is how a hunt becomes operationally valuable.
+
+## Where AI Can Assist
+
+AI can support threat hunting, but it should not own the reasoning.
+
+Used well, AI can help with:
+
+| AI use                   | Useful for                                                           |
+| ------------------------ | -------------------------------------------------------------------- |
+| Hypothesis brainstorming | Generating candidate questions from threat intelligence or incidents |
+| Query drafting           | Producing first-pass KQL, SQL, SPL or Sigma-style logic              |
+| Explanation              | Explaining unfamiliar artefacts, fields or techniques                |
+| Summarisation            | Turning rough notes into readable summaries                          |
+| Alternative explanations | Suggesting benign causes that should be checked                      |
+| Report structure         | Helping organise findings, limitations and recommendations           |
+
+But every AI-assisted output needs review. AI can hallucinate fields, invent platform behaviour, overstate confidence, produce syntactically plausible but logically weak queries, or turn a weak assumption into a confident conclusion.
+
+A useful rule is:
+
+```text
+AI may help draft the plan. The hunter must own the plan.
+```
+
+That means the hunter must verify:
+
+* whether the data exists
+* whether the query tests the hypothesis
+* whether field names are correct
+* whether the logic makes sense
+* whether the conclusion is supported
+* whether alternative explanations were considered
+
+AI is useful when it helps the hunter think. It is dangerous when it replaces the hunter’s thinking.
+
+## Example Hunt Plan
+
+Below is a compact example of a hunt plan.
+
+| Field            | Example                                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hunt name        | Office-spawned PowerShell on user workstations                                                                                                                        |
+| Question         | Can we identify Office applications spawning PowerShell or similar interpreters on managed workstations?                                                              |
+| Hypothesis       | If malicious documents are used for initial execution, Office applications may spawn PowerShell, cmd.exe, wscript.exe or similar interpreters.                        |
+| Why it matters   | This behaviour may indicate initial execution, macro abuse, script execution or malicious document activity.                                                          |
+| Scope            | Managed Windows workstations, last 30 days.                                                                                                                           |
+| Out of scope     | Servers, known packaging hosts, unmanaged devices without EDR telemetry.                                                                                              |
+| Required data    | EDR process telemetry, command-line telemetry, device inventory, user context, DNS or proxy logs.                                                                     |
+| Method           | Search for Office parent processes spawning interpreters, baseline frequency, exclude known administrative systems, inspect command lines, pivot to network activity. |
+| Validation       | Check user role, device role, known admin activity, frequency, related process tree and network connections.                                                          |
+| Possible outputs | Confirmed suspicious activity, detection idea, triage guidance, baseline, visibility gap.                                                                             |
+
+Example execution notes:
+
+| Observation                                                                 | Interpretation                   |
+| --------------------------------------------------------------------------- | -------------------------------- |
+| Behaviour is rare across managed workstations                               | Useful baseline                  |
+| Several results tied to known packaging activity                            | Expected administrative activity |
+| One ordinary user workstation shows encoded PowerShell after Word execution | Requires deeper validation       |
+| Unmanaged devices cannot be tested                                          | Visibility gap                   |
+| DNS lookup to rare external domain occurs after execution                   | Pivot point for investigation    |
+
+Possible conclusion:
+
+```text
+Office-spawned command interpreters are rare on managed workstations. Most observed activity was tied to known packaging work, but one user workstation showed Word spawning encoded PowerShell followed by DNS activity to a rare external domain. This should be escalated for incident response validation. The hunt also identified a visibility gap for unmanaged devices.
+```
+
+Possible outputs:
+
+| Output              | Result                                                                                  |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| Incident escalation | One workstation requires validation by incident response                                |
+| Detection idea      | Alert on Office applications spawning interpreters outside known administrative systems |
+| Triage guidance     | Review parent process, user role, command line, child processes and network activity    |
+| Visibility gap      | Unmanaged devices lack sufficient process telemetry                                     |
+| Baseline            | Office-spawned interpreters are rare in the managed workstation population              |
+
+This is what a small but useful hunt can look like. It starts with one question, one hypothesis and a limited scope. It ends with evidence, context and operational outputs.
+
+## What Usually Goes Wrong
+
+Several problems repeat when teams plan threat hunts.
+
+| Problem                           | Why it hurts                                                        |
+| --------------------------------- | ------------------------------------------------------------------- |
+| The hunt starts too broad         | The team cannot tell when the hunt is finished.                     |
+| The hypothesis is not testable    | The team cannot map the idea to observable behaviour.               |
+| The data is assumed, not verified | The hunt fails during execution or produces weak conclusions.       |
+| IOCs dominate the hunt            | The team misses behaviour that does not match known indicators.     |
+| Scope is unclear                  | The hunt expands until it becomes unmanageable.                     |
+| Documentation starts too late     | Reasoning, pivots and assumptions are lost.                         |
+| Validation is weak                | Suspicious observations are treated as conclusions.                 |
+| Output is undefined               | The hunt produces interesting notes but no operational improvement. |
+| AI output is trusted too quickly  | Plausible suggestions become unverified assumptions.                |
+
+Most of these problems are avoidable. A good hunt plan does not need to be large. It needs to make the reasoning visible.
+
+## Working Position for This Book
+
+A threat hunt plan is the bridge between a hypothesis and an investigation. It should not be written to impress anyone. It should be written so the hunt can be executed, reviewed, challenged and turned into useful security work.
+
+A practical hunt plan should define:
+
+```text
+Question.
+Hypothesis.
+Scope.
+Observable behaviour.
+Required data.
+Method.
+Validation.
+Output.
+```
+
+That is enough to begin. The hunt may still change during execution. That is expected. But when the plan is clear, the team can tell the difference between following the evidence and simply wandering through logs.
+
+> A good hunt plan does not make the hunt rigid. It makes the reasoning visible.
+>
+> -- Roger Johnsen
 
 ## Resources
 
-1. [Threat Hunting: The Basics](https://www.cisecurity.org/white-papers/threat-hunting-the-basics/)
-2. [MITRE ATT&CK Framework](https://attack.mitre.org/)
-3. [MITRE ATT&CK Overview](https://attack.mitre.org/overview/)
-4. [CISecurity Threat Intelligence](https://www.cisecurity.org/controls/threat-intelligence/)
-5. [SANS Data Collection Best Practices](https://www.sans.org/white-papers/38366/)
-6. [Varonis Security Data Sources](https://www.varonis.com/blog/security-data-sources)
-7. [SANS Hunting Techniques](https://www.sans.org/white-papers/38475/)
-8. [Behavioral Detection and Threat Hunting](https://www.ibm.com/security/data-breach/threat-hunting)
-9. [Executing Threat Hunts](https://www.csoonline.com/article/3572794/how-to-execute-a-successful-threat-hunt.html)
-10. [Threat Hunting Methodologies](https://www.redcanary.com/threat-hunting-methodology/)
-11. [Analysis Techniques for Threat Hunting](https://www.sans.org/white-papers/38721/)
-12. [Validating Threat Hunting Findings](https://www.sans.org/white-papers/39208/)
-13. [Forensic Reporting](https://www.forensicfocus.com/articles/how-to-prepare-a-forensic-report/)
-14. [NIST Incident Response Guide](https://www.nist.gov/publications/guide-cybersecurity-incident)
+* [MITRE ATT&CK](https://attack.mitre.org/)
+* [MITRE ATT&CK Overview](https://attack.mitre.org/overview/)
+* [CIS Threat Hunting: The Basics](https://www.cisecurity.org/white-papers/threat-hunting-the-basics/)
+* [CIS Threat Intelligence](https://www.cisecurity.org/controls/threat-intelligence/)
+* [Red Canary Threat Hunting Methodology](https://redcanary.com/threat-hunting-methodology/)
+* [NIST Computer Security Incident Handling Guide](https://www.nist.gov/publications/computer-security-incident-handling-guide)
+* [SANS Data Collection Best Practices](https://www.sans.org/white-papers/38366/)
+* [Open Threat Hunting Framework](https://www.openthreat.hunting)
 
 ## Revision
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 22.02.2025   | Improved formatting and revised wording | 
+| Revised Date | Comment                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-09   | Major rewrite. Reframed the article from a generic step-by-step checklist into a practical guide for turning a hunting idea into an executable hunt plan. |
+| 2025-02-22   | Improved formatting and revised wording                                                                                                                   |
+| 2024-10-27   | Added page                                                                                                                                                |
