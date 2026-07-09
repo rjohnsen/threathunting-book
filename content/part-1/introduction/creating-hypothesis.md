@@ -1,199 +1,428 @@
 ---
-title: "Creating Hypothesis"
+title: "Creating Hypotheses"
+description: "How to create threat hunting hypotheses that are specific, testable, relevant and useful enough to drive a real hunt."
 date: 2024-11-02T15:09:15+01:00
 draft: false
 weight: 9
 tags:
-    - introduction
-    - foundation
-    - hypothesis
+- fundamentals
+- threat hunting
+- hypothesis
+- methodology
+keywords:
+- threat hunting hypothesis
+- creating threat hunting hypotheses
+- hypothesis-driven hunting
+- threat hunting methodology
+- MITRE ATT&CK
+- threat intelligence
+- hunting hypothesis examples
+- SMART criteria
+- observable behaviour
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**Effective threat hunting relies on more than just intuition and experience. It demands a structured approach to identifying and investigating potential threats. At the heart of this process is the formulation of well-crafted hypotheses that guide us to uncover hidden adversaries within the networks. A strong hypothesis serves as a focal point, directing efforts towards specific attack vectors, tactics, techniques, and procedures (TTPs) that are relevant to an organization’s unique threat landscape.**
+**The previous chapters introduced hypotheses as part of threat hunting methodology. This chapter goes deeper. It focuses on how to create hypotheses that are specific, testable, relevant and useful enough to drive an actual hunt.**
 
-**In this chapter we will explore the essential elements of creating effective threat-hunting hypotheses, including the importance of leveraging threat intelligence, analyzing past incidents, and identifying behavioral anomalies. Additionally, we will highlight practical exampless grounded in the MITRE ATT&CK framework, illustrating how to link the hypotheses to established threat actor behaviors. By employing these strategies, we can enhance our investigative capabilities and better protect our organizations from emerging threats.**
+Threat hunting relies on more than intuition and experience. Those things matter, but they are not enough. A hunt needs a structured question. It needs a reason. It needs observable behaviour. It needs data that can support or weaken the idea being tested.
 
----
+That is where the hypothesis comes in.
 
-## What is a hypothesis?
+* A good hypothesis gives the hunt direction. It does not prove anything by itself. It does not guarantee that the team will find malicious activity. It simply gives the hunter a clear statement to test against evidence.
+* A weak hypothesis sends the hunter browsing through logs.
+* A strong hypothesis tells the hunter what evidence would matter.
 
-Before we go on creating hypotheses, let's just take a moment to clarify what a hypothesis is. As we progess through this chapter, we'll see that an hypothesis is more than just a hunch, and far more than a statement like "we think we have an attacker in our networks".Let's carry on with a definition:
+> A hypothesis is not a suspicion with better wording. It is a statement you can test against evidence.
+>
+> -- Roger Johnsen
 
-> A hypothesis is a proposed explanation or prediction based on limited evidence, serving as a starting point for further investigation. In the context of threat hunting, it articulates a specific assumption about a potential security threat or vulnerability within a system or organization. A well-formed hypothesis should be testable, allowing security analysts to gather data and conduct investigations to confirm or refute the assumption. It often incorporates elements such as known threat intelligence, behavioral patterns, and business context, ultimately guiding the investigation process and focusing efforts on areas of concern.
+## What a Threat Hunting Hypothesis Is
 
-## Hypothesis Formulation Process
+A threat hunting hypothesis is a testable statement about behaviour that may indicate malicious activity, security weakness, detection failure, visibility gap or operational risk. It usually combines several elements:
 
-The diagram below depicts my general workflow for formulating threat-hunting hypotheses. It is organized in a top-down (TD) format and consists of several interconnected steps:
+| Element    | Purpose                                                |
+| ---------- | ------------------------------------------------------ |
+| Assumption | What do we think may be happening?                     |
+| Behaviour  | What observable activity would support the assumption? |
+| Context    | Why does this matter in our environment?               |
+| Data       | Which telemetry can test the idea?                     |
+| Scope      | Where and when will we look?                           |
+| Output     | What useful result may come from the hunt?             |
 
-```mermaid
-graph TD
-    A[Start with Threat Intelligence] --> B[Analyze Past Incidents]
-    A --> C[Identify Anomalies]
-    A --> D[Examine Business Context]
-    A --> E[Leverage Red Team Results]
-    A --> F[Consider Industry Trends]
-    A --> G[Assess Behavioral Patterns]
-    B --> H[Formulate Specific Hypothesis]
-    C --> H
-    D --> H
-    E --> H
-    F --> H
-    G --> H
-    H --> J[Refine Using SMART Criteria]
-    J --> K[Conduct Threat Hunt]
+A hypothesis does not need to be complicated. It needs to be clear enough to test. 
+
+Weak example:
+
+```text
+Attackers may be present in the network.
 ```
 
-### Description of steps 
+Better example:
 
-#### Start with Threat Intelligence
+```text
+If attackers gained initial access through malicious documents, Office applications may spawn PowerShell, cmd.exe, wscript.exe or similar interpreters on user workstations.
+```
 
-My process begins by gathering relevant threat intelligence, which serves as the foundation for understanding potential threats. To threat intelligence I reckon:
+The second example gives the hunter something to do. It points towards process telemetry, parent-child relationships, command-line arguments, device context and user context. That is what makes it useful. A hypothesis should help the hunter move from a concern to an investigation.
 
-| Source | Description |
-| ------ | ----------- |
-| Analyzing Past Incidents | Reviewing previous security incidents helps me identify patterns and areas of vulnerability. |
-| Identifying Anomalies | Spotting deviations in normal behavior helps indicating potential threats. |
-| Examining Business Context | Understanding the organization's operational environment and priorities informs the relevance of potential threats. |
-| Leveraging Red Team Results | Insights gained from red team exercises highlights potential attack vectors and weaknesses. |
-| Considering Industry Trends | Staying updated on trends and emerging threats within the industry helps shaping the hypothesis. |
-| Assessing Behavioral Patterns | Analyzing user and system behaviors can reveal unusual activities that warrant further investigation. |
+## What a Hypothesis Is Not
 
-##### Tips on Threat Intelligence
+It is useful to be clear about what a hypothesis is not:
 
-| Step | Description |
-| ---- | ----------- |
-| Start with Known Threat Intelligence | Utilize threat intelligence sources such as MITRE ATT&CK, threat reports, or industry-specific intelligence to form hypotheses around known adversary tactics, techniques, and procedures (TTPs). |
-| Analyze Past Incidents and Known Vulnerabilities | Reviewing past incidents or known vulnerabilities can highlight areas of weakness where attackers might focus, allowing you to develop hypotheses around potential attacks or exploitation methods. |
-| Identify Anomalous Behaviors in Baseline Data | Analyzing baseline network and endpoint activity can help spot deviations that indicate malicious behavior. |
-| Examine Business Context and High-Value Assets | Protecting critical data and systems is crucial. High-value assets like financial records, customer databases, and intellectual property often attract attackers. |
-| Leverage Red Team Exercises and Penetration Testing Results | Findings from red team exercises or penetration tests often reveal potential weaknesses in defenses, which can form the basis for hypotheses. |
-| Industry Trends and Threat Actor TTPs | Staying informed about industry trends and TTPs used by known threat actors, especially those targeting your sector, can help anticipate likely attack scenarios. |
-| Behavioral Patterns and Anomaly Detection | Identifying strange patterns in user or network behavior that differ from normal activity can indicate malicious activity, prompting a hypothesis. |
+* A hypothesis is not the same as an alert. An alert says that something matched existing logic. A hypothesis asks whether something may be happening that the existing logic does not fully cover.
+* A hypothesis is not the same as an IOC. An IOC can be a useful starting point, but an IOC search is usually narrow. A hypothesis should move towards behaviour and context.
+* A hypothesis is not the same as a threat report. A report may inspire the hunt, but the hunter still needs to translate the report into local telemetry and observable behaviour.
+* A hypothesis is not the same as a vague concern.
 
-#### Formulate Specific Hypothesis
+Concern: 
 
-All these threat intelligence inputs converge to help formulate a specific hypothesis about a potential threat or vulnerability.
+```text
+We are worried about ransomware.
+```
 
-#### Refine Using SMART Criteria
+That may be a valid concern, but it is not yet a hunting hypothesis. A better version could be:
 
-After formulation, the hypothesis is refined based on the SMART criteria (Specific, Measurable, Achievable, Relevant, Time-Bound), ensuring that it is actionable and relevant.
+```text
+If ransomware operators are preparing for encryption, we may observe unusual archive creation, privilege escalation attempts, lateral movement, backup access or security tool tampering before encryption begins.
+```
 
-#### Conduct Threat Hunt
+That version is still broad, but it has become testable. It points towards behaviours that can be scoped, searched and validated.
 
-Finally, armed with a refined hypothesis, the threat-hunting process is conducted, allowing threat hunters to actively search for signs of malicious activity based on their hypotheses.
+| Not a hypothesis                  | Why it is weak                                 |
+| --------------------------------- | ---------------------------------------------- |
+| “There may be attackers here.”    | Too broad to test.                             |
+| “Search for this IP address.”     | Indicator lookup, not a hypothesis.            |
+| “Look for suspicious PowerShell.” | Too vague without behaviour, scope or context. |
+| “APT groups target our sector.”   | Threat awareness, not a local test.            |
+| “This alert looks bad.”           | Observation, not a structured assumption.      |
 
-## Tips on Forming Good Hypotheses
+A hypothesis should not only sound plausible. It should make the next analytical step clearer.
 
-A good hypothesis should be clear, concise, and based on both qualitative and quantitative data. Following are some tips for crafting effective hypotheses.
+## Where Hypotheses Come From
 
-### Be Specific
+Threat hunting hypotheses can come from many sources. They do not all start with threat intelligence. Some of the best hypotheses come from local observations, weak detections, strange baseline behaviour or questions raised during incident response.
 
-Clearly define what you are investigating. Vague hypotheses lead to scattered efforts. Specify the attack vector, target, or behavior you are concerned about.
+Useful sources include:
 
-**Example**
+| Source              | How it can become a hypothesis                                         |
+| ------------------- | ---------------------------------------------------------------------- |
+| Threat intelligence | Translate adversary behaviour into local observable activity.          |
+| Past incidents      | Hunt for related behaviour, recurrence or missed signals.              |
+| SOC observations    | Turn repeated alerts or analyst uncertainty into structured questions. |
+| Detection gaps      | Ask what current alerting logic may fail to see.                       |
+| Red team results    | Hunt for tested techniques, missed detections or weak controls.        |
+| Vulnerabilities     | Ask how exploitation or post-exploitation behaviour would appear.      |
+| Business context    | Focus hunting on critical systems, processes or identities.            |
+| Baseline anomalies  | Investigate behaviour that does not fit expected activity.             |
+| Industry trends     | Convert sector-relevant reporting into local hypotheses.               |
+| New telemetry       | Ask what behaviours can now be tested that were previously invisible.  |
 
-> Instead of saying, "There may be a breach," specify, "There may be unauthorized access to financial records due to weak password policies."
+The source matters less than the translation. Threat intelligence, for example, is not automatically a hypothesis. A report may describe an actor using PowerShell, scheduled tasks, cloud consent abuse or remote services. The hunter still has to ask:
 
-### Incorporate Threat Intelligence
+```text
+What would this behaviour look like in our environment?
+```
 
-Utilize relevant threat intelligence to inform your hypothesis. This can include known TTPs from frameworks like MITRE ATT&CK or insights from threat intelligence reports.
+and:
 
-**Example**
+```text
+Do we have the data needed to test it?
+```
 
-> "Given the recent rise in phishing attacks targeting our sector, we suspect that employees may be clicking on malicious links in emails."
+> Threat intelligence gives you ideas. Telemetry decides whether those ideas can be tested.
+>
+> -- Roger Johnsen
 
-### Make it Testable
+## From Input to Hypothesis
 
-A hypothesis should be framed in a way that allows for testing. Define what success looks like and how you will measure it.
+The practical work is turning raw input into a testable hypothesis. A simple flow is:
 
-**Example**
+```text
+Input → Local relevance → Observable behaviour → Required data → Hypothesis
+```
 
-> "We will monitor logs for unusual login attempts to admin accounts during off-hours. If we see an increase of 20% over the baseline, we will consider it a potential indicator of compromise."
+Example:
 
-### Link to Business Context
+| Stage                | Example                                                                                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Input                | Threat report describes phishing leading to PowerShell execution.                                                                                                   |
+| Local relevance      | The organisation receives many attachments by email and uses Microsoft 365.                                                                                         |
+| Observable behaviour | Office applications spawning PowerShell or script interpreters.                                                                                                     |
+| Required data        | EDR process telemetry, command-line logging, email context, device inventory.                                                                                       |
+| Hypothesis           | If malicious documents are used for initial execution, Office applications may spawn PowerShell, cmd.exe, wscript.exe or similar interpreters on user workstations. |
 
-Ensure your hypothesis aligns with the organization's business context and priorities. This will help justify the effort and resources allocated to the hunt.
+This translation step is important. Without it, the team may simply copy ideas from reports into hunts without checking whether they are relevant, observable or testable.
 
-**Example**
+Another example:
 
-> "Our organization stores sensitive customer data. We hypothesize that attackers may exploit vulnerabilities in our payment processing system to access this information."
+| Stage                | Example                                                                                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Input                | SOC sees repeated password spraying alerts.                                                                                                                       |
+| Local relevance      | Several users have cloud access and privileged roles.                                                                                                             |
+| Observable behaviour | Many failed logins followed by successful authentication from shared infrastructure.                                                                              |
+| Required data        | Identity logs, MFA status, user risk, IP reputation, geolocation, device context.                                                                                 |
+| Hypothesis           | If password spraying is successful, we may observe a pattern of repeated failed authentication attempts followed by successful login from unusual infrastructure. |
 
-### Use SMART Criteria
+The quality of the hypothesis depends on how well the input is translated into behaviour.
 
-Formulate hypotheses that are Specific, Measurable, Achievable, Relevant, and Time-Bound. This structured approach can enhance clarity and focus. This concept originates from management goal-setting principles introduced by George T. Doran in 1981, this framework helps ensure that objectives are clear, actionable, and aligned with organizational priorities, ultimately strengthening the effectiveness of threat hunting efforts.
+## Making the Hypothesis Testable
 
-Using SMART (Specific, Measurable, Achievable, Relevant, Time-Bound) criteria can ensure the hypothesis is actionable:
+A hypothesis should be testable. That means the hunter should be able to define what evidence would support it, what evidence would weaken it and what data is needed.
 
-| Keyword | Description |
-| ------- | ----------- |
-| Specific | Defines a clear focus, e.g., a particular TTP or high-value asset. | 
-| Measurable | Describes what metrics or indicators will validate it. |
-| Achievable | Ensures it’s feasible given available resources. |
-| Relevant | Aligns with current threat landscape or organizational priorities. |
-| Time-Bound | Specifies a timeframe for relevance or monitoring. |
+Ask these questions:
 
-**Example**
+| Question                             | Purpose                                 |
+| ------------------------------------ | --------------------------------------- |
+| What behaviour are we looking for?   | Prevents vague hunting.                 |
+| Where should this behaviour appear?  | Identifies data sources.                |
+| Who or what is in scope?             | Defines the population.                 |
+| What time period matters?            | Keeps the hunt bounded.                 |
+| What would support the hypothesis?   | Defines useful evidence.                |
+| What would weaken the hypothesis?    | Reduces confirmation bias.              |
+| What benign explanations are likely? | Improves validation.                    |
+| What output can this hunt produce?   | Connects the hypothesis to improvement. |
 
-> "Within the next month, we will assess access logs for unauthorized logins on our critical database servers to identify any anomalous patterns."
+A testable hypothesis often contains three things:
 
-## Examples Based on the MITRE ATT&CK Framework
+```text
+If [condition or threat behaviour], then [observable activity] may appear in [specific scope or data].
+```
 
-### Initial Access (Phishing)
+Example:
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| Employees may be susceptible to phishing attacks that aim to harvest credentials, which could lead to unauthorized access to our internal systems. | This is linked to the MITRE ATT&CK technique T1566 (Phishing), where attackers send deceptive emails to lure victims into providing sensitive information. |
+```text
+If attackers are using valid accounts for lateral movement, then we may observe administrative logons from unusual source systems to servers where those users do not normally authenticate.
+```
 
-### Execution (PowerShell)
+This is testable because it points towards:
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| Malicious PowerShell scripts may be executed by threat actors to gain access to sensitive data on endpoints. | Tied to T1086 (PowerShell), where attackers utilize PowerShell for executing malicious payloads or commands in a compromised environment. |
+* authentication logs
+* source and destination systems
+* user roles
+* administrative logon types
+* baseline behaviour
+* time window
+* exceptions
+* validation paths
 
-### Persistence (Scheduled Tasks)
+A hypothesis does not have to be perfect. It has to be good enough to test.
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| An attacker may establish persistence through scheduled tasks to ensure their payloads execute after a system reboot. | Connected to T1053 (Scheduled Task/Job), which describes how adversaries can create tasks that allow them to maintain access. |
+## Using SMART Without Losing the Point
 
-### Privilege Escalation (Credential Dumping)
+SMART can help refine hunting hypotheses, but it should not turn the hunt into management theatre.
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| Attackers could be attempting to perform credential dumping to escalate privileges on our domain controller. | Relates to T1003 (Credential Dumping), where adversaries obtain account login credentials to exploit privileged accounts. |
+SMART means:
 
-### Lateral Movement (Remote Services)
+| Keyword    | Meaning in threat hunting                                                         |
+| ---------- | --------------------------------------------------------------------------------- |
+| Specific   | The hypothesis identifies a behaviour, technique, asset group or user population. |
+| Measurable | The hunt can define what evidence, count, pattern or observation matters.         |
+| Achievable | The data and skills required are available.                                       |
+| Relevant   | The hypothesis matters to the organisation or threat landscape.                   |
+| Time-bound | The hunt has a defined time window or period of relevance.                        |
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| If attackers are present on the network, they may leverage Windows Remote Management (WinRM) for lateral movement to access other systems. | Associated with T1021 (Remote Services), which includes techniques for remote execution of commands on other machines. |
+Weak version:
 
-### Exfiltration (Data Transfer Size Limits)
+```text
+We will look for suspicious logins.
+```
 
-| Hypothesis | Basis |
-| ---------- | ----- |
-| We may detect anomalous data exfiltration attempts through bulk transfers during non-business hours, indicating possible data theft. | Tied to T1041 (Exfiltration Over Command and Control Channel), where data is transferred out of the organization. |
+SMART-er version:
 
-### References
+```text
+During the last 30 days, we will identify successful logins to privileged accounts from unfamiliar countries, rare autonomous systems or unmanaged devices, and compare them against known travel, VPN usage and administrative patterns.
+```
 
-1. [SOC Prime Blog: Threat Hunting Hypothesis Examples](https://socprime.com/blog/threat-hunting-hypothesis-examples/)
-2. [Cyborg Security Blog: 50 Threat Hunting Hypothesis Examples](https://www.cyborgsecurity.com/blog/50-threat-hunting-hypothesis-examples/)
-3. [Splunk Blog: Peak Hypothesis-Driven Threat Hunting](https://www.splunk.com/en_us/blog/security/peak-hypothesis-driven-threat-hunting.html)
-4. [Cyborg Security Blog: Art of the Hunt – Building a Threat Hunting Hypothesis List](https://www.cyborgsecurity.com/blog/art-of-the-hunt-building-a-threat-hunting-hypothesis-list/)
-5. [SOC Investigation: Threat Hunting Hypothesis Examples – Start for a Good Hunt](https://www.socinvestigation.com/threat-hunting-hypothesis-examples-start-for-a-good-hunt/)
-6. [Medium: Threat Hunting – Important Things on How to Start Hunting](https://medium.com/@chandrak.trivedi/threat-hunting-important-things-on-how-to-start-hunting-2b0f2efc90ac)
-7. [SANS Institute Whitepapers on Threat Hunting](https://www.sans.org/white-papers/37172/)
-8. [Harlow, C. (2015). *What is a Hypothesis?*. The University of Kansas.](https://biology.ku.edu/what-hypothesis)
-9. [The University of California, Berkeley. (n.d.). *Hypothesis*.](https://eScholarship.org/uc/item/4gn6n3wq)
-10. [Doran, G. T. (1981). “There’s a S.M.A.R.T. Way to Write Management’s Goals and Objectives.” *Management Review*, 70(11), 35-36.](https://www.jstor.org/stable/40604294)
-11. [McCarthy, J. (2016). “Hypothesis in Research.” *Research Methods*.](https://www.researchgate.net/publication/316250109_Hypothesis_in_Research)
+This is better because it defines:
+
+* time window
+* account population
+* observable behaviour
+* data needed
+* validation context
+
+SMART should sharpen the hunt, not bury it in paperwork.
+
+> SMART is useful when it makes the hypothesis clearer. It is useless when it turns hunting into form-filling.
+>
+> -- Roger Johnsen
+
+## Weak and Strong Hypotheses
+
+A strong hypothesis is not necessarily longer. It is more testable.
+
+| Weak hypothesis                | Stronger hypothesis                                                                                                                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| There may be phishing.         | If phishing leads to credential theft, we may observe failed and successful logins from unusual infrastructure shortly after suspicious email delivery.                                    |
+| Attackers may use PowerShell.  | If attackers use PowerShell for execution, we may observe PowerShell launched by unusual parent processes with encoded commands, download behaviour or hidden execution.                   |
+| There may be lateral movement. | If attackers move laterally using remote services, we may observe administrative logons, remote service creation or remote command execution from systems that are not normal admin hosts. |
+| Someone may be stealing data.  | If data is being staged for exfiltration, we may observe unusual archive creation, large file movement or outbound transfers to rare destinations outside business hours.                  |
+| There may be persistence.      | If attackers establish persistence using scheduled tasks, we may observe newly created tasks with unusual names, paths, users or execution commands on endpoints.                          |
+
+The stronger versions do not claim that an attack is happening. They describe what evidence may support the idea. That is the point. A strong hypothesis should help the hunter decide:
+
+* where to look
+* what to look for
+* what context matters
+* what would be normal
+* what would be suspicious
+* what to do with the result
+
+A weak hypothesis often produces open-ended searching. A strong hypothesis produces directed investigation.
+
+## Using MITRE ATT&CK as Structure
+
+MITRE ATT&CK is useful for hypothesis creation because it provides a structured vocabulary for adversary behaviour. It can help the hunter ask:
+
+* Which tactic are we concerned about?
+* Which technique may be relevant?
+* What behaviour would that technique create?
+* Which data sources could show it?
+* Which detections do we already have?
+* What might our existing detections miss?
+
+ATT&CK should be used as structure, not as a substitute for thinking. A technique page may describe adversary behaviour, but it does not automatically tell you what is relevant in your environment. The hunter still needs to translate the technique into local systems, logs and context.
+
+Example:
+
+| ATT&CK area                                   | Hunting translation                                                                                      |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Initial Access / Phishing                     | Which email, identity and endpoint behaviours would suggest successful phishing?                         |
+| Execution / Command and Scripting Interpreter | Which parent-child process relationships and command-line patterns are unusual?                          |
+| Persistence / Scheduled Task or Job           | Which newly created tasks are rare, suspicious or inconsistent with normal administration?               |
+| Credential Access / OS Credential Dumping     | Which processes accessed credential material, and is that expected?                                      |
+| Lateral Movement / Remote Services            | Which users authenticated remotely to which systems, and is that normal?                                 |
+| Exfiltration                                  | Which large transfers, rare destinations or unusual protocols may indicate data leaving the environment? |
+
+The useful movement is:
+
+```text
+ATT&CK technique → local behaviour → data source → hypothesis → hunt plan
+```
+
+Not:
+
+```text
+ATT&CK technique → generic search → conclusion
+```
+
+## Example Hypotheses
+
+Below are examples of threat hunting hypotheses inspired by common ATT&CK areas. They are intentionally written as hypotheses, not conclusions.
+
+### Initial Access: Phishing
+
+| Field            | Example                                                                                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If phishing emails are used to steal credentials, we may observe suspicious email delivery followed by failed and successful authentication attempts from unusual infrastructure. |
+| Possible data    | Email logs, identity logs, MFA events, device context, IP reputation.                                                                                                             |
+| What to validate | Whether the login pattern fits the user, device, location, MFA history and known travel or VPN use.                                                                               |
+
+### Execution: PowerShell
+
+| Field            | Example                                                                                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If attackers use PowerShell for execution, we may observe PowerShell launched by unusual parent processes, encoded commands, download behaviour or hidden execution on endpoints. |
+| Possible data    | EDR process telemetry, command-line logs, PowerShell logs, network telemetry.                                                                                                     |
+| What to validate | Parent process, user context, script content, destination, frequency and known administrative activity.                                                                           |
+
+### Persistence: Scheduled Tasks
+
+| Field            | Example                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If attackers establish persistence using scheduled tasks, we may observe newly created tasks with unusual names, paths, users, triggers or execution commands. |
+| Possible data    | Windows event logs, EDR telemetry, task scheduler logs, file system telemetry.                                                                                 |
+| What to validate | Task creator, command path, trigger, signed binaries, endpoint role and administrative change history.                                                         |
+
+### Credential Access: Credential Dumping
+
+| Field            | Example                                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If attackers attempt credential dumping, we may observe suspicious access to LSASS, credential material, browser credential stores or security account databases. |
+| Possible data    | EDR telemetry, process access events, command-line logs, file access logs, security logs.                                                                         |
+| What to validate | Process lineage, tool behaviour, user privileges, endpoint role and known security tooling.                                                                       |
+
+### Lateral Movement: Remote Services
+
+| Field            | Example                                                                                                                                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If attackers use remote services for lateral movement, we may observe administrative logons, remote service creation or remote command execution from systems that are not normal administrative hosts. |
+| Possible data    | Authentication logs, EDR telemetry, Windows service events, network telemetry, asset inventory.                                                                                                         |
+| What to validate | Source host, destination host, user role, logon type, service name, process lineage and normal admin patterns.                                                                                          |
+
+### Exfiltration: Unusual Data Movement
+
+| Field            | Example                                                                                                                                                                          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hypothesis       | If attackers stage or exfiltrate data, we may observe unusual archive creation, large file movement or outbound transfers to rare destinations outside normal business patterns. |
+| Possible data    | File telemetry, proxy logs, DNS logs, network flow, DLP alerts, cloud storage logs.                                                                                              |
+| What to validate | Business process, user role, file type, destination, time of day, volume and previous baseline.                                                                                  |
+
+These examples are not meant to be copied blindly. They are templates for thinking. Each organisation must adapt the hypothesis to its own systems, telemetry, business context and threat landscape.
+
+## What Usually Goes Wrong
+
+Several problems appear repeatedly when teams create hunting hypotheses.
+
+| Problem                                                    | Why it hurts                                                              |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------- |
+| The hypothesis is too broad                                | The hunt becomes endless and difficult to conclude.                       |
+| The hypothesis is just an IOC search                       | The team may miss behaviour that does not match known indicators.         |
+| The hypothesis cannot be tested                            | The required data does not exist or cannot answer the question.           |
+| The hypothesis ignores local context                       | The hunt may be technically interesting but operationally irrelevant.     |
+| The hypothesis assumes malicious intent too early          | The team jumps from observation to conclusion.                            |
+| The hypothesis lacks scope                                 | The hunt expands beyond control.                                          |
+| The hypothesis has no output path                          | The result does not improve detection, response, visibility or knowledge. |
+| The hypothesis is copied from a report without translation | The hunt does not fit the organisation’s telemetry or environment.        |
+
+Most weak hypotheses fail because they do not connect the idea to observable behaviour. The fix is usually simple:
+
+```text
+Make the behaviour visible.
+Make the scope clear.
+Make the data explicit.
+Make the conclusion testable.
+```
+
+## Working Position for This Book
+
+A threat hunting hypothesis is a practical tool. It should not be written to sound impressive. It should be written to guide investigation.
+
+A good hypothesis connects:
+
+```text
+Threat idea.
+Local relevance.
+Observable behaviour.
+Data source.
+Scope.
+Validation.
+Output.
+```
+
+That connection is what makes hypothesis-driven hunting useful. The hypothesis does not need to prove that an attacker is present. It needs to help the hunter test whether a behaviour exists, whether it matters and what should happen next.
+
+> A good hypothesis gives the hunt direction. A great hypothesis also tells you what evidence would change your mind.
+>
+> -- Roger Johnsen
+
+## Resources
+
+* [MITRE ATT&CK](https://attack.mitre.org/)
+* [MITRE ATT&CK Overview](https://attack.mitre.org/overview/)
+* [SOC Prime: Threat Hunting Hypothesis Examples](https://socprime.com/blog/threat-hunting-hypothesis-examples/)
+* [Cyborg Security: 50 Threat Hunting Hypothesis Examples](https://www.cyborgsecurity.com/blog/50-threat-hunting-hypothesis-examples/)
+* [Splunk: PEAK Threat Hunting Framework](https://www.splunk.com/en_us/blog/security/peak-hypothesis-driven-threat-hunting.html)
+* [Cyborg Security: Art of the Hunt – Building a Threat Hunting Hypothesis List](https://www.cyborgsecurity.com/blog/art-of-the-hunt-building-a-threat-hunting-hypothesis-list/)
+* [SANS Institute Whitepapers on Threat Hunting](https://www.sans.org/white-papers/)
+* [George T. Doran: There’s a S.M.A.R.T. Way to Write Management’s Goals and Objectives](https://www.jstor.org/stable/40604294)
 
 ## Revision
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 02.11.2024   | Added page | 
+| Revised Date | Comment                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| 2026-07-09   | Major rewrite. Reframed the article as a dedicated deep-dive on creating testable threat hunting hypotheses. |
+| 2024-11-02   | Added page                                                                                                   |
