@@ -1,115 +1,514 @@
 ---
+
 title: "How to Start a Threat Hunting Program"
+description: "How to start and grow a threat hunting programme by establishing foundations, defining objectives, running structured hunts, and turning results into operational improvement."
 date: 2024-10-26T16:40:47+02:00
 draft: false
 weight: 7
 tags:
-    - introduction
-    - foundation
-    - starting
-    - beginning
-    - program
+- fundamentals
+- threat hunting
+- program
+- methodology
+keywords:
+- threat hunting program
+- how to start threat hunting
+- threat hunting methodology
+- SOC
+- detection engineering
+- telemetry
+- hunting hypotheses
+- security operations
+- SMART objectives
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**One question I often encounter when discussing threat hunting is, "How do we start a threat hunting program at our company?" This is a crucial question, and I’d like to share my perspective on it. The approach to launching a threat hunting program can vary significantly between organizations. Some companies have matured to the point where they recognize the importance of proactive security measures, while others may still be reactive in their security posture.**
+**One question I often hear when discussing threat hunting is simple: how do we start a threat hunting programme? The answer depends on the organisation. Some companies already have a mature SOC, good telemetry, clear incident response processes and people who understand the environment. Others are still mostly reactive, with uneven logging, unclear ownership and detections that are difficult to trust. Both may want threat hunting, but they cannot start from the same place.**
 
-**Starting a threat hunting program requires a structured methodology to proactively identify potential threats that have evaded existing security defenses. Below are some key steps and tips I want to share with you to help you initiate your threat hunting efforts.**
+That is why the first step is not to copy someone else’s programme. The first step is to understand what you have, what you lack, and what kind of hunting is realistic now.
+
+This article separates the work into two parts.
+
+First, there is the starting point: what must be in place to begin threat hunting in a controlled and useful way. Then there is the next stage: what to do when the organisation has gained momentum and the hunts are starting to produce value.
+
+The distinction matters. Starting a threat hunting programme and maturing a threat hunting programme are related, but they are not the same task. A threat hunting programme should start small enough to work, but structured enough to grow.
 
 ---
 
-### Assess Your Current Security Posture
+## Getting Started
 
-Begin by evaluating your organization’s current security measures. Understand your existing tools, processes, and team capabilities. This assessment will help identify gaps and opportunities for improvement.
+### Assess the Current Security Posture
 
-### Define Objectives and Goals
-Establish clear, measurable objectives for your threat hunting program. Here are some strategies to effectively define these objectives:
+Before starting a threat hunting programme, the organisation should understand its current security posture. This does not need to be a large maturity assessment. The point is to understand what the team can realistically hunt with today.
 
-| Objectives | Description |
-| ---------- | ----------- | 
-| Identify Key Threats | Conduct a thorough risk assessment to pinpoint specific threats relevant to your organization. This analysis should consider historical security incidents, current threat intelligence, and industry-specific vulnerabilities. Understanding these elements will help you focus your hunting efforts where they are needed most. |
-| Set SMART Objectives | Use the SMART criteria — Specific, Measurable, Achievable, Relevant, and Time-bound—to define your goals. For instance, instead of setting a vague goal like “improve threat detection,” specify a goal such as “detect and respond to 90% of identified threats within 48 hours over the next year.” By establishing clear metrics, you can better evaluate the success of your threat hunting activities. |
-| Prioritize Threats |Once you've identified potential threats, prioritize them based on their potential impact and the likelihood of occurrence. Focus on the most critical threats first, allowing you to allocate resources effectively. For example, if your industry is facing an uptick in ransomware attacks, you should concentrate your hunting efforts on detecting and mitigating those specific threats. |
-| Align with Business Objectives | Ensure your threat hunting objectives align with your organization’s broader business goals. This alignment helps secure support from leadership and reinforces the value of your efforts. For example, if your organization is focused on achieving regulatory compliance, your threat hunting objectives should also include monitoring for compliance-related risks. |
-| Develop Key Performance Indicators (KPIs) | Establish KPIs to measure the effectiveness of your threat hunting initiatives. Useful KPIs could include: **Time to Detection (TTD)** which is the speed at which your team can identify potential threats. **Threat Containment Rate** which is the percentage of threats that are contained effectively once identified. **Incident Reduction** is about tracking the decrease in security incidents directly attributed to proactive hunting efforts. _Keep in mind, threat huning will improve the KPIs for you SOC (if you have one), so you better take that in consideration as well_|
-|  Communication and Reporting | Clearly communicate the defined objectives and goals to your threat hunting team and relevant stakeholders. Ensuring that everyone understands the objectives fosters collaboration and accountability. Consider creating regular reports to update stakeholders on your progress and demonstrate the impact of your hunting efforts. But also, keep on talking about threat hunting to anyone in a clear and non technical way - peak some interest! |
-| Review and Adapt | Regularly review your objectives and KPIs to ensure they remain relevant. The threat landscape is constantly evolving, and your objectives should adapt accordingly. Gathering feedback from your team can provide insights into necessary adjustments, fostering a culture of continuous improvement. |
-| Incorporate Feedback Loops | Implement feedback mechanisms to learn from each threat hunting iteration. Analyzing outcomes will help you understand what strategies worked well and where improvements are needed, allowing you to refine your objectives and enhance your hunting program over time. Please also involve stakeholders and people who is interested in threat hunting to listen in (but not necessarily speak) |
+Start by asking:
 
-### Gather the Right Tools and Resources
+| Area          | Question                                                                          |
+| ------------- | --------------------------------------------------------------------------------- |
+| Assets        | Do we know which systems, users and identities matter?                            |
+| Telemetry     | Which data sources are available, searchable and reliable?                        |
+| Detection     | Which detections already exist, and what do they miss?                            |
+| Triage        | Can the SOC understand and act on hunting output?                                 |
+| Response      | Who owns a confirmed finding if the hunt discovers something?                     |
+| Documentation | Where will hypotheses, queries, results and lessons be stored?                    |
+| Ownership     | Who can fix detections, telemetry gaps or process weaknesses discovered by hunts? |
 
-Equip your threat hunting team with the necessary tools, including security information and event management (SIEM) systems, endpoint detection and response (EDR) solutions, and threat intelligence platforms. Familiarity with these tools is essential for effective threat detection and analysis. 
+A weak foundation does not always mean the organisation cannot hunt. It may mean the first hunts will expose missing telemetry, unclear ownership, poor enrichment or weak documentation. That is still useful.
 
-> When I started out in threat hunting, I only had an outdated installation of QRadar and some random logs. From there, I built up a list of what I needed to have in place. However, at that time, the company I worked for wasn't willing to invest much. So, I resorted to creating a bunch of Python scripts to aid me in my threat hunting efforts. The scripts ranged from pulling threat intelligence from various online sources to correlating alerts against other alerts on the tenants in QRadar. I wouldn’t say this was the best way to do things, but hey, that’s how I started out.
+But the team should be honest about the starting point. Threat hunting depends on reality, not ambition.
 
-### Build a Skilled Team
+### Define Purpose and Objectives
 
-Assemble a team of analysts (if possible) with diverse skill sets, including knowledge of networking, malware analysis, and incident response. Continuous training and development are vital to keep the team updated on the latest threat landscapes and hunting techniques.
+A threat hunting programme needs a clear purpose. Different organisations start hunting for different reasons. Some want to find missed malicious activity. Some want to test detection assumptions. Some want to identify telemetry gaps. Some want to improve SOC triage. Some want to connect threat intelligence more directly to operational security.
 
-> I have a stance that threat hunting is like pair programming. You simply need at least two persons to have a good discussion on and validation of things.
+Those are different purposes, and they may produce different outputs.
 
-### Leverage Threat Intelligence
+| Purpose                        | Example output                                          |
+| ------------------------------ | ------------------------------------------------------- |
+| Find missed malicious activity | Finding requiring investigation or response             |
+| Test detection assumptions     | Confirmation that a behaviour is or is not visible      |
+| Identify visibility gaps       | Logging, retention, parsing or coverage requirement     |
+| Improve detection              | Detection idea or improved analytic logic               |
+| Improve SOC triage             | Better analyst guidance or decision support             |
+| Build knowledge                | Baseline, documentation or reusable investigation notes |
 
-Integrate threat intelligence into your hunting process. This intelligence can provide insights into current threats, trends, and known indicators of compromise (IOCs), enhancing your ability to detect and respond to potential threats.
+Objectives help keep the work grounded. SMART can be useful here: 
 
-> Threat intelligence is more than following the news closely. It is important, but when it comes to threat intelligence you need technical data and a good way to query that data. 
+* Specific
+* Measurable
+* Achievable
+* Relevant
+* Time-bound.
 
-### Develop Hypotheses for Investigation
+A weak objective is:
 
-Create hypotheses based on observed anomalies or emerging threats that you should investigate.
+```text
+Improve threat detection.
+```
 
-Examples of hypothesis might be: 
+A better objective is:
 
-* If there is a sudden increase in outbound traffic to an uncommon IP address during non-business hours, it may indicate an attempt to exfiltrate sensitive data.
-* If a user account experiences a significant number of failed login attempts from different geographic locations within a short time frame, it may indicate an ongoing brute force attack.
-* If a system has newly installed software that is not approved by the IT department, it may indicate the presence of malware or an unwanted application.
-* If there is a spike in changes to administrative privileges across multiple accounts within a short period, it may indicate that an account has been compromised.
-* If a user logs in from multiple geographical locations within a brief time frame that is inconsistent with their normal behavior, it may suggest that the account has been compromised.
+```text
+During the next quarter, run three hypothesis-driven hunts against behaviours relevant to initial access and identity misuse. Each hunt must document the hypothesis, data sources, results, limitations and at least one output: a finding, detection idea, visibility gap, triage note or refined hypothesis.
+```
 
-> We put the hypothesis to the test in our threat-hunting efforts, trying to prove them right, wrong, or something in between. The reason I say "in between" is that sometimes our hunts yield nothing. Have we succeeded or not? Well, even if we get no results from the current hunt, we may still achieve results if we revisit the hunt later or create detection rules based on it. 
+The point is not to create paperwork. The point is to avoid vague ambition.
 
-### Conduct Proactive Hunting Activities
+> A programme that cannot explain what it is trying to improve will struggle to prove that it is useful.
+> 
+> -- Roger Johnsen
 
-Execute your hypotheses by analyzing data, investigating anomalies. Use your tools to examine logs and network traffic for deeper insights into potential threats.
+### Gather the Right Data, Tools and Resources
 
-> Keep in mind that looking for IOCs isn't the same as hunting. If we search for one specific IP associated with an APT and can't find it, does that mean the APT isn't present, or does it mean that the APT has switched to another IP? Look for Tactics, Techniques, and Procedures instead
+Threat hunting does not require a perfect toolset to begin, but it does require access to useful data. The team should understand what is available, what is missing and what can be trusted.
+
+| Tooling and data question     | Why it matters                                                 |
+| ----------------------------- | -------------------------------------------------------------- |
+| What data can we query?       | Defines which hypotheses can be tested now.                    |
+| What data is missing?         | Reveals visibility gaps early.                                 |
+| How far back can we search?   | Determines whether the time window is sufficient.              |
+| How reliable are the fields?  | Affects whether conclusions can be trusted.                    |
+| Can we enrich entities?       | Helps connect users, devices, IPs, files and business context. |
+| Can we save and repeat hunts? | Supports documentation, review and improvement.                |
+
+A SIEM, EDR, XDR platform, data lake or threat intelligence platform can all help. But none of them creates a hunting capability by itself. When I started out in threat hunting, I had an outdated QRadar installation and a collection of uneven logs. From there, I built a list of what I needed in order to hunt properly.
+
+The company I worked for at the time was not willing to invest much, so I built Python scripts to support the work. Some scripts pulled threat intelligence from online sources. Others enriched events or correlated alerts across tenants in QRadar.
+
+I would not call that the ideal way to build a hunting capability, but it taught me something important: you often start with what you have, not what you wish you had.
+
+> Tooling matters, but it is not the starting point. The starting point is knowing what question you are trying to answer.
+>
+> -- Roger Johnsen
+
+The best early tool is still a disciplined analyst with a clear question and a place to write down the reasoning.
+
+### Build the First Hunting Team
+
+Threat hunting benefits from a mix of skills. The first hunting team does not need to be large, but it should have enough range to reason across data, systems and security operations. Depending on the organisation, that may include SOC analysts, detection engineers, incident responders, threat intelligence analysts, platform engineers, identity specialists or people with strong systems knowledge.
+
+Useful areas include:
+
+* networking
+* endpoint telemetry
+* identity and access
+* cloud logs
+* scripting and automation
+* malware and tradecraft
+* incident response
+* detection engineering
+* threat intelligence
+* business and asset context
+
+It is rarely necessary for one person to master everything. What matters is that the team can ask useful questions, test assumptions, understand the data, and know when to involve someone else.
+
+I have a simple stance on this:
+
+> Threat hunting is a bit like pair programming. You can do it alone, but the work improves when someone else can challenge the reasoning, validate the logic and ask what the evidence really supports.
+>
+> -- Roger Johnsen
+
+That does not mean every hunt needs a large team. It means early hunting programmes should create space for peer review, discussion and shared reasoning. One person can hunt. Two people can challenge each other.
+
+### Use Threat Intelligence as Input
+
+Threat intelligence can be a strong input to hunting, but it should not replace thinking.
+
+Threat intelligence may provide:
+
+* adversary behaviours
+* known techniques
+* infrastructure
+* malware characteristics
+* targeting patterns
+* recent incident examples
+* detection ideas
+* hypotheses to test locally
+
+But the hunter still has to translate intelligence into the local environment.
+
+A report may say that an actor uses a specific tool. That does not mean the hunt should only search for the tool name or known hashes. The better question is:
+
+```text
+What behaviour does this tool or technique create, and can we observe that behaviour here?
+```
+
+IOC searches can be useful, especially during incident response or after high-quality reporting. But IOC searching is not the same as threat hunting. Hunting should move from indicators to behaviour, from behaviour to context, and from context to a testable hypothesis.
+
+> Threat intelligence is more than following the news. For hunting, intelligence must become technical data, observable behaviour and something you can query in your own environment.
+>
+> -- Roger Johnsen
+
+Threat intelligence becomes useful for hunting when it helps the team ask better questions about its own telemetry.
+
+### Develop Testable Hypotheses
+
+A hunt should start with a question that can be tested. Examples of simple hypotheses:
+
+* If there is a sudden increase in outbound traffic to an uncommon destination during non-business hours, it may indicate data staging or exfiltration.
+* If a user account experiences many failed logins from different geographic locations within a short time window, it may indicate password spraying or credential abuse.
+* If Office applications spawn command interpreters on workstations, it may indicate initial execution from a malicious document.
+* If administrative privileges change across multiple accounts within a short period, it may indicate account compromise or misuse.
+* If a user logs in from locations inconsistent with normal behaviour, it may indicate credential misuse or session abuse.
+
+A good hypothesis does not need to be perfect. It needs to be testable.
+
+The team should be able to explain:
+
+| Question                           | Purpose                                           |
+| ---------------------------------- | ------------------------------------------------- |
+| What behaviour are we testing?     | Gives the hunt direction.                         |
+| Why does the behaviour matter?     | Connects the hunt to risk or attacker tradecraft. |
+| Which data sources can show it?    | Makes the hunt practical.                         |
+| What would support the hypothesis? | Helps define evidence.                            |
+| What would weaken it?              | Protects against confirmation bias.               |
+| What could the output become?      | Connects the hunt to improvement.                 |
+
+Sometimes the hunt proves the hypothesis wrong. Sometimes it finds nothing. Sometimes it reveals that the required data does not exist. That does not automatically mean the hunt failed. A hunt may still produce a detection idea, a visibility gap, a baseline or a better question.
+
+### Conduct the First Hunts
+
+The first hunts should be small, scoped and realistic. Avoid starting with vague goals such as:
+
+```text
+Find advanced persistent threats.
+```
+
+or:
+
+```text
+Look for suspicious activity.
+```
+
+Those are too broad and too hard to evaluate.
+
+Better first hunts are specific enough to test:
+
+```text
+Identify Office applications spawning command interpreters on managed workstations during the last 30 days.
+```
+
+or:
+
+```text
+Identify cloud accounts with repeated failed logins from shared infrastructure followed by successful authentication.
+```
+
+Good first hunts often have these qualities:
+
+| Quality               | Why it matters                                                  |
+| --------------------- | --------------------------------------------------------------- |
+| Clear behaviour       | The team knows what activity it is looking for.                 |
+| Available telemetry   | The data exists and can be queried.                             |
+| Limited scope         | The hunt can be completed without becoming endless.             |
+| Operational relevance | The behaviour matters to the organisation.                      |
+| Useful output         | The result can feed SOC, detection, telemetry or documentation. |
+
+The goal of the first hunts is not to cover everything. The goal is to learn how the organisation hunts.
+
+### Example: A Small First Hunt
+
+A first hunt does not need to be large to be useful. Imagine that the team decides to start with one data source: endpoint process telemetry from managed workstations. The objective is limited and practical:
+
+```text
+Identify Office applications spawning command interpreters during the last 30 days.
+```
+
+The hypothesis is simple:
+
+```text
+If malicious documents are used for initial execution, Office applications may spawn PowerShell, cmd.exe, wscript.exe or similar interpreters.
+```
+
+The team searches the available endpoint telemetry and discovers three things. First, the behaviour is rare, but it does occur. Second, most occurrences are tied to known administrative packaging work. Third, the data is missing from a subset of unmanaged devices.
+
+That gives the team three useful outputs:
+
+| Output          | Result                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| Baseline        | Office-spawned command interpreters are rare on managed workstations.                                         |
+| Triage guidance | Known packaging hosts and administrative users should be treated differently from ordinary user workstations. |
+| Visibility gap  | Unmanaged devices do not provide enough endpoint process telemetry to test the hypothesis properly.           |
+
+The hunt may not find an attacker. It still improves the organisation. The team now knows more about normal behaviour, can give the SOC better triage guidance, and has a concrete telemetry gap to raise with the platform owners.
+
+That is a good first hunt.
 
 ### Document and Share Findings
 
-Maintain detailed documentation of your findings and share them with relevant stakeholders. This practice not only helps improve future hunting efforts but also contributes to the organization’s overall security knowledge base. 
+Documentation is what turns hunting from individual effort into organisational knowledge.
 
-> The best tools a threat hunter can have is: a brain, pen and paper. Let your brainwork down on paper (or in Notepad etc), this will make reporting easier! 
+At minimum, document:
+
+| Item              | Purpose                                              |
+| ----------------- | ---------------------------------------------------- |
+| Hypothesis        | Explains what was tested.                            |
+| Reason            | Explains why the hunt mattered.                      |
+| Scope             | Defines systems, users, time range and data sources. |
+| Queries or method | Makes the hunt repeatable.                           |
+| Results           | Shows what was observed.                             |
+| Limitations       | States what the data could not prove.                |
+| Conclusion        | Separates evidence from interpretation.              |
+| Output            | Defines what should happen next.                     |
+
+This does not need to be complicated. A notebook, Markdown file, case template or internal wiki can be enough.
+
+The important part is that the reasoning survives the hunt.
+
+> The best tools a threat hunter can have are a brain and a place to write down what that brain is doing.
+>
+> -- Roger Johnsen
+
+Documentation also helps with communication. Stakeholders do not need every query detail, but they do need to understand what was tested, what was found, what remains uncertain and what should happen next.
+
+---
+
+## Once the Programme Has Momentum
+
+### Build Feedback Loops
+
+Once the first hunts start producing output, the programme should build feedback loops. A hunt should not end with a report only. It should feed the work around it.
+
+| Hunt output                    | Possible owner                        |
+| ------------------------------ | ------------------------------------- |
+| Confirmed finding              | SOC or incident response              |
+| Detection idea                 | Detection engineering                 |
+| Visibility gap                 | Platform, logging or engineering team |
+| Triage guidance                | SOC                                   |
+| Threat intelligence refinement | CTI or detection team                 |
+| Baseline                       | SOC, hunting team or knowledge base   |
+| Better question                | Future hunt backlog                   |
+
+This is where threat hunting becomes part of security operations rather than a separate activity. If no one owns the output, the programme will struggle. Findings will be interesting, but they will not improve anything.
 
 ### Iterate and Improve
 
-Continuously refine your threat hunting processes based on lessons learned, emerging threats, and team feedback. Regular reviews and updates will help you adapt to the evolving threat landscape.
+A threat hunting programme improves through repetition. After each hunt, review:
 
-> Imagine you improve yourself every time you take a drive ... The world would be so much better if everyone did that
+* Did the hypothesis make sense?
+* Did we have the required data?
+* Did the query test what we thought it tested?
+* Did we document the reasoning well enough?
+* Did the output reach the right owner?
+* Did anything improve afterwards?
+* What should we hunt next?
 
-### Engage with the Threat Hunting Community
+This creates the improvement cycle. Threat hunting should make the organisation better at hunting, but also better at monitoring, detection, triage and response. The programme has momentum when hunts no longer feel like isolated activities. They become part of how the organisation learns.
 
-To circle back to my introduction. Participate in forums, conferences, and collaborative platforms to engage with the broader threat hunting community. Sharing experiences and learning from others can provide valuable insights and keep you informed of the latest trends and techniques.
+### Measure What Matters
 
-By following these steps, I think you can lay a solid foundation for a threat hunting program that enhances your organization’s security posture and resilience against evolving cyber threats. Remember, threat hunting is not a one-time effort but an ongoing process that requires dedication and adaptability.
+Metrics are useful, but weak metrics can damage a hunting programme. Counting the number of hunts is easy. Counting the number of findings is easy. Neither tells the full story.
 
-### Resources
+Better measures include:
 
-- [MITRE ATT&CK](https://attack.mitre.org/)
-- [Threat Hunting: A Practical Guide](https://www.cisecurity.org/white-papers/threat-hunting-a-practical-guide/)
-- [SANS Threat Hunting Resources](https://www.sans.org/white-papers/34847/)
-- [Threat Hunting with Splunk](https://www.splunk.com/en_us/blog/security/threat-hunting-using-splunk.html)
-- [Verizon Data Breach Investigations Report](https://enterprise.verizon.com/resources/reports/dbir/)
-- [The Threat Hunting Process: A Practical Guide](https://www.cybintsolutions.com/threat-hunting-process-guide/)
-- [Incident Response and Threat Hunting](https://www.cyber.gov.au/acsc/view-all-content/publications/incident-response-threat-hunting)
-- [Hunt for Threats: The Art and Science of Threat Hunting](https://www.csoonline.com/article/3569268/hunt-for-threats-the-art-and-science-of-threat-hunting.html)
-- [Threat Hunting: Analyzing Security Events](https://www.microsoft.com/security/blog/2020/06/16/threat-hunting-analyzing-security-events/)
-- [Open Threat Hunting Framework](https://www.openthreat.hunting)
+* visibility gaps identified and closed
+* detection ideas handed over and implemented
+* detections improved because of hunts
+* triage guidance created
+* repeatable hunts documented
+* hypotheses tested
+* assumptions confirmed, weakened or replaced
+* time from hunt finding to operational improvement
+
+Avoid measuring threat hunting only by confirmed compromises. A hunt that finds no attacker but reveals a missing log source may be more valuable than a hunt that produces a dramatic report but changes nothing.
+
+The question should be:
+
+```text
+What improved because we hunted?
+```
+
+That question is more useful than asking how many hunts were performed.
+
+### Expand the Hunting Scope
+
+Early hunts should be narrow. Once the team gains confidence, the scope can expand.
+
+Expansion may include:
+
+* more data sources
+* longer time windows
+* more business units
+* cloud and SaaS telemetry
+* identity-focused hunts
+* endpoint-to-network correlation
+* threat intelligence-led hunts
+* detection validation hunts
+* purple team follow-up hunts
+* hunts based on incident lessons learned
+
+The scope should expand because the team has learned enough to handle it, not because the programme needs to look mature. A wider scope without better process usually creates more noise.
+
+### Improve Detection Engineering Handover
+
+As the programme matures, the handover to detection engineering should become sharper.
+
+A weak handover says:
+
+```text
+Suspicious PowerShell activity was observed.
+```
+
+A useful handover says:
+
+```text
+Office applications spawning PowerShell with encoded command-line arguments were rare in this environment. Where observed, the activity should be reviewed with user context, parent process, command-line content and follow-on network activity.
+```
+
+Detection engineering needs behaviour, logic, context and test cases. It does not need vague suspicion.
+
+A good handover should describe:
+
+* the behaviour
+* why it matters
+* where it was observed
+* how common it is
+* which fields are needed
+* what false positives may occur
+* what triage guidance should accompany the detection
+
+This is how hunting turns into durable security improvement.
+
+### Engage With the Threat Hunting Community
+
+Threat hunting improves when practitioners learn from each other. Read DFIR reports. Study detection write-ups. Follow incident case studies. Join communities where people discuss tradecraft, telemetry, false positives, detection logic and hunting methods. Community engagement should not be passive consumption. The useful part is not only reading what others found. It is asking:
+
+```text
+Can we test this in our environment?
+```
+
+and:
+
+```text
+What would this behaviour look like in our telemetry?
+```
+
+This turns external learning into local hunting value.
+
+### Review and Adapt Objectives
+
+Once the programme has momentum, the original objectives should be reviewed.
+
+Some may still be useful. Others may need to change because the team has learned more about the environment.
+
+Review:
+
+* Are the objectives still relevant?
+* Are hunts producing useful outputs?
+* Are outputs reaching the right owners?
+* Are visibility gaps being closed?
+* Are detections improving?
+* Are SOC analysts getting better guidance?
+* Are new hypotheses emerging from previous hunts?
+* Are we measuring value or just activity?
+
+This is where SMART objectives can be revisited. The first objectives helped start the work. Later objectives should help mature it.
+
+The programme should adapt as the organisation learns.
+
+---
+
+## What Usually Goes Wrong
+
+Several patterns repeat when organisations try to start and grow threat hunting:
+
+* **Programme before practice:** the organisation creates a formal programme before it has run small, useful hunts.
+* **Tool-first hunting:** the team starts with a platform instead of a question.
+* **No telemetry reality check:** hypotheses are written without checking whether the data exists.
+* **IOC-only hunting:** the work becomes indicator searching instead of behaviour-driven investigation.
+* **No owner for output:** findings, gaps and detection ideas have nowhere to go.
+* **No documentation:** each hunt becomes a one-off activity that cannot be repeated or improved.
+* **Metrics theatre:** the programme is measured by activity count rather than operational improvement.
+* **Stalled momentum:** the first hunts produce output, but the organisation never builds feedback loops or ownership around them.
+
+These problems are ordinary. They are also avoidable.
+
+Start small. Ask clear questions. Test what can be tested. Document what happened. Make sure something improves. Then build the programme around the evidence that the work is useful.
+
+## Working Position for This Book
+
+A threat hunting programme should not start as a large organisational ceremony. It should start as a repeatable way to ask better questions and turn the answers into better security work.
+
+The first version can be small:
+
+```text
+One purpose.
+One objective.
+One hypothesis.
+One dataset.
+One documented result.
+One owner for the output.
+```
+
+That is enough to start.
+
+Once the programme has momentum, the work changes. The organisation should build feedback loops, measure what matters, expand scope carefully, and improve how hunting feeds SOC, detection engineering, incident response and telemetry improvement.
+
+Or as I usually put it:
+
+> Do not start by pretending you have a mature threat hunting programme. Start by proving that structured hunts can improve something, then build the programme around that evidence.
+>
+> -- Roger Johnsen
+
+## Resources
+
+* [MITRE ATT&CK](https://attack.mitre.org/)
+* [Threat Hunting: A Practical Guide](https://www.cisecurity.org/white-papers/threat-hunting-a-practical-guide/)
+* [SANS Threat Hunting Resources](https://www.sans.org/white-papers/34847/)
+* [Threat Hunting with Splunk](https://www.splunk.com/en_us/blog/security/threat-hunting-using-splunk.html)
+* [Verizon Data Breach Investigations Report](https://enterprise.verizon.com/resources/reports/dbir/)
+* [The Threat Hunting Process: A Practical Guide](https://www.cybintsolutions.com/threat-hunting-process-guide/)
+* [Incident Response and Threat Hunting](https://www.cyber.gov.au/acsc/view-all-content/publications/incident-response-threat-hunting)
+* [Hunt for Threats: The Art and Science of Threat Hunting](https://www.csoonline.com/article/3569268/hunt-for-threats-the-art-and-science-of-threat-hunting.html)
+* [Threat Hunting: Analyzing Security Events](https://www.microsoft.com/security/blog/2020/06/16/threat-hunting-analyzing-security-events/)
+* [Open Threat Hunting Framework](https://www.openthreat.hunting)
 
 ## Revision
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 26.10.2024   | Added page | 
+| Revised Date | Comment                                                                                                                                                           |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-09   | Rewritten to establish a clearer practitioner voice, separate programme start-up from programme momentum, and align the page with the book’s fundamentals section |
+| 2024-10-26   | Added page                                                                                                                                                        |
