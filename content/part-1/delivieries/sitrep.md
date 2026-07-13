@@ -1,137 +1,602 @@
 ---
+
 title: "SITREP"
+description: "A practical introduction to Situation Reports, how they support threat hunting, SOC operations and incident management, and how to structure useful operational updates."
 date: 2024-10-13T09:09:44+02:00
+lastmod: 2026-07-13
 draft: false
+hidden: false
 weight: 5
+tags:
+    - sitrep
+    - situation report
+    - threat hunting
+    - SOC
+    - incident management
+    - communication
+keywords:
+    - SITREP
+    - situation report
+    - PROGREP
+    - threat hunting communication
+    - SOC escalation
+    - incident management
+    - operational communication
+    - handover
+    - status report
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**In threat hunting, Security Operations Center (SOC) operations, and incident management, effective communication is essential. In this chapter we are going to look into a great tool called a SITREP - also known as The Situation Report. The SITREP serves as a vital tool to ensure that all stakeholders—team members, management, and external partners—are kept informed about ongoing situations. By providing structured, concise updates on the current status, actions taken, and next steps, SITREPs help teams make informed decisions and coordinate responses effectively.**
+**A SITREP, or Situation Report, is a structured operational update. It explains what is happening, what is known, what has been done and what should happen next. In threat hunting, SOC operations and incident management, communication is often just as important as technical analysis. A strong analyst may understand the situation, but if that understanding is not communicated clearly, the wider team may still be blind.**
 
----
+A SITREP helps solve that problem. It provides a concise operational snapshot for people who need to understand the current situation without reading every log entry, case note, chat message or investigation thread. It helps analysts, managers, incident commanders and stakeholders align on the current state of an investigation or incident.
 
-## What 
+A good SITREP should answer a few practical questions:
 
-A SITREP (Situation Report) is a concise, structured update on the current status of an ongoing situation. Originally developed for military use, SITREPs are now employed across various fields, including cybersecurity. In threat hunting, Security Operations Centers (SOCs), and incident management, SITREPs play a critical role in keeping all stakeholders informed about important developments.
+* What is happening?
+* What do we know?
+* What have we done?
+* What is the current impact or risk?
+* What happens next?
+* Who owns the next action?
 
-In any command center, three key activities are common: inputs, processes, and outputs. The inbound aspect involves communication, typically in the form of intelligence or field reports. This is where SITREPs (detailing the current situation) and PROGREPs (progress reports tracking movement toward a set goal) provide essential insights.
+The goal is not to produce beautiful prose. The goal is shared situational awareness.
 
-- SITREPs convey what is currently happening in the field, allowing for real-time awareness of ongoing situations.
-- PROGREPs, on the other hand, focus on the progress made toward specific objectives or goals. They provide updates on milestones achieved, tasks completed, and any challenges encountered along the way. This helps teams assess whether they are on track or need to adjust their strategies.
+## What a SITREP Is
 
-I’d like to discuss PROGREPs here to clarify the distinctions between these two types of reports. Throughout my career in Security Operations Centers (SOCs), I’ve observed many analysts confuse SITREPs with PROGREPs. Often, instead of providing a clear SITREP, they focus too heavily on PROGREPS, which can lead to misunderstandings and incomplete communication. To keep it simple, most of the time management only wants to know what is going on, like _"We have currently situation XYZ on our hands"_. However, the next question from management is PROGREPs though, so keep in mind this thumb of rule:
+A SITREP gives a time-bound operational snapshot of an ongoing situation. The term comes from military reporting, but the concept applies directly to cybersecurity operations. In a SOC, during an incident, or during a threat hunt, the team often needs a clear update that separates confirmed facts from assumptions, open questions and next steps.
 
-> SITREP first, then follow up with PROGREPS.
+A SITREP is time-bound. It reflects what is known at a specific point in time, not the final truth. As the situation develops, later SITREPs may confirm, correct or replace earlier assessments.
 
-Anyhow, together, these reports feed information from the field back to the command element, helping align actions, facilitate decision-making, and ensure a coordinated response across teams. 
+In active incidents, SITREPs should be updated at a defined cadence or whenever the situation materially changes. The cadence does not have to be complicated, but the team should know when the next update is expected.
 
-## How
+A SITREP is useful when:
 
-The best way to understand SITREPs is to consider them as essential tools in operational communication. Here are several key aspects that illustrate their importance:
+* the situation is ongoing
+* several people need the same update
+* management needs a clear status
+* work is being handed over between analysts or shifts
+* decisions must be made based on current information
+* the investigation may later need to be reconstructed
+* stakeholders need confidence that the situation is being managed
 
-| Aspect | Comment |
-| ------ | ------- | 
-| A Manuscript of Information | SITREPs serve as a guideline for what information needs to be communicated, ensuring clarity and focus. |
-| Formal Texts for Action | They are formal documents designed to inform stakeholders about the current status of an operation, enabling informed decision-making for further actions. |
-| Verbal and Textual Formats | While SITREPs can be delivered verbally, they should always be backed up by a written version. This dual approach enhances reliability and serves as a reference. |
-| Hand-Off Documentation | SITREPs are meant to be handed over to other team members or stakeholders, ensuring continuity in communication and operations. |
-| Timeline Documentation | They provide valuable documentation over time, creating a record of what has transpired during a particular incident or operation. |
-| Timeliness is Key | Given the fast-paced nature of incidents, SITREPs should be quick to write. Time is of the essence in crisis situations, and concise reports facilitate rapid responses. |
+A SITREP should not be a data dump. It should not include every detail of the investigation. It should provide enough information for the recipient to understand the situation and decide what, if anything, needs to happen next.
 
-By keeping these elements in mind, teams can utilize SITREPs effectively to maintain situational awareness and enhance collaboration during critical incidents. In the following examples I have included SITREPS I frequently use in my line of work. Please consider these as templates you can change as sees fit. After all, there exist no golden template and most SITREPS are unique for the situation they are used in.
+## SITREP and PROGREP
 
+A common mistake is to confuse a SITREP with a PROGREP. They are related, but they are not the same:
 
-### Examples SITREP
+* A SITREP describes the current situation.
+* A PROGREP describes progress toward a goal.
+
+| Report type | Main question                                     | Typical use                                                                   |
+| ----------- | ------------------------------------------------- | ----------------------------------------------------------------------------- |
+| SITREP      | What is the situation right now?                  | Situational awareness, escalation, handover and decision support.             |
+| PROGREP     | What progress has been made toward the objective? | Tracking milestones, remediation, investigation progress and task completion. |
+
+In simple terms:
+
+```text
+SITREP first.
+PROGREP follows.
+```
+
+When management asks for a status update during an incident, they usually need to understand the situation first. They need to know what is happening, what is affected, what the current risk is, and whether the situation is under control.
+
+After that, they may ask about progress. That is where a PROGREP becomes useful. A practical rule of thumb is:
+
+```text
+SITREP: We currently have situation X.
+PROGREP: We have completed steps A and B, and step C is still in progress.
+```
+
+Both reports are useful, but using the wrong one at the wrong time can create confusion. If people do not understand the situation, progress updates may not help.
+
+## Why SITREPs Matter
+
+During an incident or active investigation, communication can easily fragment. One analyst may have endpoint findings. Another may have identity logs. A manager may have stakeholder questions. The incident commander may be trying to coordinate legal, communications, infrastructure, application owners and external parties.
+
+Without a structured update, the same questions repeat:
+
+```text
+What is going on?
+Is this confirmed?
+Who is affected?
+What have we done?
+What are we doing next?
+Who needs to know?
+```
+
+A SITREP gives the team a shared reference point. A weak SITREP increases decision-making latency. People ask the same questions repeatedly, decisions are delayed and teams may act from different assumptions. A good SITREP reduces that latency by giving the right people the right operational picture at the right time.
+
+It helps with:
+
+| Need                  | How the SITREP helps                                                            |
+| --------------------- | ------------------------------------------------------------------------------- |
+| Situational awareness | Summarises the current state of the situation.                                  |
+| Decision support      | Gives management or incident command enough information to decide next actions. |
+| Handover              | Helps another analyst or shift understand the current status quickly.           |
+| Timeline building     | Creates a written record of what was known at a specific time.                  |
+| Escalation            | Gives the receiving party a clear summary instead of fragmented observations.   |
+| Coordination          | Helps different teams work from the same understanding.                         |
+| Accountability        | Clarifies actions taken, next steps and ownership.                              |
+
+A good SITREP reduces noise. It does not remove uncertainty, but it makes uncertainty visible.
+
+## What a Good SITREP Should Contain
+
+There is no single golden SITREP template. The right structure depends on the situation, organisation, audience and operational tempo. A threat hunt update does not need the same format as a major ransomware incident. A SOC escalation does not need the same detail as an incident command update.
+
+Still, most useful SITREPs include the same core elements.
+
+| Field                  | Purpose                                                                             |
+| ---------------------- | ----------------------------------------------------------------------------------- |
+| Date and time          | Shows when the update was produced.                                                 |
+| Prepared by            | Identifies who wrote or provided the update.                                        |
+| Audience               | Clarifies who the update is written for and why the level of detail is appropriate. |
+| Situation summary      | Gives a short explanation of what is happening.                                     |
+| Status                 | Describes whether the situation is new, ongoing, contained, escalating or resolved. |
+| Scope or affected area | Identifies affected systems, users, locations, business areas or data.              |
+| Key observations       | Lists the most important facts or signals.                                          |
+| Actions taken          | Summarises what has already been done.                                              |
+| Current assessment     | Explains current risk, confidence or operational impact.                            |
+| Open questions         | Shows what is still unknown.                                                        |
+| Next steps             | Describes what happens next.                                                        |
+| Owner                  | Clarifies who is responsible for the next action.                                   |
+| Cadence                | States when the next update is expected, if the situation is active.                |
+
+The SITREP should be clear about what is confirmed and what is suspected.
+
+A weak SITREP may say:
+
+```text
+Customer data has been stolen.
+```
+
+A stronger SITREP may say:
+
+```text
+We have confirmed unauthorised access to the CRM database.
+We have not yet confirmed whether customer data was exfiltrated.
+Forensic review is ongoing.
+```
+
+The second version is more useful because it separates fact from uncertainty.
+
+## Writing Style
+
+A SITREP should be short, structured and plain. Avoid dramatic language, speculation and unnecessary technical depth. The recipient may not be a specialist, and even specialists need clarity during high-pressure situations.
+
+Good SITREPs use:
+
+* short sentences
+* clear timestamps
+* named owners
+* explicit uncertainty
+* concrete actions
+* consistent structure
+* plain operational language
+
+Avoid vague phrases such as:
+
+```text
+We are looking into it.
+Some suspicious activity was observed.
+The issue may be related to several things.
+Actions are being taken.
+```
+
+Prefer concrete wording:
+
+```text
+SOC is reviewing sign-in logs for the affected accounts.
+EDR telemetry shows suspicious PowerShell execution on one workstation.
+We have not yet confirmed lateral movement.
+Infrastructure has isolated the affected host from the network.
+```
+
+The goal is not to impress the reader. The goal is to make the situation understandable.
+
+## When to Use a SITREP
+
+A SITREP is useful whenever the situation is important enough that others need a structured update.
+
+Examples include:
+
+* critical or high-priority SOC alerts
+* ongoing threat hunts
+* suspected compromise
+* confirmed incidents
+* ransomware or extortion cases
+* data exposure or data exfiltration concerns
+* suspicious identity activity
+* major vulnerability exploitation
+* red team or purple team activity
+* shift handovers
+* management briefings
+* external stakeholder updates
+
+Not every event needs a formal SITREP. A minor false positive does not need a full report. A short case note may be enough. But if the situation may require coordination, escalation or decision-making, a SITREP is usually worth writing.
+
+## Examples
 
 {{% notice info %}}
-Please take inspiration of the following examples and modify to your needs!
+The examples below are not universal templates. They are realistic examples showing how a SITREP may look in different operational situations. Use the structure, tone and level of detail as inspiration, and adapt it to your own organisation.
 {{% /notice %}}
 
-#### Threat Hunting
+The point of these examples is not to prescribe one perfect format. The point is to show the kind of operational clarity a SITREP should provide.
 
-This case is unique, as it also serves to define the focus of the current hunt. I, personally, make it a point to fill out the details before beginning, but I leave the "Next Steps" section blank. When someone requests the SITREP, I ensure that I update this section to reflect my next steps. This approach allows for clarity and keeps everyone informed about the direction of the investigation as it progresses. 
+## Threat Hunting SITREP
 
-By documenting the initial details and updating the next steps upon request, I maintain a clear communication channel with my team and ensure that everyone is aligned on our objectives. This practice is crucial for effective collaboration in threat hunting. 
+A threat hunting SITREP is useful when a hunt is ongoing and others need to understand the current focus, early observations, current status and next steps.
 
-| **Field**             | **Details**                                                   |
-|-----------------------|---------------------------------------------------------------|
-| **Date**              | October 13, 2024                                              |
-| **Threat Hunt Team**  | Team Corgi                                                    |
-| **Target**            | MITRE T1566 (Phishing)                                        |
-| **Status**            | Ongoing                                                       |
-| **Key Findings**      | Unusual email activity, malicious URLs, spearphishing attempts |
-| **Recommendations**   | Strengthen email filtering, user awareness training           |
-| **Next Steps**        | Analyze attachments, develop YARA rules                       |
+In threat hunting, the SITREP can also help define the hunt before execution begins. The hunter can document the trigger, scope, objective and data sources before starting, and then update the status as findings develop.
 
-### SOC
+Example:
 
-In a Security Operations Center (SOC), it is essential to promptly inform the SOC manager (or the equivalent authority) whenever an alert registers a criticality above a predefined threshold. I have found this template to be invaluable for escalating cases effectively. It provides a clear structure for communicating the necessary information and ensuring that appropriate actions are taken swiftly.
+```text
+SITREP: Threat Hunt - Phishing Follow-Up
 
-Using this template not only enhances the efficiency of our communication but also ensures that critical incidents receive the attention they require. Effective escalation is vital in managing security threats, allowing for informed decision-making and timely interventions.
+Date/Time:
+2026-07-10 10:00
 
-| **Field**             | **Details**                                                   |
-|-----------------------|---------------------------------------------------------------|
-| **Criticality**       | Pri 1.                                                        |
-| **Date/Time**         | October 13, 2024, 10:00 AM                                    |
-| **Analyst**           | Albus Corgi                                                   |
-| **Incident**          | Suspicious login attempts (Brute Force)                       |
-| **Key Observations**  | Multiple failed logins from IP 192.168.1.5                    |
-| **Actions Taken**     | Blocked IP, initiated password reset                          |
-| **Next Steps**        | Monitor logins, review affected accounts                      |
-| **Status**            | Under Control                                                 |
+Audience:
+SOC lead, hunt team and incident commander
 
-#### Incident Management
+Prepared by:
+Team Corgi
 
-This template provides a structured overview of an incident, detailing the current status, actions taken, and next steps for resolution. Maintaining clear and precise communication during such critical events is vital for ensuring effective incident management and minimizing potential risks to our stakeholders.
+Status:
+Ongoing
 
-| **Field**             | **Details**                                                   |
-|-----------------------|---------------------------------------------------------------|
-| **Incident Name**     | Data Breach - Customer Records Exfiltration                   |
-| **Date/Time**         | October 13, 2024, 08:30 AM                                    |
-| **Incident Commander**| Albus Corgi                                                   |
-| **Status**            | Ongoing Investigation                                         |
-| **Affected Systems**  | CRM database, API endpoints                                   |
-| **Details**           | Unauthorized access, exfiltration of customer PII confirmed   |
-| **Actions Taken**     | Shut down affected systems, notified legal teams              |
-| **Next Steps**        | Forensics, implement controls                                 |
+Situation summary:
+A phishing campaign was reported against selected users in the organisation.
+The current hunt is assessing whether affected users clicked suspicious URLs,
+submitted credentials or executed payloads from the phishing emails.
 
-#### Incident Call-in
+Trigger:
+Internal phishing alerts and external intelligence about similar campaigns
+targeting organisations in the same sector.
 
-This template is commonly used when a caller contacts the SOC hotline. If a caller is met by an unprepared receiver who struggles to ask the right questions, it reflects a significant failure on our part. Effective communication during these initial interactions is critical, as it sets the tone for the entire incident response process.
+Scope:
+- Users who received the phishing email
+- Email telemetry from the last 72 hours
+- Proxy logs for clicked URLs
+- Endpoint telemetry for affected workstations
+- Identity sign-in logs for affected accounts
 
-It is essential for the receiver to be well-prepared to engage with callers, as this facilitates the gathering of accurate information and a swift response. A smooth and professional interaction can significantly impact our ability to resolve issues efficiently.
+Key observations:
+- Several users received emails containing suspicious URLs.
+- Three users clicked links associated with the campaign.
+- No confirmed payload execution has been observed so far.
+- One user entered credentials into a suspicious login page.
+- No confirmed lateral movement has been observed.
 
-Throughout my time in the SOC, I have developed several versions of this template and various methods for recording information. It is important that this template is easily accessible to the receiving personnel, whether it is printed on paper or available as a template on a wiki page. It must be within reach under any circumstance to ensure that we can respond effectively and without delay.
+Actions taken:
+- Extracted URLs from reported emails.
+- Checked proxy logs for user clicks.
+- Reviewed endpoint telemetry for affected workstations.
+- Started sign-in review for users who clicked links.
+- Requested password reset and session revocation for one affected user.
 
-| **Field**             | **Details**                                                   |
-|-----------------------|---------------------------------------------------------------|
-| **Caller Name**       | [Name of person reporting]                                    |
-| **Contact Details**   | [Contact details for caller, phone number, address etc]       |
-| **Date/Time**         | [When call was received]                                      |
-| **Reported Issue**    | [Brief description of the incident]                           |
-| **Incident Location** | [Physical or network location]                                |
-| **Affected Systems**  | [Critical systems affected]                                   |
-| **Details**           | Description of unusual activity, time, actions taken          |
-| **Immediate Actions** | Escalated to [team/role], Incident ticket opened: [number]    |
-| **Next Steps**        | Investigate logs, notify stakeholders                         |
+Current assessment:
+Suspicious user interaction is confirmed.
+Compromise is not confirmed at this time.
+The highest concern is possible credential theft for one user.
+
+Open questions:
+- Did the suspicious login page capture credentials?
+- Were any sessions reused from unmanaged devices?
+- Was any mailbox rule created after the user interaction?
+- Did any attachment execute on the endpoint?
+
+Next steps:
+- Complete identity sign-in review for affected users.
+- Review mailbox rules and OAuth consent activity.
+- Continue endpoint review for suspicious process execution.
+- Escalate if post-authentication activity is confirmed.
+
+Owner:
+SOC analyst on duty
+
+Cadence:
+Next update in two hours or earlier if compromise is confirmed.
+```
+
+Notice how this SITREP does not list every query or every log entry. It gives the reader the current operational picture: what started the hunt, what has been checked, what is known, what remains uncertain and what happens next.
+
+## SOC Escalation SITREP
+
+A SOC escalation SITREP is useful when an alert or case must be escalated to a SOC manager, incident commander or another responsible function. The purpose is to provide enough information to make a decision quickly.
+
+Example:
+
+```text
+SITREP: SOC Escalation - Privileged Account Brute Force
+
+Criticality:
+Priority 1
+
+Date/Time:
+2026-07-10 10:00
+
+Audience:
+SOC manager and incident commander
+
+Analyst:
+Albus Corgi
+
+Case:
+INC-2026-00123
+
+Status:
+Escalated
+
+Situation summary:
+A privileged account was targeted by repeated failed login attempts from an
+external IP address. One successful login was observed after the failed attempts.
+
+Affected users or systems:
+- One privileged user account
+- Two externally reachable authentication endpoints
+
+Key observations:
+- Multiple failed login attempts were observed from 192.0.2.45.
+- One successful login occurred from the same source after repeated failures.
+- The successful login used a privileged account.
+- The source IP is not associated with known corporate locations.
+- Post-authentication activity is still under review.
+
+Actions taken:
+- Source IP blocked at perimeter controls.
+- Password reset initiated for the affected account.
+- Active sessions for the affected account revoked.
+- Sign-in logs and audit activity are under review.
+
+Current assessment:
+Possible privileged account compromise (medium confidence).
+The successful login is confirmed, but malicious use after login has not yet
+been confirmed.
+
+Escalation reason:
+Privileged account involved.
+Successful login observed after brute-force pattern.
+Potential impact is high if the account was misused.
+
+Open questions:
+- Was MFA satisfied, bypassed or not required?
+- Was the successful session used to access sensitive systems?
+- Did the account perform any administrative action after login?
+- Are other privileged accounts showing similar activity?
+
+Next steps:
+- Complete review of post-authentication activity.
+- Confirm MFA status for the affected sign-in.
+- Check related accounts for similar activity.
+- Prepare incident escalation if malicious activity is confirmed.
+
+Owner:
+SOC lead
+
+Cadence:
+Next update within one hour or immediately if administrative misuse is confirmed.
+```
+
+This example shows the difference between alert detail and escalation detail. The manager does not need every failed login event. They need to understand why the case matters, what has been confirmed, what is still unknown and what decision may be needed.
+
+## Incident Management SITREP
+
+An incident management SITREP is useful during confirmed or suspected incidents where several teams or stakeholders need a shared operational update. This type of SITREP should be clear enough for incident command, technical teams and management.
+
+Example:
+
+```text
+SITREP: Suspected CRM Data Exposure
+
+Date/Time:
+2026-07-10 08:30
+
+Audience:
+Incident command, legal, privacy and senior management
+
+Incident Commander:
+Albus Corgi
+
+Prepared by:
+SOC
+
+Status:
+Ongoing investigation
+
+Severity:
+High
+
+Situation summary:
+Unauthorised access to the CRM database has been confirmed.
+Possible customer data exfiltration is under investigation.
+
+Affected systems or data:
+- CRM database
+- CRM API endpoints
+- Customer records may be affected
+
+Confirmed facts:
+- A compromised service account was used to access the CRM database.
+- Access originated from an external IP address not associated with the company.
+- The account accessed customer record tables.
+- API access from the account has been disabled.
+- The affected service account has been disabled.
+
+Unconfirmed or under investigation:
+- Whether customer records were exfiltrated.
+- How the service account was compromised.
+- Whether other service accounts were accessed.
+- Whether the external IP is part of wider attacker infrastructure.
+
+Actions taken:
+- Disabled the compromised service account.
+- Restricted CRM API access.
+- Started forensic review of database and API logs.
+- Notified legal and privacy stakeholders.
+- Preserved relevant logs for investigation.
+
+Current impact:
+CRM access is limited for selected users while containment is ongoing.
+No confirmed customer notification requirement at this time.
+Regulatory notification assessment is pending.
+
+Decisions needed:
+- Whether to activate external incident response support.
+- Whether to prepare a formal regulatory notification assessment.
+- Whether to extend containment to related API integrations.
+
+Next steps:
+- Complete forensic review of CRM access logs.
+- Validate whether bulk export or abnormal query volume occurred.
+- Review other service accounts with CRM access.
+- Prepare next SITREP by 12:00 or earlier if exfiltration is confirmed.
+
+Owner:
+Incident commander
+
+Cadence:
+Next scheduled SITREP at 12:00, unless exfiltration is confirmed earlier.
+```
+
+This example is careful with wording. It does not say that customer data was stolen. It says unauthorised access is confirmed, customer data may be affected and exfiltration is under investigation. That distinction matters.
+
+## Incident Call-In Example
+
+The first person receiving an incident call has an important role. If the receiver is unprepared, important information may be missed. That can slow down response, create confusion and force the team to call back for details that should have been captured immediately.
+
+A call-in structure should therefore be easy to find and simple to use. It should be available in the SOC wiki, ticketing system, hotline procedure or printed as a fallback.
+
+The purpose is not to perform the full investigation during the call. The purpose is to capture the right information so the issue can be triaged and escalated correctly.
+
+Example:
+
+```text
+SITREP: Initial Call-In - Suspected Phishing and Credential Submission
+
+Date/Time received:
+2026-07-10 09:15
+
+Audience:
+SOC analyst receiving the case and next analyst handling triage
+
+Call received by:
+SOC hotline
+
+Caller:
+Business user from Finance
+
+Contact details:
+Phone number and email recorded in ticket INC-2026-00456
+
+Reported issue:
+Caller reports receiving a suspicious email that appeared to be from Microsoft.
+The caller clicked the link and entered username and password on a login page.
+
+Location:
+Microsoft 365 / corporate workstation
+
+Affected users or systems:
+- One user account
+- One corporate workstation
+- Possible Microsoft 365 session exposure
+
+When it started:
+Email received at approximately 08:50.
+Link clicked at approximately 09:05.
+SOC contacted at 09:15.
+
+What changed:
+After entering credentials, the page showed an error message.
+The user became suspicious and contacted SOC.
+No business impact reported by caller.
+
+Actions already taken:
+- User disconnected from VPN.
+- User stopped using the workstation.
+- SOC ticket opened.
+- Password reset requested.
+- Session revocation requested.
+
+Evidence available:
+- Suspicious email still present in mailbox.
+- URL copied into ticket.
+- Screenshot of login page provided by user.
+
+Current assessment:
+Possible credential phishing.
+Compromise is not confirmed.
+Credential exposure is plausible because the user entered credentials into a
+suspicious login page.
+
+Immediate next steps:
+- Reset password and revoke active sessions.
+- Review sign-in logs for the affected account.
+- Inspect email headers and URL.
+- Check whether other users received the same message.
+- Review endpoint activity if payload delivery is suspected.
+
+Owner:
+SOC analyst on duty
+
+Cadence:
+Update the case after password reset, session revocation and sign-in review are complete.
+```
+
+This is not a full incident report. It is the first operational snapshot created from the call. Its value is that the next analyst does not have to start from scratch.
+
+## Practical Advice
+
+A SITREP should be useful under pressure. That means the structure must be available before the incident starts. Do not wait until a major incident to decide what a status update should contain.
+
+A few practical recommendations:
+
+* Keep examples and structures in a place analysts can find quickly.
+* Use the same field names across SOC, incident and hunting updates where possible.
+* Separate confirmed facts from assumptions.
+* Include timestamps.
+* State the intended audience.
+* Define the update cadence during active incidents.
+* Include owners for next steps.
+* Keep the language plain.
+* Update the SITREP when the situation changes.
+* Store SITREPs with the case or incident record.
+* Use the SITREP as a handover artefact between shifts or teams.
+
+A good SITREP should reduce the number of repeated questions. If everyone still asks what is happening, who is affected and what happens next, the SITREP is probably not doing its job.
+
+## Working Position for This Book
+
+For this book, a SITREP is treated as an operational communication tool. It is not only documentation. It is a way to create shared understanding during uncertainty.
+
+A good SITREP should help people understand the situation, make decisions, coordinate actions and preserve a timeline of what was known at a given point in time.
+
+The practical standard is simple:
+
+```text
+Can someone read this and understand the current situation well enough to make or support the next decision?
+```
+
+If the answer is yes, the SITREP is doing its job.
 
 ## Resources
 
-- [Merriam-Webster: SITREP Definition](https://www.merriam-webster.com/dictionary/sitrep)  
-- [Heimdal Security: Incident Response Plan Best Practices](https://heimdalsecurity.com/blog/incident-response-plan/)  
-- [ProjectManagement.com: SITREP – A Necessary Tool in Project Management](https://www.projectmanagement.com/deliverables/5314/SITREP)  
-- [Ready.gov: Situation Reports for Emergency Response](https://www.ready.gov/business/implementation/crisis)  
-- [Wikipedia: Situation Report](https://en.wikipedia.org/wiki/Situation_report)  
-- [CARE Emergency Toolkit - Situation Reports (SITREPS)](https://www.careemergencytoolkit.org/meal/42-information-management/4-situation-reports-sitreps/)
-- [Persimmon Group - SITREP Template (PDF)](https://thepersimmongroup.com/wp-content/uploads/2022/05/SITREP-Template.pdf)
-- [Wiktionary - Sitrep Definition](https://en.wiktionary.org/wiki/sitrep)
-- [Persimmon Group - Situation Report (SITREP) Template](https://thepersimmongroup.com/situation-report-sitrep-template/)
+* [Merriam-Webster: SITREP Definition](https://www.merriam-webster.com/dictionary/sitrep)
+* [Ready.gov: Crisis Communications Plan](https://www.ready.gov/business/implementation/crisis)
+* [CARE Emergency Toolkit: Situation Reports](https://www.careemergencytoolkit.org/meal/42-information-management/4-situation-reports-sitreps/)
+* [ProjectManagement.com: SITREP – A Necessary Tool in Project Management](https://www.projectmanagement.com/deliverables/5314/SITREP)
+* [Persimmon Group: Situation Report Template](https://thepersimmongroup.com/situation-report-sitrep-template/)
 
 ## Revision
 
-| Revised Date | Comment |
-| ------------ | ------- |
-| 13.10.2024   | Page added | 
+| Revised Date | Comment                                                                                                                                                                                                           |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-10   | Major rewrite. Reframed the article as a practical guide to SITREPs with realistic examples, audience awareness and update cadence for threat hunting, SOC escalation, incident management and incident call-ins. |
+| 2024-10-13   | Page added                                                                                                                                                                                                        |
