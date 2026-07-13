@@ -7,10 +7,10 @@ chapter = false
 pre = "1. - "
 +++
 
-## Table of Contents
-
-{{% children description="true" depth="1" %}}
-
 > Every new beginning comes from some other beginning’s end.
 >
 > -- Seneca
+
+## Table of Contents
+
+{{% children description="true" depth="1" %}}
