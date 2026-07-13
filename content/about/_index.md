@@ -6,7 +6,9 @@ chapter = false
 +++
 
 > Every man takes the limits of his own field of vision for the limits of the world.
+> 
+> -- Arthur Schopenhauer
 
--- Arthur Schopenhauer
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)
+{{% children description="false" depth="1" %}}

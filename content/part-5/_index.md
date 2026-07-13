@@ -6,10 +6,9 @@ draft: false
 ---
 
 > To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
+> 
+> -- Nicolaus Copernicus
 
--- Nicolaus Copernicus
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)  
-
-
-
+{{% children description="false" depth="1" %}}

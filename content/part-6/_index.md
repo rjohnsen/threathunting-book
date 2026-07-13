@@ -6,7 +6,9 @@ weight: 7
 ---
 
 > The signal is often already there. The hard part is learning how to see it.
+> 
+> -- Roger C.B. Johnsen
 
--- Roger C.B. Johnsen
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)  
+{{% children description="false" depth="1" %}}

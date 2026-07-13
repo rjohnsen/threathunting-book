@@ -6,8 +6,9 @@ chapter = false
 +++
 
 > My lab is like a fantasy world - it is more like a 'James Bond' movie!
+> 
+> -- Pranav Mistry
 
--- Pranav Mistry
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)  
-
+{{% children description="false" depth="1" %}}

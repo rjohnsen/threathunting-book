@@ -6,7 +6,9 @@ chapter = false
 +++
 
 > When solving problems, dig at the roots instead of just hacking at the leaves.
+> 
+> -- Anthony J. D'Angelo
 
--- Anthony J. D'Angelo
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)  
+{{% children description="false" depth="1" %}}

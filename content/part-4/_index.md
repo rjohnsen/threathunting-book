@@ -6,7 +6,9 @@ chapter = false
 +++
 
 > Art doesn't just happen by accident. It is about pulling out new tricks and trying new things.
+> 
+> -- Nicholas Meyer
 
--- Nicholas Meyer
+## Table of Contents
 
-![Threat Hunting Illustration](/images/huntbook-raven.png)  
+{{% children description="false" depth="1" %}}
