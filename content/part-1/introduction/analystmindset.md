@@ -1,330 +1,438 @@
 ---
 title: "Analyst Mindset"
+description: "A practical explanation of the analyst mindset in threat hunting, including thought patterns, structured reasoning, evidence handling, uncertainty, lateral thinking, bias, judgement and communication."
 date: 2024-07-14T12:47:36+02:00
+lastmod: 2026-07-14
 draft: false
+hidden: false
 weight: 3
 tags:
     - introduction
     - foundation
     - mindset
     - thinking
+    - analysis
+keywords:
+    - analyst mindset
+    - analytical thinking
+    - threat hunting mindset
+    - critical thinking
+    - lateral thinking
+    - structured reasoning
+    - evidence handling
+    - uncertainty
+    - confirmation bias
+    - SOC analysis
+    - threat hunting
 ---
 
-__Author:__ _Roger C.B. Johnsen_
+**Author:** *Roger C.B. Johnsen*
 
 ## Introduction
 
-**This is the first part of my series on defining who the Hunter is. Threat hunting can be considered an enhanced form of SOC analytics. While a SOC analyst typically responds reactively to alerts triggered by specific incidents, a threat hunter adopts a proactive approach. Instead of waiting for alerts, a threat hunter meticulously examines log data to identify anomalies and potential blind spots. This process involves formulating and testing hypotheses by correlating diverse sets of data, including both the raw logs and the statistics derived from them. Threat hunting is not just about following trails in logs; it is about understanding the underlying patterns within them.**
+**Threat hunting depends on how the analyst thinks. Tools matter. Telemetry matters. Detections matter. Frameworks matter. But none of them remove the need for human judgement. A threat hunter often works with incomplete evidence, noisy telemetry, unclear ownership, missing context and questions that do not have immediate answers. The work is rarely as clean as a lab example. Logs may be missing, alerts may only show part of the story, users may not remember what happened and system owners may not know what is normal. The analyst still has to make progress, and that progress does not come from collecting facts alone. It comes from turning incomplete evidence into defensible judgement.**
 
----
+At its simplest:
 
-## Reflections
+```text
+Curiosity opens the question. Evidence earns the answer.
+```
 
-Becoming a proficient threat hunter requires a high degree of critical thinking. In this chapter, we will focus on the human perspective—specifically, the analyst—and highlight various methods and tools for approaching the role of a threat hunter.
+Threat hunting is not about guessing until something interesting appears. It is about asking better questions, testing them against evidence, recognising uncertainty and communicating what can and cannot be concluded. This chapter is about that discipline.
 
-Drawing from my experience as a mentor for new employees and in building SOC departments, I have guided many students and encountered numerous insightful questions about becoming and being an analyst. Reflecting on the questions I had when I first started as an analyst, I have formulated this definition:
+## What Analyst Mindset Means
 
-> "Being an analyst is about discovering situations in a structured, repeatable manner that provides plausible answers."
+Analyst mindset is the disciplined way an analyst approaches uncertainty. It is not a personality type, and it is not a gift. It is a set of habits that can be developed, tested and improved through practice.
 
-By "repeatable," I mean using consistent methodologies to examine any findings along the way.
+A useful analyst mindset includes several connected habits.
 
-Today, we will explore thought patterns, models, and other valuable insights. Let's begin with a quote from one of Sun Microsystems' founders:
+| Habit | What it means in analysis |
+| --- | --- |
+| Curiosity | The willingness to ask better questions, look beyond the obvious explanation and follow weak signals carefully. |
+| Discipline | The ability to keep the investigation controlled, structured and tied to the question being tested. |
+| Scepticism | The habit of challenging weak evidence, unsupported claims, convenient explanations and assumptions. |
+| Humility | The ability to accept that the first theory may be wrong and that the evidence may not support the preferred answer. |
+| Structured reasoning | The practice of moving from question to evidence to interpretation to judgement in a way another analyst can follow. |
+| Source assessment | The ability to judge whether information is relevant, reliable, current and complete enough for the question being asked. |
+| Evidence handling | The discipline of separating observations, assumptions, interpretations, conclusions and limitations. |
+| Tolerance for uncertainty | The ability to make progress without pretending that the evidence provides perfect certainty. |
+| Awareness of bias | The habit of recognising when thinking may be shaped by pressure, fatigue, prior experience, authority or confirmation bias. |
+| Communication of judgement | The ability to explain what was found, what it means, how confident the analyst is and what should happen next. |
 
-> "Many times, experts fail because they're experts in the past version of the world."
+These habits support each other. Curiosity opens the investigation, discipline keeps it controlled, evidence keeps it grounded and communication makes the result useful.
 
-This quote underscores the necessity of staying at the forefront, continually adapting as the world rapidly changes. It perfectly reflects our everyday reality as analysts—what was true yesterday might not be true today. Each day presents a new set of challenges and opportunities. 
+## The Analyst's Job
 
-A threat hunter is essentially a SOC analyst on steroids, embodying this proactive and adaptive mindset. So, where do we begin our journey? Let's start by exploring the foundations of analytical thinking.
+Being an analyst is about discovering and explaining situations in a structured, repeatable way that produces plausible, evidence-based answers.
 
-## Primer on analytical thinking
+The important words are **structured**, **repeatable**, **plausible** and **evidence-based**. Structured means the analyst follows a method rather than wandering through data. Repeatable means another analyst can understand what was done and why. Plausible means the answer fits the available evidence without pretending to prove more than the evidence supports. Evidence-based means conclusions are earned, not assumed.
 
-![The brain](/images/brain.png)
+A threat hunter may not always be able to prove exactly what happened, but that does not make the work useless. The analyst may still be able to narrow the possibilities, identify what is unlikely, explain what is missing and recommend what should happen next.
 
-Thinking is an activity we engage in every day, all year round. But have you ever considered the different ways we think? These ways of thinking are known as thought patterns. Psychology has explored this extensively and identified numerous thought patterns. Here are some examples:
+## Thinking Is Part of the Work
 
-| Thinking Mode        | Description |
-| -------------------- | ----------- |
-| Sequential Thinking  | Organizing thoughts in a logical order. |
-| Concretizing Thinking| Interpreting what we see, hear, feel, and experience. |
-| Abstract Thinking    | Thinking beyond the concrete, considering broader concepts. |
-| Holistic Thinking    | Considering the totality of a situation. |
-| Lateral Thinking     | Thinking outside the box, making unconventional associations. |
-| Critical Thinking    | Analyzing and evaluating information to form a well-founded opinion, often as a basis for action. |
+Thinking is something analysts do all day, but it is easy to treat thinking as invisible. It should not be invisible, because the way an analyst thinks affects what questions are asked, which evidence is trusted, which assumptions are challenged and which conclusions are communicated.
 
-There are many other ways of thinking, and we are not confined to one pattern at a time. Thought patterns often flow into each other because the brain is a complex machine, and the situations we encounter require a combination of thought patterns.
+Different situations require different modes of thinking.
 
-Understanding which thought patterns exist and when to use them can help you become more aware of your thinking process. This self-awareness allows you to correct your thinking and adjust your course as needed, which is an essential skill to have in your analytical toolbox.
+| Thinking mode | How it helps analysis |
+| --- | --- |
+| Sequential thinking | Organises observations and actions in a logical order. |
+| Concrete thinking | Focuses on what was actually seen, heard, logged or reported. |
+| Abstract thinking | Connects concrete observations to broader concepts, patterns or risks. |
+| Holistic thinking | Considers the wider situation instead of only the event in front of the analyst. |
+| Lateral thinking | Looks for indirect connections and alternative explanations. |
+| Critical thinking | Tests whether the conclusion is supported by evidence. |
 
-Why am I emphasizing this at the beginning of our discussion? Because being an analyst involves a lot of thinking. When we engage in extensive thinking, we must be mindful of how we think to avoid contaminating our thought processes with biases and external influences. Here are some common factors that can affect our thinking:
+These modes are not separate boxes. Real analysis moves between them. An analyst may use concrete thinking to describe an authentication event, sequential thinking to build a timeline, lateral thinking to consider an unexpected path, critical thinking to challenge the first theory and holistic thinking to decide whether the activity matters in the wider environment.
 
-| Factor                | Description |
-| --------------------- | ----------- |
-| Prejudice             | Allowing personal opinions to influence our thought process. |
-| External Noise        | Being influenced by those around us and external information. |
-| Insecurity            | Uncertainty about concepts can lead to vague analyses. |
-| Confirmation Bias     | Being so convinced of a particular outcome that we overlook other possibilities. |
-| Personal State        | Factors such as poor sleep or illness can affect our thinking. |
+The goal is not to label every thought. The goal is to notice how thinking shapes the work.
 
-Many elements can impact our thinking, including the weather and family relationships. As analysts, being aware of how we think is crucial because our thinking is a primary tool. By understanding and mastering our thought processes, we can use thinking itself as an effective tool.
+## Thinking Can Be Contaminated
 
-Most of you are likely familiar with analytical thinking, a thought pattern that defines us and serves as a vital tool. Let's define it:
+Thinking is part of the analyst's toolset, and like any tool it can be damaged, misused or contaminated. Bias, pressure, fatigue and assumptions can change how evidence is interpreted long before the analyst writes a conclusion.
 
-> "Analytical thinking is the process of observing, researching, and developing critical insights from data or other information. It involves using these insights to gain knowledge, solve problems, or generate new ideas."
+Common sources of analytical contamination include:
 
-Analytical thinking involves several key steps:
+| Factor | How it affects analysis |
+| --- | --- |
+| Confirmation bias | The analyst selects evidence that supports the first theory. |
+| Alert tunnel vision | The analyst only investigates what the alert already says. |
+| Authority bias | A claim is accepted because it came from a senior person, vendor or customer. |
+| Availability bias | Recent incidents make similar explanations feel more likely than they are. |
+| Tool bias | The analyst believes the tool's view is the whole truth. |
+| Fatigue | Poor sleep, stress or overload reduces analytical quality. |
+| External noise | Chat, pressure, assumptions or rumours shape the investigation before evidence does. |
+| Insecurity | The analyst avoids clear judgement because the topic feels unfamiliar. |
 
-1. Identifying a topic, problem, or issue.
-2. Breaking down the topic, issue, or problem into manageable segments.
-3. Obtaining relevant information from reliable sources.
-4. Assessing cause, effect, and connections.
-5. Developing solutions or enhancing understanding of the subject.
-6. Testing solutions or new ideas based on what we have learned.
-7. Reviewing which solutions worked and assessing our new knowledge.
+Bias cannot be removed by pretending to be objective. It must be managed. The analyst can reduce contamination by writing down the hypothesis, looking for evidence against it, separating facts from assumptions, stating confidence level, documenting limitations, asking what would change the conclusion and allowing another analyst to review the reasoning.
 
-Each of these steps can be broken down into specific methods. As we progress in our work, you will see how our internal procedures and routines align with these steps.
+The analyst should not try to be bias-free. The analyst should make the reasoning visible enough that bias can be challenged.
 
-Understanding these thought patterns and processes is essential to grasping how and why the SOC operates the way it does.
+## Thinking Is Verbing
 
-## Thinking is verbing
+Thinking is not passive. Analytical work is full of verbs, because an analyst does not only “look at logs”. The analyst performs actions that shape understanding.
 
-Let's delve deeper into the steps of analytical thinking and identify a common thread: action verbs. Thinking itself is an action, something we actively do. 
+| Verb | Analytical meaning |
+| --- | --- |
+| Identify | Find the issue, question, event, entity or behaviour that needs attention. |
+| Break down | Split a large problem into smaller questions that can be tested. |
+| Gather | Collect relevant evidence from useful sources. |
+| Assess | Judge the quality, meaning and limitations of the evidence. |
+| Compare | Place the observation against a baseline, peer group, timeline or expectation. |
+| Connect | Look for relationships between events, entities, systems and behaviours. |
+| Develop | Build possible explanations or next investigative steps. |
+| Test | Check whether the evidence supports or weakens a hypothesis. |
+| Review | Revisit the reasoning when new evidence appears. |
+| Communicate | Make the judgement usable by others. |
 
-By examining the steps outlined previously, we can extract essential action verbs that are crucial for our analytical work:
+These verbs are not decoration. They are the work. They also help the analyst avoid vague activity. If the analyst cannot describe what they are doing as an action, the work may have become unfocused.
 
-* Identify
-* Break down
-* Gather
-* Assess
-* Develop solutions
-* Promote understanding
-* Test
-* Review
-* Communicate
+## Thinking in Questions
 
-These verbs represent the core actions that form a comprehensive methodology—a structured approach to analysis.
+Good analysis usually begins with a question, and weak questions often produce weak analysis.
 
-Additionally, it's important to consider another critical aspect: dissemination. We must effectively communicate the results of our analytical processes to others. This ability to convey our findings clearly and accurately is essential for successful analysis.
+For example:
 
-## Think this, this, and this way
+```text
+Is this bad?
+```
 
-Analytical thinking is crucial, but it doesn't exist in isolation—it must be complemented by other thought models. At SOC, we integrate various thought patterns into our work. While we rely on analytical thinking, it is essential to combine it with critical thinking.
+That question is usually too broad. A better question may be:
 
-We need to analyze and assess information about a case to form a well-founded and accurate opinion, guiding our actions effectively. Running an analysis from start to finish without critically evaluating the process can lead to overlooking important details. This approach lacks quality, as it ignores potential blind spots.
+```text
+Is this behaviour expected for this user, device, account, application and time period?
+```
 
-Two key skills are central here: argumentation and strategic source assessment.
+Other useful questions may be:
 
-| Skill | Definition |
-| ---- | ---------- |
-| Argumentation | The ability to take a position on a case based on rationally valid reasons supported by evidence. This involves assessing the validity of claims and considering possible counter-arguments. |
-| Strategic Source Assessment | The ability to use information from various channels to interpret their content. For example, when reading a text online, consider the type of publication, the publisher, and the publication date. Assess whether the sources have credibility and authority to be trusted. |
+```text
+What would need to be true for this activity to be benign?
 
-Often, we encounter situations with data gaps that must be filled with plausible theories. This requires creativity and finding connections that aren't always obvious—what we call "lateral thinking."
+What evidence would change our assessment?
+```
 
-Lateral thinking involves solving problems using an indirect and creative approach, through reasoning that is not immediately obvious. Sometimes, we must hypothesize and test whether the evidence fits this hypothesis rather than allowing the evidence alone to shape our hypothesis. This approach is about thinking outside the box.
+Threat hunting often improves when the analyst moves from vague suspicion to testable questions. Questions such as “What happened?”, “Who or what performed the action?”, “Compared to what?”, “What evidence contradicts this?” and “What should happen next?” are simple, but they force the analyst to work with evidence rather than mood, confidence or habit.
 
-JP Guilford, known for his task of drawing four lines through a matrix of nine dots without lifting the pen, researched this extensively. However, Edward de Bono's work on different thought patterns and their combination to solve tasks is particularly notable. In 1967, de Bono introduced the concept of "lateral thinking," which I interpret as follows:
+## Evidence, Interpretation and Judgement
 
-> "Creative thinking is the ability to come up with new and innovative ideas. Imagination plays a big role in this process. One of its greatest qualities is that it knows no boundaries. If we let it. Imagination is the search engine of your brain. You fill your brain with information from various sources. You then use your imagination to draw connections between the information. If you free the boundaries and let your imagination run wild, it's amazing what ideas emerge."
+Analysts must separate evidence from interpretation. Evidence is what was observed, interpretation is what the analyst thinks the evidence may mean, and judgement is the analyst's defensible assessment based on the available evidence, context and uncertainty.
 
-While using your imagination is essential, we must balance it with critical thinking to ensure it doesn't lead us astray. Think of it as "freedom under responsibility." Creative ideas must be plausible and defensible.
+A useful model is:
 
-To illustrate these thought patterns, I have prepared a task based on classic lateral thinking exercises. This task demonstrates that we don't always have concrete information to rely on, similar to analyzing a log file. Be prepared to combine analytical, critical, and creative thinking to solve it.
+```text
+Evidence → Interpretation → Judgement → Action
+```
 
-## Analyze this task
+For example:
 
-Here I want you to use the thought models we have talked about to solve this task:
+```text
+Evidence:
+A service account authenticated interactively from a standard user workstation.
 
-> It's almost midnight. It's quite a storm outside. There is a storm. A man sits inside. He is watching TV. The TV signals come and go. The man gets bored. He screws off the light and goes to bed. The man wakes up the following morning and reads in the newspaper: 40 men have died last night right outside his door.
+Interpretation:
+This behaviour does not match the documented baseline for the account.
 
-What has happened and what is the man's occupation?
+Judgement:
+The activity should be treated as suspicious until account ownership, source
+device context and maintenance activity are verified.
 
-### Answer 
+Action:
+Review the account owner, source host, recent account changes, related alerts
+and approved maintenance windows.
+```
 
-Lighthouse keeper. He has turned off the light in the lighthouse, which has caused a ship to go down.
+This is stronger than simply writing:
 
-### Important clues
+```text
+The service account was compromised.
+```
 
-How on earth did we come to this conlusion? Let me try to explain by important hints from the text:
+The compromise statement may turn out to be true, but it is not earned by the evidence alone. The stronger version keeps the observation, interpretation, judgement and action separate, which makes the reasoning easier to review. A good analyst knows the difference between what is observed, what is inferred and what is proven.
 
-| Clue | Comment |
-| ---- | ------- |
-| Midnight | Night – you use the light at night to see |
-| Storm | Storm belongs to the sea |
-| A man is sitting inside | Is he inside because it's night or stormy? |
-| He is watching TV | Not really that interesting |
-| The TV signals come and go | Alludes to the weather being reasonably bad |
-| Turn off the light | Why is the light mentioned at all? |
-| He is going to bed | Action that can tell us something about this being an action with cover |
-| Reading in the newspaper | The newspaper brings news |
-| Died | What happened |
-| Outside the door | Why are so many dying outside his door? |
-| Man | Male-dominated profession |
+The same principle applies to peer review. A judgement should be open to challenge, because analysis that cannot be challenged is too private to be reliable. Another analyst should be able to see the evidence, understand the interpretation and question the conclusion. That does not mean every conclusion must be wrong until debated. It means the reasoning should be visible enough that another analyst can test it, improve it or reject it.
 
-With this task, we leave the brain a little.
+A simple rule of thumb is:
 
-## Words of wisdom
+```text
+If it cannot be challenged, it is not analysis.
+```
 
-We've discussed the mental model and recognized that managing and understanding thought patterns is a valuable tool. While we've focused significantly on our own thinking processes, these thought patterns can also offer insights into how an attacker thinks. Understanding and applying these patterns can significantly enhance our analytical capabilities.
+## Plausible, Not Certain
 
-To delve deeper into this concept, I've gathered some quotes that can further guide us in our daily work as analysts:
+Security work often happens under uncertainty. An analyst may not have complete logs, perfect timelines, full packet capture, user testimony, clean asset ownership or reliable baselines. Waiting for perfect certainty may mean doing nothing.
 
-> "Every contact leaves a trace."
+The goal is not always certainty. The goal is defensible judgement. A defensible judgement should explain what was observed, what the analyst thinks it means, how confident the analyst is, what the limitations are and what should happen next. This matters because overconfidence can be dangerous, but so can paralysis.
 
-Dr. Edmond Locard (1877–1966), a French criminologist and pioneer of forensic science, became known as the "Sherlock Holmes of France." He formulated the basic principle of forensic science, known as Locard's exchange principle. This principle is fundamental to our work as threat hunters—we focus on finding those traces of contact.
+The analyst must be able to say:
 
-If every action leaves traces, is there always a connection to be found? Sir Arthur Conan Doyle thought so in one of his books:
+```text
+We do not know enough to confirm compromise.
+```
 
-> "So all life is a great chain, the nature of which is known whenever we are shown a link of it."
+But also:
 
-Sir Arthur Conan Doyle, a British author and physician, created the character Sherlock Holmes in 1887. His stories are milestones in crime fiction and have significantly influenced modern police investigations. Doyle’s quote builds on Locard's principle, emphasizing the interconnectedness of all actions. If traces and connections exist, what can they reveal to us?
+```text
+We know enough to justify further investigation.
+```
 
-> "Res ipsa loquitur."
+Both statements can be true at the same time.
 
-This Latin phrase means "The matter speaks for itself." It's an important principle reminding us to let evidence tell its own story without imposing our biases. This can be challenging, especially when we receive colored narratives from customers or other sources. While the interpretation of this principle can vary, its core idea is to let the facts speak for themselves.
+## Analytical Thinking
 
-These quotes illustrate a connected philosophy of analysis. However, one critical element remains: data. Our task involves sifting through vast amounts of data to find clues. We must be prepared to dissect, scrutinize, and interpret data to uncover the information we seek.
+Analytical thinking is the process of breaking a problem into parts, examining the evidence, identifying relationships and developing a reasoned assessment.
 
-## The departure to technical information
+In security operations, analytical thinking often includes identifying the issue, breaking it into smaller questions, gathering relevant evidence, assessing source quality, looking for relationships, developing possible explanations, testing those explanations, reviewing what changed and communicating the result.
 
-In the data we process, we uncover numerous fascinating insights and narratives. Three key concepts you should be familiar with are IOA, IOB, and IOC. Understanding thought patterns will be particularly useful when hunting for these indicators.
+This is not a rigid sequence. Real investigations loop. New evidence may force the analyst back to an earlier question. A weak hypothesis may be discarded. A finding may become a new hunt.
 
-### IOA: Indicator of Attack
+The important point is that analysis should not be random. The analyst should be able to explain the path from question to evidence to judgement.
 
-- **Definition:** IOA refers to signs that something is about to happen (precursor) or is happening currently.
-- **Description:** These are circumstances that hint at an attack but cannot be fully specified. Think of it as an indication that something suspicious is occurring.
-- **Detection:** IOA-based detection focuses on an attacker's behavior, regardless of whether the attack is known or unknown. This method aims to uncover unknown or evolving exploits and attacks before they penetrate your defenses.
+## Critical Thinking
 
-IOAs are events that can reveal an active attack before Indicators of Compromise (IOC) become visible. For example:
-- A sudden increase in traffic to a website
-- Unexpectedly high activity on a file server at odd hours
-- Web servers communicating with internal hosts
-- Internal hosts communicating with each other for the first time
-- A laptop exhibiting unusual behavior
-- Port scanning within the network
-- Increased PowerShell activity on hosts
-- Spike in traffic to online storage services like Dropbox or Box, which the company may not typically use
+Critical thinking is what prevents analysis from becoming storytelling. It challenges claims, checks assumptions and asks whether the conclusion is stronger than the evidence allows.
 
-IOA detection requires near real-time monitoring and can be effectively combined with machine learning and IOB. Vigilance in monitoring logs and statistical dashboards is crucial.
+Useful critical thinking questions include:
 
-### IOB: Indicator of Behavior
+* Why do I believe this?
+* What evidence supports it?
+* What evidence contradicts it?
+* Is there a simpler explanation?
+* Is there a benign explanation?
+* Is the data complete enough?
+* Is the source reliable?
+* Am I repeating someone else's assumption?
+* What would I expect to see if this theory were true?
+* What would I expect to see if it were false?
 
-- **Definition:** IOB refers to the behavioral patterns of users, devices, or accounts and deviations from these established patterns.
-- **Description:** This involves understanding what constitutes normal behavior and identifying deviations from this baseline. The concept of "baselining" is crucial, as it involves measuring typical behavior to detect anomalies.
+Critical thinking does not mean rejecting everything. It means refusing to accept weak conclusions too easily.
 
-Consider the following example:
+## Lateral and Creative Thinking
 
-Imagine a financial analyst named Jennifer who regularly accesses financial data from the company’s internal systems. Her typical behavior involves:
-- Logging in during business hours (9 AM to 5 PM).
-- Accessing specific financial reports.
-- Using her work computer from her office network.
+Threat hunting also requires creative thinking. Attackers do not always behave like playbooks, alerts or lab exercises. They may use legitimate tools, unusual paths, trusted accounts, timing, misdirection or environmental knowledge.
 
-Now, let’s say Jennifer suddenly starts accessing financial data from a different location late at night and downloads unusually large amounts of sensitive information. These deviations from her usual pattern are notable and warrant further investigation.
+The analyst sometimes needs to imagine what could be happening before the evidence is obvious. That imagination is useful, but it must be controlled. Lateral thinking is the ability to approach a problem indirectly and look for connections that are not immediately obvious. It helps the analyst avoid being trapped by the most visible explanation. The analyst may ask what could explain the activity if the obvious explanation is wrong, how an attacker could achieve the same result without triggering the alert, or what the activity would look like if it were staged through a trusted account.
 
-**In more technical terms:**
-- **Permanent Patterns:** Regular access to specific files or systems during standard working hours.
-- **Sporadic Patterns:** Occasional access to systems outside normal hours for urgent tasks.
-- **One-Time Events:** A significant data download or access to unusual files which is not part of her typical activity.
+Creative thinking opens possible paths, while critical thinking decides which paths deserve evidence. That balance matters. Imagination can help the analyst find a path that the tool did not present, but it can also lead the analyst into fiction if it is not tested.
 
-By establishing a baseline of Jennifers usual behavior, we can more easily spot deviations. For instance:
-- **Regular Behavior:** Accessing financial data from her office computer during business hours.
-- **Deviation:** Accessing data from an unfamiliar IP address late at night and downloading a large volume of files.
+A useful way to think about it is freedom under responsibility. The analyst may imagine several explanations, but only evidence can decide which explanation deserves confidence.
 
-This deviation could indicate potential security concerns such as unauthorized access or data exfiltration. By monitoring such deviations, we can identify and investigate anomalies that might signal a security threat.
+## Analytical Exercise: The Lighthouse Problem
 
-Mapping IOBs and understanding behavioral deviations allow us to effectively assess whether an anomaly is benign or indicative of a serious threat, ultimately enhancing our security posture.
+The following exercise is a classic lateral thinking problem. It is useful because the answer depends on indirect clues, not explicit information.
 
-### IOC: Indicator of Compromise
+```text
+It is almost midnight. There is a storm outside. A man sits inside watching TV.
+The TV signal comes and goes. The man gets bored, turns off the light and goes
+to bed. The next morning he reads in the newspaper that 40 men died outside his
+door during the night.
 
-- **Definition:** IOC refers to signs that a compromise has occurred.
-- **Description:** These are traces left by criminals at the crime scene, which we analyze to investigate the incident.
+What happened, and what is the man's occupation?
+```
 
-In our field, IOCs can include:
-- Headers
-- IP addresses
-- Techniques
-- Network artifacts
-- Tools
-- Domain names
-- Registry keys
-- Any mysterious behavior or deviation from the norm
+The answer is:
 
-Working with IOCs is a significant part of our daily routine. We gather IOCs from various sources, including external vulnerability registers, email lists, news reports, and our own analysis of alarms and network traffic. You might be familiar with OpenCTI, a tool that assists in this process.
+```text
+He is a lighthouse keeper. He turned off the lighthouse light, which caused a
+ship to run aground or sink during the storm.
+```
 
-Remember, IOCs are indications of events that have already happened, based on evidence found by you or others. Understanding and effectively utilizing IOAs, IOBs, and IOCs are essential for robust threat detection and response in our security operations.
+The point is not the riddle. The point is the reasoning. Some facts are noise, some are clues, and some words carry hidden assumptions. The first explanation may be wrong. The analyst must combine concrete evidence, lateral thinking and critical testing.
 
-## In short 
+| Clue | Analytical value |
+| --- | --- |
+| Almost midnight | Light matters more at night, and night increases the consequence of poor visibility. |
+| Storm outside | Suggests dangerous conditions and opens the possibility of sea, navigation or travel-related risk. |
+| A man sits inside | The man is isolated from what is happening outside, but his actions may still affect it. |
+| Watching TV | A normal activity that makes the situation appear domestic and ordinary. |
+| TV signal comes and goes | Reinforces bad weather and possible isolation, but may also be a distractor. |
+| He gets bored | Explains why he stops what he is doing, but not why the next action matters. |
+| Turns off the light | The light is the central clue. It is mentioned because it has significance beyond the room. |
+| Goes to bed | The action appears routine to him, which suggests he does not immediately understand the consequence. |
+| The next morning | The consequence is discovered later, which fits delayed awareness rather than direct violence. |
+| Reads it in the newspaper | The event is public news, not something he personally witnessed. |
+| 40 men died | Suggests a group incident rather than a single accident, such as a crew, passengers or workers. |
+| Last night | Connects the deaths to the same time window as the storm and the light being turned off. |
+| Right outside his door | The location is unusual unless “door” belongs to a special place, such as a lighthouse near the sea. |
+| His occupation is asked | The question signals that the man's role is part of the explanation. |
 
-### Summarizing IOA, IOB, and IOC
+This resembles security analysis more than it first appears. A log line can work the same way. The important question is not only what the event says, but what it implies, what it omits and what must be true for the explanation to hold.
 
-To encapsulate the key concepts of IOA, IOB, and IOC, we can outline their primary distinctions as follows:
+## Source Assessment
 
-| **Type** | **Description** |
-|----------|-----------------|
-| **IOA**  | Indicators of Attack (IOA) deal with signs that an attack is occurring or is about to occur. They signal potential threats based on suspicious activities or precursors. |
-| **IOB**  | Indicators of Behavior (IOB) focus on behavioral patterns and deviations from established norms. They help identify anomalies by comparing current actions against a baseline of normal activity. |
-| **IOC**  | Indicators of Compromise (IOC) are the tangible traces left behind by attackers. These include specific artifacts like IP addresses, domain names, and file hashes that indicate a system has been compromised. |
+Analysts rarely work from a single source. They may use SIEM events, EDR telemetry, identity logs, firewall logs, email data, asset inventories, vulnerability data, threat intelligence, user reports, system owner input, vendor documentation and public reporting.
 
-**Understanding the Differences:**
+Not all sources have the same value. Source assessment means asking whether the information is relevant, reliable, current and complete enough for the question being asked.
 
-To clarify the distinctions between IOA, IOB, and IOC:
+Useful questions include:
 
-- **IOA (Indicator of Attack)** provides early warning signs that an attack might be in progress or imminent. For instance, a sudden surge in traffic to a website could be a potential IOA.
+* Where did this information come from?
+* When was it produced?
+* What does this source actually show?
+* What does it not show?
+* Is the source authoritative for this question?
+* Could the source be incomplete?
+* Could the source be wrong?
+* Does another source confirm or contradict it?
 
-- **IOB (Indicator of Behavior)** focuses on identifying deviations from normal behavior patterns. By establishing a baseline of typical activities, we can detect unusual behavior that might indicate malicious activity.
+A log source may be technically accurate but incomplete. A user report may be honest but imprecise. A vendor alert may be useful but generic. Threat intelligence may be relevant globally but not locally. The analyst must understand the strength and weakness of each source before using it to support a conclusion.
 
-- **IOC (Indicator of Compromise)** pertains to tangible evidence left by attackers. This could include specific IP addresses, domain names, or other artifacts that confirm a system has been compromised. When discussing IOCs and threat hunting, it's important to clarify that IOCs in this context refer to those that we, as threat hunters, discover ourselves. The essence of threat hunting goes beyond merely validating IOCs provided by others; it involves proactively identifying and uncovering new IOCs through our own investigative efforts. Effective threat hunting is about detecting and addressing potential threats independently, rather than relying solely on pre-existing indicators handed to us.
+## Traces, Links and Evidence
 
-**Integrating IOA, IOB, and IOC:**
+Threat hunting is closely related to the idea that actions leave traces.
 
-We can derive IOCs from IOAs. For instance, consider a sudden increase in traffic to a website:
-- **IOC Extraction:** 
-  - The IP address from which the traffic originates can be treated as an IOC.
-  - Examine the IP’s ASN (Autonomous System Number) and geolocation.
-  - Analyze the nature of the traffic (e.g., unusual requests or patterns).
-  - Check for any previous reports of suspicious activity associated with this IP.
+Dr. Edmond Locard, the French criminologist and pioneer of forensic science, is associated with the principle:
 
-**Combining IOA and IOB:**
-- **Context Building:** IOA helps us identify that something is happening, while IOB provides context by comparing current activities to historical patterns. This combination allows us to assess whether the detected activity is typical or unusual.
+> Every contact leaves a trace.
+>
+> -- Edmond Locard, commonly known as Locard's exchange principle
 
-**Practical Application:**
+In security work, the same idea appears everywhere. A process starts, a user authenticates, a file is written, a connection is made, a permission changes, a token is issued, a command runs and a log is generated, or should have been generated. The hunter looks for traces of contact.
 
-By integrating these concepts, we achieve a comprehensive analysis:
-- **IOA** identifies potential threats.
-- **IOC** provides specific indicators to investigate.
-- **IOB** helps determine whether the observed activity deviates from established norms.
+Traces alone are not enough. The analyst must also understand relationships.
 
-With this approach, we build context and enhance our analysis, allowing us to address and respond to potential threats more effectively.
+In *A Study in Scarlet*, Arthur Conan Doyle lets Sherlock Holmes describe this chain of reasoning:
 
-**Action and Reaction:**
+> All life is a great chain, the nature of which is known whenever we are shown a single link of it.
+>
+> -- Sherlock Holmes, in Arthur Conan Doyle's *A Study in Scarlet*
 
-As we delve deeper into IOCs, remember Newton's Third Law of Motion:
+The quote is useful because analysis often begins with one link. A single event may lead to an account, a device, a process, a parent process, a destination, a file, a user action, a business process or another system. The analyst follows the link, but must not invent the chain.
 
-> "For every action, there is an equal and opposite reaction."
+There is also an old legal phrase that fits analytical work:
 
-In the context of cybersecurity, this principle underscores the importance of understanding the implications of each action we take. Our response to detected indicators must be measured and well-considered to ensure effective mitigation and protection.
+> Res ipsa loquitur.
+>
+> -- Latin legal phrase meaning “the thing speaks for itself”
 
-### Integrating Psychology and Methodology in Analysis
+For analysts, this is both useful and dangerous. Evidence should be allowed to speak, and the analyst should not force it into a preferred story. At the same time, evidence rarely explains itself completely. A log event does not come with intent attached. A failed logon does not explain whether it was attack, error, automation or stale credentials.
 
-The psychology and methodology underpinning an analyst's mindset are both extensive and complex, yet profoundly intriguing. Our aim has been to identify models that align with the spirit of effective analysis and translate these models into actionable practices. By synthesizing the concepts discussed today, we can enhance our analytical capabilities and be better prepared for the challenges we face.
+The analyst must let the evidence speak without pretending that it says more than it does.
 
-As Skinner aptly remarks:
+## Communication Is Part of Analysis
 
-> "Being wrong isn't always wrong—it might be the best thing we could do given the situation."
+Analysis is not finished when the analyst understands the case. It is finished when the result can be used.
 
-This insight highlights the value of acknowledging errors and iterating on our processes. Embracing the possibility of failure and the need to refine our approach can be a powerful advantage. This adaptability is a key strength of the OODA loop (Observe, Orient, Decide, Act)—a framework that encourages us to continually reassess and restart our analysis with newly acquired information. We will delve into OODA later on in this book. 
+That may mean updating a case, writing a report, creating a detection candidate, briefing the SOC, informing incident response, documenting a baseline or explaining uncertainty to a manager.
 
-By integrating these psychological insights and methodologies, we not only improve our analytical effectiveness but also cultivate a mindset that embraces flexibility and growth.
+Good communication should make the analyst's reasoning visible. It should explain what was investigated, what was found, what was not found, what it means, how confident the analyst is, what limitations exist and what should happen next.
+
+Poor communication can waste good analysis. A hunter who finds something important but cannot explain it clearly may fail to create action. A hunter who overstates weak evidence may create false confidence or unnecessary escalation.
+
+Communication is not decoration. It is part of the analytical work.
+
+## Adaptation and the OODA Loop
+
+Analysis changes as new information appears. A good analyst must be willing to revise the assessment when the evidence changes.
+
+This is where the OODA loop is useful:
+
+```text
+Observe → Orient → Decide → Act
+```
+
+The analyst observes evidence, orients around context, decides what the evidence supports and acts through investigation, escalation, documentation or closure. Then new information appears, and the loop starts again.
+
+Being wrong is not always the worst outcome. Staying wrong after the evidence changes is worse. A useful mindset allows the analyst to restart the loop without treating revision as failure.
+
+## Common Failure Modes
+
+Analytical work often fails in predictable ways.
+
+| Failure mode | Why it hurts |
+| --- | --- |
+| Alert tunnel vision | The analyst only investigates what the alert already says. |
+| Confirmation bias | Evidence is selected to support the first theory. |
+| Premature closure | The case is closed before uncertainty is resolved. |
+| Tool-first thinking | The analyst asks what the tool can show instead of what needs to be known. |
+| Weak source assessment | Untrusted or incomplete information is treated as fact. |
+| No hypothesis discipline | The analyst jumps between ideas without testing them. |
+| Overconfidence | The conclusion is stronger than the evidence supports. |
+| Analysis paralysis | The analyst waits for certainty when a defensible next step is already available. |
+| Poor communication | Good analysis fails to become useful action. |
+| No learning loop | The same analytical mistake repeats because nothing is documented or improved. |
+
+The most common failure is treating analysis as a private mental activity. Analysis should leave a trail so another analyst can understand what was asked, what was checked, what was concluded and why.
+
+## How Mindset Connects to Threat Hunting Outputs
+
+Analyst mindset is not separate from the rest of the work. It shapes the quality of every threat hunting output. A weak mindset creates weak baselines, noisy detections, shallow audits and reports nobody can use. A strong mindset improves the way the analyst asks questions, handles evidence, tests assumptions and communicates judgement.
+
+| Output | How analyst mindset matters |
+| --- | --- |
+| Baseline | The analyst must understand what is expected without assuming that expected means benign. |
+| Detection rule | The analyst must decide whether behaviour is worth alerting on and whether the SOC can act on it. |
+| Audit | The analyst must be willing to question whether something still works. |
+| Report | The analyst must explain what was found, what it means, what is uncertain and what should happen next. |
+| Hunt | The analyst must turn curiosity into structured, testable investigation. |
+
+Mindset is therefore not an abstract quality. It is visible in the outputs the analyst leaves behind.
+
+## Working Position for This Book
+
+For this book, analyst mindset is treated as a practical operating discipline.
+
+It is the way an analyst asks questions, handles evidence, manages uncertainty, challenges assumptions and communicates judgement. A useful analyst mindset is curious, but not careless; creative, but not speculative; sceptical, but not paralysed; confident, but not overconfident.
+
+The analyst earns conclusions through evidence and makes the reasoning visible enough for others to review, use and improve.
+
+That is the standard. Not because analysts need to sound clever, but because security decisions should not depend on guesswork, habit or untested assumptions.
 
 ## Resources
 
-* [What is a threat hunter?](https://www.offsec.com/cybersecurity-roles/threat-hunter/#:~:text=A%20threat%20hunter%20must%20have,effective%20communication%20skills%20are%20crucial.)
-* [Your Next Move: Threat Hunter](https://www.comptia.org/blog/your-next-move-threat-hunter)
-* [SOC ANALYST - Threat hunter](https://www.infosecinstitute.com/resources/soc-analyst/threat-hunter/)
-* [How to Become a Cyber Threat Hunter: A Guide to Level Up Your Security Team](https://www.snapattack.com/become-a-threat-hunter/)
-* [Threat Hunting Series: What Makes a Good Threat Hunter](https://kostas-ts.medium.com/threat-hunting-series-what-makes-a-good-threat-hunter-e2b1d0d07e8c)
+* [Locard's Exchange Principle](https://en.wikipedia.org/wiki/Locard%27s_exchange_principle)
+* [Arthur Conan Doyle: A Study in Scarlet](https://www.gutenberg.org/files/244/244-h/244-h.htm)
+* [Res ipsa loquitur](https://en.wikipedia.org/wiki/Res_ipsa_loquitur)
+* [The OODA Loop](https://en.wikipedia.org/wiki/OODA_loop)
+* [Confirmation Bias](https://en.wikipedia.org/wiki/Confirmation_bias)
+* [Critical Thinking](https://en.wikipedia.org/wiki/Critical_thinking)
+* [Lateral Thinking](https://en.wikipedia.org/wiki/Lateral_thinking)
+* [MITRE ATT&CK](https://attack.mitre.org/)
+* [Splunk SURGe: PEAK Threat Hunting Framework](https://www.splunk.com/en_us/blog/security/peak-threat-hunting-framework.html)
 
 ## Revision
 
 | Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| --- | --- |
+| 2024-10-06 | Improved formatting and wording. |
+| 2026-07-14 | Rewritten to focus on analyst mindset, structured reasoning, evidence handling, uncertainty, bias, communication and common analytical failure modes. IOA, IOB and IOC material moved to a separate article. |
