@@ -5,7 +5,7 @@ date: 2025-03-29T15:04:35+01:00
 lastmod: 2026-07-09
 draft: false
 hidden: false
-weight: 10
+weight: 11
 tags:
     - fundamentals
     - threat hunting

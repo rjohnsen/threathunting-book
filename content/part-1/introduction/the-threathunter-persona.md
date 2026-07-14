@@ -4,7 +4,7 @@ description: "What makes a threat hunter useful in practice: curiosity, technica
 date: 2025-01-01T11:37:38+01:00
 lastmod: 2026-07-09
 draft: false
-weight: 4
+weight: 3
 tags:
     - fundamentals
     - threat hunting

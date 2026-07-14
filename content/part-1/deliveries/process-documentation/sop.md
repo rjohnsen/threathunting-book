@@ -5,7 +5,7 @@ date: 2024-10-19T18:13:21+02:00
 lastmod: 2026-07-13
 draft: false
 hidden: false
-weight: 4
+weight: 1
 tags:
   - SOP
   - standard operating procedure

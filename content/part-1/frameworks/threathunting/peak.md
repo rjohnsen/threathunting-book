@@ -5,7 +5,7 @@ date: 2024-09-22T13:40:11+02:00
 lastmod: 2026-07-10
 draft: false
 hidden: false
-weight: 7
+weight: 1
 tags:
     - frameworks
     - threat hunting

@@ -4,7 +4,7 @@ description: "How to turn a hunting idea or hypothesis into a scoped, executable
 date: 2024-10-27T11:10:42+01:00
 lastmod: 2026-07-09
 draft: false
-weight: 8
+weight: 9
 tags:
     - fundamentals
     - threat hunting

@@ -5,7 +5,7 @@ date: 2026-07-13T00:00:00+02:00
 lastmod: 2026-07-14
 draft: false
 hidden: false
-weight: 9
+weight: 10
 tags:
     - audits
     - threat hunting

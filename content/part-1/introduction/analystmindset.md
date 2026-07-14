@@ -5,7 +5,7 @@ date: 2024-07-14T12:47:36+02:00
 lastmod: 2026-07-14
 draft: false
 hidden: false
-weight: 3
+weight: 4
 tags:
     - introduction
     - foundation

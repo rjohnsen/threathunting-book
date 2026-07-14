@@ -4,7 +4,7 @@ description: "How to create threat hunting hypotheses that are specific, testabl
 date: 2024-11-02T15:09:15+01:00
 lastmod: 2026-07-09
 draft: false
-weight: 9
+weight: 8
 tags:
 - fundamentals
 - threat hunting

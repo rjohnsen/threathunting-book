@@ -1,7 +1,7 @@
 +++
 title = "MITRE ATT&CK Field Notes"
 date = 2024-10-12T14:56:50+02:00
-weight = 1
+weight = 2
 chapter = false
 +++
 
