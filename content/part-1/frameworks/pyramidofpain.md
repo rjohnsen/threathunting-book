@@ -21,7 +21,7 @@ keywords:
    - TTP
    - MITRE ATT&CK
    - adversary disruption
-----------------------
+---
 
 **Author:** *Roger C.B. Johnsen*
 
