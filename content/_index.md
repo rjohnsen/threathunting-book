@@ -4,7 +4,7 @@ date: 2024-06-22T10:25:28+02:00
 draft: false
 ---
 
-{{% notice style="transparent" %}}
+{{% notice style="info" %}}
 Threat hunting is not about running random queries and hoping something suspicious appears.
 
 It is about understanding behaviour, building context, forming hypotheses, testing assumptions,

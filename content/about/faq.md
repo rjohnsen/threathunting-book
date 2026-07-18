@@ -1,6 +1,7 @@
 ---
 title: "FAQ"
 date: 2024-09-30T18:06:50+02:00
+lastmod: 2026-07-18
 draft: false
 weight: 2
 ---
@@ -69,12 +70,6 @@ If you use the material in a class, workshop, internal training session, present
 
 You may not package, resell, modify, or redistribute the content as training material without prior written consent.
 
-### Will there be a dark mode theme?
-
-Probably not.
-
-The current theme is designed primarily for readability, consistency, and maintainability.
-
 ### Do you offer classes, courses, talks, or interviews?
 
 Yes, depending on topic, timing, and availability.
@@ -85,6 +80,7 @@ For inquiries, use the contact page.
 
 | Revised Date | Comment |
 | ------------ | ------- |
+| 18.07.2026 | Removed section about dark theme |
 | 09.07.2026 | Rewritten usage, licensing, PDF, sharing, educational use, theme, and contact information. |
 | 22.04.2025 | Updated page. |
 
