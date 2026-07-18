@@ -1,0 +1,1 @@
+<figure class="hb-figure"><a href="{{ .Destination | safeURL }}" aria-label="Open full-size image: {{ .Text }}"><img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}></a>{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>

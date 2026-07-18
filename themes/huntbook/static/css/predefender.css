@@ -248,3 +248,11 @@ html,body{max-width:100%;overflow-x:hidden}
 .recent-updates{list-style:none!important;padding:0!important}.recent-updates li{border-bottom:1px solid var(--line);display:flex;gap:12px;justify-content:space-between;padding:10px 0}.recent-updates a{font-weight:500;text-decoration:none}
 [data-theme=dark] .hb-shortcode-button:not(.hb-button-default),[data-theme=dark] .hb-expand summary{color:#f2f7ff!important}
 @media(max-width:600px){.hb-shortcode-button{display:flex;margin-right:0;width:100%}.children{grid-template-columns:1fr}.recent-updates li{align-items:flex-start;flex-direction:column;gap:2px}}
+
+/* Single-image Markdown renderer */
+.hb-figure{margin:32px 0;text-align:center}
+.hb-figure>a{display:inline-block;max-width:100%}
+.hb-figure img{border:1px solid var(--line);border-radius:9px;display:block;height:auto;margin:0 auto;max-width:100%}
+.hb-figure figcaption{color:var(--muted);font-size:.7rem;line-height:1.45;margin:9px auto 0;max-width:70ch}
+@media(max-width:600px){.hb-figure{margin:24px 0}.hb-figure img{border-radius:6px}}
+@media print{.hb-figure{break-inside:avoid}.hb-figure>a{display:block}.hb-figure img{border:0;max-height:220mm;object-fit:contain}}
