@@ -1,0 +1,11 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- .Page.Store.Set "hasChildren" true -}}
+{{- $depth := int (.Get "depth" | default "1") -}}
+{{- $descriptions := ne (.Get "description" | default "true") "false" -}}
+<ul class="children hb-children">
+{{- range where .Page.Pages.ByWeight "Params.hidden" "ne" true }}
+<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if and $descriptions .Description }}<p>{{ .Description }}</p>{{ end }}
+{{- if and (gt $depth 1) .Pages }}<ul>{{ range where .Pages.ByWeight "Params.hidden" "ne" true }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if and $descriptions .Description }}<p>{{ .Description }}</p>{{ end }}</li>{{ end }}</ul>{{ end -}}
+</li>
+{{- end }}
+</ul>

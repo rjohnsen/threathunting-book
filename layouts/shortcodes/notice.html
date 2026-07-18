@@ -1,0 +1,18 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $style := .Get "style" | default (.Get 0) | default "info" -}}
+{{- $title := .Get "title" -}}
+{{- if not $title -}}
+  {{- if eq $style "tip" -}}{{- $title = "Tip" -}}
+  {{- else if eq $style "warning" -}}{{- $title = "Warning" -}}
+  {{- else if eq $style "success" -}}{{- $title = "Success" -}}
+  {{- else if eq $style "transparent" -}}{{- $title = "" -}}
+  {{- else -}}{{- $title = "Information" -}}{{- end -}}
+{{- end -}}
+{{- if eq $style "transparent" -}}
+<div class="hb-notice hb-notice-transparent">{{ .Inner | safeHTML }}</div>
+{{- else -}}
+<aside class="hb-notice hb-notice-{{ $style }}" role="note">
+  <div class="hb-notice-head"><span aria-hidden="true">{{ if eq $style "tip" }}&#9670;{{ else if eq $style "warning" }}!{{ else if eq $style "success" }}&#10003;{{ else }}i{{ end }}</span><strong>{{ $title }}</strong></div>
+  <div class="hb-notice-body">{{ .Inner | safeHTML }}</div>
+</aside>
+{{- end -}}

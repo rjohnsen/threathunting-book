@@ -1,0 +1,1 @@
+{{- .Page.Store.Set "hasMermaid" true -}}<div class="pd-mermaid mermaid"{{ with index .Attributes "align" }} style="text-align:{{ . }}"{{ end }}>{{ .Inner | safeHTML }}</div>

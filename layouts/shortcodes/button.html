@@ -1,0 +1,4 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $href := .Get "href" | default (.Get 0) | default "#" -}}
+{{- $style := .Get "style" | default "default" -}}
+<a class="hb-shortcode-button hb-button-{{ $style }}" href="{{ $href | safeURL }}">{{ .Inner | safeHTML }}<span aria-hidden="true">&rarr;</span></a>

@@ -1,0 +1,1 @@
+<details class="pd-parts-menu"><summary>Book contents</summary><div>{{ range where site.Home.Sections.ByWeight "Section" "like" "^part-" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div></details>

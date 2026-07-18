@@ -1,0 +1,4 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $title := .Get "title" | default (.Get 0) | default "Details" -}}
+{{- $expanded := .Get "expanded" -}}
+<details class="hb-expand"{{ if or (eq $expanded true) (eq $expanded "true") }} open{{ end }}><summary>{{ $title }}<span aria-hidden="true"></span></summary><div class="hb-expand-content">{{ .Inner | safeHTML }}</div></details>
