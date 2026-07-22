@@ -1,14 +1,14 @@
 ---
-title: "Cheat Sheets"
+title: "Threat Hunter Cheat Sheets"
 date: 2025-03-16T10:24:44+01:00
 weight: 6
 draft: false
 ---
 
-> To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
-> 
-> -- Nicolaus Copernicus
+These cheat sheets are field references for active hunts. Use them to interpret telemetry, choose the next pivot, and recognize where context is required before drawing a conclusion.
+
+> A port, process, event ID, or registry path is an observation, not a verdict. Establish the expected baseline, preserve context, and correlate across independent data sources.
 
 ## Table of Contents
 
-{{% children description="false" depth="1" %}}
+{{% children description="true" depth="1" %}}

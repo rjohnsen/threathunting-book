@@ -1,60 +1,65 @@
 ---
-title: "PowerShell"
+title: "PowerShell Hunting"
 date: 2025-03-21T21:22:12+01:00
 draft: false
 hidden: false
-weight: 4
-tags:
-    - microsoft
-    - powershell
-    - cheatsheet
-summary: ""
+weight: 7
+tags: [microsoft, powershell, cheatsheet]
+summary: "PowerShell telemetry, suspicious patterns, and practical pivots."
 ---
 
 __Author:__ _Roger C.B. Johnsen_
 
-## Introduction
+PowerShell is legitimate administration infrastructure and a frequent attack surface. A flag or cmdlet alone is weak evidence. Hunt the full chain: parent process, host, identity, script content, network activity, and follow-on execution.
 
-**Understanding PowerShell flags and commonly abused cmdlets is vital for threat hunters as attackers frequently exploit them for stealthy execution, data exfiltration, and persistence. This knowledge helps identify malicious activity, map it to known attack techniques like those in MITRE ATT&CK, and strengthen detection and response strategies against threats effectively.**
+## Telemetry to collect
 
----
+| Source | Event/data | Use |
+| ------ | ---------- | --- |
+| PowerShell Operational | 4103 | Module/pipeline execution when Module Logging is enabled. |
+| PowerShell Operational | 4104 | Script block content; reconstruct multipart messages using message number and total. |
+| Windows PowerShell | 400/403/600 | Engine and provider lifecycle context. |
+| Security | 4688 | Process creation and command line when policy permits. |
+| Sysmon | 1, 3, 7, 11, 22 | Process, network, module, file, and DNS context. |
+| Defender XDR | `DeviceProcessEvents`, `DeviceNetworkEvents`, `DeviceFileEvents` | Cross-device correlation and pivots. |
+| Transcription | Text transcripts | Commands and output; secure access because secrets may be recorded. |
 
-## Powershell Command Flags and Cmdlets
+PowerShell 7 writes to `PowerShellCore/Operational`; Windows PowerShell uses `Microsoft-Windows-PowerShell/Operational`. Script Block Logging can expose sensitive data, so protect collected logs.
 
-### **PowerShell Command Flags**
+## High-signal patterns
 
-| **Flag**               | **Description**                                                                                          | **MITRE ATT&CK Technique**                                                                                     |
-|-------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `-ExecutionPolicy`      | Overrides the execution policy for the session. Example: `-ExecutionPolicy Bypass`.                     | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `-EncodedCommand`       | Executes a base64-encoded command. Example: `-EncodedCommand <BASE64_STRING>`.                          | [T1027 (Obfuscated Files or Information)](https://attack.mitre.org/techniques/T1027/), [T1059.001](https://attack.mitre.org/techniques/T1059/001/) |
-| `-NoProfile`            | Runs PowerShell without loading user-specific profiles.                                                 | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `-File`                 | Runs a specified script file. Example: `-File script.ps1`.                                              | [T1204.002 (Malicious File)](https://attack.mitre.org/techniques/T1204/002/)                                   |
-| `-Command`              | Executes specified commands directly. Example: `-Command Write-Host "Hello, world!"`.                   | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `-WindowStyle`          | Controls the window appearance. Example: `-WindowStyle Hidden`.                                         | [T1564.003 (Hide Artifacts)](https://attack.mitre.org/techniques/T1564/003/)                                   |
-| `-InputFormat`          | Specifies the format of input data, either `Text` or `XML`.                                             | [T1123 (Audio Capture)](https://attack.mitre.org/techniques/T1123/), depending on malicious use.               |
-| `-OutputFormat`         | Specifies the format of output data, either `Text` or `XML`.                                            | [T1020 (Data Transfer)](https://attack.mitre.org/techniques/T1020/)                                            |
-| `-Version`              | Specifies the version of PowerShell to run. Example: `-Version 2.0`.                                    | [T1070.004 (Indicator Removal on Host)](https://attack.mitre.org/techniques/T1070/004/)                        |
-| `-NoExit`               | Keeps the PowerShell session open after execution.                                                      | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
+| Pattern | Why it matters | Validate |
+| ------- | -------------- | -------- |
+| `-EncodedCommand`, `-enc` | Obscures command text, but is also used by automation. | Decode as UTF-16LE for Windows PowerShell and inspect content. |
+| `-WindowStyle Hidden` | Suppresses the console. | Parent, user interaction, scheduled task, and child processes. |
+| `-NoProfile` | Produces predictable execution; common in both admin and attack tooling. | Baseline the invoking product and account. |
+| `Invoke-Expression` / `iex` | Executes generated strings. | Trace string construction and source. |
+| `Invoke-WebRequest`, `Invoke-RestMethod`, `DownloadString` | Retrieves or submits content. | Destination, response type, file writes, and follow-on execution. |
+| `FromBase64String`, compression, XOR | Can unpack staged content. | Decode safely and hash extracted material. |
+| Reflection, `Add-Type`, unmanaged API calls | May execute in memory or bypass normal tooling. | Script block, loaded modules, memory alerts, child activity. |
+| AMSI or logging modification strings | May indicate defense evasion. | Registry/config changes, errors, and security product telemetry. |
+| PowerShell from Office, browser, archive tool, or service | Unusual parent-child relationship. | User action, file origin, signer, and adjacent events. |
 
+Execution policy is not a security boundary. `-ExecutionPolicy Bypass` is context, not proof of compromise.
 
-### **Commonly Abused Cmdlets**
+## Triage workflow
 
-| **Cmdlet**              | **Description**                                                                                          | **MITRE ATT&CK Technique**                                                                                     |
-|-------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `Invoke-Expression`     | Executes a string as a PowerShell command.                                                              | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `Invoke-WebRequest`     | Downloads files or sends requests over the web.                                                         | [T1105 (Ingress Tool Transfer)](https://attack.mitre.org/techniques/T1105/)                                    |
-| `Start-Process`         | Starts a new process on the system.                                                                     | [T1543 (Create or Modify System Processes)](https://attack.mitre.org/techniques/T1543/)                        |
-| `New-Object`            | Creates and initializes a .NET object, often used maliciously to download files or execute code.        | [T1129 (Execution through Module Load)](https://attack.mitre.org/techniques/T1129/)                            |
-| `Import-Module`         | Loads a PowerShell module.                                                                              | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `Set-ExecutionPolicy`   | Changes the PowerShell execution policy, potentially disabling security controls.                        | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `Add-Member`            | Adds properties or methods to an object. Used for advanced customization, sometimes maliciously.        | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
-| `Get-Credential`        | Prompts for user credentials in a secure dialog box.                                                    | [T1056.004 (Credential API Hooking)](https://attack.mitre.org/techniques/T1056/004/)                           |
-| `Export-Csv`            | Exports data to a CSV file.                                                                             | [T1020 (Data Transfer)](https://attack.mitre.org/techniques/T1020/)                                            |
-| `Where-Object`          | Filters objects in the pipeline. May be used in scripts to obfuscate data collection.                   | [T1059.001 (PowerShell)](https://attack.mitre.org/techniques/T1059/001/)                                       |
+1. Preserve the original command line and script block events.
+2. Normalize aliases and decode layers without executing content.
+3. Build the process tree and identify logon session and parent.
+4. Correlate DNS, network, file, registry, task, service, and WMI activity.
+5. Compare the host, user, script path, signer, and destination with baseline.
+6. Search for the same script hash, command fragment, URL, or infrastructure fleet-wide.
 
+## References
+
+- [PowerShell logging](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_logging)
+- [PowerShell security features](https://learn.microsoft.com/powershell/scripting/security/security-features)
+- [MITRE ATT&CK T1059.001](https://attack.mitre.org/techniques/T1059/001/)
 
 ## Revision
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |
+| Revised Date | Comment |
+| ------------ | ------- |
+| 2025-03-21 | Article added |
+| 2026-07-22 | Added telemetry, caveats, signals, and triage workflow |

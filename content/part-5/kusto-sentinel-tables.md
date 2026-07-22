@@ -1,98 +1,114 @@
 ---
-title: "Kusto Sentinel Tables"
+title: "Microsoft Defender XDR Hunting Tables"
 date: 2025-03-21T20:10:35+01:00
 draft: false
 hidden: false
-weight: 2
-tags:
-    - cheatsheet
-    - kusto
-    - tables
-    - windows
-    - microsoft
-summary: ""
+weight: 1
+tags: [cheatsheet, kusto, tables, microsoft]
+summary: "A practical map of Defender XDR advanced hunting tables and pivot keys."
 ---
 
 __Author:__ _Roger C.B. Johnsen_
 
-## Introduction
+Microsoft Defender XDR advanced hunting and Microsoft Sentinel are related but not interchangeable schemas. The `Device*`, `Email*`, `Identity*`, and `CloudAppEvents` tables below are Defender XDR schema tables; Sentinel also exposes connector-specific tables such as `SecurityEvent`, `SigninLogs`, and `CommonSecurityLog`.
 
-**For threat hunters, having a comprehensive understanding of these tables is crucial to identifying, investigating, and mitigating potential security threats. Each table in Microsoft Defender Advanced Hunting provides unique insights into various aspects of an organization's environment—such as device activity, user behavior, network connections, and email threats. By correlating data across these tables, threat hunters can uncover patterns, detect anomalies, and trace the pathways of potential attacks. This approach enables proactive threat detection and enhances the ability to respond effectively to incidents, ensuring the security and integrity of the organization's systems and data.**
+Table availability depends on deployed products, licensing, retention, and telemetry health. Confirm the in-portal schema before assuming a column or `ActionType` exists.
 
----
+{{% notice warning %}}
+This cheat sheet covers the core Defender XDR advanced hunting tables used in common investigations. It is not a complete table catalogue. The available schema depends on the Microsoft security products deployed in your tenant and continues to change as new data sources and preview features are introduced. Use the [Microsoft Defender XDR advanced hunting schema reference](https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables) for the complete and current list of tables, columns, and supported `ActionType` values.
+{{% /notice %}}
 
-| **Table Name**       | **Description**                      | **Purpose**                                               | **Key Columns (Focus)**                                 | **Threat Hunting Use Cases**                                | **MITRE ATT&CK Techniques**                                 |
-|-----------------------|--------------------------------------|----------------------------------------------------------|--------------------------------------------------------|-------------------------------------------------------------|------------------------------------------------------------|
-| `DeviceEvents`        | General device activity             | Centralized repository for device-related events like file, process, network, and registry changes | `Timestamp`, `DeviceId`, `ActionType`, `FileName`, `SHA256` | Investigating process executions, file modifications, anomalies | [T1003 (Credential Dumping)](https://attack.mitre.org/techniques/T1003/), [T1082 (System Discovery)](https://attack.mitre.org/techniques/T1082/)       |
-| `DeviceInfo`          | Device information and context      | Provides essential device metadata to contextualize events | `DeviceId`, `DeviceName`, `Domain`, `OSPlatform`, `LastSeen` | Identifying vulnerable systems, tracking device behavior     | [T1202 (Indicator Removal on Host)](https://attack.mitre.org/techniques/T1202/), [T1016 (System Network Configuration Discovery)](https://attack.mitre.org/techniques/T1016/) |
-| `DeviceLogonEvents`   | Logon/logoff events on devices      | Tracks authentication activity to detect unauthorized access | `Timestamp`, `DeviceId`, `AccountName`, `IPAddress`    | Detecting lateral movement, credential theft                | [T1078 (Valid Accounts)](https://attack.mitre.org/techniques/T1078/), [T1566 (Phishing)](https://attack.mitre.org/techniques/T1566/)                   |
-| `DeviceProcessEvents` | Process creation/termination events | Logs details of processes to trace malware or anomalies    | `Timestamp`, `ProcessId`, `ProcessCommandLine`, `FileName` | Identifying malicious processes, suspicious behavior         | [T1059 (Command and Scripting Interpreter)](https://attack.mitre.org/techniques/T1059/), [T1086 (PowerShell)](https://attack.mitre.org/techniques/T1086/) |
-| `DeviceFileEvents`    | File-related events                 | Monitors file modifications to identify suspicious actions | `Timestamp`, `DeviceId`, `FileName`, `ActionType`, `SHA256` | Detecting ransomware activity, data exfiltration            | [T1486 (Data Encrypted for Impact)](https://attack.mitre.org/techniques/T1486/), [T1027 (Obfuscated Files or Information)](https://attack.mitre.org/techniques/T1027/) |
-| `DeviceNetworkEvents` | Network connections                 | Logs network activity to spot anomalies or threats         | `Timestamp`, `RemoteIP`, `RemotePort`, `LocalIP`       | Command-and-control detection, unusual network traffic      | [T1071 (Application Layer Protocol)](https://attack.mitre.org/techniques/T1071/), [T1105 (Ingress Tool Transfer)](https://attack.mitre.org/techniques/T1105/) |
-| `DeviceRegistryEvents`| Registry modifications              | Tracks changes to registry keys to detect persistence techniques | `Timestamp`, `RegistryKey`, `ActionType`, `ValueData`  | Persistence mechanisms, malware configuration changes        | [T1547 (Boot or Logon Autostart Execution)](https://attack.mitre.org/techniques/T1547/), [T1112 (Modify Registry)](https://attack.mitre.org/techniques/T1112/) |
-| `EmailEvents`         | Email-related threats               | Analyzes email metadata for suspicious activities           | `Timestamp`, `SenderFromAddress`, `RecipientEmailAddress` | Phishing campaigns, malware delivery                        | [T1566 (Phishing)](https://attack.mitre.org/techniques/T1566/), [T1189 (Drive-by Compromise)](https://attack.mitre.org/techniques/T1189/)              |
-| `EmailAttachmentInfo` | Email attachment details            | Contains attachment metadata for email threat analysis      | `Timestamp`, `FileName`, `FileSize`, `SHA256`          | Identifying malicious attachments                            | [T1204 (User Execution)](https://attack.mitre.org/techniques/T1204/), [T1036 (Masquerading)](https://attack.mitre.org/techniques/T1036/)               |
-| `EmailUrlInfo`        | URLs in emails                      | Tracks and evaluates URLs found within email messages       | `Timestamp`, `Url`, `NetworkMessageId`                 | Tracking phishing URLs, anomalous behavior                  | [T1566 (Phishing)](https://attack.mitre.org/techniques/T1566/), [T1204 (User Execution)](https://attack.mitre.org/techniques/T1204/)                   |
-| `UrlClickEvents`      | User interactions with URLs         | Monitors user clicks on URLs for risk assessment           | `Timestamp`, `Url`, `ClickAction`, `AccountName`       | Tracking malicious URL clicks                              | [T1566 (Phishing)](https://attack.mitre.org/techniques/T1566/), [T1189 (Drive-by Compromise)](https://attack.mitre.org/techniques/T1189/)              |
-| `CloudAppEvents`      | Cloud application activity          | Tracks interactions with cloud services for threat detection | `Timestamp`, `Application`, `ActionType`, `IPAddress`  | Investigating cloud access anomalies                        | [T1078 (Valid Accounts)](https://attack.mitre.org/techniques/T1078/), [T1082 (System Discovery)](https://attack.mitre.org/techniques/T1082/)           |
-| `IdentityLogonEvents` | Identity logon events               | Provides insights into user authentication activity         | `Timestamp`, `AccountName`, `IPAddress`, `LogonType`   | Compromised accounts, MFA bypass detection                  | [T1078 (Valid Accounts)](https://attack.mitre.org/techniques/T1078/), [T1530 (Data from Cloud Storage Object)](https://attack.mitre.org/techniques/T1530/) |
-| `IdentityInfo`        | Identity-related information        | Consolidates user identity information for correlation      | `AccountSid`, `AccountName`, `Domain`, `ObjectId`      | Enriching investigations with user context                  | [T1087 (Account Discovery)](https://attack.mitre.org/techniques/T1087/), [T1580 (Cloud Infrastructure Discovery)](https://attack.mitre.org/techniques/T1580/) |
-| `AlertInfo`           | Security alert details              | Serves as a summary of triggered security alerts            | `Timestamp`, `AlertId`, `Title`, `Severity`            | Investigating and prioritizing security incidents           | [T1518 (Software Discovery)](https://attack.mitre.org/techniques/T1518/), [T1135 (Network Share Discovery)](https://attack.mitre.org/techniques/T1135/) |
-| `AlertEvidence`       | Evidence related to alerts          | Provides specific data supporting the context of alerts     | `Timestamp`, `AlertId`, `EntityType`, `FileName`       | Understanding the scope and impact of alerts               | Varies depending on alert type                             |
-| `ExternalData`        | External threat intelligence data   | Enables integration of external threat data for correlation | `Depends on source`                                    | Enriching hunting with threat intelligence feeds             | Custom, based on external data source                      |
+## Core tables
 
-## On pivoting
+| Table | Contains | Useful pivots |
+| ------------ | -------- | ------------- |
+| `DeviceProcessEvents` | Process creation and related events | `DeviceId`, `ProcessUniqueId`, `InitiatingProcessUniqueId`, `SHA1` |
+| `DeviceNetworkEvents` | Network connections and related events | `DeviceId`, process IDs, `RemoteIP`, `RemoteUrl` |
+| `DeviceFileEvents` | File creation, modification, rename, and deletion | `DeviceId`, `SHA1`, `FileName`, initiating process |
+| `DeviceRegistryEvents` | Registry creation and modification | `DeviceId`, key/value, initiating process |
+| `DeviceLogonEvents` | Device authentication activity | `DeviceId`, account SID/name, remote IP, logon ID |
+| `DeviceEvents` | Security-control and miscellaneous device events | `ActionType`, `DeviceId`, `AdditionalFields` |
+| `DeviceImageLoadEvents` | DLL and image loads | `DeviceId`, `SHA1`, initiating process |
+| `DeviceInfo` | Device metadata and posture snapshots | `DeviceId`, `DeviceName`, tags, exposure |
+| `DeviceNetworkInfo` | Interfaces, addresses, networks, domains | `DeviceId`, IP and MAC address |
+| `EmailEvents` | Mail flow and delivery metadata | `NetworkMessageId`, sender, recipient |
+| `EmailAttachmentInfo` | Attachment metadata | `NetworkMessageId`, `SHA1`, filename |
+| `EmailUrlInfo` | URLs found in email | `NetworkMessageId`, URL |
+| `UrlClickEvents` | Safe Links clicks in supported workloads | URL, account, `NetworkMessageId` |
+| `CloudAppEvents` | Cloud application and governance activity | account/object IDs, application, IP |
+| `IdentityLogonEvents` | AD and Microsoft online authentication | account SID/UPN, IP, device |
+| `IdentityDirectoryEvents` | On-premises directory and DC activity | account SID, device, `ActionType` |
+| `IdentityQueryEvents` | Queries for AD objects | querying identity/device and queried target |
+| `IdentityInfo` | Identity context from available sources | account SID, object ID, UPN |
+| `AlertInfo` | Alert metadata | `AlertId` |
+| `AlertEvidence` | Entities associated with alerts | `AlertId`, entity identifiers |
 
-There are many tables in Defender and it is possible to pivoting between the tables. In threat hunting, "pivoting" refers to the process of using a specific piece of information or data point, such as a `DeviceId`, `UserId`, or `FileHash`, to navigate across different data sources or tables. The goal is to correlate events and uncover related details that might help in tracking down a threat. 
+Use `SHA1` when hunting Defender endpoint tables unless the schema confirms `SHA256` is populated; several tables document SHA-256 as commonly empty.
 
-For example, if you discover a suspicious process on a device, you can use the `DeviceId` to "pivot" to other tables, like `DeviceNetworkEvents` to check for unusual network activity or `DeviceLogonEvents` to see if unauthorized access occurred on that same device. It’s like following breadcrumbs across a connected web of data to piece together the story of how a threat might have unfolded. 
+## Common pivot patterns
 
-Think of it as a detective chasing leads to unravel the bigger picture—it’s a cornerstone of effective threat hunting!
+| Start with | Pivot through | Use it to answer |
+| ---------- | ------------- | ---------------- |
+| Device | `DeviceInfo` -> `DeviceNetworkInfo` -> `DeviceNetworkEvents` | Which identities and network peers belonged to the device over time? |
+| Process | `ProcessUniqueId` -> initiating process fields | Which network, file, registry, and child-process activity belongs to it? |
+| IP address | assignment window -> local and remote network perspectives | Which device owned the address, and which peers communicated with it? |
+| File | `SHA1`, origin fields, initiating process | Where did it arrive, where else did it appear, and was it executed? |
+| Account | SID/object ID -> logon and device events | Which sessions, devices, and resources did the identity use? |
+| Alert | `AlertId` -> `AlertEvidence` -> native event tables | Which underlying telemetry supports the alert? |
+| SMB or pipe | source IP, account, share, pipe, target | Was it discovery, administration, transfer, or remote execution? |
 
-For instance, say you have a `DeviceId`. Armed with this id you can basically take any table in the graph below and move between the other tables depicted:
+For complete workflows, see [Device-centric Pivoting in Defender XDR](../device-centric-pivoting/), [Named Pipes](../named-pipes/), and [File Staging and User-writable Paths](../file-staging-user-writable-paths/).
 
-```mermaid
-graph TD
-    Start[Start: Searching for DeviceId] --> A[DeviceEvents]
-    A --> B[DeviceProcessEvents]
-    A --> C[DeviceFileEvents]
-    A --> D[DeviceLogonEvents]
-    A --> E[DeviceNetworkEvents]
-    A --> F[DeviceRegistryEvents]
-    A --> G[DeviceInfo]
-    D --> G
-    E --> G
-    B --> F
-    G --> H[AlertInfo]
-    F --> H
-    B --> H
-    C --> H
-    H --> I[AlertEvidence]
-    P[CloudAppEvents] --> G
+## Reliable pivot habits
+
+1. Filter time and reduce columns before joins.
+2. Prefer stable service identifiers such as `DeviceId`, account SID/object ID, `AlertId`, and `NetworkMessageId`.
+3. Use process unique identifiers where available; PIDs are reused.
+4. Normalize case and identity format before joining names.
+5. Use `arg_max(Timestamp, *) by DeviceId` for the latest snapshot, not an unconstrained join to `DeviceInfo`.
+6. Use `leftouter` when enrichment may be absent and `innerunique` only when its left-side deduplication is intended.
+7. Treat `AdditionalFields` as dynamic data and parse only the keys needed.
+
+## Query starters
+
+### Process to network activity
+
+```sql
+let start = ago(24h);
+DeviceProcessEvents
+| where Timestamp >= start
+| where FileName =~ "powershell.exe" or FileName =~ "pwsh.exe"
+| project Timestamp, DeviceId, DeviceName, ProcessUniqueId,
+          FileName, ProcessCommandLine, AccountName
+| join kind=leftouter (
+    DeviceNetworkEvents
+    | where Timestamp >= start
+    | project NetworkTime=Timestamp, DeviceId,
+              InitiatingProcessUniqueId, RemoteUrl, RemoteIP, RemotePort
+) on DeviceId
+| where InitiatingProcessUniqueId == ProcessUniqueId
+| where NetworkTime between (Timestamp .. Timestamp + 10m)
 ```
 
-Similarly, you can do the same using, say, the UserID:
+### Alert to evidence
 
-```mermaid
-graph TD
-    Start[Start: Searching for UserId] --> A[DeviceLogonEvents]
-    Start --> B[IdentityLogonEvents]
-    A --> C[IdentityInfo]
-    B --> C
-    C --> D[AlertInfo]
-    D --> E[AlertEvidence]
-    Start --> F[UrlClickEvents]
-    F --> G[EmailEvents]
-    G --> H[EmailAttachmentInfo]
-    G --> I[EmailUrlInfo]
-    C --> J[CloudAppEvents]
-    J --> D
+```sql
+AlertInfo
+| where Timestamp > ago(7d)
+| project AlertId, AlertTime=Timestamp, Title, Severity
+| join kind=inner (AlertEvidence | where Timestamp > ago(7d)) on AlertId
+| project AlertTime, Title, Severity, EntityType,
+          DeviceName, AccountName, RemoteIP, FileName, SHA1
 ```
 
-These are just two examples, think of all the possibilities that opens up when you start joining resultsets on other pivotpoints to connect data! 
+## References
+
+- [Defender XDR advanced hunting schema](https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables)
+- [Kusto join operator](https://learn.microsoft.com/kusto/query/join-operator)
 
 ## Revision
 
-|Revised Date | Author | Comment |
-| ----------- | ------ | ------- |
-| 21.03.2025  | Roger Johnsen | Article added |
+| Revised Date | Comment |
+| ------------ | ------- |
+| 2025-03-21 | Article added |
+| 2026-07-22 | Corrected scope, tables, pivots, and query patterns |
