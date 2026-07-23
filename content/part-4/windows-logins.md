@@ -1,228 +1,149 @@
----
-title: "Windows Logins"
-date: 2024-10-06T13:28:41+02:00
-draft: false
-weight: 4
----
++++
+title = "Windows Logons"
+date = 2024-10-06T13:28:41+02:00
+lastmod = 2026-07-23T00:00:00+02:00
+weight = 40
+chapter = false
++++
 
-__Author:__ _Roger C.B. Johnsen_
-
-{{% notice tip %}}
-This article references event IDs found in the Microsoft Windows Security Logs. A general tip when handling any type of log is to pay close attention to which specific log you are investigating. This is important because, depending on the context, an event ID or any other identifier might be logged in different places or mean different things, leading to potential misinterpretation if not carefully understood.
+{{% notice style="info" title="Illustrative queries" %}}
+Queries on this page are illustrative starting points. They demonstrate investigation logic, not production-ready detections. Table availability, field names, action types, parsing, retention, and normal behaviour vary by environment. Inspect raw records and validate every query against your local schema and telemetry before relying on the result.
 {{% /notice %}}
 
-## Introduction
+Windows logon events are evidence of authentication and session creation. They are not proof that a person was physically present, that the activity was interactive, or that the source address identifies the initiating endpoint. Services, scheduled tasks, remote administration, cached credentials, and authentication intermediaries all leave different shapes.
 
-**Windows security logs are essential for understanding user activity on a system. Two critical events that provide insights into user logon attempts are Event 4624 and Event 4625. These logs help track both successful and failed logons, allowing administrators, SOC and threat hunters to monitor access and detect suspicious behavior. Monitoring both of these events is vital for maintaining system security. While Event 4624 provides visibility into successful logon attempts, event 4625 helps detect potential security risks by logging failed access attempts. Together, they offer a comprehensive view of who is accessing your system and highlight potential threats. Since these are so central, I'll share with you my notes on these events.** 
+{{% notice style="info" title="Start with where the event was written" %}}
+Event 4624 is normally recorded on the computer where the logon session was created. Event 4625 is normally recorded on the computer where the failed logon attempt was made. Domain-controller events such as 4768 and 4769 describe Kerberos activity from the domain's viewpoint. Correlate these viewpoints instead of treating one event as the complete story.
+{{% /notice %}}
 
----
+## Core events
 
-## Windows Event 4624 (Successful Logon)
+| Event ID | Meaning | Investigation value |
+| --- | --- | --- |
+| 4624 | An account was successfully logged on | Session type, target identity, authentication package, source details, and logon identifier |
+| 4625 | An account failed to log on | Status, substatus, attempted identity, source details, process, and logon type |
+| 4634 | A logon session ended | Session cleanup; may be missing after crashes or collection gaps |
+| 4647 | A user initiated logoff | Stronger indication of an intentional user logoff than 4634 |
+| 4648 | A logon was attempted using explicit credentials | Useful around runas, remote administration, scripts, and credential reuse |
+| 4672 | Special privileges were assigned to a new logon | Helps identify privileged sessions; common for expected administrative and system activity |
+| 4688 | A new process was created | Connects a session and identity to execution when command-line auditing is available |
+| 4768 | A Kerberos authentication ticket (TGT) was requested | Domain-controller view of initial Kerberos authentication |
+| 4769 | A Kerberos service ticket was requested | Useful for service access, encryption types, and unusual service-ticket volume |
+| 4771 | Kerberos pre-authentication failed | Normally observed on a domain controller; investigate status, client, account, and surrounding Kerberos activity |
+| 4776 | An NTLM credential validation was attempted | Written on the system authoritative for the supplied credentials: normally a domain controller for domain accounts and the local computer for local accounts |
+| 4778 / 4779 | A session was reconnected / disconnected | Useful for Terminal Services and RDP session continuity; can also reflect Fast User Switching or Hyper-V Enhanced Session Mode |
+| 4740 | A user account was locked out | Explains failure sequences and identifies the caller computer where populated |
+| 1102 | The audit log was cleared | May explain missing Security events; high-value context that requires administrative and system validation |
 
-Let's first start by looking at successful logons. Event ID **4624** is logged whenever a user successfully logs into a Windows system (local and networked). It plays an essential role in auditing user activity and ensuring the system's security. This event is recorded in the **Security** section of the Windows Event Viewer.
+Event availability depends on audit policy, operating-system version, forwarding configuration, and parser quality.
 
-Example how this event looks like in Windows event viewer (courtesy Microsoft):
+## Logon types
 
-![Event viewer for event id 4624](/images/event-4624.png)
+| Type | Name | Typical context | Hunting note |
+| ---: | --- | --- | --- |
+| 0 | System | Operating-system use | Rare in ordinary user investigations |
+| 2 | Interactive | Local console or equivalent local session | Does not by itself prove physical presence |
+| 3 | Network | Access to a remote resource such as a share | Extremely common; interpret with source, service, and target context |
+| 4 | Batch | Scheduled task or batch processing | Compare with task configuration and expected service identity |
+| 5 | Service | Service Control Manager starting a service | Pivot to service installation, configuration, and binary path |
+| 7 | Unlock | Unlocking an existing workstation session | Different from creation of a fresh interactive session |
+| 8 | NetworkCleartext | Credentials supplied in an unhashed form to the authentication package | Does **not** mean the credentials crossed the network in plaintext |
+| 9 | NewCredentials | Existing token cloned with different outbound credentials | Often associated with `runas /netonly`; local identity can differ from network identity |
+| 10 | RemoteInteractive | Remote Desktop or similar terminal-services logon | Baseline source-to-destination pairs and follow the resulting session |
+| 11 | CachedInteractive | Domain user logged on with cached credentials | Domain controller may have no corresponding live authentication |
+| 12 | CachedRemoteInteractive | Same as RemoteInteractive; used internally for auditing | Do not infer cached credential validation from the name alone |
+| 13 | CachedUnlock | Unlock using cached credentials | Treat as continuation of an existing session |
 
-### Key Uses
+The name `NetworkCleartext` is easy to overread. Microsoft documents that the password is passed to the authentication package in an unhashed form; the event does not prove cleartext network transport.
 
-- **Auditing**: Event 4624 helps monitor user access to both local and networked machines.
-- **Security**: It enables the detection of legitimate logon activity and identifies unauthorized access.
+References: [Event 4624 and logon types](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624), [Event 4625](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625), [Event 4776](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4776), and [administrative logon types and credential exposure](https://learn.microsoft.com/en-us/windows-server/identity/securing-privileged-access/reference-tools-logon-types)
 
-### Common Logon Types
+## Fields worth preserving
 
-Windows logon types are numerical identifiers that specify the method or context in which a user logs on to a system. Each logon type corresponds to a different method of authentication and access, helping to categorize how users interact with the Windows operating system. Here’s some common logn types (we'll look into more of them later in this chapter):
+| Field | Question it helps answer |
+| --- | --- |
+| Computer / DeviceName | Where was the event generated? |
+| TargetUserName and TargetDomainName | Which identity was acted upon? |
+| SubjectUserName | Which local security context initiated the action? |
+| LogonType | What kind of session or resource access was requested? |
+| LogonId / TargetLogonId | Which local session can be correlated with later events? |
+| LinkedLogonId | Is another session explicitly linked? |
+| LogonGuid / TargetLogonGuid | Can this logon be correlated with other authentication events? The value may be all zeroes |
+| IpAddress and IpPort | What source did the receiving system record? |
+| WorkstationName | What client name was supplied, if any? |
+| ProcessName and ProcessId | Which local process participated? |
+| AuthenticationPackageName | Kerberos, NTLM, Negotiate, or another package? |
+| LogonProcessName | Which trusted logon process handled the request? |
+| Status and SubStatus | Why did the attempt fail? |
+| ElevatedToken | Was the resulting token elevated? |
 
-- **Logon Type 2 (Interactive)**: Occurs when a user logs on directly via a keyboard or mouse.
-- **Logon Type 3 (Network)**: Used when accessing shared resources, such as files or printers over the network.
-- **Logon Type 10 (RemoteInteractive)**: Occurs when a user logs on remotely through services like Remote Desktop (RDP).
+A logon identifier is meaningful on the computer that issued it. Pair it with the device and use a tight time window; do not join unrelated hosts on `LogonId` alone.
 
-These logon types are quite nifty to track in a hunt to understand lateral movement, amongst other things.
+## Hunt patterns
 
-### Key Details of Event 4624 (Successful Logon)
+### Failed attempts followed by success
 
-A Windows log entry contains many fields. Here are some you should pay attention to:
+Group failures by target account, source, destination, and logon type. Then ask whether a success followed from the same source, or whether the source shifted. A password reset, unlocked account, mistyped password, service restart, or adversary can all produce this sequence.
 
-| Field                    | Description                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| **Logon Type**            | Method used for logging in (e.g., interactive, network, or remote).         |
-| **Account Name**          | The username that successfully logged on.                                   |
-| **Account Domain**        | The domain the account belongs to (local machine or network domain).        |
-| **Logon ID**              | Unique identifier for the logon session.                                    |
-| **Security ID (SID)**     | The security identifier associated with the account.                        |
-| **Source Network Address**| IP address of the machine where the logon originated (important for remote logons). |
-| **Logon Process**         | The process responsible for handling the logon (e.g., `NtLmSsp`, `Kerberos`).|
-| **Authentication Package**| Authentication protocol used (e.g., NTLM, Kerberos).                        |
-| **Impersonation Level**   | Specifies the degree of impersonation rights granted, if any.               |
+### A service identity used interactively
 
-## Windows Event 4625 (Failed Logon)
+Look for service or application accounts using types 2 or 10, or appearing on user workstations. Validate how the account is designed, whether an operator used it for troubleshooting, and what executed inside the session.
 
-Event ID **4625** is triggered when a logon attempt fails. This event provides crucial information on failed authentication, helping detect unauthorized access attempts, such as brute force attacks. Like Event 4624, it is logged in the **Security** section of the Windows Event Viewer.
+### Rare Remote Desktop paths
 
-Example how this event looks like in Windows event viewer (courtesy Microsoft):
+A new source-to-destination pair can be more useful than raw RDP volume. Add identity, asset role, working hours, connection broker behaviour, privileged-session tooling, and 4778/4779 session events.
 
-![Event viewer for event id 4625](/images/event-4625.png)
+### Network-logon fan-out
 
-Keeping track of how many failed attempts pr. logon type is a great way to find indicators of foul play in the logs. 
+One source producing type 3 logons to many systems may reflect administration, inventory, backup, vulnerability scanning, malware, or share enumeration. Compare destination count, rate, share access, remote service creation, process ancestry, and the source asset's role.
 
-### Key Uses
+### NTLM where Kerberos is expected
 
-- **Intrusion Detection**: Tracks multiple failed logon attempts to identify possible malicious activity, like brute-force attacks.
-- **Audit Failed Access**: Provides insights into user account issues, such as incorrect passwords or locked accounts.
+NTLM can be caused by IP-based access, local accounts, workgroups, legacy software, name-resolution failures, or adversary activity. Treat it as an environmental question first, then narrow to new identities, systems, and paths.
 
-### Common Logon Types
+### Explicit credentials near remote activity
 
-As with event id 4624, we got several logon types here as well:
+Correlate 4648 with process creation, outbound network activity, 4624 on the destination, service or task creation, and share access. The absence of 4648 does not prove credentials were not used.
 
-- **Logon Type 2 (Interactive)**: Failed local logon attempts, typically due to mistyped passwords.
-- **Logon Type 3 (Network)**: Failed attempts to access network resources, such as shared folders.
+## A starting Kusto query
 
-### Key Details of Event 4625 (Failed Logon)
+This example keeps enough dimensions to expose different behaviours instead of collapsing all failures into one account count.
 
-A Windows log entry contains many fields. Here are some you should pay attention to when dealing with failed log ins: 
+```sql
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4625
+| summarize Failures=count(),
+            FirstSeen=min(TimeGenerated),
+            LastSeen=max(TimeGenerated),
+            Statuses=make_set(strcat(Status, "/", SubStatus), 10)
+    by TargetAccount, Computer, IpAddress, LogonType
+| where Failures >= 10
+| order by Failures desc
+```
 
+Before operational use:
 
-| Field                    | Description                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| **Reason for Failure**    | The specific reason for the logon failure (e.g., incorrect password, account disabled).   |
-| **Logon Type**            | Method of attempted logon (e.g., local, network, or remote).                 |
-| **Account Name**          | The username used in the failed logon attempt.                               |
-| **Account Domain**        | The domain to which the account belongs.                                     |
-| **Source Network Address**| The IP address of the machine from which the failed logon attempt originated. |
-| **Logon Process**         | The process responsible for handling the logon attempt.                      |
-| **Failure Code**          | Hexadecimal code giving more details on why the logon failed (e.g., `0xC000006A` for bad password). |
+- Inspect raw events for the highest groups.
+- Confirm whether `IpAddress` is an endpoint, proxy, broker, or missing value.
+- Split expected machine and service-account patterns from human accounts.
+- Test whether collection gaps create apparent “failure without success” sequences.
+- Decide whether the entity is the account, source, destination, or a relationship between them.
 
-## Logon Types
+## Investigation workflow
 
-As I stated earlier, we would look more into the various logon types available. Under is a nice reference list for determining what logons are: 
-
-| Logon Type | Name                      | Description                                                                 |
-|------------|---------------------------|-----------------------------------------------------------------------------|
-| 2          | Interactive               | Logon when a user interacts with the system locally (keyboard or mouse).    |
-| 3          | Network                   | Logon to access shared network resources (e.g., shared folder, printer).    |
-| 4          | Batch                     | Logon for scheduled tasks or batch jobs.                                    |
-| 5          | Service                   | Logon when a service starts under a service account.                        |
-| 7          | Unlock                    | Logon when a user unlocks their workstation.                                |
-| 8          | NetworkCleartext          | Logon using cleartext credentials for network authentication.               |
-| 9          | NewCredentials            | Logon using new credentials while maintaining the current process (RunAs).  |
-| 10         | RemoteInteractive         | Logon via Remote Desktop or Terminal Services.                              |
-| 11         | CachedInteractive         | Logon using cached domain credentials.                                      |
-| 12         | CachedRemoteInteractive   | Cached credentials used for a remote interactive logon (e.g., Remote Desktop). |
-| 13         | CachedUnlock              | Logon to unlock a workstation using cached domain credentials.              |
-
-## Other Windows events to keep an eye on
-
-We are not limited to just looking for event code 4625 and 4625 during our hunts. There are several other event codes that might catch our interest:
-
-**4624 - Successful Logon**
-- **Description**: Indicates a successful attempt to log on to a computer.
-- **Important Log Fields**:
-  - **SubjectUserSid**: Security identifier (SID) of the account that performed the action.
-  - **SubjectUserName**: Account name that initiated the logon.
-  - **LogonType**: Type of logon (e.g., interactive, remote, etc.).
-  - **IpAddress**: Source IP address of the logon.
-  - **WorkstationName**: Machine name where the logon occurred.
-  - **TargetUserName**: User account that was logged on.
-
-**4625 - Failed Logon**
-- **Description**: Indicates an unsuccessful attempt to log on to a computer.
-- **Important Log Fields**:
-  - **FailureReason**: Reason for the failed logon attempt.
-  - **TargetUserName**: User account name that the logon attempt was made for.
-  - **IpAddress**: IP address where the failed attempt originated.
-  - **LogonType**: Type of logon attempted (e.g., RDP, network, etc.).
-  - **Status/SubStatus**: Error codes for the failure.
-
-**4634 - Successful Logoff**
-- **Description**: Logs when a user logs off from a session or is disconnected.
-- **Important Log Fields**:
-  - **TargetUserName**: Account that was logged off.
-  - **LogonID**: Unique session identifier.
-  - **LogonType**: Indicates how the user logged off (e.g., interactive, remote, etc.).
-
-**4647 - User-Initiated Logoff**
-- **Description**: Logs when a user initiates the logoff process.
-- **Important Log Fields**:
-  - **TargetUserName**: User who initiated the logoff.
-  - **LogonID**: Session ID of the user logging off.
-
-**4648 - Logon Using Explicit Credentials**
-- **Description**: Occurs when a user logs on using alternate credentials (e.g., Run as).
-- **Important Log Fields**:
-  - **SubjectUserSid**: Security ID of the user who requested the logon.
-  - **TargetUserName**: Account being logged on using explicit credentials.
-  - **IpAddress**: IP address of the computer requesting the logon.
-  - **ProcessName**: Process used for the logon (e.g., Runas).
-
-**4672 - Special Privileges Assigned**
-- **Description**: Logs when an account with special privileges logs on.
-- **Important Log Fields**:
-  - **SubjectUserSid**: Account SID of the user with special privileges.
-  - **PrivilegeList**: List of special privileges assigned (e.g., SeBackupPrivilege, SeDebugPrivilege).
-
-**4768 - Kerberos Ticket (TGT) Requested**
-- **Description**: A request for a Kerberos Ticket Granting Ticket (TGT) was made.
-- **Important Log Fields**:
-  - **TargetUserName**: Account requesting the TGT.
-  - **IpAddress**: IP address of the client requesting the TGT.
-  - **ServiceName**: Service for which the TGT is requested.
-  - **TicketOptions**: Kerberos ticket options such as renewal, forwarding, etc.
-
-**4769 - Kerberos Service Ticket Requested**
-- **Description**: A request for a Kerberos service ticket was made.
-- **Important Log Fields**:
-  - **TargetUserName**: Account requesting the service ticket.
-  - **ServiceName**: Service that the ticket is being requested for.
-  - **IpAddress**: Source IP address.
-  - **TicketEncryptionType**: Encryption type used for the service ticket.
-
-**4771 - Kerberos Pre-authentication Failed**
-- **Description**: Occurs when the pre-authentication for a Kerberos ticket fails.
-- **Important Log Fields**:
-  - **TargetUserName**: Account for which the Kerberos authentication failed.
-  - **FailureCode**: Reason for pre-authentication failure.
-  - **IpAddress**: Client IP address that made the request.
-  - **ServiceName**: Service name where the failure occurred.
-
-**4776 - Attempted to Validate Credentials**
-- **Description**: Logs when credentials were validated against a domain controller.
-- **Important Log Fields**:
-  - **AuthenticationPackageName**: Package used to validate credentials (e.g., NTLM, Kerberos).
-  - **WorkstationName**: Name of the workstation where validation was attempted.
-  - **Status**: Status of the credential validation (e.g., success or failure).
-
-**4778 - Session Reconnected**
-- **Description**: Indicates that a user has reconnected to a previously disconnected session.
-- **Important Log Fields**:
-  - **TargetUserName**: User account reconnected to the session.
-  - **TargetLogonId**: Session ID of the reconnected session.
-  - **Source Network Address**: Network address from which the session was reconnected.
-
-**4779 - Session Disconnected**
-- **Description**: Indicates that a user has disconnected from a session.
-- **Important Log Fields**:
-  - **TargetUserName**: User account that disconnected from the session.
-  - **TargetLogonId**: Session ID of the disconnected session.
-  - **Source Network Address**: Network address from which the session was disconnected.
-
-## Resources
-
-1. **Microsoft Documentation for Event ID 4624 (Successful Logon)**
-   - [Windows Security Auditing Events - 4624](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4624)
-   
-2. **Microsoft Documentation for Event ID 4625 (Failed Logon)**
-   - [Windows Security Auditing Events - 4625](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625)
-
-3. **Windows Security Event ID Reference**
-   - [Event ID 4624 and 4625 Reference Guide](https://www.ultimatewindowssecurity.com/securitylog/usage.aspx?eventid=4624)
-   - [Event ID 4624 and 4625](https://www.varonis.com/blog/windows-event-4624-and-4625)
-
-4. **Security Events Explained**
-   - [Understanding Windows Security Events](https://www.petri.com/windows-security-event-logging)
+1. Establish the viewpoint and timestamp of the event.
+2. Identify the target identity and logon type.
+3. Resolve the source cautiously; include NAT, jump hosts, gateways, and brokers.
+4. Correlate the local logon ID with privilege and process events.
+5. Correlate Kerberos activity with 4768, 4769, and domain-related 4771 events from the domain controller's perspective. Correlate NTLM credential validation with relevant 4776 events from the authoritative system.
+6. Follow the session into execution, network, service, task, share, and file telemetry.
+7. Compare the relationship with historical behaviour and asset purpose.
+8. Document what the events prove, what they suggest, and what telemetry is absent.
 
 ## Revision
 
 | Revised Date | Comment |
-| ------------ | ------- |
-| 15.10.2024   | Page revised, added tip on top of page. | 
+| --- | --- |
+| 2024-10-06 | Added page |
+| 2026-07-23 | Rewritten as a correlation and investigation reference |

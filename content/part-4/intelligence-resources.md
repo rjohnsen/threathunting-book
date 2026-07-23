@@ -1,58 +1,99 @@
----
-title: "Intelligence Resources"
-date: 2024-10-27T12:25:21+01:00
-draft: false
-weight: 1
----
++++
+title = "Intelligence Resources"
+date = 2024-10-27T12:25:21+01:00
+lastmod = 2026-07-23T00:00:00+02:00
+weight = 10
+chapter = false
++++
 
-__Author:__ _Roger C.B. Johnsen_
+Threat intelligence is most useful when it adds context to an observation. A reputation result is not a verdict: infrastructure changes ownership, shared services host legitimate and malicious activity, and an indicator can outlive the campaign that created it.
 
-## Introduction
-
-**As threat hunters, access to reliable threat intelligence resources is crucial in our defenses against malicious activities. The following table is my personal and curated list of valuable tools and platforms that security professionals can leverage for various purposes, including threat detection, analysis, and response.**
-
-**These resources encompass a range of functionalities, from IP reputation checks and malware analysis to community-driven threat intelligence sharing. By utilizing these platforms, we can gain insights into emerging threats, understand attacker methodologies, and enhance their overall security posture. Each entry in the table includes a clickable link to the resource, a brief description of its purpose, and its primary use case in the realm of cybersecurity.**
-
-{{% notice tip %}}
-Many of these resources offers API's, or HTTP GET query arguments. If you know programming, you can easily make helper scripts to query multiple resources at the same time, and concatenate the results. This will save you valuable time. This is a route I have used many times and still find valuable. Some resources can also be plugged into your SIEM or SOAR, as well.
+{{% notice style="warning" title="Treat every external query as disclosure" %}}
+Uploads expose the submitted artefact, but lookups may also reveal investigation targets or cause a provider to retrieve a submitted URL. Before querying a public service, check its sharing, retrieval, visibility, and retention behaviour. Use approved private services or local datasets when the subject is sensitive.
 {{% /notice %}}
 
-**Explore the table below to discover tools that can aid in your threat hunting and incident response efforts.**
+## A practical lookup sequence
 
----
+1. Start with internal evidence: first and last seen, affected identities and assets, process ancestry, DNS, proxy, authentication, and file activity.
+2. Form a question. For example: *Was this address associated with scanning at the time of the event?*
+3. Where possible, use sources with distinct collection methods. Several services may repackage the same underlying feed.
+4. Separate provider facts from your inference. “Flagged by 12 vendors at the time of lookup” is evidence; “therefore compromised” is a conclusion.
+5. Retain time context. Registration, routing, DNS, certificates, reputation, and hosting can all change.
+6. Save the query, timestamp, source, relevant result, confidence, and caveat in the case.
 
-### Intelligence resources
+## Infrastructure and reputation
 
-| **Title** | **Description** |
-| --------- | --------------- |
-| [AbuseIPDB](https://www.abuseipdb.com) | A database for reporting and checking IP addresses associated with abusive behavior, such as spamming or hacking attempts, providing insight for incident response. |
-| [Alien Vault OTX](https://otx.alienvault.com/) | A community-driven threat intelligence platform where users can share and access threat data, helping organizations stay informed about current threats. |
-| [Brightcloud](https://www.brightcloud.com/tools/url-ip-lookup.php) | A tool for IP and URL reputation checks, providing insights into malicious activity associated with a given address. |
-| [Censys.io](https://censys.io) | A search engine that allows users to discover and analyze every device connected to the internet, focusing on security and visibility into the internet's infrastructure. |
-| [CyberChef](https://gchq.github.io/CyberChef/) | A web-based application for analyzing and decoding data, allowing users to perform various transformations and analyze potential threats efficiently. |
-| [Greynoise Vizualise](https://viz.greynoise.io/) | A platform for visualizing and querying data about noisy IPs on the internet, useful for threat intelligence and research on malicious activity. |
-| [IBM X-Force Exchange](https://exchange.xforce.ibmcloud.com/) | A threat intelligence sharing platform that provides insights into security vulnerabilities, malware, and cyber threats to improve organizational defense. |
-| [Insecam](http://insecam.org/) | A directory of open IP cameras from around the world, allowing users to access live feeds and view vulnerabilities in unsecured cameras. |
-| [IntelX](https://intelx.io/) | A threat intelligence search engine that aggregates data from various sources to provide insights into cyber threats, vulnerabilities, and malicious activity. |
-| [Maltiverse](https://www.maltiverse.com/) | A threat intelligence platform that provides search capabilities for malware, allowing users to investigate suspicious hashes and IPs. |
-| [MISP](https://www.misp-project.org/) | An open-source threat intelligence platform designed to improve the sharing of structured threat information across organizations and communities, enhancing collaborative defense strategies. |
-| [MITRE ATT&CK](https://attack.mitre.org) | A globally recognized knowledge base of adversary tactics and techniques based on real-world observations, used for threat modeling and detection. |
-| [Onyphe](https://www.onyphe.io/) | A search engine for monitoring the cyber threat landscape, providing information on leaked data, malicious IPs, and domains. |
-| [OpenCTI](https://www.opencti.io/) | An open-source threat intelligence platform that allows organizations to collect, analyze, and share threat intelligence, enabling better detection and response capabilities. |
-| [PassiveDNS Mnemonic](https://passivedns.mnemonic.no/) | A tool for analyzing passive DNS data, helping researchers identify domain name resolutions over time and understand malicious infrastructure. |
-| [Pulsedive](https://pulsedive.com) | A threat intelligence platform that aggregates various threat data feeds, allowing users to investigate domains, IPs, and hashes associated with malicious activity. |
-| [Shadow Server](https://www.shadowserver.org/wiki/) | A service that provides various threat intelligence feeds, including information on compromised hosts and malware infections, assisting in incident response. |
-| [Shodan.io](https://www.shodan.io/) | A search engine for discovering devices connected to the internet, providing insights into their security vulnerabilities and configurations. |
-| [Unit 42 Palo Alto Networks](https://unit42.paloaltonetworks.com/category/threat-research/) | A threat intelligence team providing research and insights on emerging threats, malware, and vulnerabilities affecting organizations. |
-| [URL Void](https://www.urlvoid.com) | A website reputation checker that analyzes URLs to determine if they are flagged as suspicious or malicious based on various databases and services. |
-| [Vigilante](https://vigilante.pw/) | A breach database that provides information on leaked credentials and compromised accounts, useful for threat hunting and security assessments. |
-| [VirusTotal](https://www.virustotal.com/#/home/upload) | A widely used service for analyzing files and URLs for viruses, malware, and other malicious content, aggregating data from multiple antivirus engines. |
-| [VirusTotal (IP Address)](https://www.virustotal.com/) | Similar to its file analysis service, this URL allows users to check IP addresses for malware and malicious activity. |
-| [Wigle](https://wigle.net/) | A platform for searching and mapping open Wi-Fi networks globally, useful for researchers and security professionals analyzing wireless vulnerabilities. |
-| [Zoomeye](https://www.zoomeye.org/) | A search engine for internet-connected devices, offering insights into their configurations and vulnerabilities, assisting in threat research. |
+| Resource | Useful for | Caveat |
+| --- | --- | --- |
+| [VirusTotal](https://www.virustotal.com/) | Cross-provider enrichment for domains, IP addresses, URLs, and files | Vendor counts are neither prevalence nor proof; review relationships and observation dates |
+| [GreyNoise](https://www.greynoise.io/) | Context for widespread internet scanning and opportunistic activity | Sensor coverage is incomplete; classifications do not determine the intent of your event |
+| [AbuseIPDB](https://www.abuseipdb.com/) | Community reports associated with public IP addresses | Report quality and age vary; addresses can change owner |
+| [Censys Search](https://search.censys.io/) | Internet-facing services, certificates, and historical exposure | Describes observations in time, not current owner intent |
+| [Shodan](https://www.shodan.io/) | Exposed services, banners, products, and historical observations | Banners can be stale, misleading, proxied, or shared |
+| [urlscan.io](https://urlscan.io/) | Page behaviour, redirects, requests, screenshots, and infrastructure | A scan can disclose a private or token-bearing URL |
+| [Mnemonic Passive DNS](https://passivedns.mnemonic.no/) | Historical DNS relationships | Absence reflects collection coverage, not proof that a relationship never existed |
+| [RIPEstat](https://stat.ripe.net/) | ASN, routing, prefix, and registration context | Network registration does not identify a workload operator |
+| [ICANN Lookup](https://lookup.icann.org/) | RDAP-backed domain registration data | Privacy services and redaction limit attribution |
+| [crt.sh](https://crt.sh/) | Certificate Transparency searches and certificate pivots | Certificate presence does not prove a host is active or controlled by the named subject |
+
+## Malware, URLs, and indicators
+
+| Resource | Useful for | Caveat |
+| --- | --- | --- |
+| [MalwareBazaar](https://bazaar.abuse.ch/) | Malware samples, hashes, tags, and family context | Community and vendor labels require validation |
+| [URLhaus](https://urlhaus.abuse.ch/) | URLs observed distributing malware | Coverage reflects submissions and collection, not all malicious URLs |
+| [ThreatFox](https://threatfox.abuse.ch/) | Community indicators associated with malware | Review confidence, age, and the relationship claimed |
+| [VirusTotal](https://www.virustotal.com/) | Hash lookup, relationships, and behaviour summaries | Do not upload sensitive samples to public analysis |
+| [ANY.RUN](https://any.run/) | Interactive behavioural analysis | Public tasks may expose samples and artefacts |
+| [Joe Sandbox](https://www.joesandbox.com/) | Static and dynamic analysis across several platforms | Results depend on configuration, execution path, and sandbox visibility |
+
+## Vulnerability exploitation context
+
+| Resource | Useful for | Caveat |
+| --- | --- | --- |
+| [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) | Vulnerabilities with evidence of exploitation in the wild | Inclusion supports prioritisation; absence does not mean no exploitation |
+| [FIRST EPSS](https://www.first.org/epss/) | Daily probability that a published CVE will be exploited in the wild in the next 30 days | A model score is not evidence that your asset was targeted or compromised |
+| [NVD](https://nvd.nist.gov/) | CVE, CPE, CVSS, references, and enrichment | CVSS measures severity, not local exposure or exploitation likelihood |
+
+## Research, sharing, and intelligence management
+
+| Resource | Useful for |
+| --- | --- |
+| [MITRE ATT&CK](https://attack.mitre.org/) | Shared vocabulary for behaviours, software, groups, mitigations, and data sources |
+| [CISA Cybersecurity Advisories](https://www.cisa.gov/news-events/cybersecurity-advisories) | Authoritative advisories and defensive guidance |
+| [Microsoft Threat Intelligence](https://www.microsoft.com/en-us/security/security-insider/intelligence-reports) | Campaign reporting with Microsoft telemetry context |
+| [Google Threat Intelligence Group](https://cloud.google.com/blog/topics/threat-intelligence) | Campaign, malware, vulnerability, and actor research |
+| [Palo Alto Networks Unit 42](https://unit42.paloaltonetworks.com/) | Incident and campaign research |
+| [The Shadowserver Foundation](https://www.shadowserver.org/) | Exposure and infection reporting for network owners |
+| [MISP](https://www.misp-project.org/) | Structured sharing and correlation within a controlled community |
+| [OpenCTI](https://www.opencti.io/) | Modelling and managing intelligence in a knowledge graph |
+
+## Useful pivot types
+
+| Pivot | What it may connect | Common trap |
+| --- | --- | --- |
+| Passive DNS | Domain, address, and time | Treating absence as proof |
+| Certificate Transparency | Names, certificates, and issuance | Assuming issuance proves deployment or control |
+| RDAP and routing | Registrant, ASN, prefix, and dates | Attributing a hosted workload to the network owner |
+| File relationships | Hash, signer, filename, archive, and behaviour | Trusting family labels without validating the sample |
+| URL relationships | Redirects, path, referrer, and retrieved resources | Triggering retrieval or disclosing tokens during lookup |
+| Campaign reporting | Behaviour, infrastructure, malware, and time | Forcing weak similarities into actor attribution |
+
+## What to record in a case
+
+| Field | Example |
+| --- | --- |
+| Indicator | `203.0.113.24` |
+| Lookup time | `2026-07-23 08:42 UTC` |
+| Internal context | First seen contacting one workstation after a document opened |
+| External context | Two differently sourced datasets associated the address with scanning that week |
+| Confidence | Moderate |
+| Caveat | Shared hosting; no payload or operator attribution |
+| Next pivot | DNS history, certificate reuse, process and file activity |
 
 ## Revision
 
 | Revised Date | Comment |
-| ------------ | ------- |
-| 27.10.2024   | Added page | 
+| --- | --- |
+| 2024-10-27 | Added page |
+| 2026-07-23 | Reworked as a disclosure-aware, investigation-focused resource guide |

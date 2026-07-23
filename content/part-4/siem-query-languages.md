@@ -1,210 +1,220 @@
----
-title: "SIEM Query Languages"
-date: 2025-02-15T15:29:12+01:00
-draft: false
-weight: 3
----
++++
+title = "SIEM Query Languages"
+date = 2025-02-15T15:29:12+01:00
+lastmod = 2026-07-23T00:00:00+02:00
+weight = 30
+chapter = false
++++
 
-__Author:__ _Roger C.B. Johnsen_
+{{% notice style="info" title="Illustrative queries" %}}
+Queries on this page are illustrative starting points. They demonstrate investigation logic, not production-ready detections. Table availability, field names, action types, parsing, retention, and normal behaviour vary by environment. Inspect raw records and validate every query against your local schema and telemetry before relying on the result.
+{{% /notice %}}
 
-## Introduction
+Query syntax changes from platform to platform. The investigation method does not. I normally begin with a small time window and a narrow question, inspect raw records, confirm the schema, and only then aggregate or turn the query into a detection.
 
-**Early in my SOC and threat hunting career, I was thrown into the deep end with IBM QRadar. As I recall, the handover was abrupt: "This is our SIEM, QRadar. It's yours now – good luck!" Faced with an unfamiliar system, I quickly realized the immense value of cheat sheets, a concept I'd come to rely on throughout my journey.**
+{{% notice style="info" title="Two different KQLs" %}}
+Microsoft's **Kusto Query Language** and Elastic's **Kibana Query Language** share the abbreviation KQL, but they are different languages. Kusto KQL is a full analytics language. Kibana KQL is primarily a filter syntax.
+{{% /notice %}}
 
-**Cheat sheets are indispensable tools for navigating complex systems like SIEMs, particularly when you're working with a platform you're unfamiliar with. While they won't magically transform you into an expert, they offer a practical approach to rapidly acquire operational knowledge and build confidence. Think of them as valuable aids that help you dissect intricate SIEMs and accelerate your learning curve.**
+## The portable hunting pattern
 
----
+Most useful hunting queries follow the same progression:
 
-## What is a Cheat Sheet?
+1. Select the data source and constrain time.
+2. Filter on the behaviour you want to test.
+3. Project the fields needed to understand individual records.
+4. Normalise inconsistent fields only after inspecting the source.
+5. Aggregate by a meaningful entity: user, host, process, IP address, or session.
+6. Retain timestamps and examples so the summary can be pivoted back to evidence.
+7. Test assumptions against known-good activity before operationalising the query.
 
-A cheat sheet is a concise and readily accessible reference guide that distills essential information about a specific subject, skill, or tool into an easily digestible format. It provides quick access to key facts, formulas, commands, or best practices, enabling users to efficiently recall and apply knowledge without wading through extensive documentation or relying solely on memory.
+The examples below express the same rough question: *which accounts produced repeated failed sign-ins?* Field names and event semantics are illustrative. Your parser, product version, and data source decide what is actually available.
 
-In essence, a cheat sheet serves as both a memory aid and a productivity booster. It's an invaluable asset for anyone seeking to quickly grasp the essentials of a topic, overcome learning hurdles, or streamline their workflow. Whether it's a condensed summary of programming syntax, a quick reference for keyboard shortcuts, or a guide to troubleshooting common issues, a cheat sheet empowers users to perform tasks more effectively and with greater confidence.
+## Microsoft Kusto Query Language
 
-## Can I Survive on Cheat Sheets Alone?
-
-Absolutely not! And that's the key intention behind this article. Cheat sheets are a fantastic way to gain initial exposure to various technologies, offering a glimpse into their core functionalities. Beyond simply getting you up and running, I believe cheat sheets provide essential reference points when you need to delve into and truly understand the official documentation – which, let's face it, can often be uninspiring to pick up and read.
-
-## Overview of SIEM Query Languages
-
-Cheat sheets are undeniably important. What I wish I had access to when I was starting out was an overview of multiple SIEM query languages, coupled with syntax examples and readily available, useful references. So, here's my attempt to provide just that:
-
-### 1. Kusto Query Language (KQL) - Microsoft Sentinel & Defender
-
-KQL is optimized for efficiently querying structured log data and bears a resemblance to PowerShell in its syntax and logic flow.
-
-**Features**
-
-- Read-only query language with powerful aggregation functions
-- Supports time-series analysis and anomaly detection
-- Integrated with Microsoft Defender, Sentinel, and other security tools
-
-**Example Query**
+Kusto Query Language is used in Microsoft Sentinel, Microsoft Defender XDR advanced hunting, Azure Data Explorer, Azure Monitor, and Microsoft Fabric Real-Time Intelligence. Data flows through pipe-separated tabular operators.
 
 ```sql
 SecurityEvent
-| where TimeGenerated > ago(1d)
-| where EventID == 4625  // Failed logon attempts
-| summarize count() by Account, bin(TimeGenerated, 1h)
-| order by count_ desc
+| where TimeGenerated > ago(24h)
+| where EventID == 4625
+| summarize Failures=count(),
+            FirstSeen=min(TimeGenerated),
+            LastSeen=max(TimeGenerated),
+            SourceIPs=make_set(IpAddress, 10)
+    by TargetAccount, Computer
+| where Failures >= 10
+| order by Failures desc
 ```
 
-**Resources**
+Useful tabular operators include `where`, `project`, `extend`, `summarize`, `join`, `union`, and `mv-expand`. `parse_json()` is a scalar function, while `arg_max()` and `make_set()` are aggregation functions commonly used with `summarize`.
 
-- [Official Documentation](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
-- [Kusto Detective Agency](https://detective.kusto.io/)
-- [KC7 Training](https://kc7cyber.com/)
-- [KQL Cheat Sheet](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries)
+A high count is a lead, not a conclusion. Scheduled jobs, stale credentials, health checks, and noisy applications can create the same shape.
 
-It's worth noting that Microsoft Sentinel is built on top of Azure Monitor and uses Log Analytics workspaces to store data. Furthermore, Microsoft Defender XDR data can be queried within Microsoft Sentinel when configured correctly, providing a unified view of your security landscape.
+Reference: [Kusto Query Language overview](https://learn.microsoft.com/en-us/kusto/query/)
 
-### 2. Splunk Processing Language (SPL) - Splunk
+## Splunk SPL and SPL2
 
-SPL is a pipeline-based language specifically designed for flexible log searching and powerful data visualization.
-
-**Features**
-
-- Uses pipelines (`|`) to chain search commands together.
-- Supports advanced statistical functions and visualization tools for in-depth analysis.
-- Handles both structured and unstructured data with ease.
-
-**Example Query**
+Splunk's Search Processing Language transforms search results through pipe-separated commands. SPL remains common in operational environments; Splunk also documents SPL2 for products and workflows that support it.
 
 ```sql
-index=security sourcetype=windows_security
-| search EventCode=4625
-| stats count by user, _time
-| sort -count
+index=windows EventCode=4625 earliest=-24h
+| stats count AS failures
+        min(_time) AS first_seen
+        max(_time) AS last_seen
+        values(src_ip) AS source_ips
+    BY user host
+| where failures >= 10
+| sort - failures
 ```
 
-**Resources**
+Common commands include `search`, `fields`, `eval`, `rex`, `stats`, `eventstats`, `streamstats`, `transaction`, `lookup`, and `timechart`.
 
-- [Official Documentation](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference)
-- [Splunk Beginner Cheatsheet](https://christiant.io/spl-beginner)
-- [Splunk SPL cheatsheet](https://gist.github.com/albertzsigovits/49a81b33ffd5ed6d9f588eff0a2902e0)
-- [Splunk Cheat Sheet: Search and Query Commands](https://www.stationx.net/splunk-cheat-sheet/)
-- [Splunk Cheat Sheet](https://7958885.fs1.hubspotusercontent-na1.net/hubfs/7958885/Downloadable%20Assets/Brochures/QAL/Campaign/Cyber%20Pulse/Cheat%20Sheets/Splunk_Cheat_Sheet.pdf)
+Be deliberate with `transaction`: it can be expensive and can hide which join condition actually matters. In many hunts, `stats`, time bucketing, and explicit identifiers are easier to reason about.
 
+References: [SPL search language](https://help.splunk.com/en/splunk-enterprise/search/search-manual/search-overview/about-the-search-language) and [SPL2 overview](https://help.splunk.com/en/splunk-cloud-platform/search/spl2-overview/what-is-spl2)
 
-### 3.  Elastic Query DSL - OpenSearch Query DSL
+## Elastic ES|QL
 
-OpenSearch and Elastic uses a powerful, JSON-based query language called Query DSL (Domain Specific Language) to search and analyze data. Query DSL allows you to build complex queries with a structured syntax, making it ideal for programmatic use and automation. In all essence, it is an JSON representation of a query. One nifty feature is that you can easily store DSL's into files and share them. The receiver can then just simply copy and paste the DSL query into either Elastic or OpenSearch DSL search feature!
-
-**Features**
-
-- Supports full-text search, aggregations, and filtering for comprehensive analysis.
-- Designed for structured, programmatic searches using JSON format.
-- Enables complex queries with boolean logic, range filters, and more.
-
-**Example Query (Query DSL)**
-
-```json
-{
-  "query": {
-    "bool": {
-      "must": [
-        { "match": { "event_id": 4625 } }
-      ],
-      "filter": {
-        "range": { "@timestamp": { "gte": "now-1d/d" } }
-      }
-    }
-  }
-}
-```
-
-**Resources**
-
-- [OpenSearch Query DSL Documentation](https://opensearch.org/docs/latest/query-dsl/index/)
-- [Lucene Query Syntax](https://lucene.apache.org/core/2_9_4/queryparsersyntax.html)
-- [OpenSearch Labs & Training](https://opensearch.org/training/)
-
-### 4. Kibana Query Language (KQL) - Elastic Stack / OpenSearch
-
-KQL is natively used within Kibana for Elasticsearch and also seamlessly operates within OpenSearch.
-
-**Features**
-
-- Employs a human-readable syntax with intelligent auto-completion features.
-- Significantly simplifies filtering within dashboards, enhancing the user experience.
-
-**Example Query**
+ES|QL is Elastic's piped language for filtering, transforming, and analysing Elasticsearch data.
 
 ```sql
-event.category: "authentication" and event.outcome: "failure"
+FROM logs-windows.*
+| WHERE event.code == "4625" AND @timestamp > NOW() - 24 hours
+| STATS failures = COUNT(*),
+        first_seen = MIN(@timestamp),
+        last_seen = MAX(@timestamp)
+    BY user.name, host.name
+| WHERE failures >= 10
+| SORT failures DESC
 ```
 
-**Resources**
-
-- [KQL Documentation](https://www.elastic.co/guide/en/kibana/current/kuery-query.html)
-- [Elastic Stack Training](https://www.elastic.co/training/)
-- [Kibana Cheat Sheet](https://www.elastic.co/guide/en/kibana/current/kuery-query.html)
-
-### 5. QRadar Query Language (AQL) - IBM QRadar
-
-AQL is IBM QRadar's Ariel Query Language, which adopts a SQL-like structure optimized for searching through security event data.
-
-**Features**
-
-- Employs a familiar SQL-like syntax, making it accessible to many analysts.
-- Supports real-time event analysis, enabling immediate threat detection.
-- Provides deep filtering capabilities for precise investigation.
-
-**Example Query**
+ES|QL is not the same as Kibana Query Language. Elastic KQL is useful for filtering in Kibana:
 
 ```sql
-SELECT LOGSOURCENAME(logsourceid) AS LogSource, username, COUNT(*)
+event.code: "4625" and user.name: *
+```
+
+Kibana KQL does not itself provide the complete aggregation pipeline shown above.
+
+References: [ES|QL](https://www.elastic.co/docs/reference/query-languages/esql) and [Kibana Query Language](https://www.elastic.co/docs/reference/query-languages/kql)
+
+## OpenSearch Query DSL and PPL
+
+OpenSearch supports several interfaces, including JSON Query DSL, SQL, and the pipe-based Piped Processing Language (PPL). Do not assume that a Kibana KQL query can be pasted into OpenSearch unchanged.
+
+```sql
+search earliest=-24h `event.code`="4625" source=windows-logs
+| stats count() as failures,
+        min(`@timestamp`) as first_seen,
+        max(`@timestamp`) as last_seen
+    by `user.name`, `host.name`
+| where failures >= 10
+| sort - failures
+```
+
+For API-driven searches, Query DSL remains important because it exposes the underlying Boolean, range, aggregation, and full-text primitives.
+
+References: [OpenSearch SQL and PPL](https://docs.opensearch.org/latest/sql-and-ppl/) and [PPL search command and time modifiers](https://docs.opensearch.org/latest/sql-and-ppl/ppl/commands/search/)
+
+## IBM QRadar AQL
+
+Ariel Query Language uses a SQL-like form over QRadar's event and flow stores.
+
+```sql
+SELECT username,
+       destinationhostname,
+       COUNT(*) AS failures,
+       MIN(starttime) AS first_seen,
+       MAX(starttime) AS last_seen
 FROM events
-WHERE QIDNAME(qid)='Failed Login'
-AND starttime >= CURRENT_TIMESTAMP - 86400
-GROUP BY LogSource, username
-ORDER BY COUNT(*) DESC
+WHERE (
+    QIDNAME(qid) ILIKE '%failed%log%on%'
+    OR QIDNAME(qid) ILIKE '%login%failed%'
+)
+GROUP BY username, destinationhostname
+HAVING COUNT(*) >= 10
+ORDER BY failures DESC
+LAST 24 HOURS
 ```
 
-**Resources**
+In production, prefer stable event identifiers, categories, and tested custom properties over a broad text match on `QIDNAME()`. Verify whether the event is normalised as expected before trusting the aggregation.
 
-- [Ariel Query Language Guide](https://www.ibm.com/docs/en/SS42VS_7.4/pdf/b_qradar_aql.pdf)
-- [QRadar Labs](https://www.ibm.com/community/qradar/)
-- [AQL Cheat Sheet](https://community.ibm.com/community/user/security/discussion/aql-cheat-sheet)
-- [Qradar Cheat Sheet](https://github.com/yeknu/Qradar_cheat_sheet)
+Reference: [QRadar advanced search with AQL](https://www.ibm.com/docs/en/qradar-on-cloud?topic=searches-advanced-search-options)
 
-### 6. Sigma Rules - Vendor-Agnostic Detection Format
+## Sigma as a portable detection format
 
-Sigma is not a query language itself, but rather a versatile rule format designed to describe security detections in a standardized manner, making them convertible into SIEM-specific queries.
+Sigma is not a SIEM query language. It is a vendor-neutral detection format expressed in YAML. Converters and processing pipelines render Sigma logic into backend-specific query languages such as Kusto KQL, SPL, ES|QL, Lucene-based queries, or AQL.
 
-**Features**
+```text
+Sigma rule
+    -> processing pipeline and field mapping
+    -> target backend
+    -> Kusto KQL, SPL, ES|QL, Lucene, AQL, or another query form
+```
 
-- Utilizes a human-readable YAML-based rule format.
-- Enables conversion to KQL, SPL, OpenSearch DSL, and numerous other query languages.
-- Remains community-driven and extensible, adapting to the ever-changing threat landscape.
-
-#### Example Sigma Rule:
+You can convert rules with the [Sigma browser converter](https://sigmahq.io/docs/digging-deeper/convert.html), run conversions locally with [`sigma-cli`](https://sigmahq.io/docs/), or integrate [`pySigma`](https://github.com/SigmaHQ/pySigma) into a detection pipeline. Available targets depend on installed and maintained backends.
 
 ```yaml
-title: Failed Logon Attempts
+title: Windows Logon Failure
+id: 21e4f8bf-28d1-4d43-a38d-1b5c48b63c4e
+status: test
+description: Detects a Windows Security logon failure for backend conversion and local tuning.
+author: Roger C.B. Johnsen
+date: 2026-07-23
+modified: 2026-07-23
 logsource:
   product: windows
   service: security
-  category: authentication
-selection:
-  EventID: 4625
-condition: selection
+detection:
+  selection:
+    EventID: 4625
+  condition: selection
+falsepositives:
+  - Mistyped passwords
+  - Stale service or scheduled-task credentials
+level: low
 ```
 
-**Resources**
+A converter can cast this selection into backend-specific syntax. That makes Sigma useful for sharing detection ideas, migrating between platforms, comparing implementations, and rapidly creating a query to test during a hunt.
 
-- [Sigma Project Repository](https://github.com/SigmaHQ/sigma)
-- [Sigma Documentation](https://sigmahq.io/docs/)
-- [Sigma Converter Tools](https://uncoder.io/)
+{{% notice style="warning" title="Conversion is not validation" %}}
+The generated query is a starting point, not a production-ready detection. A backend cannot know whether your local parser uses `EventID`, `event.code`, or another field; whether the data source is enabled; how identities are normalised; or which legitimate activity belongs in the baseline.
+{{% /notice %}}
 
-## Conclusion
+Review at least these layers after conversion:
 
-This article isn't designed to make you an overnight expert in any specific SIEM query language. Instead, the intent is to share an approach to quickly and simply gain familiarity with essential languages that you might encounter as a threat hunter. My personal experience with cheat sheets is that they serve as a great way to familiarize myself with essential technologies and quickly understand the fundamentals.
+| Layer | What to validate |
+| --- | --- |
+| Log source | Does the rule describe telemetry you actually collect? |
+| Field mapping | Do Sigma fields map to the correct local schema and types? |
+| Pipeline | Were product, service, and category transformations applied? |
+| Backend | Does the target support every modifier, correlation, and aggregation used? |
+| Time and grouping | Are the window, entity key, threshold, and sequence preserved? |
+| Evidence | Does the result retain enough fields to investigate a match? |
+| Baseline | What legitimate behaviour produces the same selection? |
+| Performance | Is the generated query safe and efficient at your data volume? |
 
-The key takeaway is that while cheat sheets provide a fantastic starting point and ongoing reference, they are a stepping stone to deeper understanding. By using them to grasp the core concepts and then diving into the official documentation, you can effectively build a strong foundation in any SIEM query language and enhance your capabilities as a threat hunter. Embrace cheat sheets as a tool to accelerate your learning and navigate the complex world of cybersecurity with greater confidence and efficiency.
+The small rule above deliberately describes only an event selection. Repeated failures require correlation or aggregation: account, source, destination, logon type, threshold, and time window all affect what the detection means. Some of that logic may be expressed in Sigma correlation rules; some may still need platform-specific implementation and testing.
+
+References: [About Sigma and its converters](https://sigmahq.io/docs/guide/about), [Sigma specification](https://sigmahq.io/sigma-specification/), and the [SigmaHQ rule repository](https://github.com/SigmaHQ/sigma).
+
+## What makes a query reusable
+
+| Item | Why it matters |
+| --- | --- |
+| Hypothesis | Prevents a convenient filter from becoming the question |
+| Data source and schema | Makes hidden field assumptions visible |
+| Time field and timezone | Avoids misleading sequences and gaps |
+| Entity key | Defines what is counted or correlated |
+| Known exclusions | Records environmental knowledge without silently hiding it |
+| Expected false positives | Helps another hunter challenge the result |
+| Validation date | Signals when the query was last tested |
+| Evidence fields | Preserves the path from aggregation to raw records |
 
 ## Revision
 
 | Revised Date | Comment |
-| ------------ | ------- |
-| 15.02.2025   | Added page | 
+| --- | --- |
+| 2025-02-15 | Added page |
+| 2026-07-23 | Updated product coverage, Sigma conversion guidance, and the portable hunting workflow |
