@@ -13,7 +13,7 @@ and turning observations into knowledge the organisation can use.
 This book is a practical guide to how threat hunters think, investigate, document, and improve
 detection capability.
 
-— Roger C.B. Johnsen
+Roger C.B. Johnsen
 {{% /notice %}}
 
 {{% button href="part-1/introduction/definition/" icon="compass" %}}Start Reading{{% /button %}}

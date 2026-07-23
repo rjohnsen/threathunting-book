@@ -9,7 +9,7 @@ __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
 
-**Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events—a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.**
+**Over the years, I’ve trained many students to become SOC analysts, and eventually, Threat Hunters. This is a challenging field, especially when working with young and inexperienced individuals. One of the biggest hurdles I’ve observed is their difficulty in grasping certain concepts, such as timelines. Many view a timeline as simply a linear progression of events: a straightforward sequence from point A to point B. In this chapter, I aim to demystify that notion and provide a deeper understanding of how timelines function in threat hunting.**
 
 **In threat hunting, a timeline is more than just a chronological list of events. It’s a detailed reconstruction that helps investigators understand how a security incident unfolded. Timelines involve the collection, analysis, and correlation of logs, alerts, and system activity to piece together the actions of a threat actor or malicious process. These can include everything from user actions and system changes to network activity and file executions.**
 

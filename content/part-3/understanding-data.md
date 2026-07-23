@@ -169,7 +169,7 @@ Once this baseline of legitimate behavior is documented, it serves as a crucial 
 
 Moreover, understanding the context surrounding user behavior is essential for effective baselining. For example, an unusual spike in network activity during a corporate event might be legitimate, while a similar spike during off-hours could warrant further investigation. By maintaining an up-to-date and contextualized baseline, threat hunters can enhance their ability to identify genuine threats while minimizing false positives, ultimately fostering a proactive security posture that protects the organization's critical assets.
 
-HOWEVER, baselining is a kind of unicorn — it is rare, extremely rare, to find someone who has fully baselined and documented a system or network. Instead, what I have found are various attempts at dashboards trying to explain what’s going on. I have chosen to call such dashboards baselining. They don’t tell the entire truth but offer a glimpse of the truth, and that’s better than nothing.
+HOWEVER, baselining is a kind of unicorn. It is rare, extremely rare, to find someone who has fully baselined and documented a system or network. Instead, what I have found are various attempts at dashboards trying to explain what’s going on. I have chosen to call such dashboards baselining. They don’t tell the entire truth but offer a glimpse of the truth, and that’s better than nothing.
 
 ### General tips and tricks
 

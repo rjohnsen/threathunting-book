@@ -41,7 +41,7 @@ You can see the environment has been loaded by the "(env)" prefix on command lin
 
 ## Installing necessary Python libraries
 
-To communicate with OpenSearch, we need a Python package that simplifies our work—__opensearch-py__ is the library for that. We also need a package to handle date and time operations more easily, for which we’ll use __pendulum__. To handle configuration settings, we read important settings from a Toml file using the "toml" library. Instead of installing each package manually using `pip`, we’ll create a file named `requirements.txt` and add the following lines:
+To communicate with OpenSearch, we need a Python package that simplifies our work. __opensearch-py__ is the library for that. We also need a package to handle date and time operations more easily, for which we’ll use __pendulum__. To handle configuration settings, we read important settings from a Toml file using the "toml" library. Instead of installing each package manually using `pip`, we’ll create a file named `requirements.txt` and add the following lines:
 
 ```bash
 opensearch-py
