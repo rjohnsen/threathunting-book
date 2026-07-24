@@ -1,210 +1,391 @@
----
-title: "Understanding Data"
-date: 2024-09-15T14:10:39+02:00
-weight: 1
-draft: false
----
++++
+title = "Understanding Data"
+date = 2024-09-15T14:10:39+02:00
+lastmod = 2026-07-24T00:00:00+02:00
+weight = 10
+chapter = false
++++
 
-__Author:__ _Roger C.B. Johnsen_
+A threat hunter makes a living from understanding data. All kinds of data.
 
-## Introduction
+Understanding data is not the same as recognising a field name or knowing a query language. It means knowing where a record came from, what produced it, what each field represents, which transformations occurred, and what the source cannot tell you.
 
-**A threat hunter makes a living from understanding data. All kind of data. But what does it mean? Understanding data means grasping the context, meaning, structure, and insights within a dataset. It involves knowing where the data comes from and what it represents, such as financial transactions, network logs, or customer feedback. Recognizing different data types, like numbers, text, or timestamps, and understanding how to work with them is crucial. It's also about identifying patterns, trends, or anomalies in the data and assessing its quality to ensure it's complete, accurate, and consistent. Additionally, understanding data involves making sense of the relationships between different variables and how they connect to real-world phenomena, like detecting a potential security breach from a spike in network traffic. Finally, it’s about extracting useful insights, making inferences, and applying the right analytical methods to interpret the data effectively. In our field, this would mean understanding how to interpret security logs, threat intelligence feeds, and other data sources to spot threats, trends, and anomalies in network behavior.**
+Only then can we use counts, patterns, rarity, relationships, and anomalies without turning convenient shapes into false conclusions.
 
----
+{{% notice style="warning" title="Telemetry is a representation" %}}
+Telemetry is produced from one system's viewpoint. Individual records may be incomplete, delayed, normalised, sampled, or duplicated, while expected records may be absent. Before interpreting a pattern, understand how the data was generated and collected.
+{{% /notice %}}
 
-## Strategies for understanding data
+## Questions to ask before analysing
 
-### Searching
+I find it useful to establish a small source profile for the data source:
 
-Before be start on the analytical tecniques, we need to discuss the human aspect of understanding data. I will start this section by talking about searching. Searching is bread and butter for every threat hunter out there. It's simple - we search in order to find. However, jumping into action without a plan or direction is a waste of time. I have seen many eager people jumping into action without a proper plan. They usually end up spending much time searching with no results, often having to revert back and start over again using a strategy. And .. yes, often they encounter a log that they've have not fully grasped yet. Or said in a tongue in cheek way:
+| Question | Why it matters |
+| --- | --- |
+| What generated the record? | Identifies the product, component, sensor, and viewpoint |
+| What condition, action, or collection process produces it? | Covers actions, state changes, polling, snapshots, periodic jobs, and aggregates |
+| When is the timestamp assigned? | Separates action time, event time, receipt time, and ingestion time |
+| What is the unit of one row? | Connections, processes, alerts, sessions, aggregations, and snapshots are not interchangeable |
+| Which fields are native? | Distinguishes source evidence from enrichment and parser output |
+| What is filtered or sampled? | Defines what absence and volume can mean |
+| How long is it retained? | Limits how far back comparisons and baselines can reach |
+| Can records be duplicated? | Avoids inflated counts and false sequences |
+| Which identifiers are scoped locally? | Prevents unsafe joins on reused process, logon, session, or address values |
+| What changed recently? | Parser, policy, sensor, product, and environment changes can create artificial anomalies |
 
-> You don't simply query into Mordor --- Roger Johnsen
+### Null, missing, and absent are not the same
 
-In order to prepare for any unknown situation (going into Mordor), I think a threat hunter should take advantage of the OODA loop. The OODA loop was developed by military strategist John Boyd. It stands for Observe, Orient, Decide, and Act. It can be effectively applied to the process of understanding data, helping us systematically navigate the log source(s). 
+Terminology and representation vary by platform. In this note, I use the following analytical distinctions:
 
-#### Observe
+| Condition | What it can mean |
+| --- | --- |
+| Null field | The record exists, but the field has no value |
+| Missing field | The field is not present in this event type, schema version, or parser output |
+| Missing event | No matching record was found in the searched source and period |
+| Telemetry gap | The source could not provide complete coverage because of health, policy, filtering, sampling, retention, or collection failure |
 
-When faced with something "unknown" that we need to understand, we should really start observing "it". In this phase, the focus is on gathering information from the unknown situation. Here are some tips: 
+None of them proves that an action did not occur. Before interpreting absence, verify that the source was capable of observing the action, was healthy at the time, retained the event, and was queried correctly.
 
-| Step | Description |
-| ---- | ----------- |
-| **Identifying the Log Source** | Determine the type of logs (e.g., firewall, application, system) and where they are coming from. Understanding the source helps establish the context for analysis. |
-| **Data Collection** | Extract the logs from the source, ensuring you have sufficient data for analysis. This might involve pulling in large volumes of log data for a specific timeframe. |
-| **Initial Examination** | Look for any immediate indicators, such as errors, warnings, or unusual entries, that might require further investigation. |
+Filtering and sampling can reshape a distribution. If a connector begins dropping common events while retaining high-severity records, rare values may appear proportionally more common even though the underlying behaviour has not changed. Cardinality also deserves care: timestamps, random identifiers, inconsistent casing, full command lines, and parser variations can create artificial rarity. Normalise only when the transformation is understood, and keep a path back to the original value.
 
-#### Orient
+## Searching with intent
 
-Once you have gathered the data, the next step is to analyze and interpret / making sense of the information:
+Searching is bread and butter for a threat hunter. We search in order to find, but jumping into a large dataset without a question can consume hours while producing very little understanding.
 
-| Step | Description |
-| ---- | ----------- |
-| **Contextual Analysis** | Understand the environment from which the logs are derived. Familiarize yourself with normal behavior patterns and expected log entries. |
-| **Baseline Comparison** | If available, compare the observed logs against known baselines to identify anomalies or deviations from normal behavior. |
-| **Categorization** | Classify the log entries based on their types and severity to determine which areas may need deeper investigation. |
+> You do not simply query into Mordor.
+>
+> Roger Johnsen
 
-#### Decide
+Before searching, write down:
 
-After analyzing the data, you will need to make decisions on the next steps:
+1. The observation or hypothesis that brought you to the data.
+2. The entity you are following, such as an account, process, device, session, file, or network relationship.
+3. The initial time window and why it is appropriate.
+4. The fields needed to inspect individual records.
+5. What result would support, weaken, or refute the hypothesis.
+6. Which other source could corroborate the finding.
 
-| Step | Description |
-| ---- | ----------- |
-| **Identifying Priorities** | Determine which anomalies or events warrant immediate attention based on their potential impact. |
-| **Formulating Hypotheses** | Based on your observations and analysis, develop hypotheses about potential security incidents or issues that may be present. |
-| **Strategizing Next Steps** | Decide whether to conduct deeper investigations on specific entries, gather more logs, or look into other sources of data for correlation. |
+A query can return exactly what you asked for and still answer the wrong question.
 
-#### Act
+## An OODA-inspired hunting workflow
 
-It is time to finally act. This means take action! 
+The workflow below is a deliberate hunting adaptation of John Boyd's OODA concept, not a complete representation of Boyd's model. It gives us a useful way to approach an unfamiliar source through Observe, Orient, Decide, and Act. The value is not the acronym itself. The value is accepting that understanding develops through repeated cycles.
 
-| Step | Description |
-| ---- | ----------- |
-| **Conduct In-Depth Analysis** | Delve deeper into specific log entries or related logs to confirm or refute your hypotheses.|
-| **Documentation** | Document findings, actions taken, and any correlations made during the investigation for future reference and reporting. |
-| **Response Actions**| Depending on the outcome of your investigation, implement necessary response actions. This may involve alerting relevant teams, mitigating threats, or implementing changes to improve security posture. |
-| **Feedback Loop** | After taking action, reflect on the process and results. Consider what was learned from the investigation to improve future OODA cycles, particularly in dealing with unknown log sources. |
+{{<mermaid align="center">}}
+flowchart LR
+    O1[Observe raw records] --> O2[Orient to source and context]
+    O2 --> D[Decide the next question]
+    D --> A[Act: query, pivot, document]
+    A --> O1
+{{< /mermaid >}}
 
-By applying the OODA loop to searching in an unknown log source or situation, we can maintain a structured approach that enhances their efficiency and effectiveness in identifying potential security incidents. Oh - you might have to restart the OODA loop to fully grasp something. That's OK! The OOOA loop is designed for just that!
+### Observe
 
-### Clustering Data
+Start close to the raw records.
 
-We'll leave the human aspect for now. But before we do that, keep in mind to always carry the OODA loop with you. It sure is handy if you apply it right. Carrying on with some statistical approach to understanding data: 
+| Step | Practical action |
+| --- | --- |
+| Identify the source | Confirm product, table, channel, parser, and collection path |
+| Sample records | Inspect several complete events before projecting fields away |
+| Establish time | Compare event and ingestion time, timezone, drift, and gaps |
+| Inspect fields | Note type, null rate, cardinality, examples, and nested structures |
+| Check volume | Determine whether the source is steady, bursty, scheduled, or incomplete |
 
-> **Data clustering** in the context of SOC (Security Operations Center) and threat hunting refers to the process of manually grouping similar types of security events, logs, or incidents based on shared characteristics or patterns. The goal is to identify related activities, isolate abnormal behavior, and detect potential threats more efficiently.
+### Orient
 
-#### Key Concepts in SOC Clustering
+Place the observations in their operational context.
 
-| Concept | Description |
-| -- | -- | 
-| **Event Grouping** |Analysts manually sort and categorize similar security events (e.g., login attempts, network traffic spikes) to identify trends or anomalies. |
-| **Log Analysis** | Clustering helps to organize log entries from firewalls, IDS/IPS, or endpoint security tools, grouping them based on similar IP addresses, timestamps, or activity types. |
-| **Pattern Recognition** | By clustering events that share common characteristics, analysts can detect potential attacks or lateral movement within the network. |
-| **Reducing Noise** | Grouping redundant or benign events can reduce alert fatigue, allowing analysts to focus on clusters that stand out and require deeper investigation |
+| Step | Practical action |
+| --- | --- |
+| Understand the environment | Asset purpose, identity type, network segment, business process, and working pattern |
+| Compare peers | Similar users, devices, servers, applications, or time periods |
+| Review collection | Sensor health, policy, parser version, filtering, and retention |
+| Identify transformations | Normalisation, enrichment, deduplication, aggregation, and field extraction |
+| List alternatives | Legitimate and technical explanations that could create the same pattern |
 
-#### Examples of Manual Clustering
+### Decide
 
-| Example | Description |
-| -- | -- | 
-| **IP or Domain Grouping** | Grouping traffic or alerts related to specific IP addresses, domains, or subnets to investigate potentially malicious communication. |
-| **Time-Based Clustering** | Clustering incidents or events occurring within the same time window to look for coordinated attack patterns (e.g., a brute-force attempt followed by privilege escalation). | 
-| **User Behavior Clustering** | Grouping activities by users, especially when investigating insider threats or compromised accounts, to determine if there's any unusual behavior. |
-   
-In SOC and threat hunting, clustering helps analysts efficiently manage large volumes of data and prioritize their investigations, making it easier to spot indicators of compromise or suspicious activity.
-    
-### Grouping Data
+Choose the next question, not the final verdict.
 
-> **Grouping data** in the context of threat hunting refers to the process of taking multiple unique artifacts and identifying when multiple instances of them appear together based on specific criteria. This technique is essential for efficiently analyzing security data and identifying potential threats or anomalies.
+| Step | Practical action |
+| --- | --- |
+| Refine the hypothesis | State what the current evidence supports and what remains uncertain |
+| Select the entity | Decide whether to group by account, host, process, relationship, or session |
+| Choose a pivot | Move to a source that can confirm a missing part of the sequence |
+| Set stopping criteria | Define what is enough to close, escalate, or widen the investigation |
 
-#### Key Aspects of Grouping Data in Threat Hunting
+### Act
 
-| Aspect | Description |
-| -- | -- | 
-| **Definition and Purpose**: | Grouping involves categorizing unique artifacts (e.g., IP addresses, user accounts, event types) to see when multiple items of interest appear together. This can help analysts detect patterns indicative of malicious behavior. |
-| **Explicit Input** | Unlike clustering, where the algorithm determines groupings based on similarities without predefined categories, grouping uses an explicit set of items that are already known to be of interest. Analysts define the items they want to track and analyze. |
-| **Identifying Tools and TTPs** | If a particular group of artifacts appears out of place or unusual, it may represent a tool or TTP (Tactics, Techniques, and Procedures) that an attacker is using. This can be critical for identifying ongoing attacks or breaches. |
-| **Criteria for Grouping** | An important aspect of grouping is determining the specific criteria for identifying related instances. This might include: _Time periods_ (grouping events that occurred within a certain timeframe). _Event types_ (Grouping related events, such as failed login attempts followed by a successful login). _Source or destination_ (Grouping based on common source or destination IP addresses.) |
-| **Hunting for Related Instances** | Grouping works best when analysts are hunting for multiple, related instances of unique artifacts. For example, if multiple failed login attempts from the same user account occur within a short time frame, this may warrant further investigation. |
-| **Anomaly Detection** | By observing groups of artifacts that deviate from the norm, analysts can more easily identify potential threats. For instance, if several user accounts are accessed from unusual locations at the same time, it may indicate a coordinated attack. |
-| **Enhanced Reporting and Visualization** | Grouping data allows for better reporting and visualization. Security analysts can create dashboards that showcase grouped metrics, making it easier to communicate findings and respond effectively. |
+Perform the next bounded action.
 
-An analyst might group data from a SIEM based on:
-  - **Time Period**: Identifying all login attempts within a specific hour that come from unusual geographic locations.
-  - **User Accounts**: Tracking all accounts that experience multiple failed login attempts in a short timeframe.
-  - **Event Types**: Grouping alerts from different systems (e.g., firewall and intrusion detection system) that indicate a potential breach attempt.
-  - **Other**: By other means than depicted here that fits the scenario.
+| Step | Practical action |
+| --- | --- |
+| Query or collect | Retrieve the evidence needed for the current question |
+| Validate | Inspect the raw records behind an aggregate or visualisation |
+| Document | Record query, time, source, result, caveat, and next step |
+| Respond when authorised | Escalate, preserve, contain, or remediate within the case scope |
+| Repeat | Return to Observe with what you have learned |
 
-Grouping data is a vital technique in threat hunting that enhances the ability to analyze security events, detect anomalies, and prioritize responses. By identifying when multiple unique artifacts appear together based on specific criteria, security analysts can uncover patterns that may indicate malicious activity. This method is particularly useful for tracking related instances and understanding potential threats within an organization’s environment.
+Restarting the loop is not failure. It is how the model is intended to work.
 
-### Stack Counting
+### Keep a record of each loop
 
-> **Stack counting** in the context of threat hunting refers to the practice of systematically accumulating and organizing counts of various security-related events or indicators over time. This method allows analysts to identify patterns, anomalies, and potential threats within a network or system by visually stacking counts of different types of events or alerts. Here’s a breakdown of its significance and usage in threat hunting:
+| Record | What to capture |
+| --- | --- |
+| Question or hypothesis | What this iteration is trying to learn |
+| Query and scope | Exact query, source, entities, time window, and relevant parameters |
+| Result | What was observed, including useful negative results |
+| Limitation | Coverage, quality, assumptions, and alternative explanations |
+| Assessment | What the evidence currently supports and with what confidence |
+| Next pivot | The next question, source, or stopping decision |
 
-#### Key Aspects of Stack Counting in Threat Hunting
+## Grouping and clustering
 
-| Aspect | Description |
-| -- | -- | 
-| **Data Aggregation** | Stack counting involves aggregating data from various sources (e.g., logs, alerts, user activities) to create a comprehensive view of events occurring within an environment. |
-| **Visualization** | By using visual representations (like bar charts or histograms), stack counting helps security analysts quickly identify trends, spikes, or unusual patterns in data. This visualization makes it easier to spot anomalies that could indicate malicious activity. |
-| **Comparison of Event Types** | Analysts can compare the counts of different types of events (e.g., successful logins, failed login attempts, firewall alerts) to understand normal versus abnormal behavior. For instance, a sudden increase in failed logins could indicate a brute force attack. |
-| **Temporal Analysis** | Stack counting can be used to track event counts over time, enabling analysts to see how certain types of events change, which may correlate with specific activities or incidents. |
-| **Incident Response** | Identifying anomalies through stack counting allows for quicker incident response. For example, if there is an unexpected increase in traffic from a specific IP address, analysts can investigate further for potential malicious intent. || 
-| **Prioritization** | By identifying the most frequently occurring threats or events, security teams can prioritize their investigations and resources towards the most critical issues. |
-| **Baseline Establishment** | Establishing a baseline of normal activity using stack counting can help in detecting deviations that may indicate security incidents. |
+The terms are often used interchangeably, but they answer different questions.
 
-An analyst might use stack counting to visualize the number of alerts generated by various detection rules in a security information and event management (SIEM) system over a week. By stacking the counts, the analyst can easily identify which alerts are most common, which might require deeper investigation, and which may represent a coordinated attack.
+### Grouping
 
-An another example I have found extremely handy is just to count occurrence of "things". For instance, count browser user-agents to find most used user-agents and from there find outliers, like so: 
+Grouping applies explicit keys or criteria chosen by the analyst.
+
+Examples include:
+
+- events by account and destination
+- connections by process and remote domain
+- files by hash and device
+- authentication attempts by source, target, and logon type
+- observations in fixed time windows
+
+The analyst decides what makes records belong together. This makes grouping reproducible, but the chosen key can hide important variation. Grouping only by account, for example, can conceal differences between source systems and session types.
+
+### Clustering
+
+Clustering brings observations together based on similarity across selected features. It can be algorithmic, visual, or exploratory. The boundaries are inferred from the data and method rather than defined only by a fixed key.
+
+Possible features include:
+
+- event frequency and timing
+- command-line tokens
+- process ancestry
+- destination or certificate characteristics
+- byte counts and connection duration
+- identity, device, and application behaviour
+
+A cluster is not automatically a threat. It is a set of observations that look similar according to the selected features, distance measure, preprocessing, and parameters.
+
+| Question | Grouping | Clustering |
+| --- | --- | --- |
+| Who defines membership? | Analyst-defined keys or rules | Similarity method and selected features |
+| Is the result deterministic? | Usually, given the same keys | Depends on algorithm, parameters, and preprocessing |
+| Best use | Summarising known dimensions | Exploring structure and finding unusual groups |
+| Common trap | Grouping away meaningful context | Treating a cluster label as ground truth |
+
+## Stack counting
+
+Stack counting means counting the occurrences of each distinct value in a field, sorting the result, and inspecting both the common and rare ends of the distribution.
+
+Useful fields include:
+
+- process names
+- parent-child process relationships
+- command-line fragments
+- user agents
+- destination domains
+- service names
+- file extensions
+- authentication methods
+- error and status codes
+
+The count is a lead. It does not tell you whether the value is legitimate or malicious.
+
+The following illustrative distribution shows user-agent families:
 
 {{<mermaid align="center">}}
 xychart-beta
-    title "User-Agents"
-    x-axis [Chrome, Firefox, Edge, Opera, "Py Requests", "Py Urllib", Scrapy, "curl/wget"]
-    y-axis "Occurrence" 0 --> 200
+    title "Illustrative User-Agent Counts"
+    x-axis [Chrome, Firefox, Safari, Edge, Opera, "Py Requests", "Py Urllib", Scrapy, "curl/wget"]
+    y-axis "Occurrences" 0 --> 160
     bar [150, 90, 80, 60, 30, 20, 15, 10, 5]
 {{< /mermaid >}}
 
-Some may find counting using tables easier, like so:
+The same data in a table is easier to annotate:
 
-| User-Agent Type      | Count |
-|-----------------------|-------|
-| Chrome                | 150   |
-| Firefox               | 90    |
-| Safari                | 80    |
-| Edge                  | 60    |
-| Opera                 | 30    |
-| Python Requests       | 20    |
-| Python urllib         | 15    |
-| Scrapy                | 10    |
-| curl/wget             | 5     |
-| **Total Legitimate**  | **410** |
-| **Total Malicious**   | **50**  |
+| User-agent family | Count | Initial interpretation |
+| --- | ---: | --- |
+| Chrome | 150 | Common browser family |
+| Firefox | 90 | Common browser family |
+| Safari | 80 | Common browser family |
+| Edge | 60 | Common browser family |
+| Opera | 30 | Less common browser family |
+| Python Requests | 20 | Automation or application library |
+| Python urllib | 15 | Automation or application library |
+| Scrapy | 10 | Crawling or automation framework |
+| curl/wget | 5 | Command-line transfer tools |
+| **Browser-looking total** | **410** | Requires version, device, and behaviour context |
+| **Automation/tool-looking total** | **50** | Not equivalent to malicious |
+| **Total** | **460** | Illustrative dataset |
 
-In summary, stack counting is a valuable technique in threat hunting that enhances visibility into potential security incidents, aiding in the identification, prioritization, and response to threats. By the way, grouping is extremely good fit for dashboards in your SIEM/SOAR!
+A rare value can be interesting, but rarity is not maliciousness. A common value can also be abused or spoofed. Follow the value into identity, process, device, destination, and historical context.
 
-### Baselining
+### Questions after counting
 
-Baselining can be viewed as the noble art of finding and documenting what is considered legitimate behavior or usage within a network or system. This intricate process begins with the thorough observation and analysis of various activities across the digital landscape, enabling us to identify the patterns and behaviors that define normalcy for the organization. By collecting and analyzing data from logs, user activities, and network traffic, we can establish a clear understanding of typical operational behavior.
+- Is the value rare globally, or only for this peer group?
+- Is it new, or merely infrequent?
+- Did collection or parsing change?
+- Is the value user-controlled or easy to spoof?
+- Does the count represent events, sessions, devices, or alerts?
+- Can one noisy entity dominate the total?
+- What raw records sit behind the count?
+- What happened immediately before and after?
 
-Once this baseline of legitimate behavior is documented, it serves as a crucial reference point for detecting anomalies. Any deviations from this established norm can raise red flags, indicating potential security threats such as unauthorized access, malicious activities, or system misconfigurations. However, baselining is not merely about creating a static snapshot; it requires continuous adaptation and refinement as the organizational environment evolves. Factors such as changes in user roles, the introduction of new technologies, or variations in operational demands can all influence what is deemed "normal."
+## Baselining
 
-Moreover, understanding the context surrounding user behavior is essential for effective baselining. For example, an unusual spike in network activity during a corporate event might be legitimate, while a similar spike during off-hours could warrant further investigation. By maintaining an up-to-date and contextualized baseline, threat hunters can enhance their ability to identify genuine threats while minimizing false positives, ultimately fostering a proactive security posture that protects the organization's critical assets.
+Baselining is the practice of describing expected behaviour for a defined entity, peer group, and period. A baseline is not simply “what happened most often”.
 
-HOWEVER, baselining is a kind of unicorn. It is rare, extremely rare, to find someone who has fully baselined and documented a system or network. Instead, what I have found are various attempts at dashboards trying to explain what’s going on. I have chosen to call such dashboards baselining. They don’t tell the entire truth but offer a glimpse of the truth, and that’s better than nothing.
+A useful baseline states its scope:
 
-### General tips and tricks
+| Dimension | Example |
+| --- | --- |
+| Entity | Privileged administrator accounts |
+| Peer group | Accounts with the same operational role |
+| Behaviour | Interactive sign-in source-to-destination relationships |
+| Time | Previous 30 comparable working days |
+| Exclusions | Approved jump hosts and documented exercises |
+| Coverage | Identity and endpoint telemetry, with a known weekend gap |
+| Review date | When the baseline was last validated |
 
-Over the years I have amassed some thoughts regarding interpreting logs and data. Here's a few thoughts from me on understading data: 
+Baselines drift. Roles change, software is deployed, staff travel, infrastructure moves, and logging changes. A baseline must therefore be versioned and reviewed.
 
-| Aspect | Description |
-| -- | -- | 
-| Volume | Always look for volume. The size of data can give an indication of a situation. Example: large data transfers could mean exfiltration. | 
-| Count| Counting is basics. Simply knowing the count of things can point in a direction. Example: Many failed logins may suggest brute force. |
-| Min | Hackers loves being stealthy. Take a look at what occurs seldom or the tiniest size of something. Example: Tiny network packets might signal suspicious activity. | 
-| Max | Maximum values can indicate interesting behavior. Example: Many file access entries in log could mean unauthorized access. |
-| Sum | The sum of it all. Example: high login totals after hours may hint at insider threats. |
-| Percentage | Percentage can be used to compare between systems, or depict a baseling - or outliers. Example: A spike in failed logins can signal an attack. |
-| Combine them all | All of these tips can be successfully combined to form a narrative - keep that in mind when you twist and turn data to understand it |
+Baselining is also something of a unicorn. It is rare, extremely rare, to find a system or network that has been fully baselined and documented. What I usually find are dashboards that explain part of what is going on. I still consider that useful baselining, as long as we are honest about the scope. A partial, documented view is better than an imaginary complete truth.
 
-### Resources
+### Baseline and profile
 
-* [Cyber Threat Hunting Techniques & Methodologies](https://heimdalsecurity.com/blog/threat-hunting-techniques/)
-* [Threat Hunting Metrics: The Good, The Bad and The Ugly](https://kostas-ts.medium.com/threat-hunting-metrics-the-good-the-bad-and-the-ugly-d662907379b2)
-* [Threat Hunting Techniques, Checklist, Examples, Execution, Metrics](https://proinf.com/threat-hunting-techniques-checklist-examples-process-exection-metrics)
-* [Proactive Threat Hunting Tools & Techniques](https://www.stickmancyber.com/cybersecurity-blog/proactive-threat-hunting-tools-techniques)
-* [Check the Stats, Your Threat Hunting is Probably Broken](https://www.activecountermeasures.com/check-the-stats-your-threat-hunting-is-probably-broken/)
-* [Threat Hunting Demystified](https://medium.com/@linda.milvi/threat-hunting-demystified-d8d9cec5fd7b)
-* [Jitter Plots: Solving Overlapping Data in Scatter Plots](https://www.editverse.com/jitter-plots-solving-the-overlapping-data-problem-in-scatter-plots/)
-* [Jittering with R](https://www.bridgetext.com/jittering-with-r)
-* [Using scatterplots to find details in reports](https://www.sqlbi.com/articles/using-scatterplots-to-find-details-in-reports/)
-* [Outlier!!! But Why???](https://towardsdatascience.com/outlier-but-why-b26c30c9ab78)
-* [What is cluster analysis?](https://www.spotfire.com/glossary/what-is-cluster-analysis#:~:text=Cluster%20analysis%20is%20a%20data,is%20an%20unsupervised%20learning%20method.)
-* [Cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis)
-* [How Grouping Analysis works](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/how-grouping-analysis-works.htm)
-* [Grouping Data in Data Science](https://towardsdatascience.com/grouping-data-in-data-science-be7387870c4d)
-* [Baseline Hunting with the PEAK Framework](https://www.splunk.com/en_us/blog/security/peak-baseline-hunting.html)
+In this book, I use the terms as follows:
+
+A profile describes characteristics and relationships associated with an entity or peer group: usual devices, applications, destinations, working hours, authentication methods, and process relationships. A baseline describes the expected level, range, frequency, or variation of selected behaviour over a defined period.
+
+The two support each other. A profile provides context for choosing a relevant population. A baseline helps identify change within that context. Neither is a permanent definition of what is benign.
+
+## Useful summaries
+
+Simple statistics can expose useful questions when their limitations are understood.
+
+| Summary | Useful question | Caveat |
+| --- | --- | --- |
+| Count | Which values or relationships dominate? | Duplicates and noisy entities can distort totals |
+| Distinct count | How many entities participated? | Identifier quality and nulls matter |
+| Minimum | What is the smallest or earliest value? | A minimum may be caused by truncation, parsing, or collection boundaries |
+| Maximum | What is the largest or latest value? | A maximum may be an outlier or collection artefact |
+| Frequency distribution | Which values occur most and least often? | Common does not mean benign, and rare does not mean malicious |
+| Sum | What is the cumulative volume? | Aggregation can hide how the total is distributed |
+| Percentage | How does a subset compare with the whole? | The denominator and population must be explicit |
+| Median | What does the middle observation look like? | Can conceal multiple distinct populations |
+| Percentile | Where does an observation sit in the distribution? | Depends on a relevant comparison group |
+| Rate | How quickly is activity occurring? | Window size changes the apparent pattern |
+| Change | What differs from a previous period or peer? | Collection changes can look like behavioural change |
+
+Combining summaries can tell a stronger story, but the narrative must remain tied to raw evidence.
+
+## A practical workflow
+
+1. Inspect raw records.
+2. Write down the source semantics and limitations.
+3. Define the entity, population, and time window.
+4. Group or count using a deliberate key.
+5. Inspect the top, bottom, null, and unexpected values.
+6. Pivot back to individual records.
+7. Compare with a relevant peer group or historical period.
+8. Test technical and legitimate explanations.
+9. Corroborate with another data source.
+10. Document the query, result, caveat, and assessment.
+
+The objective is not to make data confess. It is to learn what the data can support.
+
+## A small hunt from count to assessment
+
+This example shows how the techniques fit together. Assume the hunter wants to identify uncommon process names and investigate one result.
+
+{{<mermaid align="center">}}
+flowchart TD
+    A[Aggregate the data] --> B[Select an interesting value]
+    B --> C[Inspect raw records]
+    C --> D[Add entity and environment context]
+    D --> E[Corroborate with other telemetry]
+    E --> F[Test alternative explanations]
+    F --> G[Write a bounded assessment]
+    G --> H[Choose the next pivot or stop]
+    H -. New question .-> A
+{{< /mermaid >}}
+
+{{% notice style="warning" title="Illustrative queries" %}}
+These queries are teaching examples. Table availability, field names, retention, enrichment, and expected behaviour vary between environments. Validate the local schema, including the available `ActionType` values, inspect raw records, and tune the scope before using a query operationally.
+{{% /notice %}}
+
+Start with a bounded count:
+
+```sql
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where ActionType == "ProcessCreated"
+| summarize
+    EventCount = count(),
+    DeviceCount = dcount(DeviceId)
+    by FileName
+| order by DeviceCount asc, EventCount asc
+```
+
+Suppose `mshta.exe` appears on one device. That is a lead, not a verdict. Return to the underlying events:
+
+```sql
+let HuntStart = ago(7d);
+DeviceProcessEvents
+| where Timestamp > HuntStart
+| where ActionType == "ProcessCreated"
+| where FileName =~ "mshta.exe"
+| project Timestamp, DeviceId, DeviceName, AccountUpn,
+    FileName, ProcessCommandLine,
+    InitiatingProcessFileName,
+    InitiatingProcessCommandLine, SHA1
+| order by Timestamp asc
+```
+
+The raw records might show that a browser launched `mshta.exe` with an external URL. The hunter should now test that interpretation:
+
+1. Confirm that the process event and command line are complete.
+2. Check whether the device role or approved software explains the execution.
+3. Inspect the parent process and nearby process activity.
+4. Pivot to network telemetry for the device, process context, destination, and time window.
+5. Look for downloaded or created files and later execution.
+6. Compare with similar devices and a longer historical period.
+7. Check sensor health and whether the apparent rarity was created by retention or filtering.
+
+| Record | Example |
+| --- | --- |
+| Observation | `mshta.exe` executed once on one device during the seven-day window |
+| Context | A browser parent and an external URL were recorded in the process chain |
+| Supporting evidence | Endpoint process telemetry; related network and file records require validation |
+| Alternative explanations | Approved application workflow, administrator testing, or incomplete parent attribution |
+| Assessment | Suspicious execution requiring corroboration |
+| Confidence | Moderate |
+| Next pivot | Validate destination, file activity, process ancestry, user context, and peer history |
+
+If the network and file pivots support the same sequence, confidence may increase. If the activity maps to an approved application used across comparable devices, the hypothesis weakens. If telemetry is missing, the correct result may remain inconclusive.
+
+The important part is not `mshta.exe` itself. The important part is the movement from aggregate, to raw record, to context, to corroboration, to a bounded assessment.
+
+## Resources
+
+- [MITRE ATT&CK Detection Strategies](https://attack.mitre.org/detectionstrategies/)
+- [MITRE ATT&CK Data Components](https://attack.mitre.org/datacomponents/)
+- [PEAK Threat Hunting Framework](https://www.splunk.com/en_us/blog/security/peak-threat-hunting-framework.html)
+- [Baseline Hunting with the PEAK Framework](https://www.splunk.com/en_us/blog/security/peak-baseline-hunting.html)
+- [Check the Stats, Your Threat Hunting is Probably Broken](https://www.activecountermeasures.com/check-the-stats-your-threat-hunting-is-probably-broken/)
+- [John Boyd, A Discourse on Winning and Losing](https://www.airuniversity.af.edu/Portals/10/AUPress/Books/B_0151_Boyd_Discourse_Winning_Losing.pdf)
+- [NIST IR 8354, Digital Investigation Techniques](https://nvlpubs.nist.gov/nistpubs/ir/2022/NIST.IR.8354.pdf)
+- [Microsoft Defender XDR DeviceProcessEvents](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table)
 
 ## Revision
 
 | Revised Date | Comment |
-| ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| --- | --- |
+| 2024-10-06 | Improved formatting and wording |
+| 2026-07-24 | Rewritten around source semantics, OODA, grouping, clustering, stack counting, scoped baselines, missing-data semantics, and a visual illustrative mini-hunt |
