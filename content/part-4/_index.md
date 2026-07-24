@@ -2,7 +2,7 @@
 title = "Field Notes"
 date = 2024-07-07T11:47:52+02:00
 lastmod = 2026-07-23T00:00:00+02:00
-weight = 5
+weight = 4
 chapter = false
 +++
 
