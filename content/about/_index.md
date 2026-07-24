@@ -6,7 +6,7 @@ chapter = false
 +++
 
 > Every man takes the limits of his own field of vision for the limits of the world.
-> 
+>
 > -- Arthur Schopenhauer
 
 ## Table of Contents

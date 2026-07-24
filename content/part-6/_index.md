@@ -6,7 +6,7 @@ weight: 7
 ---
 
 > The signal is often already there. The hard part is learning how to see it.
-> 
+>
 > -- Roger Johnsen
 
 ## Table of Contents

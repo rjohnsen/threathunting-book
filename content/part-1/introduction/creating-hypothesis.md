@@ -53,7 +53,7 @@ A threat hunting hypothesis is a testable statement about behaviour that may ind
 | Scope      | Where and when will we look?                           |
 | Output     | What useful result may come from the hunt?             |
 
-A hypothesis does not need to be complicated. It needs to be clear enough to test. 
+A hypothesis does not need to be complicated. It needs to be clear enough to test.
 
 Weak example:
 
@@ -78,7 +78,7 @@ It is useful to be clear about what a hypothesis is not:
 * A hypothesis is not the same as a threat report. A report may inspire the hunt, but the hunter still needs to translate the report into local telemetry and observable behaviour.
 * A hypothesis is not the same as a vague concern.
 
-Concern: 
+Concern:
 
 ```text
 We are worried about ransomware.

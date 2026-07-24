@@ -12,7 +12,7 @@ __Author:__ _Roger C.B. Johnsen_
 
 The IPv4 protocol field and IPv6 `Next Header` field identify what follows the IP header. They are not TCP or UDP ports: protocol `6` means TCP.
 
-## Values worth recognizing
+## Values worth recognising
 
 | Decimal | Keyword | Hunting relevance |
 |---:|---|---|

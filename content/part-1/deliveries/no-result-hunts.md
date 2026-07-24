@@ -92,7 +92,7 @@ Those statements are usually too broad. A stronger statement would be:
 Within the scoped systems, time range and available telemetry, we did not observe evidence supporting this hypothesis.
 ```
 
-That wording is less dramatic, but it is more accurate. It tells the reader what was tested and avoids pretending that the hunt proved more than it actually did. 
+That wording is less dramatic, but it is more accurate. It tells the reader what was tested and avoids pretending that the hunt proved more than it actually did.
 
 Threat hunting is not magic. It depends on telemetry, scope, retention, query logic, assumptions, environmental knowledge and analyst judgement. If any of those are weak, a no-result hunt may say more about the hunt design than about the absence of an adversary.
 

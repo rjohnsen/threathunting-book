@@ -10,7 +10,7 @@ summary: "Hunting file origin, staging, extraction, execution, and cleanup in us
 
 __Author:__ _Roger C.B. Johnsen_
 
-User-writable locations are normal working areas and convenient attacker staging locations. A path does not establish intent. Hunt the sequence that produced the file, the process that touched it, what happened next, and whether the behavior fits the user and device.
+User-writable locations are normal working areas and convenient attacker staging locations. A path does not establish intent. Hunt the sequence that produced the file, the process that touched it, what happened next, and whether the behaviour fits the user and device.
 
 ## Locations worth monitoring
 
@@ -20,9 +20,9 @@ User-writable locations are normal working areas and convenient attacker staging
 | `Desktop` | User-created and copied files | Operator tools, command output, archives, and temporary staging. |
 | `Documents` | User documents and application data | Collection, bulk copying, and archives inconsistent with the user role. |
 | `%TEMP%` | Installers and temporary application content | Short-lived payloads, extraction, compilation, and execution. |
-| `AppData\Local` | Per-user application state and caches | Payloads, persistence, side-loading, and browser or collaboration-app artifacts. |
+| `AppData\Local` | Per-user application state and caches | Payloads, persistence, side-loading, and browser or collaboration-app artefacts. |
 | `AppData\Roaming` | Roaming application state | Logon persistence, scripts, and configuration. |
-| OneDrive or other sync roots | Cloud-synchronized work | External delivery, staging, cross-device propagation, and bulk upload. |
+| OneDrive or other sync roots | Cloud-synchronised work | External delivery, staging, cross-device propagation, and bulk upload. |
 | `Public` and shared profile paths | Cross-user content | Shared staging and execution by another account. |
 | Recycle Bin | User deletion | Cleanup context; deletion does not remove all evidence. |
 
@@ -30,7 +30,7 @@ Do not exclude `AppData` globally. Reduce noise with process, extension, path de
 
 ## Useful file context
 
-| Field or artifact | Question |
+| Field or artefact | Question |
 | ----------------- | -------- |
 | `ActionType` | Was the file created, modified, renamed, or deleted? |
 | `FolderPath`, `FileName` | Is the location and name consistent with the producing process? |
@@ -84,7 +84,7 @@ DeviceFileEvents
 | order by Timestamp asc
 ```
 
-Path matching should be adapted for localized or redirected profiles and synchronized folders.
+Path matching should be adapted for localised or redirected profiles and synchronised folders.
 
 ## File to process pivot
 
@@ -148,7 +148,7 @@ DeviceFileEvents
 | order by Timestamp desc
 ```
 
-Tune this candidate generator for software deployment, development, build tools, browsers, synchronization clients, archive utilities, and endpoint management.
+Tune this candidate generator for software deployment, development, build tools, browsers, synchronisation clients, archive utilities, and endpoint management.
 
 ## Triage workflow
 
@@ -157,7 +157,7 @@ Tune this candidate generator for software deployment, development, build tools,
 3. Inspect archive contents and scripts safely without execution.
 4. Reconstruct create, rename, extract, execute, network, and delete events.
 5. Identify the user and logon session that produced and executed the content.
-6. Compare signer, original filename, prevalence, and peer behavior.
+6. Compare signer, original filename, prevalence, and peer behaviour.
 7. Search the hash, origin URL, filename, and infrastructure fleet-wide.
 8. Record whether telemetry proves presence, transfer, execution, or only access.
 

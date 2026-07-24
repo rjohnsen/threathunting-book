@@ -58,10 +58,10 @@ Log channel: `Microsoft-Windows-Sysmon/Operational`.
 2. Build the process ancestry using GUIDs.
 3. Correlate file, registry, DNS, and network events around the same process.
 4. Validate signer and hash, but do not equate signed with safe.
-5. Compare the behavior with the host role and fleet prevalence.
+5. Compare the behaviour with the host role and fleet prevalence.
 6. Check Events 4, 16, and 255 when telemetry disappears.
 
-Do not map each event ID permanently to one ATT&CK technique. The same event can support many behaviors, and the mapping depends on fields and context.
+Do not map each event ID permanently to one ATT&CK technique. The same event can support many behaviours, and the mapping depends on fields and context.
 
 ## References
 

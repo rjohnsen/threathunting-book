@@ -174,7 +174,7 @@ The **Out** phase is about:
 * completing the mission
 * exfiltration and impact
 
-![Unified Kill Chain Out Phase](/images/ukc3.png) 
+![Unified Kill Chain Out Phase](/images/ukc3.png)
 
 This is the phase where the attacker turns access into outcome. The adversary may:
 

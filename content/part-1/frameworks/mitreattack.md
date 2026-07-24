@@ -19,7 +19,7 @@ keywords:
    - procedures
    - TTPs
    - detection engineering
-   - threat-informed defense
+   - threat-informed defence
    - ATT&CK Navigator
 ---
 
@@ -37,7 +37,7 @@ That distinction is important. A vague statement such as this may be technically
 The attacker used PowerShell.
 ```
 
-PowerShell is only an artefact. It does not explain intent, context or outcome. The same observation may be part of execution, discovery, defense evasion, credential access, collection or normal administration. A better statement therefore connects the observation to context:
+PowerShell is only an artefact. It does not explain intent, context or outcome. The same observation may be part of execution, discovery, Defense Evasion, credential access, collection or normal administration. A better statement therefore connects the observation to context:
 
 ```text
 The observed activity may relate to Execution, Discovery, Defense Evasion or Collection depending on context. The specific technique, command-line pattern, parent process and surrounding telemetry decide how it should be interpreted.

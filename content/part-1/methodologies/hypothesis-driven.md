@@ -331,7 +331,7 @@ A hypothesis gives the hunt something to test, but other frameworks help shape w
 | PEAK            | Provides the lifecycle: prepare the hypothesis, execute the investigation and act on what was learned. |
 | TaHiTI          | Helps turn threat intelligence into focused hunting hypotheses.                                        |
 | MITRE ATT&CK    | Provides behavioural vocabulary for describing adversary techniques and shaping what to look for.      |
-| Pyramid of Pain | Helps move hypotheses away from fragile indicators and toward adversary behaviour.                     |
+| Pyramid of Pain | Helps move hypotheses away from fragile indicators and towards adversary behaviour.                     |
 | OODA Loop       | Helps the hunter adapt as evidence changes during the investigation.                                   |
 | MaGMa           | Helps preserve and manage resulting use cases, detections, metrics and improvement work.               |
 

@@ -17,7 +17,7 @@ keywords:
 - SOC analyst
 - alerts
 - detection engineering
-- threat-informed defense
+- threat-informed defence
 - security monitoring
 - hunting methodology
 ---
@@ -66,7 +66,7 @@ This is where hunting begins.
 
 That shift is small, but important.
 
-It moves the analyst from reacting to known signals toward exploring possible blind spots. The hunter is still using operational knowledge from the SOC, but the starting point is different. Instead of beginning with an alert, the hunt begins with a question.
+It moves the analyst from reacting to known signals towards exploring possible blind spots. The hunter is still using operational knowledge from the SOC, but the starting point is different. Instead of beginning with an alert, the hunt begins with a question.
 
 ## Alerts Are Starting Points, Not Boundaries
 

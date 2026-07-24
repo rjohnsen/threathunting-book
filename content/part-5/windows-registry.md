@@ -5,7 +5,7 @@ draft: false
 hidden: false
 weight: 9
 tags: [cheatsheet, registry, windows, microsoft]
-summary: "High-value Windows Registry paths, artifacts, caveats, and pivots."
+summary: "High-value Windows Registry paths, artefacts, caveats, and pivots."
 ---
 
 __Author:__ _Roger C.B. Johnsen_
@@ -26,7 +26,7 @@ Registry data is both live configuration and historical evidence. A key's presen
 | `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon` | Changes to `Shell`, `Userinit`, and notification components. |
 | `HKLM\SYSTEM\CurrentControlSet\Control\Lsa` | Authentication packages, security packages, and LSA protection changes. |
 | `HKLM\SYSTEM\CurrentControlSet\Control\Session Manager` | `BootExecute`, AppCertDlls, and other early execution settings. |
-| `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs` | Legacy DLL injection settings; OS protections affect behavior. |
+| `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs` | Legacy DLL injection settings; OS protections affect behaviour. |
 | `HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components` | Per-user execution at logon. |
 | `HKCU\Environment` | User environment and logon execution abuse, including `UserInitMprLogonScript`. |
 
@@ -42,17 +42,17 @@ Registry data is both live configuration and historical evidence. A key's presen
 | `HKLM\SYSTEM\CurrentControlSet\Control\Lsa\DisableRestrictedAdmin` | Despite the name, `0` enables Restricted Admin Mode and `1` disables it; easy to invert when reading quickly. |
 | `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA` | UAC changes; reboot and policy context matter. |
 
-## Forensic and activity artifacts
+## Forensic and activity artefacts
 
 | Path | What it can support | Caveat |
 | ---- | ------------------- | ------ |
 | `HKLM\SYSTEM\MountedDevices` and `...\Enum\USBSTOR` | Volume and USB-device association | Presence does not prove malicious transfer. |
-| `HKCU\Software\Microsoft\Terminal Server Client\Servers` | RDP destination history | Per-user artifact; deletion and roaming affect completeness. |
+| `HKCU\Software\Microsoft\Terminal Server Client\Servers` | RDP destination history | Per-user artefact; deletion and roaming affect completeness. |
 | `HKCU\Network` | Mapped drive configuration | Correlate with SMB and logon telemetry. |
 | `HKCU\...\Explorer\RunMRU` | Run-dialog history | User interaction evidence, not a complete execution record. |
-| `HKCU\...\Explorer\UserAssist` | GUI program-use artifacts | ROT13 names and version-specific binary structures. |
+| `HKCU\...\Explorer\UserAssist` | GUI program-use artefacts | ROT13 names and version-specific binary structures. |
 | `HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache` | Program presence and compatibility metadata | Do not claim execution solely from Shimcache. |
-| `HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\<SID>` | Recent executable activity | Version, shutdown, and retention behavior matter. |
+| `HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\<SID>` | Recent executable activity | Version, shutdown, and retention behaviour matter. |
 | `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall` | Installed software metadata | Also inspect Wow6432Node and per-user equivalents. |
 
 ## Collection and pivots
@@ -70,5 +70,5 @@ Collect Sysmon Events 12-14, Defender `DeviceRegistryEvents`, Security process c
 | Revised Date | Comment |
 | ------------ | ------- |
 | 2025-03-21 | Article added |
-| 2026-07-22 | Corrected semantics and added artifacts, caveats, and pivots |
+| 2026-07-22 | Corrected semantics and added artefacts, caveats, and pivots |
 | 2026-07-22 | Corrected the DisableRestrictedAdmin value semantics after QA |

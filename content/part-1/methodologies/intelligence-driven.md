@@ -205,7 +205,7 @@ For intelligence-driven hunting, the goal is usually to move from:
 Search for this indicator.
 ```
 
-toward:
+towards:
 
 ```text
 Test whether this adversary behaviour appears locally.
@@ -391,7 +391,7 @@ It is not a replacement for hypothesis-driven or anomaly-driven hunting. It can 
 | TaHiTI                | Provides a methodology for turning intelligence into hunt triggers, backlog items, hypotheses, investigation scope and final outputs. |
 | PEAK                  | Provides the lifecycle for preparing, executing and acting on the hunt.                                                               |
 | MITRE ATT&CK          | Provides behavioural vocabulary for describing adversary techniques and shaping what to look for.                                     |
-| Pyramid of Pain       | Helps move from fragile indicators toward durable behaviours and procedures.                                                          |
+| Pyramid of Pain       | Helps move from fragile indicators towards durable behaviours and procedures.                                                          |
 | OODA Loop             | Helps the hunter adapt as new evidence changes the understanding of the hunt.                                                         |
 | MaGMa                 | Helps preserve and manage resulting use cases, detections, metrics and improvement work.                                              |
 | Detection engineering | Turns useful hunt findings into tested, tuned and owned detection logic where appropriate.                                            |

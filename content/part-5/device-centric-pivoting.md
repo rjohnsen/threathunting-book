@@ -23,11 +23,11 @@ The examples use neutral placeholders and starting thresholds. Table availabilit
 | Device name | `DeviceInfo` | `DeviceId` | Which Defender entity represents the host? |
 | Device | `DeviceNetworkInfo` | `DeviceId` | Which addresses and networks belonged to it? |
 | Device or IP | `DeviceNetworkEvents` | `DeviceId`, IP, time | What communicated with it, and what did it contact? |
-| Device | `DeviceProcessEvents` | `ProcessUniqueId` | Which process tree explains the behavior? |
+| Device | `DeviceProcessEvents` | `ProcessUniqueId` | Which process tree explains the behaviour? |
 | Process | `DeviceNetworkEvents` | initiating process unique ID | Which destinations did that process use? |
 | Device | `DeviceFileEvents` | `DeviceId`, `SHA1` | What was created, staged, or transferred? |
 | Device and account | `DeviceLogonEvents` | SID, Logon ID | Which identity and session were involved? |
-| Device | `DeviceEvents` | `DeviceId`, `ActionType` | Which security-control or specialized events add context? |
+| Device | `DeviceEvents` | `DeviceId`, `ActionType` | Which security-control or specialised events add context? |
 | Alert | `AlertEvidence` | `AlertId` | Which entities and evidence support the alert? |
 
 Prefer `DeviceId` over a mutable hostname, process unique identifiers over reused PIDs, and SID or object ID over display names.
@@ -186,7 +186,7 @@ Keep joins narrow. Filter time, project only required columns, and summarize sna
 5. Pivot to file, logon, registry, named-pipe, and alert evidence.
 6. Compare with the device role, peers, user history, and change records.
 7. Record telemetry gaps and alternative explanations.
-8. Expand fleet-wide only after identifying stable behaviors or pivots.
+8. Expand fleet-wide only after identifying stable behaviours or pivots.
 
 ## References
 

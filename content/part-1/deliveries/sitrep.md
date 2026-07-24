@@ -70,12 +70,12 @@ A SITREP should not be a data dump. It should not include every detail of the in
 A common mistake is to confuse a SITREP with a PROGREP. They are related, but they are not the same:
 
 * A SITREP describes the current situation.
-* A PROGREP describes progress toward a goal.
+* A PROGREP describes progress towards a goal.
 
 | Report type | Main question                                     | Typical use                                                                   |
 | ----------- | ------------------------------------------------- | ----------------------------------------------------------------------------- |
 | SITREP      | What is the situation right now?                  | Situational awareness, escalation, handover and decision support.             |
-| PROGREP     | What progress has been made toward the objective? | Tracking milestones, remediation, investigation progress and task completion. |
+| PROGREP     | What progress has been made towards the objective? | Tracking milestones, remediation, investigation progress and task completion. |
 
 In simple terms:
 

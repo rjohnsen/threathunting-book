@@ -273,7 +273,7 @@ The better question is:
 Which behaviours make this tool useful to the adversary, and can we detect those behaviours even if the tool changes?
 ```
 
-This is where tool-focused detection starts to move toward TTP-focused detection.
+This is where tool-focused detection starts to move towards TTP-focused detection.
 
 ## Tactics, Techniques and Procedures
 
@@ -301,7 +301,7 @@ That does not mean every hunt must start at the top of the pyramid. In practice,
 
 That movement up the pyramid is the practical value.
 
-> The goal is not to ignore low-level indicators. The goal is to use them as starting points and move toward behaviour.
+> The goal is not to ignore low-level indicators. The goal is to use them as starting points and move towards behaviour.
 >
 > -- Roger Johnsen
 
@@ -333,7 +333,7 @@ Who connected to this domain, what process made the connection, what happened be
 
 This turns one domain into a path for understanding behaviour.
 
-The Pyramid of Pain helps the hunter avoid getting stuck at the lowest available indicator. It encourages movement from simple matches toward patterns that may create lasting defensive value.
+The Pyramid of Pain helps the hunter avoid getting stuck at the lowest available indicator. It encourages movement from simple matches towards patterns that may create lasting defensive value.
 
 ## Practical Example: From Hash to Behaviour
 
@@ -462,7 +462,7 @@ The practical workflow is:
 ```text
 Start with the indicator you have.
 Understand the context.
-Move toward behaviour.
+Move towards behaviour.
 Create detection or response value.
 ```
 

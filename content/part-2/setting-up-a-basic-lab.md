@@ -9,7 +9,7 @@ __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
 
-**Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analyzing potential security threats. There are many systems out there that fit the bill, to just name a few:**
+**Being a successful threat hunter means having access to the right tools. One such tool is a system for log querying, which is crucial for detecting and analysing potential security threats. There are many systems out there that fit the bill, to just name a few:**
 
 - **Elastic**
 - **QRadar**
@@ -18,7 +18,7 @@ __Author:__ _Roger C.B. Johnsen_
 - **WAZUH**
 - **Datadog**
 
-**And there are surely many other alternatives too. In this chapter, we are going to set up a tool called [OpenSearch](https://opensearch.org/). OpenSearch is an open-source search and analytics suite derived from [Elasticsearch](https://www.elastic.co/) 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualize, and analyze large volumes of data. OpenSearch will be install in [Alma Linux](https://almalinux.org/) (Redhat Linux clone) running on the [VirtualBox](https://www.virtualbox.org/) hypervisor. Before we start on the installation procedure, lets talk some about the various components of this stack.**
+**And there are surely many other alternatives too. In this chapter, we are going to set up a tool called [OpenSearch](https://opensearch.org/). OpenSearch is an open-source search and analytics suite derived from [Elasticsearch](https://www.elastic.co/) 7.10 and Kibana 7.10. It provides a powerful, community-driven platform for log querying and analysis, enabling threat hunters to efficiently search, visualise, and analyse large volumes of data. OpenSearch will be install in [Alma Linux](https://almalinux.org/) (Redhat Linux clone) running on the [VirtualBox](https://www.virtualbox.org/) hypervisor. Before we start on the installation procedure, lets talk some about the various components of this stack.**
 
 {{% notice info %}}
 This chapter serves as a foundational introduction for setting up OpenSearch and is also the basis for the automatical installation routine descbribed in chapter [Setting up a complete lab](https://huntbook.predefender.com/part-2/setting-up-a-complete-lab/index.html)
@@ -30,7 +30,7 @@ This chapter serves as a foundational introduction for setting up OpenSearch and
 
 ![OpenSearch](/images/Opensearch_Logo.svg.png)
 
-OpenSearch was created by Amazon Web Services (AWS) after Elasticsearch changed its license from Apache 2.0 to Server Side Public License (SSPL). OpenSearch retains the core functionalities of Elasticsearch and Kibana but remains fully open-source under the Apache 2.0 License. This ensures that it remains free to use, modify, and distribute, making it an attractive option for organizations seeking a robust, community-supported solution without the constraints of more restrictive licenses.
+OpenSearch was created by Amazon Web Services (AWS) after Elasticsearch changed its licence from Apache 2.0 to Server Side Public License (SSPL). OpenSearch retains the core functionalities of Elasticsearch and Kibana but remains fully open-source under the Apache 2.0 License. This ensures that it remains free to use, modify, and distribute, making it an attractive option for organisations seeking a robust, community-supported solution without the constraints of more restrictive licences.
 
 #### Key Features of OpenSearch
 
@@ -41,17 +41,17 @@ OpenSearch offers a range of features that make it ideal for threat hunting and 
 | **Full-Text Search** | Allows for fast and comprehensive searching across large datasets. |
 | **Real-Time Data Ingestion** | Supports real-time data ingestion and indexing, crucial for up-to-the-minute threat detection. |
 | **Advanced Analytics** | Provides tools for complex data analysis, including aggregations, histograms, and geospatial data. |
-| **Visualization** | Integrated with OpenSearch Dashboards, it offers rich visualization capabilities to create intuitive charts, graphs, and maps. |
+| **Visualisation** | Integrated with OpenSearch Dashboards, it offers rich visualisation capabilities to create intuitive charts, graphs, and maps. |
 | **Security** | Built-in security features such as fine-grained access control, encryption, and audit logging ensure that your data remains protected. |
 | **Scalability** | Designed to scale horizontally, OpenSearch can handle large volumes of data across distributed systems. |
 
 #### Community and Ecosystem
 
-OpenSearch benefits from a vibrant and growing community of contributors and users. AWS, along with other organizations, actively supports the project, driving innovation and ensuring regular updates and enhancements. This community-driven approach ensures that OpenSearch evolves to meet the needs of its users, fostering an ecosystem of shared knowledge and best practices.
+OpenSearch benefits from a vibrant and growing community of contributors and users. AWS, along with other organisations, actively supports the project, driving innovation and ensuring regular updates and enhancements. This community-driven approach ensures that OpenSearch evolves to meet the needs of its users, fostering an ecosystem of shared knowledge and best practices.
 
 #### Integration and Use Cases
 
-OpenSearch integrates seamlessly with a variety of data sources and tools, making it versatile and adaptable to different environments. Whether you're aggregating logs from cloud services, network devices, or application servers, OpenSearch can handle the data ingestion and provide valuable insights through its powerful querying and visualization capabilities.
+OpenSearch integrates seamlessly with a variety of data sources and tools, making it versatile and adaptable to different environments. Whether you're aggregating logs from cloud services, network devices, or application servers, OpenSearch can handle the data ingestion and provide valuable insights through its powerful querying and visualisation capabilities.
 
 In this chapter, we will guide you through the setup of OpenSearch, from installation to configuration and initial usage. By the end, you'll have a robust log querying tool at your disposal, tailored to enhance your threat-hunting capabilities.
 
@@ -72,7 +72,7 @@ This installation routine doesn't cover installation of Virtualbox and Alma Linu
 
 ### VirtualBox NAT Network settings
 
-Prior to installation of Alma, we should make sure we have a decent NAT network at hand for our lab environment. In In Virtualbox "Network Manager" we set up a NAT Network dedicated for this lab, using the following settings: 
+Prior to installation of Alma, we should make sure we have a decent NAT network at hand for our lab environment. In In Virtualbox "Network Manager" we set up a NAT Network dedicated for this lab, using the following settings:
 
 | Setting | Value | Comment |
 | ------- | ----- | ------- |
@@ -86,12 +86,12 @@ We will return finishing setting up the NAT Network settings later in this chapt
 
 For our Alma Linux guest we will use the following settings (consider these as bare minumum):
 
-| Setting | Value | Comment | 
+| Setting | Value | Comment |
 | ------- | ----- | ------- |
 | Base memory (RAM) | 8192MB | More is better |
-| CPU | 4 | | 
+| CPU | 4 | |
 | Disk Size | 150 GB | More is better |
-| Video Memory | 128 MB (max) | This ensures that Almas installer runs smoothly, and you are well prepared if you want GUI later on. | 
+| Video Memory | 128 MB (max) | This ensures that Almas installer runs smoothly, and you are well prepared if you want GUI later on. |
 | Network Adapter 1 | Nat Network |
 | Nat Network | ThreatHuntingNetwork |
 
@@ -120,7 +120,7 @@ sudo systemctl start sshd
 
 We are going to run OpenSearch in Docker. The following guide is based upon this page: https://www.liquidweb.com/blog/install-docker-on-linux-almalinux/
 
-Ensure Alma Linux is fully updated before proceeding: 
+Ensure Alma Linux is fully updated before proceeding:
 
 ```bash
 sudo dnf --refresh update
@@ -289,8 +289,8 @@ http://127.0.0.1:5601/app/home#/
 
 If things goes awry, please consult either the Docker, Alma or OpenSearch technial documentation and/or forums.
 
-## Revision 
+## Revision
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| 06.10.2024   | Improved formatting and wording |

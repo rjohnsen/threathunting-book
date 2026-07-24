@@ -233,7 +233,7 @@ For example:
 The report contains a phishing domain.
 ```
 
-That may trigger scoping and blocking. But TaHiTI pushes the team toward a better hunting question:
+That may trigger scoping and blocking. But TaHiTI pushes the team towards a better hunting question:
 
 ```text
 Does the campaign behaviour described in the report appear in our environment, and do we see signs that users interacted with the lure, authenticated to attacker-controlled infrastructure or showed follow-on identity activity?

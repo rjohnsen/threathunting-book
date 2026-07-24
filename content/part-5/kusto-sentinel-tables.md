@@ -64,7 +64,7 @@ For complete workflows, see [Device-centric Pivoting in Defender XDR](../device-
 1. Filter time and reduce columns before joins.
 2. Prefer stable service identifiers such as `DeviceId`, account SID/object ID, `AlertId`, and `NetworkMessageId`.
 3. Use process unique identifiers where available; PIDs are reused.
-4. Normalize case and identity format before joining names.
+4. Normalise case and identity format before joining names.
 5. Use `arg_max(Timestamp, *) by DeviceId` for the latest snapshot, not an unconstrained join to `DeviceInfo`.
 6. Use `leftouter` when enrichment may be absent and `innerunique` only when its left-side deduplication is intended.
 7. Treat `AdditionalFields` as dynamic data and parse only the keys needed.

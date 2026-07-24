@@ -37,7 +37,7 @@ PowerShell 7 writes to `PowerShellCore/Operational`; Windows PowerShell uses `Mi
 | `Invoke-WebRequest`, `Invoke-RestMethod`, `DownloadString` | Retrieves or submits content. | Destination, response type, file writes, and follow-on execution. |
 | `FromBase64String`, compression, XOR | Can unpack staged content. | Decode safely and hash extracted material. |
 | Reflection, `Add-Type`, unmanaged API calls | May execute in memory or bypass normal tooling. | Script block, loaded modules, memory alerts, child activity. |
-| AMSI or logging modification strings | May indicate defense evasion. | Registry/config changes, errors, and security product telemetry. |
+| AMSI or logging modification strings | May indicate Defense Evasion. | Registry/config changes, errors, and security product telemetry. |
 | PowerShell from Office, browser, archive tool, or service | Unusual parent-child relationship. | User action, file origin, signer, and adjacent events. |
 
 Execution policy is not a security boundary. `-ExecutionPolicy Bypass` is context, not proof of compromise.
@@ -45,7 +45,7 @@ Execution policy is not a security boundary. `-ExecutionPolicy Bypass` is contex
 ## Triage workflow
 
 1. Preserve the original command line and script block events.
-2. Normalize aliases and decode layers without executing content.
+2. Normalise aliases and decode layers without executing content.
 3. Build the process tree and identify logon session and parent.
 4. Correlate DNS, network, file, registry, task, service, and WMI activity.
 5. Compare the host, user, script path, signer, and destination with baseline.

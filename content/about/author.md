@@ -9,7 +9,7 @@ weight: 1
 
 ![Roger](/images/roger.jpg)
 
-I work as a Lead Security Architect with a strong focus on security operations, threat hunting, threat-informed defense, detection engineering, and practical blue team capability building.
+I work as a Lead Security Architect with a strong focus on security operations, threat hunting, threat-informed defence, detection engineering, and practical blue team capability building.
 
 My background sits somewhere between security operations, software development, analyst enablement, and hands-on investigation work. I have worked as a SOC analyst, threat hunter, penetration tester, developer, consultant, trainer, and security leader. That mix has shaped how I think about security: good security work needs structure, technical depth, operational realism, and people who understand why they are doing what they are doing.
 
@@ -25,7 +25,7 @@ Over time, my work moved from software development and systems work into vulnera
 
 | When | Title | Company | Focus |
 | ---- | ----- | ------- | ----- |
-| Jun 2025 - Cur | Lead Security Architect | Orkla IT | Threat-informed defense, threat hunting, resilience, security architecture |
+| Jun 2025 - Cur | Lead Security Architect | Orkla IT | Threat-informed defence, threat hunting, resilience, security architecture |
 | Mar 2024 - Jun 2025 | Head of Cyber Security Operations | Orkla IT | Leading cyber security operations |
 | Oct 2023 - Jun 2025 | SOC Analyst | Orkla IT | SOC lead analyst, threat hunting, training |
 | Sep 2020 - Sep 2023 | Senior Security Analyst / Head of Training | Defendable AS | SOC analysis, threat hunting, mentoring, education |

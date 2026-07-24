@@ -9,9 +9,9 @@ __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
 
-**Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviors, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analyzing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defenses.**
+**Windows logs are vital for threat hunters because they provide critical insights into system activities, security incidents, and potential vulnerabilities. These logs capture detailed information about user actions, application behaviours, and system events, helping to identify suspicious activities and trace the steps of potential threats. By analysing Windows Event Logs, threat hunters can detect anomalies, investigate security breaches, and ensure robust system defences.**
 
-**This chapter offers a generic guide for ingesting Windows `.evtx` logs into OpenSearch. This process will help you centralize and analyze your Windows logs, facilitating more effective threat detection and response within your security infrastructure.**
+**This chapter offers a generic guide for ingesting Windows `.evtx` logs into OpenSearch. This process will help you centralise and analyse your Windows logs, facilitating more effective threat detection and response within your security infrastructure.**
 
 ---
 
@@ -25,7 +25,7 @@ There aren't just one central Windows log, sadly. Here's a quick rundown of the 
 | **Security Logs**   | Records events related to security, such as login attempts and access to resources. Essential for audits. |
 | **System Logs**     | Includes events logged by Windows system components, such as driver failures during startup.               |
 | **Setup Logs**      | Contains events related to software installations and updates, useful for troubleshooting installation issues. |
-| **Forwarded Events** | Logs collected from other systems in a centralized location, useful in environments with multiple computers. |
+| **Forwarded Events** | Logs collected from other systems in a centralised location, useful in environments with multiple computers. |
 
 ### How to Obtain Windows Logs
 
@@ -39,7 +39,7 @@ This simplified list provides the essential steps for obtaining Windows logs usi
 
 ## Prerequisites before the first ingest
 
-Before we can ingest Windows logs for the first time, there are some steps we need to do to prepare OpenSearch. 
+Before we can ingest Windows logs for the first time, there are some steps we need to do to prepare OpenSearch.
 
 ### Enabling OpenSearch compability setting
 
@@ -56,25 +56,25 @@ PUT _cluster/settings
 }
 ```
 
-Enable this setting by going into the __"Dev Tools"__ tool (__"Hamburger menu" -> "Management" -> "Dev Tools"__). Paste the above code into the left side panel, then hit the "Click to send request"/"Play" button. The status from this query is shown in the right panel, like so: 
+Enable this setting by going into the __"Dev Tools"__ tool (__"Hamburger menu" -> "Management" -> "Dev Tools"__). Paste the above code into the left side panel, then hit the "Click to send request"/"Play" button. The status from this query is shown in the right panel, like so:
 
 ![OpenSearch](/images/opensearch-devtools.png)
 
 ### Download Winlogbeat
 
-**Winlogbeat** is a lightweight shipper for forwarding and centralizing Windows Event Logs. It is part of the Elastic Stack (ELK Stack) and is specifically designed to collect Windows event logs and forward them to Elasticsearch, Logstash, or a third-party service for further analysis and visualization.
+**Winlogbeat** is a lightweight shipper for forwarding and centralising Windows Event Logs. It is part of the Elastic Stack (ELK Stack) and is specifically designed to collect Windows event logs and forward them to Elasticsearch, Logstash, or a third-party service for further analysis and visualisation.
 
 When we say shipper, we mean "a binary that take your logs and sends it to the SIEM" - to put it bluntly. You can obtain Winlogbeat from here:
 
 * https://opensearch.org/docs/latest/tools/
 
-Make sure to cast a glimps of the technical documentation available here before running it: 
+Make sure to cast a glimps of the technical documentation available here before running it:
 
 * https://www.elastic.co/downloads/past-releases/winlogbeat-oss-7-12-1
 
 #### Install Winlogbeat
 
-We are goint to download the "Windows ZIP 64-bit" version and run it from a Windows machine. Winlogbeat is intended to be installed as a service, but we'll use it to ship Windows logs adhoc from the command line. 
+We are goint to download the "Windows ZIP 64-bit" version and run it from a Windows machine. Winlogbeat is intended to be installed as a service, but we'll use it to ship Windows logs adhoc from the command line.
 
 Download said file to ```C:\WinlogBeat``` or any suitable place, then unzip.
 
@@ -84,11 +84,11 @@ Create a Winlogbeat configuration file (winlogbeat.yml) with the following conte
 
 ```yaml
 winlogbeat.event_logs:
-  - name: ${EVTX_FILE} 
+  - name: ${EVTX_FILE}
     no_more_events: stop
 
-winlogbeat.shutdown_timeout: 10s 
-winlogbeat.registry_file: evtx-registry.yml 
+winlogbeat.shutdown_timeout: 10s
+winlogbeat.registry_file: evtx-registry.yml
 output.elasticsearch.hosts: ['http://127.0.0.1:9200']
 ```
 
@@ -96,11 +96,11 @@ If using HTTPS, please consider the following:
 
 ```yaml
 winlogbeat.event_logs:
-  - name: ${EVTX_FILE} 
+  - name: ${EVTX_FILE}
     no_more_events: stop
 
-winlogbeat.shutdown_timeout: 10s 
-winlogbeat.registry_file: evtx-registry.yml 
+winlogbeat.shutdown_timeout: 10s
+winlogbeat.registry_file: evtx-registry.yml
 output.elasticsearch:
   hosts: ["https://127.0.0.1:9200"]
   username: "" # Change this
@@ -116,15 +116,15 @@ Run the following command in Windows powershell.exe:
 PS C:\Winlogbeat> winlogbeat-7.12.1-windows-x86_64\winlogbeat.exe -e -c C:\Winlogbeat\winlogbeat.yml -E EVTX_FILE=C:\Winlogbeat\security.evtx
 ```
 
-If success, you should have several "winlogbeat-*" indices under "Index Management" (__"Hamburger menu" -> "Management" -> "Index Management" -> "Indexes"__). 
+If success, you should have several "winlogbeat-*" indices under "Index Management" (__"Hamburger menu" -> "Management" -> "Index Management" -> "Indexes"__).
 
 ![Indexes list](/images/winlogbeat-indexes-list.png)
 
-## Create Index Alias 
+## Create Index Alias
 
 For us to make use of these in "Discovery", we must set up Index Alias for these.
 
-Keep in mind that "Discover" (the main query interface) knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__: 
+Keep in mind that "Discover" (the main query interface) knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__:
 
 ![Manage dashboard 2](/images/manage-dashboard-2.png)
 
@@ -140,7 +140,7 @@ Then point to a time field to use and click save (as mentioned in the "A note on
 
 ![Manage dashboard 5](/images/winlogbeat-index-pattern-time.png)
 
-If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in. 
+If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in.
 
 ![Manage dashboard 6](/images/winlogbeat-discovery.png)
 
@@ -148,4 +148,4 @@ If we go back to __"Discover"__, we can now see that our __"Index alias"__ is av
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| 06.10.2024   | Improved formatting and wording |

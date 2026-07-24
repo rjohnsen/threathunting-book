@@ -9,26 +9,26 @@ __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
 
-**There are findings in threat hunting that most organizations treat as the end of the investigation. A suspicious process. An unusual command line. A strange authentication pattern. A tool found on disk. The list goes on. The case gets scoped, the immediate risk is handled and everyone moves on.**
+**There are findings in threat hunting that most organisations treat as the end of the investigation. A suspicious process. An unusual command line. A strange authentication pattern. A tool found on disk. The list goes on. The case gets scoped, the immediate risk is handled and everyone moves on.**
 
 **But for a threat hunter, a finding should not only answer what happened. It should create a better question: how would we find this again?**
 
-**That question is where threat hunting starts to overlap with detection engineering. Detection engineering is not just writing rules. It is the process of turning behavior, telemetry and context into something an analyst can act on. Threat hunters are useful in that process because they often see suspicious behavior before it becomes mature detection logic.**
+**That question is where threat hunting starts to overlap with detection engineering. Detection engineering is not just writing rules. It is the process of turning behaviour, telemetry and context into something an analyst can act on. Threat hunters are useful in that process because they often see suspicious behaviour before it becomes mature detection logic.**
 
 {{% notice info %}}
 The information in this article is also relevant for SOC analysts.
-{{% /notice %}} 
+{{% /notice %}}
 
 ---
 
 ## Why Threat Hunters Matter to Detection Engineering
 
-Threat hunters work close to the raw investigation process. They look at process trees, command lines, authentication flows, network connections, file activity, registry changes, named pipes, remote services, cloud events, and whatever else the investigation requires. They move between data sources. They pivot. They compare. They ask whether the data supports the hypothesis or whether the hypothesis needs to change. This gives hunters a practical view of how suspicious behavior appears in telemetry.
+Threat hunters work close to the raw investigation process. They look at process trees, command lines, authentication flows, network connections, file activity, registry changes, named pipes, remote services, cloud events, and whatever else the investigation requires. They move between data sources. They pivot. They compare. They ask whether the data supports the hypothesis or whether the hypothesis needs to change. This gives hunters a practical view of how suspicious behaviour appears in telemetry.
 
 A threat hunter can say:
 
 ```text
-This behavior appears as an executable in a user-writable location launched by explorer.exe, followed by an outbound connection to an uncommon domain and a file write in the user's temp directory.
+This behaviour appears as an executable in a user-writable location launched by explorer.exe, followed by an outbound connection to an uncommon domain and a file write in the user's temp directory.
 ```
 
 That is much more useful than:
@@ -37,11 +37,11 @@ That is much more useful than:
 Suspicious executable observed.
 ```
 
-The first version describes behavior. The second version describes a feeling. Detection engineering needs behavior.
+The first version describes behaviour. The second version describes a feeling. Detection engineering needs behaviour.
 
 ---
 
-## From Observation to Behavior
+## From Observation to Behaviour
 
 A raw observation is rarely enough. The starting point is not what the attacker happened to use. The starting point is what the attacker had to do.
 
@@ -67,13 +67,13 @@ Add command-line context:
 powershell.exe was launched by winword.exe with an encoded command line
 ```
 
-Now the behavior is stronger. Add follow-on activity:
+Now the behaviour is stronger. Add follow-on activity:
 
 ```text
 powershell.exe was launched by winword.exe with an encoded command line, wrote a file to a user-writable path, and initiated outbound network communication shortly after execution
 ```
 
-Now we have something that begins to look like detection engineering material. The observation has become behavior. The goal is not only to collect interesting facts. The goal is to describe what happened in a way that can be tested, searched for, and potentially detected again.
+Now we have something that begins to look like detection engineering material. The observation has become behaviour. The goal is not only to collect interesting facts. The goal is to describe what happened in a way that can be tested, searched for, and potentially detected again.
 
 ---
 
@@ -81,13 +81,13 @@ Now we have something that begins to look like detection engineering material. T
 
 Threat hunters need to separate three related but different concepts.
 
-> The term IOB is not as universally standardized as IOC or IOA, and some teams simply refer to this as behavioral indicators. I use it here as a 1 distinction: the behavior itself sits between the concrete artifact and the telemetry pattern used for detection.
+> The term IOB is not as universally standardised as IOC or IOA, and some teams simply refer to this as behavioural indicators. I use it here as a useful distinction: the behaviour itself sits between the concrete artefact and the telemetry pattern used for detection.
 
 | Type | Meaning                 | Detection Value                                                    |
 | ---- | ----------------------- | ------------------------------------------------------------------ |
-| IOC  | Indicator of Compromise | A concrete artifact observed in a case                             |
-| IOB  | Indicator of Behavior   | What the actor or tool did                                         |
-| IOA  | Indicator of Attack     | How that behavior appears in telemetry as attack-relevant activity |
+| IOC  | Indicator of Compromise | A concrete artefact observed in a case                             |
+| IOB  | Indicator of Behaviour   | What the actor or tool did                                         |
+| IOA  | Indicator of Attack     | How that behaviour appears in telemetry as attack-relevant activity |
 
 An IOC might be:
 
@@ -113,7 +113,7 @@ These are useful for scoping and immediate response. They help answer questions 
 * Did any other host connect to this domain?
 * Has this hash been seen before?
 
-IOCs are campaign artifacts, not attack logic. They are useful for scoping and rapid campaign detection, but they should not be confused with the behavior that made the attack possible. They are also fragile. The attacker can change the filename, hash, path, domain, infrastructure, or tool.
+IOCs are campaign artefacts, not attack logic. They are useful for scoping and rapid campaign detection, but they should not be confused with the behaviour that made the attack possible. They are also fragile. The attacker can change the filename, hash, path, domain, infrastructure, or tool.
 
 An IOB is more durable:
 
@@ -143,13 +143,13 @@ The goal is not to ignore IOCs. They are useful. But they should not be the only
 
 ## Keep IOC Rules Separate
 
-IOCs should not be baked into the behavioral detection logic. A behavioral rule should detect the action. IOC rules can be added as a separate safety net for known campaign artifacts such as IP addresses, domains, hashes, usernames, or user-agent strings. This keeps the behavioral rule durable. It also allows campaign-specific IOC rules to be added, tuned, or removed without weakening the core detection. The behavioral rule should still make sense the day the attacker changes infrastructure, filenames, accounts, or tools.
+IOCs should not be baked into the behavioural detection logic. A behavioural rule should detect the action. IOC rules can be added as a separate safety net for known campaign artefacts such as IP addresses, domains, hashes, usernames, or user-agent strings. This keeps the behavioural rule durable. It also allows campaign-specific IOC rules to be added, tuned, or removed without weakening the core detection. The behavioural rule should still make sense the day the attacker changes infrastructure, filenames, accounts, or tools.
 
 ---
 
 ## MITRE Is Classification, Not Detection Logic
 
-MITRE ATT&CK is useful. It gives us a shared language for adversary behavior. But MITRE is not detection logic. If a hunter maps an observation to `T1105 - Ingress Tool Transfer`, that tells us what class of behavior we are dealing with. It does not tell us exactly what to detect.
+MITRE ATT&CK is useful. It gives us a shared language for adversary behaviour. But MITRE is not detection logic. If a hunter maps an observation to `T1105 - Ingress Tool Transfer`, that tells us what class of behaviour we are dealing with. It does not tell us exactly what to detect.
 
 Tool transfer can appear in many ways:
 
@@ -168,27 +168,27 @@ All of these may map to the same technique, but they do not produce identical te
 The detection work starts when the hunter asks:
 
 ```text
-How does this behavior appear in our data?
+How does this behaviour appear in our data?
 ```
 
 ---
 
 ## From IOB to IOA
 
-The practical value of the IOB -> IOA transition is that it forces the hunter to translate behavior into telemetry.
+The practical value of the IOB -> IOA transition is that it forces the hunter to translate behaviour into telemetry.
 
 A simple example:
 
 | Step                | Example                                                                                                                  | Purpose                                                            |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | Observation         | `winword.exe` launched `powershell.exe`                                                                                  | A concrete event observed in telemetry                             |
-| IOB                 | User-facing application spawned a scripting interpreter                                                                  | Describes the behavior without depending on one exact process pair |
-| MITRE mapping       | Command and Scripting Interpreter, User Execution, and possibly Phishing if document or email context exists             | Classifies the behavior using a shared language                    |
-| IOA                 | Office process spawning a scripting interpreter with suspicious command-line arguments                                   | Describes how the behavior appears as attack-relevant telemetry    |
-| Hunt query          | Search process events for Office parent processes launching PowerShell, CMD, WScript, CScript, or MSHTA                  | Turns the behavior into something the hunter can search for        |
+| IOB                 | User-facing application spawned a scripting interpreter                                                                  | Describes the behaviour without depending on one exact process pair |
+| MITRE mapping       | Command and Scripting Interpreter, User Execution, and possibly Phishing if document or email context exists             | Classifies the behaviour using a shared language                    |
+| IOA                 | Office process spawning a scripting interpreter with suspicious command-line arguments                                   | Describes how the behaviour appears as attack-relevant telemetry    |
+| Hunt query          | Search process events for Office parent processes launching PowerShell, CMD, WScript, CScript, or MSHTA                  | Turns the behaviour into something the hunter can search for        |
 | Detection candidate | Alert on Office-to-scripting-interpreter chains with suspicious command-line patterns or follow-on network/file activity | Turns the hunting logic into a candidate for operational detection |
 
-This is where threat hunters contribute directly. A detection engineer may write the final production logic, but the hunter often understands the behavior, the investigative context, and the weak signals that made the activity suspicious in the first place.
+This is where threat hunters contribute directly. A detection engineer may write the final production logic, but the hunter often understands the behaviour, the investigative context, and the weak signals that made the activity suspicious in the first place.
 
 The handover should preserve that thinking.
 
@@ -209,7 +209,7 @@ flowchart LR
     G --> H[Analyst Guidance]
 ```
 
-The exact order may vary in real investigations. Sometimes the hunter starts with a MITRE technique. Sometimes the starting point is a SOC alert, a malware sample, a red team observation, or a strange process chain. The value of the model is not that every hunt must follow it perfectly. The value is that it forces the hunter to move from isolated facts toward reusable detection knowledge.
+The exact order may vary in real investigations. Sometimes the hunter starts with a MITRE technique. Sometimes the starting point is a SOC alert, a malware sample, a red team observation, or a strange process chain. The value of the model is not that every hunt must follow it perfectly. The value is that it forces the hunter to move from isolated facts towards reusable detection knowledge.
 
 ---
 
@@ -242,11 +242,11 @@ There are two useful forms of noise to separate:
 * **Environmental noise** tells you how the environment actually behaves.
 * **Alert noise** tells you how detection logic behaves inside that environment.
 
-Environmental noise shows you admin behavior, developer behavior, software deployment, security tooling, business applications, service accounts, background jobs, retries, failures, and all the other activity that makes the environment messy.
+Environmental noise shows you admin behaviour, developer behaviour, software deployment, security tooling, business applications, service accounts, background jobs, retries, failures, and all the other activity that makes the environment messy.
 
 Alert noise shows you what happens when detection logic meets reality. It may reveal that a rule is too broad, that severity is wrong, that analyst guidance is weak, that enrichment is missing, or that normal activity differs from the assumptions behind the detection.
 
-A noisy alert is not automatically useless. It may be an unfinished detection, a poorly contextualized detection, or a correct detection deployed into an environment we do not yet understand.
+A noisy alert is not automatically useless. It may be an unfinished detection, a poorly contextualised detection, or a correct detection deployed into an environment we do not yet understand.
 
 A SOC analyst may say:
 
@@ -260,7 +260,7 @@ A threat hunter should ask:
 Why is it noisy?
 ```
 
-That question can lead to better detection design. Maybe the alert should suppress known admin tooling. Maybe it should split workstation behavior from server behavior. Maybe it should enrich with device role, user role, parent process, signer, prevalence, execution path, or follow-on network activity. Maybe it should be downgraded in one context and upgraded in another.
+That question can lead to better detection design. Maybe the alert should suppress known admin tooling. Maybe it should split workstation behaviour from server behaviour. Maybe it should enrich with device role, user role, parent process, signer, prevalence, execution path, or follow-on network activity. Maybe it should be downgraded in one context and upgraded in another.
 
 Noise becomes information when the analyst changes the question!
 
@@ -272,27 +272,27 @@ False positives are part of alert noise, but they should not only be counted. Th
 
 | What the false positive tells you                                    | What it may mean                                                                                 |
 | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| The detection assumes something that is not true in the environment  | The rule was built on an incorrect assumption about normal behavior                              |
+| The detection assumes something that is not true in the environment  | The rule was built on an incorrect assumption about normal behaviour                              |
 | The query logic is too broad                                         | The detection matches too many generic patterns                                                  |
 | The data source lacks needed context                                 | Additional telemetry or enrichment is required                                                   |
 | The detection needs enrichment                                       | Fields such as device role, user role, signer, path, prevalence, or parent process may be needed |
-| The behavior is common for a specific team, tool, or system          | The detection may need scoped logic or environment-specific tuning                               |
-| The detection should be split into variants                          | One rule may be trying to cover too many different behaviors                                     |
+| The behaviour is common for a specific team, tool, or system          | The detection may need scoped logic or environment-specific tuning                               |
+| The detection should be split into variants                          | One rule may be trying to cover too many different behaviours                                     |
 | The severity is too high                                             | The detection may be useful, but not as urgent as originally assumed                             |
 | The triage guidance is unclear                                       | Analysts do not have enough information to make a decision                                       |
-| The rule catches benign behavior that resembles adversary tradecraft | The behavior may still be worth tracking, but it needs better context                            |
+| The rule catches benign behaviour that resembles adversary tradecraft | The behaviour may still be worth tracking, but it needs better context                            |
 
 Useful false positive categories include:
 
 | Category                | Example                                                                                   | Detection lesson                                                       |
 | ----------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Expected admin behavior | Remote execution from a known admin platform                                              | Suppress, scope, or enrich with known administrative tooling           |
+| Expected admin behaviour | Remote execution from a known admin platform                                              | Suppress, scope, or enrich with known administrative tooling           |
 | Business process        | An application legitimately performs unusual file operations                              | Understand the business workflow before tuning the rule                |
-| Developer behavior      | Build tools, scripts, and test frameworks trigger suspicious patterns                     | Separate developer workstations or build systems from normal endpoints |
-| Security tooling        | EDR, vulnerability scanners, deployment systems, or testing tools mimic attacker behavior | Identify and tag trusted security tooling                              |
-| Weak query logic        | The rule matches too many generic command-line patterns                                   | Tighten the logic or add additional behavioral conditions              |
+| Developer behaviour      | Build tools, scripts, and test frameworks trigger suspicious patterns                     | Separate developer workstations or build systems from normal endpoints |
+| Security tooling        | EDR, vulnerability scanners, deployment systems, or testing tools mimic attacker behaviour | Identify and tag trusted security tooling                              |
+| Weak query logic        | The rule matches too many generic command-line patterns                                   | Tighten the logic or add additional behavioural conditions              |
 | Missing context         | The alert lacks device role, user role, signer, path, prevalence, or other enrichment     | Improve enrichment before promoting the rule                           |
-| Bad assumption          | The behavior was assumed rare, but is normal in the environment                           | Revisit the hypothesis behind the detection                            |
+| Bad assumption          | The behaviour was assumed rare, but is normal in the environment                           | Revisit the hypothesis behind the detection                            |
 
 A false positive is only wasted if nobody learns from it.
 
@@ -302,9 +302,9 @@ A false positive is only wasted if nobody learns from it.
 
 Let us walk through a simple example:
 
-A common suspicious pattern is a Microsoft Office process launching a scripting interpreter. On its own, this is not enough to prove malicious activity. Office automation, legacy macros, business workflows, and security testing can all create similar behavior.
+A common suspicious pattern is a Microsoft Office process launching a scripting interpreter. On its own, this is not enough to prove malicious activity. Office automation, legacy macros, business workflows, and security testing can all create similar behaviour.
 
-But it is still a useful starting point because the behavior is meaningful.
+But it is still a useful starting point because the behaviour is meaningful.
 
 ### Starting Observation
 
@@ -316,9 +316,9 @@ winword.exe launched powershell.exe
 
 This observation tells us that a user-facing application spawned a scripting interpreter. That is the first important step. We are no longer looking only at a process name. We are looking at a relationship between processes.
 
-### Turning the Observation into Behavior
+### Turning the Observation into Behaviour
 
-The behavior can be described more generally:
+The behaviour can be described more generally:
 
 ```text
 User-facing application spawned a scripting interpreter.
@@ -326,7 +326,7 @@ User-facing application spawned a scripting interpreter.
 
 This is an IOB. It describes what happened without depending on the exact process names.
 
-The specific observation was `winword.exe` launching `powershell.exe`, but the broader behavior may also include other Office applications launching scripting or execution tools such as:
+The specific observation was `winword.exe` launching `powershell.exe`, but the broader behaviour may also include other Office applications launching scripting or execution tools such as:
 
 * `cmd.exe`
 * `powershell.exe`
@@ -335,7 +335,7 @@ The specific observation was `winword.exe` launching `powershell.exe`, but the b
 * `cscript.exe`
 * `mshta.exe`
 
-This makes the hunt more durable. We are not only searching for one executable pair. We are searching for a class of suspicious behavior.
+This makes the hunt more durable. We are not only searching for one executable pair. We are searching for a class of suspicious behaviour.
 
 ### MITRE Mapping
 
@@ -344,15 +344,15 @@ Possible mappings include:
 | Technique                                     | Why it may apply                                              | Evidence needed                                                                    |
 | --------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | T1059 - Command and Scripting Interpreter | PowerShell is a command and scripting interpreter             | `powershell.exe`, `pwsh.exe`, `cmd.exe`, or similar interpreter execution          |
-| T1204 - User Execution                    | The behavior may have started when the user opened a document | Evidence that the user opened or interacted with the file                          |
+| T1204 - User Execution                    | The behaviour may have started when the user opened a document | Evidence that the user opened or interacted with the file                          |
 | T1566 - Phishing                          | The document may have been delivered through email            | Email delivery, attachment metadata, sender context, or URL evidence               |
 | T1105 - Ingress Tool Transfer             | The command may have downloaded a payload                     | Network connection, download command, file creation, or external transfer evidence |
 
-The mapping depends on the full context. Do not force a technique if the evidence is not there. MITRE helps classify the behavior. It does not replace the investigation.
+The mapping depends on the full context. Do not force a technique if the evidence is not there. MITRE helps classify the behaviour. It does not replace the investigation.
 
-### From Behavior to IOA
+### From Behaviour to IOA
 
-The IOA describes how the behavior appears in telemetry as attack-relevant activity.  A simple IOA could be:
+The IOA describes how the behaviour appears in telemetry as attack-relevant activity.  A simple IOA could be:
 
 ```text
 Office application spawned a scripting interpreter with suspicious command-line arguments.
@@ -399,7 +399,7 @@ A production detection may need more context before it is useful for the SOC. Us
 * Follow-on file creation
 * Exclusion of known business macros or management tooling
 
-The detection candidate should focus on the behavior, not only the executable names. A better detection candidate could be described as:
+The detection candidate should focus on the behaviour, not only the executable names. A better detection candidate could be described as:
 
 ```text
 Alert when an Office application launches a scripting interpreter with suspicious command-line characteristics, especially when followed by file creation in a user-writable directory or outbound network communication.
@@ -430,8 +430,8 @@ When this alert fires, the analyst should check:
 * Did the process write files?
 * Did it connect externally?
 * Did it spawn additional processes?
-* Is the behavior known for this user or device?
-* Did similar behavior occur elsewhere?
+* Is the behaviour known for this user or device?
+* Did similar behaviour occur elsewhere?
 
 The value is not only in the alert. The value is in the investigation path the alert creates.
 
@@ -444,7 +444,7 @@ When a threat hunter finds something that may become a detection, the handover s
 A useful detection handover should include:
 
 ```markdown
-## Behavior
+## Behaviour
 
 What happened?
 
@@ -454,7 +454,7 @@ Why could this represent adversary activity?
 
 ## MITRE Mapping
 
-Which ATT&CK technique or sub-technique best describes the behavior?
+Which ATT&CK technique or sub-technique best describes the behaviour?
 
 ## Required Telemetry
 
@@ -462,11 +462,11 @@ Which logs, tables or sensors are needed?
 
 ## Example Hunt Query
 
-How was the behavior found?
+How was the behaviour found?
 
 ## Detection Candidate
 
-What logic could be operationalized?
+What logic could be operationalised?
 
 ## Expected True Positives
 
@@ -501,27 +501,27 @@ What should the SOC analyst check first?
 What should happen if the alert is confirmed?
 ```
 
-The goal is to make the finding detection-ready. Not production-ready. Detection-ready. The hunter does not always need to finish the production rule, but the hunter should provide enough behavioral and investigative context for detection engineering to continue the work.
+The goal is to make the finding detection-ready. Not production-ready. Detection-ready. The hunter does not always need to finish the production rule, but the hunter should provide enough behavioural and investigative context for detection engineering to continue the work.
 
 ---
 
 ## Where This Gets Difficult
 
-This workflow is simple on paper and harder in real environments. Telemetry may be missing. Data quality may be poor. Some tables may not contain the fields needed to prove the behavior. Retention may be too short. Endpoint coverage may be uneven. Cloud, identity, network, and endpoint data may not line up cleanly.
+This workflow is simple on paper and harder in real environments. Telemetry may be missing. Data quality may be poor. Some tables may not contain the fields needed to prove the behaviour. Retention may be too short. Endpoint coverage may be uneven. Cloud, identity, network, and endpoint data may not line up cleanly.
 
 Before proposing a detection, ask:
 
-* Do we have the events needed to prove the behavior?
+* Do we have the events needed to prove the behaviour?
 * Do the logs contain enough detail?
 * Are timestamps precise enough for sequence correlation?
 * Are fields parsed consistently?
-* Can the behavior be separated from normal activity?
+* Can the behaviour be separated from normal activity?
 
 If the answer is no, the output may be a logging requirement, parser improvement, or telemetry improvement rather than a rule. There is also an operational trade-off. More context can make a detection better, but it can also make the logic harder to maintain. A detection that depends on too many joins, assumptions, or enrichment sources may become fragile.
 
 When telemetry is missing, the output of the hunt may be a logging requirement rather than a detection rule. That is still a useful result. A hunter who can explain which data source is missing, why it matters, and what question it would answer has contributed to detection engineering.
 
-If the IOA cannot be found in your own telemetry, that is a data gap, not an IOC problem. The answer is not to compensate with more indicator lists. The answer is to understand which telemetry is missing, why it matters, and whether the organization should collect it.
+If the IOA cannot be found in your own telemetry, that is a data gap, not an IOC problem. The answer is not to compensate with more indicator lists. The answer is to understand which telemetry is missing, why it matters, and whether the organisation should collect it.
 
 Threat hunters should therefore be honest about confidence and limitations. Sometimes the right output is not a production detection. Sometimes the right output is a hunt query, a telemetry gap, a logging requirement, a tuning recommendation, or a better triage guide.
 
@@ -531,13 +531,13 @@ That is still detection engineering value.
 
 ## What This Means for Threat Hunters
 
-The work is not finished when the finding is explained. A threat hunter should be able to move from observation to behavior, from behavior to telemetry, and from telemetry to something the organization can search for, validate, and potentially detect again.
+The work is not finished when the finding is explained. A threat hunter should be able to move from observation to behaviour, from behaviour to telemetry, and from telemetry to something the organisation can search for, validate, and potentially detect again.
 
 The pivot chain in summary:
 
 ```mermaid
 flowchart LR
-    A[Observation] --> B[Behavior]
+    A[Observation] --> B[Behaviour]
     B --> C[MITRE]
     C --> D[Telemetry]
     D --> E[Hunt Query]
@@ -555,7 +555,7 @@ How would we find this again?
 
 ## What This Means for SOC Analysts
 
-SOC analysts should not treat an alert as truth. **An alert is a claim made by detection logic**. That claim may be strong, weak, precise, vague, well-contextualized, or misleading. The analyst's job is not only to read the alert name, but to understand what the detection actually observed. This distinction matters.
+SOC analysts should not treat an alert as truth. **An alert is a claim made by detection logic**. That claim may be strong, weak, precise, vague, well-contextualised, or misleading. The analyst's job is not only to read the alert name, but to understand what the detection actually observed. This distinction matters.
 
 A detection may be named:
 
@@ -563,7 +563,7 @@ A detection may be named:
 BloodHound Activity Observed
 ```
 
-But the underlying logic may not detect BloodHound itself. It may only detect a small fragment of activity that can be associated with BloodHound-style enumeration, such as SMB access, LDAP queries, or other directory-related behavior. That means the alert does not prove that BloodHound was used. It means the observed activity may be consistent with one part of BloodHound-like behavior, or with other legitimate or suspicious activity that uses similar protocols and access patterns.
+But the underlying logic may not detect BloodHound itself. It may only detect a small fragment of activity that can be associated with BloodHound-style enumeration, such as SMB access, LDAP queries, or other directory-related behaviour. That means the alert does not prove that BloodHound was used. It means the observed activity may be consistent with one part of BloodHound-like behaviour, or with other legitimate or suspicious activity that uses similar protocols and access patterns.
 
 For SOC analysts, the first questions should be:
 

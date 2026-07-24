@@ -16,7 +16,7 @@ You may read it, save pages, bookmark pages, print pages, create a private copy 
 
 Please use this material for educational purposes. If you do, I appreciate a heads-up. I am always interested in knowing where my content ends up and how it is being used.
 
-However, the content is not free to modify, republish, redistribute in bulk, commercialize, or present as your own work.
+However, the content is not free to modify, republish, redistribute in bulk, commercialise, or present as your own work.
 
 The following usage rules apply:
 
@@ -25,8 +25,8 @@ The following usage rules apply:
 - **Sharing is allowed.** You may share links to pages from this book on LinkedIn, social media, newsletters, chat platforms, or similar channels.
 - **Short excerpts are allowed with attribution.** You may quote short excerpts when sharing or discussing the material, as long as you credit the original author and link back to the source page.
 - **Attribution is required.** If you quote or reference material from this book, credit the original author and link back to the source page.
-- **No commercial use.** You may not sell, package, resell, monetize, or use this content as part of a paid product, course, service, training platform, or commercial offering without prior written consent.
-- **No unauthorized modifications.** You may not alter, adapt, translate, rewrite, or publish modified versions of the content without prior written consent.
+- **No commercial use.** You may not sell, package, resell, monetise, or use this content as part of a paid product, course, service, training platform, or commercial offering without prior written consent.
+- **No unauthorised modifications.** You may not alter, adapt, translate, rewrite, or publish modified versions of the content without prior written consent.
 - **No republication without consent.** You may not republish substantial parts of this book on another website, in another book, in a course, in training material, or on a company platform without written permission.
 - **Do not present the work as your own.** You may not claim authorship of the material, remove attribution, or imply that the content was created by someone else.
 - **Do not mirror the book.** This book is intended to remain publicly available from its original source. Do not host mirrored copies on internal company wikis, portals, knowledge bases, or similar platforms.
@@ -38,7 +38,7 @@ Approved exceptions may be listed publicly on this site for transparency.
 
 Not at the moment.
 
-This project is maintained as a living HTML/Markdown publication. New sections are added, changed, corrected, and reorganized as the material matures. A static PDF or e-book would become outdated quickly and would add extra maintenance overhead.
+This project is maintained as a living HTML/Markdown publication. New sections are added, changed, corrected, and reorganised as the material matures. A static PDF or e-book would become outdated quickly and would add extra maintenance overhead.
 
 A PDF or e-book version may become possible later, once the content is more stable.
 

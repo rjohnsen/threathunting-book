@@ -5,7 +5,7 @@ weight: 6
 draft: false
 ---
 
-These cheat sheets are field references for active hunts. Use them to interpret telemetry, choose the next pivot, and recognize where context is required before drawing a conclusion.
+These cheat sheets are field references for active hunts. Use them to interpret telemetry, choose the next pivot, and recognise where context is required before drawing a conclusion.
 
 > A port, process, event ID, or registry path is an observation, not a verdict. Establish the expected baseline, preserve context, and correlate across independent data sources.
 

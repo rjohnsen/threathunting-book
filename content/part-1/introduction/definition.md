@@ -26,7 +26,7 @@ keywords:
 
 **Ask ten people what threat hunting is, and you will probably get ten slightly different answers. One SOC may mean IOC searches. Another may mean detection engineering based on threat intelligence. A vendor may describe it as a platform capability. In newer AI-driven SOC discussions, someone may even claim that threat hunting can be done automatically by an AI agent. Some of those perspectives are useful. Some are incomplete. Some are just old activities with a newer label.**
 
-**That is why this book needs to start with a definition. Not because one perfect definition exists, but because the rest of the book needs a clear position. When I use the term threat hunting, I do not mean ordinary alert triage with a better title. I do not mean simply searching for known bad indicators. I do not mean detection engineering, although hunting and detection engineering should feed each other.** 
+**That is why this book needs to start with a definition. Not because one perfect definition exists, but because the rest of the book needs a clear position. When I use the term threat hunting, I do not mean ordinary alert triage with a better title. I do not mean simply searching for known bad indicators. I do not mean detection engineering, although hunting and detection engineering should feed each other.**
 
 To me, threat hunting is structured investigation into what existing alerts, dashboards, detections and assumptions may not show. It is proactive, but not random. It is hypothesis-driven, but still grounded in operational reality. A good hunt should test something: a behaviour, an assumption, a blind spot, a visibility gap, or a possible attacker technique. It should also leave something behind: better understanding, better telemetry, better detection logic, better documentation, or better questions.
 
@@ -256,7 +256,7 @@ Threat hunting is often divided into structured and unstructured hunting. That d
 | Unstructured hunting | Starts with exploration of data, often using baselining, stacking, clustering, frequency analysis or anomaly analysis. | Stack rare parent-child process relationships and investigate why certain combinations appear only once.                                                                                |
 | Combined hunting     | Uses one hunting mode to support another.                                                                              | Use frequency analysis to identify unusual authentication patterns, then turn those observations into a hypothesis about password spraying, service account misuse or lateral movement. |
 
-The method is less important than the discipline. 
+The method is less important than the discipline.
 
 A hunt should be scoped, documented and explainable. If another analyst cannot understand what was tested and why, the hunt is too dependent on the person who ran it.
 

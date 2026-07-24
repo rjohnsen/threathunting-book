@@ -20,17 +20,17 @@ To make things easier for you, I’ve turned my personal threat hunting workstat
 | What | Description |
 | ---- | ----------- |
 | **Host OS** | Windows 11 Pro, 1TB SSD, 32GB RAM, Intel Core i7 (Lenovo T14). This to gives you a rough idea on my workstation specs. |
-| **Virtualization** | VirtualBox | 
+| **Virtualisation** | VirtualBox |
 | **Guest OS** | Alma Linux |
-| **Docker** | OpenSearch (for analyzing incoming logs), XWiki (for documentation), CyberChef (a versatile toolset), Portainer (for managing Docker containers) |
+| **Docker** | OpenSearch (for analysing incoming logs), XWiki (for documentation), CyberChef (a versatile toolset), Portainer (for managing Docker containers) |
 
 I’ve created an installation routine to guide you through setting up the environment, starting from a fresh install of Alma Linux (right after the first login). But before diving in, let’s talk a bit more about this project named "Threat Hunting Workstation".
 
 ## About the Threat Hunting Workstation
 
-The [__Threat Hunting Workstation__](https://github.com/rjohnsen/threathunting-workstation) is meant to be a complete toolkit designed to help teams set up a dedicated environment for efficient threat hunting - as well as an environment you can teardown and setup time whenever required. It includes a SIEM tool for log importing and analysis, a wiki for documentation, and a collection of essential utilities for threat hunting and incident management. Delivered as an installation script for a virtualized Alma Linux instance, this workstation provides a centralized, powerful solution to improve team collaboration and streamline security operations.
+The [__Threat Hunting Workstation__](https://github.com/rjohnsen/threathunting-workstation) is meant to be a complete toolkit designed to help teams set up a dedicated environment for efficient threat hunting - as well as an environment you can teardown and setup time whenever required. It includes a SIEM tool for log importing and analysis, a wiki for documentation, and a collection of essential utilities for threat hunting and incident management. Delivered as an installation script for a virtualised Alma Linux instance, this workstation provides a centralised, powerful solution to improve team collaboration and streamline security operations.
 
-This installation routine is based on Ansible - please have a look at the [**setup-ansible.yml**](https://github.com/rjohnsen/threathunting-workstation/blob/main/setup-ansible.yml) YAML file to see each step involved in setting up this workstation. 
+This installation routine is based on Ansible - please have a look at the [**setup-ansible.yml**](https://github.com/rjohnsen/threathunting-workstation/blob/main/setup-ansible.yml) YAML file to see each step involved in setting up this workstation.
 
 ## Architecture
 
@@ -63,7 +63,7 @@ flowchart LR
 
 The great thing about this installation is that you need only to worry about one single script. That's right, no need to Git clone a repo or similar. In general, the installation consists of two steps:
 
-1. Install Alma Linux in Virtualbox. Not covered in this installation instruction. 
+1. Install Alma Linux in Virtualbox. Not covered in this installation instruction.
 2. Install the Threathunting Workstation toolset using the script covered in this installation instruction.
 
 
@@ -83,8 +83,8 @@ chmod +x install-workstation.sh
 Then follow directions.
 
 {{% notice info %}}
-The installation script may take a long time to run. This is due to two factors: the speed of your Internet line and the general speed of Docker Container Image repositories. During testing I have noticed that downloading Docker containers may take a very long time, sadly. 
-{{% /notice %}} 
+The installation script may take a long time to run. This is due to two factors: the speed of your Internet line and the general speed of Docker Container Image repositories. During testing I have noticed that downloading Docker containers may take a very long time, sadly.
+{{% /notice %}}
 
 ## Service Ports
 
@@ -95,12 +95,12 @@ The following table displays the communication ports for each intalled service. 
 | OpenSearch Dashboards (main SIEM interface) |  TCP | 5601 |
 | OpenSearch Logstasth | TCP | 5044 |
 | OpenSearch Node Communication and Transport | TCP | 9300 |
-| OpenSearch Perfomance Analyzer | TCP | 9600 |
+| OpenSearch Performance Analyzer | TCP | 9600 |
 | OpenSearch REST API | TCP | 9200 |
 | Portainer | TCP | 9443 |
 | SSH | TCP | TCP | 22 |
 | XWiki | TCP | 8080 |
-| Cyberchef | TCP | 8000 |  
+| Cyberchef | TCP | 8000 |
 
 ## XWiki initial setup
 
@@ -134,7 +134,7 @@ docker compose pull
 docker-compose up -d
 ```
 
-After these commands completes, give it some minutes before trying to reach the hosts in a browser. 
+After these commands completes, give it some minutes before trying to reach the hosts in a browser.
 
 #### Verifying versions after update
 
@@ -189,4 +189,4 @@ Check if you need to update connection data in shippers to use HTTPS. Change or 
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| 06.10.2024   | Improved formatting and wording |

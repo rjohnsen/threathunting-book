@@ -370,7 +370,7 @@ Anomaly-driven hunting fits naturally with the other frameworks in this section.
 | PEAK            | Structures the hunt lifecycle from preparation to execution and action.                            |
 | TaHiTI          | Helps turn intelligence into focused hunting questions that may be investigated through anomalies. |
 | MITRE ATT&CK    | Provides behavioural vocabulary for describing suspicious activity.                                |
-| Pyramid of Pain | Helps move from low-level indicators toward behaviour that is harder for adversaries to change.    |
+| Pyramid of Pain | Helps move from low-level indicators towards behaviour that is harder for adversaries to change.    |
 | OODA Loop       | Helps the hunter observe, orient, decide and act as evidence changes.                              |
 | MaGMa           | Helps manage resulting use cases, detections, metrics and improvement work.                        |
 

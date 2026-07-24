@@ -175,7 +175,7 @@ The Pyramid of Pain is useful because it explains why not all indicators have th
 
 At the lower levels, indicators such as hashes, IP addresses and domains are useful but often easy for adversaries to change. They are still worth collecting and using, but they tend to support matching, scoping and short-term response more than long-term disruption.
 
-Higher up the pyramid, the focus moves toward artefacts, tools and TTPs. This is where IOA and IOB become important. They help the team look beyond static traces and ask better questions about activity, behaviour and operating patterns.
+Higher up the pyramid, the focus moves towards artefacts, tools and TTPs. This is where IOA and IOB become important. They help the team look beyond static traces and ask better questions about activity, behaviour and operating patterns.
 
 | Pyramid-style focus | Related indicator lens | Practical use |
 | --- | --- | --- |

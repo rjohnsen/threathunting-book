@@ -72,7 +72,7 @@ The mental model is simple:
 Behaviour + Context Mismatch = Suspicion
 ```
 
-_The behaviour tells you what happened. The context tells you whether it makes sense._ This does not mean that every unusual event is malicious. It means that the hunter should look for the point where behaviour, baseline, role, timing, and environment stop fitting together. 
+_The behaviour tells you what happened. The context tells you whether it makes sense._ This does not mean that every unusual event is malicious. It means that the hunter should look for the point where behaviour, baseline, role, timing, and environment stop fitting together.
 
 > Behaviour without context is just activity. Behaviour that does not fit its context becomes suspicion.
 >
@@ -133,7 +133,7 @@ flowchart LR
     G --> H[Validation]
 ```
 
-The exact order may vary. Sometimes the hunter starts with an entity. Sometimes the starting point is a time window. Sometimes the hunt begins with a known behaviour and the goal is to find where it appears. The value of the model is not that every hunt must follow it perfectly. The value is that it forces the hunter to move from isolated facts toward an explanation that can be tested.
+The exact order may vary. Sometimes the hunter starts with an entity. Sometimes the starting point is a time window. Sometimes the hunt begins with a known behaviour and the goal is to find where it appears. The value of the model is not that every hunt must follow it perfectly. The value is that it forces the hunter to move from isolated facts towards an explanation that can be tested.
 
 ---
 

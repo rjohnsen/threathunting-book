@@ -14,7 +14,7 @@ __Author:__ _Roger C.B. Johnsen_
 ---
 
 {{% notice info %}}
-This script included on this page is not a Swiss army knife solution that parses all log formats on the planet. It is meant as an example on how to use the OpenSearch API. Further customizations to fit your log formats are expected. Please feel free to use the included script for inspiration. 
+This script included on this page is not a Swiss army knife solution that parses all log formats on the planet. It is meant as an example on how to use the OpenSearch API. Further customisations to fit your log formats are expected. Please feel free to use the included script for inspiration.
 
 The included script is also available on [Github](https://github.com/rjohnsen/opensearch-python-shipper)
 {{% /notice %}}
@@ -36,7 +36,7 @@ source env/bin/activate
 You can see the environment has been loaded by the "(env)" prefix on command line, like so:
 
 ```bash
-(env) [hunter@localhost Ingester]$ 
+(env) [hunter@localhost Ingester]$
 ```
 
 ## Installing necessary Python libraries
@@ -63,7 +63,7 @@ Now, with the virtual environment loaded and requirements installed, we can fina
 
 Ndjson (Newline Delimited JSON) is a format for storing or streaming structured data that consists of individual JSON objects separated by newline characters. Each line in an NDJSON file represents a single JSON object, making it easy to process large datasets line by line. This format is particularly useful for log files, data streams, or any situation where you need to handle large amounts of JSON data incrementally.
 
-A log in ndjson format typically looks like this and has a ```.ndjson``` file extension: 
+A log in ndjson format typically looks like this and has a ```.ndjson``` file extension:
 
 ```json
 [
@@ -76,7 +76,7 @@ Take note of the “datetime” key. Typically, there is a field that indicates 
 
 ### The ingestion script
 
-The following is a Python script that ingests the log file. To keep the code base somewhat clean, I have chosen to read credentials and other settings from a file called **settings.toml** located in the same folder as the main script itself. Go ahead and create the file **settings.toml** and add the following content (adjust to your environment): 
+The following is a Python script that ingests the log file. To keep the code base somewhat clean, I have chosen to read credentials and other settings from a file called **settings.toml** located in the same folder as the main script itself. Go ahead and create the file **settings.toml** and add the following content (adjust to your environment):
 
 ```toml
 hostname = "https://127.0.0.1:9200"
@@ -102,7 +102,7 @@ import toml
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def run(): 
+def run():
     try:
         parser = argparse.ArgumentParser()
         parser.add_argument("logfile")
@@ -189,7 +189,7 @@ def run():
 def set_date_time(json_item_copy, NOW):
     # Adjust the timestamp logic only
     current_timestamp = pendulum.parse(json_item_copy['_source']['@timestamp'])
-    
+
     try:
         # Safely subtract a day
         new_timestamp = current_timestamp.subtract(days=1)
@@ -230,13 +230,13 @@ To run it, simply enter this command and follow the onscreen instructions:
 python3 shipper.py logfile.ndjson
 ```
 
-This Python script is designed to efficiently ingest Ndjson based logs into OpenSearch. It starts by importing necessary libraries and reading and setting up user-specific settings such as the OpenSearch server hostname, username, and password. After initializing the OpenSearch client, the script retrieves the log file path from the command-line arguments and verifies its existence.
+This Python script is designed to efficiently ingest Ndjson based logs into OpenSearch. It starts by importing necessary libraries and reading and setting up user-specific settings such as the OpenSearch server hostname, username, and password. After initialising the OpenSearch client, the script retrieves the log file path from the command-line arguments and verifies its existence.
 
 A key function within the script adjusts the timestamps of log entries to ensure they are recent, setting them to either today or yesterday. The script processes the log entries in batches, adjusting their timestamps and preparing them for bulk indexing. It periodically reports progress to keep the user informed.
 
 The script uses OpenSearch's bulk helper to efficiently index the processed log entries into OpenSearch. This process ensures that the log data is up-to-date and ready for analysis and querying in OpenSearch.
 
-But where does the ingested log end up? The script will ask you the name of the index you want to store the log into. This means, for each log you ingest, you must enter a name. This can be a bit tedious, but on the bright side, you have much power into steering where things goes. 
+But where does the ingested log end up? The script will ask you the name of the index you want to store the log into. This means, for each log you ingest, you must enter a name. This can be a bit tedious, but on the bright side, you have much power into steering where things goes.
 
 ## Making the index aliases
 
@@ -244,7 +244,7 @@ This script will parse the Ndjson file and put its content in an index of your c
 
 ![Manage dashboard 1](/images/manage-dashboard-1.png)
 
-Keep in mind that "Discover" (the main query interface) knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__: 
+Keep in mind that "Discover" (the main query interface) knows nothing about these indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__:
 
 ![Manage dashboard 2](/images/manage-dashboard-2.png)
 
@@ -260,7 +260,7 @@ Then point tp a time field to use and click save (as mentioned in the "A note on
 
 ![Manage dashboard 5](/images/manage-dashboard-5.png)
 
-If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in. 
+If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in.
 
 ![Manage dashboard 6](/images/manage-dashboard-6.png)
 
@@ -268,4 +268,4 @@ If we go back to __"Discover"__, we can now see that our __"Index alias"__ is av
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Script rewritten and content updated accordingly | 
+| 06.10.2024   | Script rewritten and content updated accordingly |

@@ -79,7 +79,7 @@ flowchart TD
     F --> F1[Threat Hunter's Playbook]
 ```
 
-This is not a perfect taxonomy, but it is useful. It reminds us that different frameworks answer different questions: 
+This is not a perfect taxonomy, but it is useful. It reminds us that different frameworks answer different questions:
 
 * How do we run the hunt?
 * How do we turn intelligence into hunting activity?
@@ -174,7 +174,7 @@ For example, an APT report may describe abuse of valid accounts for lateral move
 
 This is also where detection engineering connects to hunting. A hunt may produce a detection idea, but detection engineering is needed to turn that idea into reliable, tested and maintainable detection logic.
 
-* The point is not that every hunt must formally use every framework. 
+* The point is not that every hunt must formally use every framework.
 * The point is that each framework helps with a different failure mode.
 
 | Failure mode                                                    | Helpful framework |

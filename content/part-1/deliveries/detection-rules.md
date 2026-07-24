@@ -563,11 +563,11 @@ Possible ATT&CK mapping:
 | Discovery            | T1087 - Account Discovery |
 | Lateral Movement     | T1021 - Remote Services   |
 
-ATT&CK mapping is useful for context, reporting and coverage analysis. It does not prove detection quality. 
+ATT&CK mapping is useful for context, reporting and coverage analysis. It does not prove detection quality.
 
 > A weak rule with an ATT&CK mapping is still a weak rule.
-> 
-> -- Roger Johnsen 
+>
+> -- Roger Johnsen
 
 ### Expected False Positives
 
@@ -805,7 +805,7 @@ If the SOC cannot triage the alert, the detection is not ready. This does not me
 
 ## Detection Rules and Threat Hunting Maturity
 
-A mature threat hunting function does not only find interesting behaviour. It helps the organisation decide what should be monitored, what should be ignored, what should be baselined and what should be improved. Detection rules are one way hunting becomes durable. 
+A mature threat hunting function does not only find interesting behaviour. It helps the organisation decide what should be monitored, what should be ignored, what should be baselined and what should be improved. Detection rules are one way hunting becomes durable.
 
 A hunt may start with a question:
 

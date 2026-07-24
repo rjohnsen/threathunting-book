@@ -1,6 +1,6 @@
 ---
-title: Ingesting with Filebeat  
-date: 2024-08-05T20:01:02+02:00  
+title: Ingesting with Filebeat
+date: 2024-08-05T20:01:02+02:00
 draft: False
 weight: 5
 ---
@@ -9,7 +9,7 @@ __Author:__ _Roger C.B. Johnsen_
 
 ## Introduction
 
-**Filebeat is a lightweight log shipper designed to forward and centralize various types of logs. As part of the Elastic Stack (ELK Stack), Filebeat is specifically tailored to collect logs and send them to Elasticsearch, Logstash, or third-party services for analysis and visualization. When we refer to Filebeat as a "shipper," we mean it's a tool that takes your logs and sends them to a SIEM, to put it simply.**
+**Filebeat is a lightweight log shipper designed to forward and centralise various types of logs. As part of the Elastic Stack (ELK Stack), Filebeat is specifically tailored to collect logs and send them to Elasticsearch, Logstash, or third-party services for analysis and visualisation. When we refer to Filebeat as a "shipper," we mean it's a tool that takes your logs and sends them to a SIEM, to put it simply.**
 
 ---
 
@@ -57,12 +57,12 @@ Filebeat OSS 7.12.1 supports the following log sources out of the box:
 | logstash | Parses regular logs and the slow log from Logstash, supporting both plain text and JSON formats. |
 | mongodb | Collects and parses logs created by MongoDB. |
 | mysql | Collects and parses slow logs and error logs created by MySQL. |
-| nginx | Parses access and error logs created by the Nginx HTTP server. | 
+| nginx | Parses access and error logs created by the Nginx HTTP server. |
 | osquery | Collects and decodes result logs written by `osqueryd` in JSON format. |
 | pensando | Parses distributed firewall logs created by the Pensando Distributed Services Card (DSC). |
 | postgresql | Collects and parses logs created by PostgreSQL. |
 | redis | Parses logs and slow logs created by Redis. |
-| santa | Collects and parses logs from Google Santa, a macOS security tool that monitors process executions and can blacklist/whitelist binaries. | 
+| santa | Collects and parses logs from Google Santa, a macOS security tool that monitors process executions and can blacklist/whitelist binaries. |
 | system | Collects and parses logs created by the system logging service of common Unix/Linux-based distributions. |
 | traefik | Parses access logs created by Træfik. |
 
@@ -104,9 +104,9 @@ This folder will hold all Apache logs you wish to ingest. Next, instruct Filebea
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
-    var.paths: [ 
+    var.paths: [
         "C:\\Filebeat\\apache\\*",
-      ] 
+      ]
 
   # Error logs
   error:
@@ -125,7 +125,7 @@ In the main Filebeat configuration file (`C:\Filebeat\filebeat\filebeat.yml`), l
 output.elasticsearch:
   hosts: ["http://127.0.0.1:9200"]
   username: "hunter"
-  password: "hunter" 
+  password: "hunter"
 ```
 
 If using HTTPS, please consider the following:
@@ -140,7 +140,7 @@ output.elasticsearch.ssl.verification_mode: none
 
 ### Removing Unnecessary Metadata from Filebeat Parsing
 
-By default, Filebeat adds host, client, and agent metadata to log entries. This information is often unnecessary when analyzing Apache logs and can clutter the data. To remove this metadata (optional), update the "processors" section in the `C:\Filebeat\filebeat\filebeat.yml` file:
+By default, Filebeat adds host, client, and agent metadata to log entries. This information is often unnecessary when analysing Apache logs and can clutter the data. To remove this metadata (optional), update the "processors" section in the `C:\Filebeat\filebeat\filebeat.yml` file:
 
 ```yaml
 processors:
@@ -187,11 +187,11 @@ filebeat.exe -e
 
 This will create a ```filebeat-7.12.1-2024.08.24``` index in OpenSearch. Note the index is named after which shipper sent data to it - and the current date.
 
-## Create Index Alias 
+## Create Index Alias
 
 For us to make use of this new index in "Discovery", we must set up Index Alias for it.
 
-Keep in mind that "Discover" (the main query interface) knows nothing about new indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__: 
+Keep in mind that "Discover" (the main query interface) knows nothing about new indices, thus you can't search into them directly. You first need to create index aliases for "Discover" to see them. You can do so by reaching the "Dashboard Management" utility by going to this path: __"Hamburger menu" -> Management -> "Dashboard Management"__:
 
 ![Manage dashboard 2](/images/manage-dashboard-2.png)
 
@@ -207,7 +207,7 @@ Then point to a time field to use and click save (as mentioned in the "A note on
 
 ![Manage dashboard 5](/images/filebeat-index-pattern-time.png)
 
-If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in. 
+If we go back to __"Discover"__, we can now see that our __"Index alias"__ is available to us to search in.
 
 ![Manage dashboard 6](/images/filebeat-discovery.png)
 
@@ -215,4 +215,4 @@ If we go back to __"Discover"__, we can now see that our __"Index alias"__ is av
 
 | Revised Date | Comment |
 | ------------ | ------- |
-| 06.10.2024   | Improved formatting and wording | 
+| 06.10.2024   | Improved formatting and wording |

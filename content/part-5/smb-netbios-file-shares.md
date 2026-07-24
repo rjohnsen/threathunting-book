@@ -27,7 +27,7 @@ Modern Windows can use configured alternative SMB ports. Protocol identification
 
 ## Shares and operations
 
-| Artifact | Meaning | Hunt for |
+| Artefact | Meaning | Hunt for |
 | -------- | ------- | -------- |
 | `ADMIN$` | Windows directory used by remote administration | New source tools, payload writes, and subsequent service or task execution. |
 | `C$`, `D$` | Administrative volume shares | Access by unexpected users, endpoints, or management tiers. |
@@ -52,7 +52,7 @@ Administrative-share access is not inherently malicious. Endpoint management, ba
 | 5140 | Network share accessed | One event per client session and share; useful for source, account, and share. |
 | 5142 | Network share created | Validate owner, path, ACL, and change record. |
 | 5143 | Network share modified | Inspect permission and path changes. |
-| 5144 | Network share deleted | Distinguish cleanup from authorized administration. |
+| 5144 | Network share deleted | Distinguish cleanup from authorised administration. |
 | 5145 | Share object access checked | Detailed relative path and access request; high volume and policy dependent. |
 | 7045 | Service installed | System-log corroboration for remote service execution. |
 
@@ -91,7 +91,7 @@ Look for a sequence rather than a tool name:
 5. Process creation as `SYSTEM` or another privileged identity.
 6. Service deletion and payload cleanup.
 
-PsExec-like behavior can be produced by legitimate administration products and by many tools other than PsExec.
+PsExec-like behaviour can be produced by legitimate administration products and by many tools other than PsExec.
 
 ### Share discovery
 
@@ -121,7 +121,7 @@ Useful features include:
 - A workstation behaving like an inventory, backup, indexing, or management server.
 - LDAP discovery immediately before broad SMB access.
 
-Do not define *rapid* globally. Build separate baselines for people, jump hosts, deployment systems, backup, search indexers, data-loss prevention, vulnerability scanners, and file-management services. The valuable anomaly is machine-like breadth from an identity or device whose normal behavior is human-scale.
+Do not define *rapid* globally. Build separate baselines for people, jump hosts, deployment systems, backup, search indexers, data-loss prevention, vulnerability scanners, and file-management services. The valuable anomaly is machine-like breadth from an identity or device whose normal behaviour is human-scale.
 
 ### AD Explorer and adjacent discovery
 

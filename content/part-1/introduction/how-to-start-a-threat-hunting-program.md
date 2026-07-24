@@ -76,7 +76,7 @@ Those are different purposes, and they may produce different outputs.
 | Improve SOC triage             | Better analyst guidance or decision support             |
 | Build knowledge                | Baseline, documentation or reusable investigation notes |
 
-Objectives help keep the work grounded. SMART can be useful here: 
+Objectives help keep the work grounded. SMART can be useful here:
 
 * Specific
 * Measurable
@@ -99,7 +99,7 @@ During the next quarter, run three hypothesis-driven hunts against behaviours re
 The point is not to create paperwork. The point is to avoid vague ambition.
 
 > A programme that cannot explain what it is trying to improve will struggle to prove that it is useful.
-> 
+>
 > -- Roger Johnsen
 
 ### Gather the Right Data, Tools and Resources

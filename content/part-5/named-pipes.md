@@ -21,7 +21,7 @@ Named pipes are Windows interprocess communication endpoints. They support norma
 | `\\SERVER\IPC$\<pipe>` | Remote pipe over SMB | Indicates RPC or pipe access through the remote IPC share. |
 | `\Device\Mup\SERVER\IPC$\<pipe>` | Kernel path through Multiple UNC Provider | Strong evidence of remote UNC/SMB context. |
 
-## Pipes worth recognizing
+## Pipes worth recognising
 
 | Pipe or family | Common role | Hunt for |
 | -------------- | ----------- | -------- |
@@ -135,12 +135,12 @@ Correlate Security Events 4624, 4648, 4697, 5140, and 5145; System Event 7045; S
 
 ## Triage workflow
 
-1. Normalize the pipe path and decide whether it is local or remote.
+1. Normalise the pipe path and decide whether it is local or remote.
 2. Identify creator and connector processes using stable process identifiers.
 3. Resolve account, integrity, logon session, source, and target.
 4. Check pipe prevalence by process, device role, and peer group.
 5. Correlate nearby SMB, RPC, service, task, file, and process activity.
-6. Determine whether the behavior is interactive, automated, or fleet-wide.
+6. Determine whether the behaviour is interactive, automated, or fleet-wide.
 7. Validate management tooling and change records.
 8. Expand on pipe name, process hash, source account, and target set.
 
